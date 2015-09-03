@@ -10,7 +10,7 @@ from pyESig.vid.misc_funcs import has_video
 sbj_id = "fcb01f7a"
 day = 16
 sr=30
-input_file_loc = "E:\\sound\\"  
+input_file_loc = "D:\\sound\\"
 #output_file_loc = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_decode\\sound_result_agg\\"
 output_file_loc = input_file_loc
 has_video_array = has_video("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\disconnect_times\\" \
@@ -28,10 +28,10 @@ for f in xrange(has_video_array.shape[0]):
 
             total_mvmt[f] = -1
 
-
+pdb.set_trace()
 pickle.dump(total_mvmt, open(output_file_loc + sbj_id + "_" + str(day) + ".p" , "wb"))
 plt.plot(np.array(range(270*30*60))/(60*30.0), total_mvmt[:270*30*60])
-plt.ylim([10**15,6*10**15])
+#plt.ylim([10**11,6*10**15])
 plt.xlabel("Time (Min)")
 plt.ylabel("Speech sound level")
 plt.show()

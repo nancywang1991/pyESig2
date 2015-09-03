@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import edflib._edflib as edflib
 import cPickle as pickle
 from matplotlib.gridspec import GridSpec
-from pyESig.analysis.mu_drop_funcs import mvmt_thresh, signal_filter, butter_bandpass_filter, butter_bandstop_filter
+from pyESig.analysis.mu_drop_funcs \
+    import mvmt_thresh, signal_filter, butter_bandpass_filter, butter_bandstop_filter
 
 sbj_id = "a86a4375"
 day = 2
