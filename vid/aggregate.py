@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 from pyESig.vid.mvmt_class import mvmt
 from pyESig.vid.misc_funcs import has_video
 
-sbj_id = "fcb01f7a"
-day = 16
+sbj_id = "e70923c4"
+day = 5
 sr=30
-input_file_loc = "D:\\sound\\"
+input_file_loc = "E:\\sound\\"
 #output_file_loc = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_decode\\sound_result_agg\\"
 output_file_loc = input_file_loc
 has_video_array = has_video("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\disconnect_times\\" \

@@ -12,7 +12,7 @@ def subdir(a_dir):
     return [name for name in os.listdir(a_dir)
             if os.path.isdir(os.path.join(a_dir, name))]
 
-main_folder = "D:\\NancyStudyData\\ecog\\raw\\"
+main_folder = "E:\\"
 result_folder = ("C:\\Users\\wangnxr\\Documents\\" +
                     "rao_lab\\video_analysis\\manual_annotations\\")
 sbj_dirs = ["e70923c4"]
