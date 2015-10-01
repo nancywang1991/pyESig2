@@ -7,7 +7,7 @@ from util.error import varError
 import matplotlib.pyplot as plt
 import pdb
 
-def main(sound, mvmt, cluster):
+def correlate(sound, mvmt, cluster):
     """ Calculates correlation between cluster results and sound and movement
     levels """
     #Load files
@@ -35,19 +35,22 @@ def main(sound, mvmt, cluster):
                                     > sound_thresh)[0].shape[0]/nf
         mvmt_reduced[i] = np.where(input_file_mvmt[i*nf:(i+1)*nf]
                                     > mvmt_thresh)[0].shape[0]/nf
-
+    sound_corr = np.zeros(input_file_cluster.shape[1])
+    mvmt_corr = np.zeros(input_file_cluster.shape[1])
     for c, values in enumerate(input_file_cluster.T):
-        print("Sound correlation with channel " + str(c)
-               + str(pearsonr(sound_reduced, values[start:end])))
-        print("Mvmt correlation with channel " + str(c)
-              + str(pearsonr(mvmt_reduced, values[start:end])))
-    plt.plot(sound_reduced)
-    plt.show()
-    print ("Sound correlation with mvmt "
-           + str(pearsonr(sound_reduced, mvmt_reduced)))
+        sound_corr[c]=pearsonr(sound_reduced, values[start:end])
+        mvmt_corr[c]=pearsonr(sound_reduced, values[start:end])
+
+    mvmt_channel = mvmt_corr.index(mvmt.max())
+    sound_channel = sound_corr.index(sound.max())
+    average = np.mean([mvmt_corr, sound_corr])
+    rest_channel = average.index(average.min())
+
+    return {'mvmt':input_file_cluster[:,mvmt_channel],'sound':
+           input_file_cluster[:,sound_channel],'rest':input_file_cluster[:,rest_channel]}
 
 if __name__ == "__main__":
     if not(len(sys.argv) == 4):
         raise varError("Arguments should be <Sound File> <Movement File>\
                          <Cluster Result File>")
-    main(*sys.argv[1:])
+    correlate(*sys.argv[1:])

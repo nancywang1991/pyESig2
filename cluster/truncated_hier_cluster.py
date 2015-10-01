@@ -55,13 +55,13 @@ def add_hier(cluster_result, cluster_result_temp, level):
     cluster_result[level,:] = (2 ** (level)) * cluster_result_temp[level, :] + cluster_result[level-1,:]
 
 
-def condense_time(cluster_result, level):
+def condense_time(cluster_result, level, rate):
     n_clusters = 2 ** (level +1)
-    n_mins = cluster_result.shape[0]/(60/2)
+    n_mins = cluster_result.shape[0]/(rate/2)
     n_labels = np.zeros(shape=(n_mins, n_clusters))
     for h in xrange(n_mins):
         for n in xrange(n_clusters):
-            n_labels[h, n] = np.where(cluster_result[h * 60 / 2:(h + 1) * 60 / 2] == n)[0].shape[0]
+            n_labels[h, n] = np.where(cluster_result[h * rate / 2:(h + 1) * rate / 2] == n)[0].shape[0]
 
     return n_labels
 
@@ -88,16 +88,16 @@ def main(sbj_id, dates, features_loc, save_loc):
         hier_cluster(data, np.array(range(data.shape[0])), float("inf"), cluster_result_temp, 0)
 
         cluster_result = np.zeros(shape=(10, data.shape[0]))
+
         cluster_result[0, :] = cluster_result_temp[0,:]
         for level in range(1, cluster_result_temp.shape[0]):
             add_hier(cluster_result, cluster_result_temp, level)
             cluster_result[level,np.where(cluster_result_temp[level,:] == -1)[0]] = -1
 
         # Plot Cluster Figures
-
         plt.figure(figsize=(20,10))
-        for l in xrange(5):
-            condensed = condense_time(cluster_result[l, :], l)
+        for l in xrange(10):
+            condensed = condense_time(cluster_result[l, :], l, 15)
             index = np.argsort(condensed[:,:].sum(axis=0))
 
             for c in index[-min(2**(l+1),5):]:
@@ -105,8 +105,9 @@ def main(sbj_id, dates, features_loc, save_loc):
 
             plt.xlabel("Time(Minute)")
             plt.ylabel("Cluster Count")
-            #plt.xticks(np.arange(0,301,10))
+            plt.xticks(np.arange(0,301,10))
             plt.show()
+            pickle.dump(condensed[:,index[::-1]], open(save_loc + "/" + sbj_id + "_" + date + "_" + str(l) + ".p", "wb"))
         pickle.dump(cluster_result, open(save_loc + "/" + sbj_id + "_" + date + ".p", "wb"))
 
 

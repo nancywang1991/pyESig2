@@ -33,7 +33,7 @@ def has_video(disconnect_file_loc, samp_rate=30):
         frame_start = int((diff.total_seconds())*samp_rate)
         diff2 = pad_time_end - pad_time_start_time
         pad_length = int((diff2.total_seconds())*samp_rate)
-        #pdb.set_trace()
+
         has_video[frame_start:frame_start + pad_length] = 0
     return has_video
     
