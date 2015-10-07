@@ -7,7 +7,7 @@ import numpy as np
 import cPickle as pickle
 import datetime, time
 import re
-import random.random
+import random
 
 def getLength(filename):
     result = subprocess.Popen(["ffprobe", filename],
@@ -59,14 +59,17 @@ def convert_random_labels_to_array(labels, sbj_indexes, vid_length, tracks, redu
         start = int(round(float(labels.start[t])))
         end = int(round(float(labels.end[t])))
         dur = end-start
-        rand_start = random.randint(0,len(labels_array)-dur)
+        if not(len(labels_array)>=dur):
+            rand_start = random.randint(0,dur-len(labels_array))
+        else:
+            rand_start = 0
         while labels_array[ind,rand_start:rand_start+dur].sum()>0:
             rand_start = random.randint(0,len(labels_array)-dur)
         labels_array[ind,rand_start:rand_start+dur] = 1
     return {'tracks':reduced_tracks, 'all_tracks': tracks, 'pretty_tracks': reduced_tracks, 'labels_array': labels_array}
 
 def extract_all_labels(sbj_id, day, src_folder, vid_folder, dst_folder):
-    labels=pd.read_csv(src_folder + sbj_id + "_" + day + ".txt", sep=':')
+    labels=pd.read_csv(src_folder + sbj_id + "_" + str(day) + ".txt", sep=':')
 
     tracks = ["Laughing", "Movement.Head", "Movement.Other",
               "Movement.arm", "Speaking", "Multiple_people",
@@ -86,21 +89,21 @@ def extract_all_labels(sbj_id, day, src_folder, vid_folder, dst_folder):
         if sbj_indexes.shape[0]>0:
 
             vid_length = getLength(vid_folder + "\\"  + sbj_id
-                                          + "_" + day + "\\" + sbj_id
-                                          + "_" + day + "_" + file_num + ".avi")
+                                          + "_" + str(day) + "\\" + sbj_id
+                                          + "_" + str(day) + "_" + file_num + ".avi")
             result = convert_labels_to_array(labels,sbj_indexes, vid_length, tracks, pretty_tracks)
 
             pickle.dump(result, open(dst_folder + "\\" + sbj_id +"_" + day + "_" + file_num + ".p", "wb"))
 
 def extract_reduced_labels(sbj_id, day, src_folder, vid_folder, dst_folder):
-    labels=pd.read_csv(src_folder + sbj_id + "_" + day + ".txt", sep=':')
+    labels=pd.read_csv(src_folder + sbj_id + "_" + str(day) + ".txt", sep=':')
 
     tracks = ["Laughing", "Movement.Head", "Movement.Other",
               "Movement.arm", "Speaking", "Multiple_people",
               "Sleeping","Eating", "Listening.Watching_Media",
               "Listening.Listening_to_family_member",
               "Listening.Listening_to_staff", "Rest"]
-    tracks_reduced = ["Mvmt", "Sound", "Rest", "Other"]
+    tracks_reduced = ["Mvmt", "Sound", "Both", "Rest", "Other"]
     for i in xrange(800):
         file_num = str(i).zfill(4)
         sbj_indexes = np.hstack([np.where(np.array(labels.filename)== file_num)[0],
@@ -109,13 +112,13 @@ def extract_reduced_labels(sbj_id, day, src_folder, vid_folder, dst_folder):
         if sbj_indexes.shape[0]>0:
 
             vid_length = getLength(vid_folder + "\\"  + sbj_id
-                                          + "_" + day + "\\" + sbj_id
-                                          + "_" + day + "_" + file_num + ".avi")
+                                          + "_" + str(day) + "\\" + sbj_id
+                                          + "_" + str(day) + "_" + file_num + ".avi")
             result = convert_reduced_labels_to_array(labels,sbj_indexes, vid_length, tracks, tracks_reduced)
-            pickle.dump(result, open(dst_folder +  "\\" + sbj_id +"_" + day + "_" + file_num + ".p", "wb"))
+            pickle.dump(result, open(dst_folder +  "\\" + sbj_id +"_" +str(day) + "_" + file_num + ".p", "wb"))
 
 def extract_random_labels(sbj_id, day, src_folder, vid_folder, dst_folder):
-    labels=pd.read_csv(src_folder + sbj_id + "_" + day + ".txt", sep=':')
+    labels=pd.read_csv(src_folder + sbj_id + "_" + str(day) + ".txt", sep=':')
 
     tracks = ["Laughing", "Movement.Head", "Movement.Other",
               "Movement.arm", "Speaking", "Multiple_people",
@@ -131,10 +134,10 @@ def extract_random_labels(sbj_id, day, src_folder, vid_folder, dst_folder):
         if sbj_indexes.shape[0]>0:
 
             vid_length = getLength(vid_folder + "\\"  + sbj_id
-                                          + "_" + day + "\\" + sbj_id
-                                          + "_" + day + "_" + file_num + ".avi")
-            result = convert_random_labels_to_array(labels,sbj_indexes, vid_length, tracks, tracks_reduced)
-            pickle.dump(result, open(dst_folder +  "\\" + sbj_id +"_" + day + "_" + file_num + ".p", "wb"))
+                                          + "_" + str(day) + "\\" + sbj_id
+                                          + "_" + str(day) + "_" + file_num + ".avi")
+            result = convert_labels_to_array(labels,sbj_indexes, vid_length, tracks, tracks_reduced)
+            pickle.dump(result, open(dst_folder +  "\\" + sbj_id +"_" + str(day) + "_" + file_num + ".p", "wb"))
 
 if __name__ == "__main__":
     if not(len(sys.argv) == 7):

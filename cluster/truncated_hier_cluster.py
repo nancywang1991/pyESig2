@@ -10,6 +10,7 @@ import cPickle as pickle
 import numpy as np
 import time
 import sys
+import os
 
 import pdb
 
@@ -19,7 +20,7 @@ def find_data_ind(date, index):
         name = index[d].split('/')[-1]
         vid, rest = name.split('_')
         num, _ = rest.split('.')
-        if int(vid == date):
+        if int(vid == str(date)):
             return d
 
 
@@ -36,7 +37,7 @@ def temporal_consistency(ind):
 def hier_cluster(data, ind, prev_stdev, result, level):
     consistency = temporal_consistency(ind)
 
-    print "Processing level " + str(level)
+    #print "Processing level " + str(level)
     if not (data.shape[0] < 100  or level > 9):
         labels = split_cluster(data, 20/(level+1))
         cluster0 = data[np.where(labels == 0)[0],:]
@@ -57,11 +58,11 @@ def add_hier(cluster_result, cluster_result_temp, level):
 
 def condense_time(cluster_result, level, rate):
     n_clusters = 2 ** (level +1)
-    n_mins = cluster_result.shape[0]/(rate/2)
+    n_mins = int(round(cluster_result.shape[0]/(rate/2.0)))
     n_labels = np.zeros(shape=(n_mins, n_clusters))
     for h in xrange(n_mins):
         for n in xrange(n_clusters):
-            n_labels[h, n] = np.where(cluster_result[h * rate / 2:(h + 1) * rate / 2] == n)[0].shape[0]
+            n_labels[h, n] = np.where(cluster_result[h * rate / 2:(h + 1) * rate / 2.0] == n)[0].shape[0]
 
     return n_labels
 
@@ -73,42 +74,45 @@ def extract_file_num(index):
             num, _ = rest.split('.')
             file_nums[i] = int(num)
         return file_nums
-def main(sbj_id, dates, features_loc, save_loc):
-
+def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
     for date in dates:
-        index = extract_file_num(pickle.load(open(features_loc + "index_pca_" + sbj_id + "_" + date + ".p", "rb")))
+        if os.path.isfile(save_loc + "/" + sbj_id + "_" + str(date) + ".p"):
 
-        order = np.argsort(index)
+            print "Processing date: " + str(date)
+            index = extract_file_num(pickle.load(open(features_loc + "index_pca_" + sbj_id + "_" + str(date) + ".p", "rb")))
 
-        data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + date + ".p", "rb"))
-        data = np.zeros(shape=data_raw.shape)
-        for d in xrange(data.shape[0]):
-            data[d] = data_raw[order[d]]
-        cluster_result_temp = np.zeros(shape=(10, data.shape[0])) - 1
-        hier_cluster(data, np.array(range(data.shape[0])), float("inf"), cluster_result_temp, 0)
+            order = np.argsort(index)
 
-        cluster_result = np.zeros(shape=(10, data.shape[0]))
+            data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))
 
-        cluster_result[0, :] = cluster_result_temp[0,:]
-        for level in range(1, cluster_result_temp.shape[0]):
-            add_hier(cluster_result, cluster_result_temp, level)
-            cluster_result[level,np.where(cluster_result_temp[level,:] == -1)[0]] = -1
+            data = np.zeros(shape=data_raw.shape)
+            for d in xrange(data.shape[0]):
+                data[d] = data_raw[order[d]]
+            cluster_result_temp = np.zeros(shape=(10, data.shape[0])) - 1
+            hier_cluster(data, np.array(range(data.shape[0])), float("inf"), cluster_result_temp, 0)
 
-        # Plot Cluster Figures
-        plt.figure(figsize=(20,10))
-        for l in xrange(10):
-            condensed = condense_time(cluster_result[l, :], l, 15)
-            index = np.argsort(condensed[:,:].sum(axis=0))
+            cluster_result = np.zeros(shape=(10, data.shape[0]))
 
-            for c in index[-min(2**(l+1),5):]:
-                plt.plot(condensed[:,c])
+            cluster_result[0, :] = cluster_result_temp[0,:]
+            for level in range(1, cluster_result_temp.shape[0]):
+                add_hier(cluster_result, cluster_result_temp, level)
+                cluster_result[level,np.where(cluster_result_temp[level,:] == -1)[0]] = -1
 
-            plt.xlabel("Time(Minute)")
-            plt.ylabel("Cluster Count")
-            plt.xticks(np.arange(0,301,10))
-            plt.show()
-            pickle.dump(condensed[:,index[::-1]], open(save_loc + "/" + sbj_id + "_" + date + "_" + str(l) + ".p", "wb"))
-        pickle.dump(cluster_result, open(save_loc + "/" + sbj_id + "_" + date + ".p", "wb"))
+            # Plot Cluster Figures
+            plt.figure(figsize=(20,10))
+            for l in xrange(10):
+                condensed = condense_time(cluster_result[l, :], l, 15)
+                index = np.argsort(condensed[:,:].sum(axis=0))
+
+                # for c in index[-min(2**(l+1),5):]:
+                #     plt.plot(condensed[:,c])
+                #
+                # plt.xlabel("Time(Minute)")
+                # plt.ylabel("Cluster Count")
+                # plt.xticks(np.arange(0,301,10))
+                # plt.show()
+                pickle.dump(condensed, open(save_loc + "/" + sbj_id + "_" + str(date) + "_" + str(l) + ".p", "wb"))
+            pickle.dump(cluster_result, open(save_loc + "/" + sbj_id + "_" + str(date) + ".p", "wb"))
 
 
 if __name__ == "__main__":
@@ -116,4 +120,4 @@ if __name__ == "__main__":
         raise varError("Arguments should be <Subject ID> <Dates> <Features directory>\
                           <Save directory>")
     sys.argv[2] = sys.argv[2].split()
-    main(*sys.argv[1:])
+    hier_cluster_main(*sys.argv[1:])

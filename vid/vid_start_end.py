@@ -52,8 +52,8 @@ def check_disconnect(cur_time, vid_len, start):
 def main():
    root_folder = "D:\\NancyStudyData\\ecog\\raw\\"
    sbj_ids = ['a86a4375', 'be66b17c', 'cb46fd46', 'da3971ee', 'fcb01f7a']
-   sbj_ids = ['fcb01f7a']
-   days = ['1','2','3','4','5','6','7','8','9','10', '11','12','13', '16']
+   sbj_ids = ['c95c1e82']
+   days = ['4','5','6','7',]
    save_folder = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
 
    for sbj_id in sbj_ids:
