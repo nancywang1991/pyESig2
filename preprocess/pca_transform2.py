@@ -15,8 +15,11 @@ def load_and_track(f, file, total):
     data = pickle.load(open(file,"rb"))[:,:]
     return data
 
-sbj_id = "a86a4375"
-days = range(3,8)
+sbj_id = "d6532718"
+days = [2,3,4,5,6,7,8]
+
+#sbj_id = "ffb52f92"
+#days = [3,4,5,6,7]
 
 for day in days:
     datapath = "/media/nancy/Picon/ecog_processed/" + sbj_id + "/" + str(day) + "_"
