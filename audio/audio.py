@@ -6,14 +6,14 @@ import pickle
 import gc
 import glob
 
-sbj_id = "c95c1e82"
-days = range(4,8)
+sbj_id = "a86a4375"
+days = range(4,9)
 samp_rate = 8000
 num_secs = 120
 #mvmt_file_loc = "C:\\Users\\wangnxr\\Documents\\rao_lab" \
 #                + "\\video_decode\\mvmt_result_agg\\"
 for day in days:
-    video_file_loc = "E:\\NancyStudyData\\ecog\\raw\\" + sbj_id + "\\" \
+    video_file_loc = "D:\\NancyStudyData\\ecog\\raw\\" + sbj_id + "\\" \
                      + sbj_id + "_" + str(day) + "\\"
     output_file_loc = "E:\\sound\\"  + sbj_id + "\\" + str(day) + "\\"
 
