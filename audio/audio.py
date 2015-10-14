@@ -6,8 +6,8 @@ import pickle
 import gc
 import glob
 
-sbj_id = "a86a4375"
-days = range(4,9)
+sbj_id = "cb46fd46"
+days = range(10,11)
 samp_rate = 8000
 num_secs = 120
 #mvmt_file_loc = "C:\\Users\\wangnxr\\Documents\\rao_lab" \

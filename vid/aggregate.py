@@ -11,6 +11,7 @@ from pyESig2.vid.misc_funcs import has_video
 
 def aggregate(sbj_id, day, input_file_loc, output_file_loc, has_video_array):
     if not os.path.isfile(output_file_loc + sbj_id + "_" + str(day) + ".p"):
+
         total_features = np.zeros(has_video_array.shape[0])
         feature_obj = feature_chunk(input_file_loc, sbj_id, day)
         for f in xrange(has_video_array.shape[0]):

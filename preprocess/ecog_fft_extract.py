@@ -42,10 +42,19 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
                         for c in xrange(1, 1+n_channels):
                             frequency[c-1,:] = (np.abs(np.fft.fft(
                                 chan_sig[c-1,sub_chunk:sub_chunk+window_size]))**2)[f_lo:f_hi:3]
-                        pickle.dump(frequency, open(save_file_loc + str(f)
-                                                    + "_" + str(cnt) + ".p", "wb"))
+                       #pickle.dump(frequency, open(save_file_loc + str(f)
+                       #                             + "_" + str(cnt) + ".p", "wb"))
                         #print (save_file_loc + str(f)
                         #                            + "_" + str(cnt) + ".p" + " saved")
+
+                        y, x = np.mgrid[slice(0, n_channels, 1),
+                        slice(0, 100*3, 3)]
+                        plt.pcolormesh(x,y,frequency, cmap='RdBu', vmin=-1, vmax=1)
+                        plt.axis([x.min(), x.max(), y.min(), y.max()])
+                        plt.colorbar()
+                        #plt.title(track)
+                        plt.xlabel("Frequency")
+                        plt.ylabel("Channel")
                     else:
                         print (save_file_loc + str(f)
                                                     + "_" + str(cnt) + ".p" + " skipped")
@@ -80,10 +89,11 @@ for file in files:
     if not (file[-4:]=="misc"):
         parent, num = file.split('_')
         f, ext = num.split('.')
-        p = Process(target=transform_file,
-                    args=(f, file, f_lo, f_hi, save_file_loc, n_channels))
-        p.start()
-p.join()
+        #p = Process(target=transform_file,
+        #            args=(f, file, f_lo, f_hi, save_file_loc, n_channels))
+        #p.start()
+        transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels)
+#p.join()
 
 
 

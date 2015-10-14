@@ -85,7 +85,7 @@ def sound_thresh(sound):
     return sound_level
 
 
-def butter_bandpass(lowcut, highcut, fs, order=5):
+def butter_bandpass(lowcut, highcut, fs, order=3):
     nyq = 0.5 * fs
     low = lowcut / nyq
     high = highcut / nyq
@@ -93,12 +93,12 @@ def butter_bandpass(lowcut, highcut, fs, order=5):
     return b, a
    
 
-def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
+def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
     b, a = butter_bandpass(lowcut, highcut, fs, order=order)
     y = lfilter(b, a, data)
     return y
 
-def butter_bandstop(lowcut, highcut, fs, order=5):
+def butter_bandstop(lowcut, highcut, fs, order=3):
     nyq = 0.5 * fs
     low = lowcut / nyq
     high = highcut / nyq
@@ -106,11 +106,22 @@ def butter_bandstop(lowcut, highcut, fs, order=5):
     return b, a
    
 
-def butter_bandstop_filter(data, lowcut, highcut, fs, order=5):
+def butter_bandstop_filter(data, lowcut, highcut, fs, order=3):
     b, a = butter_bandstop(lowcut, highcut, fs, order=order)
     y = lfilter(b, a, data)
     return y
 
+def butter_highpass( highcut, fs, order=3):
+    nyq = 0.5 * fs
+    high = highcut / nyq
+    b, a = butter(order, high, btype='high')
+    return b, a
+
+
+def butter_highpass_filter(data, lowcut, highcut, fs, order=3):
+    b, a = butter_highpass(highcut, fs, order=order)
+    y = lfilter(b, a, data)
+    return y
 
 def signal_filter(signal_raw, mvmt_level, criteria, f_lo, f_hi, samp_rate, filt, t_start, signal_min, filt_type='fft', hilb_sig=None):
 

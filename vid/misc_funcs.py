@@ -20,6 +20,7 @@ def has_video(disconnect_file_loc, samp_rate=30):
     total_frames = (end_time-start_time).total_seconds()*samp_rate
     has_video = np.zeros(total_frames) + 1
     disconnect_info.readline()
+
     for line in disconnect_info:
         
         match = re.search(r'\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}', line)

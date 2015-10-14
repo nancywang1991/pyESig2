@@ -76,8 +76,8 @@ def extract_file_num(index):
         return file_nums
 def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
     for date in dates:
-        if os.path.isfile(save_loc + "/" + sbj_id + "_" + str(date) + ".p"):
-
+        if not os.path.isfile(save_loc + "/" + sbj_id + "_" + str(date) + "_3_centers.p"):
+        #if 1:
             print "Processing date: " + str(date)
             index = extract_file_num(pickle.load(open(features_loc + "index_pca_" + sbj_id + "_" + str(date) + ".p", "rb")))
 
@@ -97,22 +97,37 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
             for level in range(1, cluster_result_temp.shape[0]):
                 add_hier(cluster_result, cluster_result_temp, level)
                 cluster_result[level,np.where(cluster_result_temp[level,:] == -1)[0]] = -1
+            for level in range(0, cluster_result_temp.shape[0]):
+                cluster_centers=[]
+
+                for c in xrange(int(np.nanmax(cluster_result[level,:] )) + 1):
+
+                    cluster_index = np.where(cluster_result[level,:]==c)[0]
+                    if len(cluster_index>0):
+                        cluster_center = np.mean(data[cluster_index], axis=0)
+                        cluster_centers.append(cluster_center)
+                    else:
+                        cluster_centers.append([])
+                pickle.dump(cluster_centers, open(save_loc + "\\" + sbj_id + "_" +
+                                                  str(date) + "_" + str(level) + "_centers.p", "wb"))
+
+
 
             # Plot Cluster Figures
             plt.figure(figsize=(20,10))
-            for l in xrange(10):
-                condensed = condense_time(cluster_result[l, :], l, 15)
+            for l in xrange(5):
+                condensed = condense_time(cluster_result[l, :], l, 60*10)
                 index = np.argsort(condensed[:,:].sum(axis=0))
 
-                # for c in index[-min(2**(l+1),5):]:
-                #     plt.plot(condensed[:,c])
-                #
-                # plt.xlabel("Time(Minute)")
-                # plt.ylabel("Cluster Count")
-                # plt.xticks(np.arange(0,301,10))
-                # plt.show()
-                pickle.dump(condensed, open(save_loc + "/" + sbj_id + "_" + str(date) + "_" + str(l) + ".p", "wb"))
-            pickle.dump(cluster_result, open(save_loc + "/" + sbj_id + "_" + str(date) + ".p", "wb"))
+                for c in index[-min(2**(l+1),5):]:
+                     plt.plot(np.arange(0,condensed.shape[0]*10,10),condensed[:,c])
+
+                plt.xlabel("Time(Minute)")
+                plt.ylabel("Cluster Count")
+                #plt.xticks(np.arange(0,condensed.shape[0]*10,10))
+                plt.show()
+                pickle.dump(condensed, open(save_loc + "\\" + sbj_id + "_" + str(date) + "_" + str(l) + ".p", "wb"))
+            pickle.dump(cluster_result, open(save_loc + "\\" + sbj_id + "_" + str(date) + ".p", "wb"))
 
 
 if __name__ == "__main__":

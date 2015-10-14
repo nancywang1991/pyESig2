@@ -1,6 +1,4 @@
 import numpy as np
-from pylearn2.datasets.vector_spaces_dataset import VectorSpacesDataset
-from pylearn2.space import VectorSpace
 from glob import glob
 import sys
 import matplotlib.image as mpimg
