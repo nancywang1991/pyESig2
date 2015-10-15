@@ -88,6 +88,7 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
             data = np.zeros(shape=data_raw.shape)
             for d in xrange(data.shape[0]):
                 data[d] = data_raw[order[d]]
+            data = np.nan_to_num(data)
             cluster_result_temp = np.zeros(shape=(10, data.shape[0])) - 1
             hier_cluster(data, np.array(range(data.shape[0])), float("inf"), cluster_result_temp, 0)
 

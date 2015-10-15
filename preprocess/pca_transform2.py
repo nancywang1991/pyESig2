@@ -11,10 +11,14 @@ def load_and_track(f, file, total):
     if f%100==0:
         print "loading file " + str(f) + " of " + str(total) + " for file " + file
     data = pickle.load(open(file,"rb"))[:,:]
+
+    data[np.where(data>10**10)] = np.nan
+
     return data
 
 sbj_id = "d6532718"
-days = [2,3,4,5,6,7,8]
+days = [5,6,7,8]
+components = 50
 
 #sbj_id = "ffb52f92"
 #days = [3,4,5,6,7]
@@ -39,17 +43,29 @@ for day in days:
     X_eeg = np.array([load_and_track(f, file, total_files)
                       for (f, file) in enumerate(files_eeg)], dtype= 'float64')
 
-
+    #pdb.set_trace()
     X_eeg -= np.nanmean(X_eeg, axis=0)
 
     X_eeg /= np.nanstd(X_eeg, axis=0)
 
-    X_eeg = np.nan_to_num(X_eeg)
-    X_eeg = np.array([np.ndarray.flatten(f) for f in X_eeg])
+    #X_eeg = np.nan_to_num(X_eeg)
 
-    pca = PCA(n_components=50, whiten=True)
-    result = pca.fit_transform(X_eeg)
+    X_eeg_no_nan_l=[]
+    valid_pos = []
+    for i,x in enumerate(X_eeg):
+        if not np.isnan(x).any():
+            X_eeg_no_nan_l.append(np.ndarray.flatten(x))
+            valid_pos.append(i)
+
+    X_eeg_no_nan = np.array(X_eeg_no_nan_l)
+    result = np.empty(shape=(X_eeg.shape[0], components))
+    result[:,:] = np.nan
+    pca = PCA(n_components=components, whiten=True)
+    result_temp = pca.fit_transform(X_eeg_no_nan)
+    result[valid_pos,:] = result_temp
+
     pickle.dump(result, open("/media/nancy/Picon/ecog_processed/d_reduced/transformed_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
     pickle.dump(pca, open("/media/nancy/Picon/ecog_processed/d_reduced/transformed_pca_model_" + sbj_id + "_" + str(day) + ".p", "wb"))
+    pickle.dump(valid_pos, open("/media/nancy/Picon/ecog_processed/d_reduced/valid_pos_" + sbj_id + "_" + str(day) + ".p", "wb"))
     print(pca.explained_variance_ratio_)
 

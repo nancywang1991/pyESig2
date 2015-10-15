@@ -21,9 +21,9 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
     cnt=0
     if size > buffer_size*3:
         for chunk in xrange(0,size-3*buffer_size, buffer_size):
-            if not os.path.isfile(save_file_loc + str(f)
-                                                + "_" + str((chunk+1)/window_size) + ".p"):
-
+  #          if not os.path.isfile(save_file_loc + str(f)
+   #                                             + "_" + str((chunk+1)/window_size) + ".p"):
+            if 1:
                 print ("Processing chunk " + str(chunk/(buffer_size)) + " of "
                 + str((size-samp_rate)/(buffer_size)) + " in file " + str(f) + "\n")
                 chan_sig = np.zeros(shape=(n_channels, buffer_size))
@@ -55,10 +55,12 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
                         #plt.title(track)
                         plt.xlabel("Frequency")
                         plt.ylabel("Channel")
+                        plt.show()
+                        pdb.set_trace()
                     else:
                         print (save_file_loc + str(f)
                                                     + "_" + str(cnt) + ".p" + " skipped")
-                    cnt+=1
+                    cnt += 1
             else:
                 cnt += buffer_size/window_size
 
@@ -86,7 +88,7 @@ files = glob.glob(eeg_file_loc + sbj_id + "/*")
 
 
 for file in files:
-    if not (file[-4:]=="misc"):
+    if not (file[-4:]=="misc") and file[-5]=='5':
         parent, num = file.split('_')
         f, ext = num.split('.')
         #p = Process(target=transform_file,
