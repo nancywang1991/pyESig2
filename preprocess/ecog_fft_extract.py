@@ -21,9 +21,9 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
     cnt=0
     if size > buffer_size*3:
         for chunk in xrange(0,size-3*buffer_size, buffer_size):
-  #          if not os.path.isfile(save_file_loc + str(f)
-   #                                             + "_" + str((chunk+1)/window_size) + ".p"):
-            if 1:
+            if not os.path.isfile(save_file_loc + str(f)
+                                                + "_" + str((chunk+1)/window_size) + ".p"):
+
                 print ("Processing chunk " + str(chunk/(buffer_size)) + " of "
                 + str((size-samp_rate)/(buffer_size)) + " in file " + str(f) + "\n")
                 chan_sig = np.zeros(shape=(n_channels, buffer_size))
@@ -36,46 +36,44 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
 
 
                 for sub_chunk in xrange(0,buffer_size-window_size,window_size):
-##                    if not os.path.isfile(save_file_loc + str(f)
-##                                                    + "_" + str(cnt) + ".p"):
-                    if 1:
+                   if not os.path.isfile(save_file_loc + str(f) + "_" + str(cnt) + ".p"):
+
                         for c in xrange(1, 1+n_channels):
                             frequency[c-1,:] = (np.abs(np.fft.fft(
                                 chan_sig[c-1,sub_chunk:sub_chunk+window_size]))**2)[f_lo:f_hi:3]
-                       #pickle.dump(frequency, open(save_file_loc + str(f)
-                       #                             + "_" + str(cnt) + ".p", "wb"))
-                        #print (save_file_loc + str(f)
-                        #                            + "_" + str(cnt) + ".p" + " saved")
+                        pickle.dump(frequency, open(save_file_loc + str(f)
+                                                    + "_" + str(cnt) + ".p", "wb"))
+                        print (save_file_loc + str(f)
+                                                    + "_" + str(cnt) + ".p" + " saved")
 
-                        y, x = np.mgrid[slice(0, n_channels, 1),
-                        slice(0, 100*3, 3)]
-                        plt.pcolormesh(x,y,frequency, cmap='RdBu', vmin=-1, vmax=1)
-                        plt.axis([x.min(), x.max(), y.min(), y.max()])
-                        plt.colorbar()
-                        #plt.title(track)
-                        plt.xlabel("Frequency")
-                        plt.ylabel("Channel")
-                        plt.show()
-                        pdb.set_trace()
-                    else:
+                        # y, x = np.mgrid[slice(0, n_channels, 1),
+                        # slice(0, 100*3, 3)]
+                        # plt.pcolormesh(x,y,frequency, cmap='RdBu', vmin=-1, vmax=1)
+                        # plt.axis([x.min(), x.max(), y.min(), y.max()])
+                        # plt.colorbar()
+                        # #plt.title(track)
+                        # plt.xlabel("Frequency")
+                        # plt.ylabel("Channel")
+                        # plt.show()
+                   else:
                         print (save_file_loc + str(f)
                                                     + "_" + str(cnt) + ".p" + " skipped")
-                    cnt += 1
+                   cnt += 1
             else:
                 cnt += buffer_size/window_size
 
 #---------------------------------Subject Params-------------------------------
 
-#sbj_id = "fcb01f7a"
-#n_channels = 84
+sbj_id = "fcb01f7a"
+n_channels = 84
 #sbj_id = "e70923c4"
 #n_channels = 86
 #sbj_id = "a86a4375"
 #n_channels = 104
 #sbj_id = "ffb52f92"
 #n_channels = 106
-sbj_id = "d6532718"
-n_channels = 82
+#sbj_id = "d6532718"
+#n_channels = 82
 eeg_file_loc = "/media/nancy/Picon/NancyStudyData/ecog/edf/"
 save_file_loc = "/media/nancy/Picon/ecog_processed/" + sbj_id + "/"
 f_lo = 1
@@ -88,13 +86,13 @@ files = glob.glob(eeg_file_loc + sbj_id + "/*")
 
 
 for file in files:
-    if not (file[-4:]=="misc") and file[-5]=='5':
+    if not (file[-4:]=="misc"):
         parent, num = file.split('_')
         f, ext = num.split('.')
-        #p = Process(target=transform_file,
-        #            args=(f, file, f_lo, f_hi, save_file_loc, n_channels))
-        #p.start()
-        transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels)
+        p = Process(target=transform_file,
+                    args=(f, file, f_lo, f_hi, save_file_loc, n_channels))
+        p.start()
+        #transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels)
 #p.join()
 
 
