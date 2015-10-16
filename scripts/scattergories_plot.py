@@ -1,7 +1,11 @@
 import matplotlib.pyplot as plt
+import matplotlib
 import cPickle as pickle
 import numpy as np
 import pdb
+
+matplotlib.rc('font', family='serif')
+
 def close_count(num_array, val, thresh):
     cnt = 0
     for n in num_array:
@@ -11,7 +15,7 @@ def close_count(num_array, val, thresh):
 
 sbj_id_all = [ "d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4" ]
 mymap = plt.get_cmap("rainbow")
-colorspace = np.r_[np.linspace(0.1, 1, 5), np.linspace(0.1, 1, 5)]
+colorspace = np.r_[np.linspace(0.1, 1, 5), np.linspace(0.1, 2, 5)]
 colors = mymap(colorspace)
 level = '3'
 total_percentiles = {"Mvmt":[], "Sound":[], "Rest":[], "Other":[]}
@@ -20,9 +24,10 @@ end1 =  np.mean([len(sbj_id_all)/1.5,len(sbj_id_all)])
 end2 =  np.mean([len(sbj_id_all)/1.5+ len(sbj_id_all),2*len(sbj_id_all)])
 end3 =  3*len(sbj_id_all)
 
-plt.axvspan(-1, end1, facecolor='y', alpha=0.1)
-plt.axvspan(end1,end2, facecolor='green', alpha=0.1)
-plt.axvspan(end2,end3, facecolor='blue', alpha=0.1)
+plt.figure(figsize=(10,4))
+plt.axvspan(-1, end1, facecolor='gray', alpha=0.1)
+#plt.axvspan(end1,end2, facecolor='green', alpha=0.1)
+plt.axvspan(end2,end3, facecolor='gray', alpha=0.1)
 
 for sbj, sbj_id in enumerate(sbj_id_all):
     label_accuracy_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation\\" + sbj_id + "\\"
@@ -56,7 +61,7 @@ for sbj, sbj_id in enumerate(sbj_id_all):
     plt.xticks([len(sbj_id_all)/2.0/1.5,len(sbj_id_all)/2.0/1.5+len(sbj_id_all),
                 len(sbj_id_all)/2.0/1.5+2*len(sbj_id_all)], ['Movement', "Sound", "Rest"])
     plt.xlabel("Categories")
-    plt.ylabel("Percentile")
+    plt.ylabel("F1 score comparison against shuffle \n (Percentile)  ")
     plt.tight_layout()
 plt.hlines(np.median(total_percentiles["Mvmt"]),0, (len(sbj_id_all)-1)/1.5, label="Median")
 plt.hlines(np.median(total_percentiles["Sound"]),len(sbj_id_all),len(sbj_id_all)+(len(sbj_id_all)-1)/1.5)

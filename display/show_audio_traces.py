@@ -6,7 +6,7 @@ import subprocess as sp
 from scipy.io.wavfile import read
 
 #-------------------------------Main Function--------------------------------
-def display_audio_signals(file, samp_rate):
+def display_audio_signals(file,  start_sec, end_sec):
     rate, audio_array = read(file)
     # num_secs = 120
     # FFMPEG_BIN = "ffmpeg.exe"
@@ -24,10 +24,12 @@ def display_audio_signals(file, samp_rate):
     # #audio_array = butter_bandpass_filter(audio_array, 250,400, samp_rate)
     # audio_array = (audio_array/10000.0)**9
 
-    plt.plot(audio_array[::10], color='blue')
-    plt.xticks([])
-    plt.yticks([])
+    plt.plot(audio_array[start_sec*rate:end_sec*rate:10], color='blue')
+    plt.axis('off')
+    #plt.xticks([])
+    #plt.yticks([])
     plt.ylim([-20000,20000])
+#    plt.xlim([0,2*rate])
     plt.show()
 
 
@@ -45,14 +47,14 @@ sbj_id = "e70923c4"
 #sbj_id = "d6532718"
 date = '5'
 vid_file_loc = "C:\\Users\\wangnxr\\Videos\\"
-vid_num = 592
+vid_num = 608
 
 
 #--------------------------------Signal Extraction-----------------------------
 
 file = (vid_file_loc + sbj_id + "_" + str(date) + "_"
             + str(vid_num).zfill(4) + ".wav")
-display_audio_signals(file, 48000)
+display_audio_signals(file, 109, 111)
 
 
 

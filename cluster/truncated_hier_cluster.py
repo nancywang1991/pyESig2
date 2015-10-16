@@ -27,6 +27,7 @@ def find_data_ind(date, index):
 def split_cluster(cluster_data, n_clusters):
     estimator = KMeans(n_clusters, n_init=10, max_iter=500)
     estimator.fit(cluster_data)
+
     return estimator.labels_
 
 
@@ -69,7 +70,7 @@ def condense_time(cluster_result, level, rate):
 def extract_file_num(index):
         file_nums = np.zeros(index.shape[0])
         for i, file in enumerate(index):
-            name = file.split('/')[-1]
+            name = file.split('\\')[-1]
             vid, rest = name.split('_')
             num, _ = rest.split('.')
             file_nums[i] = int(num)
@@ -88,17 +89,24 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
             data = np.zeros(shape=data_raw.shape)
             for d in xrange(data.shape[0]):
                 data[d] = data_raw[order[d]]
-            data = np.nan_to_num(data)
-            cluster_result_temp = np.zeros(shape=(10, data.shape[0])) - 1
-            hier_cluster(data, np.array(range(data.shape[0])), float("inf"), cluster_result_temp, 0)
 
+            valid = []
+            for d, datum in enumerate(data):
+                if not(np.isnan(datum).any()):
+                    valid.append(d)
+            valid_data = data[valid,:]
+
+            cluster_result_temp = np.zeros(shape=(10, len(valid))) - 1
+            hier_cluster(valid_data, np.array(range(valid_data.shape[0])), float("inf"), cluster_result_temp, 0)
+            cluster_result_temp2 = np.zeros(shape=(10,len(data)))-1
+            cluster_result_temp2[:,valid] = cluster_result_temp
             cluster_result = np.zeros(shape=(10, data.shape[0]))
 
-            cluster_result[0, :] = cluster_result_temp[0,:]
-            for level in range(1, cluster_result_temp.shape[0]):
-                add_hier(cluster_result, cluster_result_temp, level)
-                cluster_result[level,np.where(cluster_result_temp[level,:] == -1)[0]] = -1
-            for level in range(0, cluster_result_temp.shape[0]):
+            cluster_result[0, :] = cluster_result_temp2[0,:]
+            for level in range(1, cluster_result_temp2.shape[0]):
+                add_hier(cluster_result, cluster_result_temp2, level)
+                cluster_result[level,np.where(cluster_result_temp2[level,:] == -1)[0]] = -1
+            for level in range(0, cluster_result_temp2.shape[0]):
                 cluster_centers=[]
 
                 for c in xrange(int(np.nanmax(cluster_result[level,:] )) + 1):
@@ -117,16 +125,16 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
             # Plot Cluster Figures
             plt.figure(figsize=(20,10))
             for l in xrange(5):
-                condensed = condense_time(cluster_result[l, :], l, 60*10)
+                condensed = condense_time(cluster_result[l, :], l, 15)
                 index = np.argsort(condensed[:,:].sum(axis=0))
 
-                for c in index[-min(2**(l+1),5):]:
-                     plt.plot(np.arange(0,condensed.shape[0]*10,10),condensed[:,c])
-
-                plt.xlabel("Time(Minute)")
-                plt.ylabel("Cluster Count")
-                #plt.xticks(np.arange(0,condensed.shape[0]*10,10))
-                plt.show()
+                # for c in index[-min(2**(l+1),5):]:
+                #      plt.plot(np.arange(0,condensed.shape[0]*10,10),condensed[:,c])
+                #
+                # plt.xlabel("Time(Minute)")
+                # plt.ylabel("Cluster Count")
+                # #plt.xticks(np.arange(0,condensed.shape[0]*10,10))
+                # plt.show()
                 pickle.dump(condensed, open(save_loc + "\\" + sbj_id + "_" + str(date) + "_" + str(l) + ".p", "wb"))
             pickle.dump(cluster_result, open(save_loc + "\\" + sbj_id + "_" + str(date) + ".p", "wb"))
 
