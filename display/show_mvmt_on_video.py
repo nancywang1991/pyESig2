@@ -33,14 +33,14 @@ output_file_loc = video_file_loc
 mvmt = pickle.load(open(mvmt_file_loc, "rb"))
 #pdb.set_trace()
 ##for m in range(0,mvmt.shape[0], 30):
-##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] > 5:        
+##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] > 5:
 ##        mvmt[m:m+30] = 1
-##    if np.where(mvmt[m:m+30] > 1.2)[0].shape[0] > 5:        
+##    if np.where(mvmt[m:m+30] > 1.2)[0].shape[0] > 5:
 ##        mvmt[m:m+30] = 2
-##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] < 5:        
+##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] < 5:
 ##        mvmt[m:m+30] = 0
 mvmt2 = np.zeros(mvmt.shape[0])
-for m in range(0,mvmt.shape[0]-30):       
+for m in range(0,mvmt.shape[0]-30):
     mvmt2[m] = np.mean(mvmt[np.where(mvmt[m:m+30]>0)[0]+m])
 
 

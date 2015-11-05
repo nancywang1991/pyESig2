@@ -13,11 +13,11 @@ def close_count(num_array, val, thresh):
             cnt += 1 + cnt
     return cnt
 
-sbj_id_all = [ "d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4" ]
+sbj_id_all = [ "d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4"]
 mymap = plt.get_cmap("rainbow")
-colorspace = np.r_[np.linspace(0.1, 1, 5), np.linspace(0.1, 2, 5)]
+colorspace = np.r_[np.linspace(0.1, 1, 6), np.linspace(0.1, 2, 6)]
 colors = mymap(colorspace)
-level = '3'
+level = '1'
 total_percentiles = {"Mvmt":[], "Sound":[], "Rest":[], "Other":[]}
 
 end1 =  np.mean([len(sbj_id_all)/1.5,len(sbj_id_all)])
@@ -68,6 +68,6 @@ plt.hlines(np.median(total_percentiles["Sound"]),len(sbj_id_all),len(sbj_id_all)
 plt.hlines(np.median(total_percentiles["Rest"]),2*len(sbj_id_all),2*len(sbj_id_all)+(len(sbj_id_all)-1)/1.5)
 
 plt.legend(bbox_to_anchor=(0., 1.02, 1.27, 0.), scatterpoints = 1)
-plt.savefig("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation\\percentile_scattergories.png",
+plt.savefig("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation\\percentile_scattergories_" + str(level) + ".png",
             bbox_inches='tight')
 #plt.show()

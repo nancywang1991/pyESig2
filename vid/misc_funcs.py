@@ -36,6 +36,7 @@ def has_video(disconnect_file_loc, samp_rate=30):
         pad_length = int((diff2.total_seconds())*samp_rate)
 
         has_video[frame_start:frame_start + pad_length] = 0
+
     return has_video
     
 

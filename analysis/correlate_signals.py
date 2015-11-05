@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import pdb
 import copy
 
+
+
 def correlate(sound, mvmt, cluster):
     """ Calculates correlation between cluster results and sound and movement
     levels """
@@ -22,14 +24,15 @@ def correlate(sound, mvmt, cluster):
 
     start = 0
     end = input_file_cluster.shape[0]
-    sound_thresh = 0.5*10**13#np.percentile(input_file_sound, 75)
+    sound_thresh = 3*10**11#np.percentile(input_file_sound, 75)
 
-    mvmt_thresh = 1.5 #np.percentile(input_file_mvmt, 99)
+    mvmt_thresh = 1.1 #np.percentile(input_file_mvmt, 99)
     #Number of frames in unit
-    nf=sr*15.0
+    nf=sr*16.0
 
     sound_reduced = np.zeros(input_file_cluster.shape[0])
     mvmt_reduced = np.zeros(input_file_cluster.shape[0])
+
     for i in xrange(start,end):
         # Reduce Sound and movement resolution by percentage
         # of values above threshold
@@ -39,6 +42,7 @@ def correlate(sound, mvmt, cluster):
                                     > mvmt_thresh)[0].shape[0]/nf
     sound_corr = np.zeros(input_file_cluster.shape[1])
     mvmt_corr = np.zeros(input_file_cluster.shape[1])
+
     for c, values in enumerate(input_file_cluster.T):
 
         sound_corr[c]=pearsonr(sound_reduced, values[start:end])[0]
@@ -52,7 +56,7 @@ def correlate(sound, mvmt, cluster):
 
         if np.nanmax(mvmt_corr)>np.nanmax(sound_corr):
             sound_corr_temp = copy.deepcopy(sound_corr)
-            sound_corr_temp[mvmt_channel]=0
+            sound_corr_temp[mvmt_channel]=np.nan
             sound_channel = np.where(sound_corr_temp==np.nanmax(sound_corr_temp))[0][0]
         else:
             mvmt_corr_temp = copy.deepcopy(mvmt_corr)
@@ -63,20 +67,20 @@ def correlate(sound, mvmt, cluster):
 
 
 
-    # plt.plot(input_file_cluster[:,mvmt_channel], label="cluster mvmt")
-    # plt.plot(input_file_cluster[:,sound_channel], label="cluster sound")
-    # plt.plot(input_file_cluster[:,rest_channel], label="cluster rest")
-    # plt.plot(sound_reduced, label="actual sound")
-    # plt.plot(mvmt_reduced, label="actual mvmt")
-    # plt.legend()
-    # plt.show()
-    #
+    #plt.plot(input_file_cluster[:100,mvmt_channel], label="cluster mvmt")
+   # plt.plot(input_file_cluster[:,sound_channel], label="cluster sound")
+    #plt.plot(input_file_cluster[:,rest_channel], label="cluster rest")
+    #plt.plot(sound_reduced[:], label="actual sound")
+    #plt.plot(mvmt_reduced[:], label="actual mvmt")
+    #plt.legend()
+    #plt.show()
+
 
     print mvmt_corr[mvmt_channel]
     print sound_corr[sound_channel]
     print average[rest_channel]
     return {'Mvmt':mvmt_channel,'Sound':
-           sound_channel,'Rest':rest_channel}
+        sound_channel,'Rest':rest_channel}
 
 def correlate_section(sound, mvmt, cluster, sections):
     """ Calculates correlation between cluster results and sound and movement
@@ -94,7 +98,7 @@ def correlate_section(sound, mvmt, cluster, sections):
 
     mvmt_thresh = 1.5 #np.percentile(input_file_mvmt, 99)
     #Number of frames in unit
-    nf=sr*15.0
+    nf=sr*16.0
 
     sound_reduced = np.zeros(input_file_cluster.shape[0])
     mvmt_reduced = np.zeros(input_file_cluster.shape[0])
