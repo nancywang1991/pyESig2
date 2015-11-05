@@ -19,7 +19,7 @@ def get_len(filename):
    return float(json.loads(result.stdout.read())['streams'][0]['duration'])
 
 sbj_id_all = ["d6532718", "cb46fd46", "e70923c4", "fcb01f7a", "a86a4375", "c95c1e82" ]
-dates_all = [[4,5,6,7],[7,8,9,10],[4,5,6,7],[8,9,10,11,12], [4,5,6,7], [4,5,6,7]]
+dates_all = [[4,5,6,7],[7,8,9,10],[4,5,6,7],[5,6,7,8,9,10,11,12], [4,5,6,7], [4,5,6,7]]
 # for sbj_id in sbj_id_all:
 #      for day in dates_all[sbj_id_all.index(sbj_id)]:
 #         video_file_loc = "D:\\NancyStudyData\\ecog\\raw\\" + sbj_id + "\\" \
@@ -39,7 +39,7 @@ dates_all = [[4,5,6,7],[7,8,9,10],[4,5,6,7],[8,9,10,11,12], [4,5,6,7], [4,5,6,7]
 #             if (vid_len.seconds > 120):
 #                 subprocess.Popen(["rm", savefile], stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
 # pdb.set_trace()
-for sbj_id in sbj_id_all[4:]:
+for sbj_id in sbj_id_all[3:4]:
     samp_rate = 4000
     num_secs = 200
     #mvmt_file_loc = "C:\\Users\\wangnxr\\Documents\\rao_lab" \

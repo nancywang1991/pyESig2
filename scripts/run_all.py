@@ -21,9 +21,12 @@ import csv
 
 random.seed()
 #Raw_sources
-level = '1'
+level = '2'
 sbj_id_all = ["d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4" ]
 dates_all = [[4,5,6,7], [7,8,9,10], [8,10,11,12], [4,5,6], [4,5,6,7], [4,5,6,7]]
+
+sbj_id_all = ["e70923c4" ]
+dates_all = [[5]]
 
 
 percentile_save_file = csv.writer(open("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation\\percentile_" + level + ".csv", "wb"))
@@ -56,27 +59,28 @@ for s, sbj_id in enumerate(sbj_id_all):
 
     #Plot Clusters
 
-    # font = {'family' : 'serif',
-    #     'size'   : 22}
-    #
-    # matplotlib.rc('font', **font)
-    #
-    # for lev in xrange(3):
-    #     plt.figure(figsize=(14,7))
-    #     cluster_plt = pickle.load(open(ecog_cluster_loc + sbj_id + "_" + str(5) + "_" + str(lev) + ".p", "rb"))
-    #
-    #     index = np.argsort(cluster_plt[:,:].sum(axis=0))
-    #
-    #     for c in index[-min(2**(lev+1),5):]:
-    #         plt.plot(np.arange(0,cluster_plt.shape[0],20),cluster_plt[::20,c].T)
-    #
-    #     plt.xlim([0,2000])
-    #
-    #     plt.xticks(np.arange(0,cluster_plt.shape[0]+40,(60/16.0)*60*2), np.arange(0,int(cluster_plt.shape[0]/(60/16.0)/60.0)+40,2))
-    #     plt.xlabel("Time(Hour)")
-    #     plt.ylabel("Cluster Count")
-    #     plt.show()
+    font = {'family' : 'serif',
+        'size'   : 22}
 
+    matplotlib.rc('font', **font)
+
+    for lev in xrange(3):
+        plt.figure(figsize=(14,7))
+        cluster_plt = pickle.load(open(ecog_cluster_loc + sbj_id + "_" + str(5) + "_" + str(lev) + ".p", "rb"))
+
+        index = np.argsort(cluster_plt[:,:].sum(axis=0))
+
+        for c in index[-min(2**(lev+1),5):]:
+            plt.plot(np.arange(0,cluster_plt.shape[0],20),cluster_plt[::20,c].T)
+
+        plt.xlim([0,2000])
+
+        plt.xticks(np.arange(0,cluster_plt.shape[0]+40,(60/16.0)*60*2), np.arange(0,int(cluster_plt.shape[0]/(60/16.0)/60.0)+40,2))
+        plt.xlabel("Time(Hour)")
+        plt.ylabel("Cluster Count")
+        plt.show()
+
+    pdb.set_trace()
     #Aggregate sound files
     for date in dates:
         print "Starting: Sound aggregation for day " + str(date)
