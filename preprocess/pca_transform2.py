@@ -16,19 +16,16 @@ def load_and_track(f, file, total):
 
     return data
 
-sbj_id = "fcb01f7a"
-days = [[4,5],6,7,8]
+sbj_id = "d6532718"
+days = [4,5,6,7,8]
 components = 50
 
 #sbj_id = "ffb52f92"
 #days = [3,4,5,6,7]
 
 for day in days:
-    if isinstance(int, day):
     #datapath = "/media/nancy/Picon/ecog_processed/" + sbj_id + "/" + str(day) + "_"
-        datapath = "D:\\ecog_processed\\" + sbj_id + "\\" + str(day) + "_"
-    else:
-        datapath = "D:\\ecog_processed\\" + sbj_id + "\\[" + str(day[0]) + "-" + str(day[1]) +  "]_"
+    datapath = "D:\\ecog_processed\\" + sbj_id + "\\" + str(day) + "_"
     files_eeg = glob(datapath + '*.p')
     assert len(files_eeg) > 0, "Unable to read files!"
     new_files_eeg = []
@@ -36,7 +33,7 @@ for day in days:
         name = f.split('\\')[-1]
         vid, rest = name.split('_')
         num, _ = rest.split('.')
-        if int(vid)==day and int(num) < 15000:
+        if int(vid)==day:
             new_files_eeg.append(f)
 
     files_eeg = np.array(new_files_eeg)
