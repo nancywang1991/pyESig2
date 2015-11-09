@@ -1,6 +1,8 @@
 from pykinect2 import PyKinectV2
 from pykinect2.PyKinectV2 import *
 from pykinect2 import PyKinectRuntime
+import timeit
+from matplotlib import cm
 
 import ctypes
 import _ctypes
@@ -16,7 +18,9 @@ from threading import Thread
 import cPickle as pickle
 import os
 from matplotlib import image
+import time
 import matplotlib
+import datetime
 
 if sys.hexversion >= 0x03000000:
     import _thread as thread
@@ -32,20 +36,28 @@ SKELETON_COLORS = [pygame.color.THECOLORS["red"],
                   pygame.color.THECOLORS["yellow"],
                   pygame.color.THECOLORS["violet"]]
 
-def process_frames(vid_cnt, frame_list, depth_list):
-    out = VideoWriter("E:\\test" + str(vid_cnt).zfill(4) + ".avi", fps=15, fourcc='XVID', frameSize=(1920,1080))
+def process_frames(vid_cnt, frame_list, depth_list, body_list, time_list):
+
+    print "Processing Chunk #" + str(vid_cnt) + "\n"
+    start = time.time()
+    out = VideoWriter("E:\\live\\nov_test_" + str(vid_cnt).zfill(4) + ".avi", fps=15, fourcc='H264', frameSize=(1920,1080))
     out.open()
-    folder = "E:\\test" + str(vid_cnt)
+    folder = "E:\\live\\nov_test_" + str(vid_cnt).zfill(4)
     while (frame_list):
         frame = frame_list.pop()
         #print "start: " + str(pygame.time.get_ticks())
         #dest_image = cv2.cvtColor(frame[:,:,:3], cv2.COLOR_BGR2RGB)
         out.write(frame[:,:,:3])
     out.release()
+    print "Finished video saving after " + str(time.time()-start) + " seconds\n"
     if not os.path.isdir(folder):
         os.makedirs(folder)
     for d, depth in enumerate(depth_list):
-        image.imsave(folder + "\\" + str(d).zfill(4), depth, vmin=0, vmax= 2000)
+        image.imsave(folder + "\\" + str(d).zfill(4) + ".png", depth, vmin=0, vmax=8000, cmap=cm.gray)
+    print "Finished depth saving after " + str(time.time()-start) + " seconds\n"
+    pickle.dump(body_list, open(folder + "\\body" + ".p", "wb"))
+    print "Finished body saving after " + str(time.time()-start) + " seconds\n"
+    pickle.dump(time_list, open(folder + "\\timestamps" + ".p", "wb"))
 
 
 class BodyGameRuntime(object):
@@ -70,7 +82,8 @@ class BodyGameRuntime(object):
 
         # Kinect runtime object, we want only color, body and depth frames
         self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color |
-                                                       PyKinectV2.FrameSourceTypes_Body | PyKinectV2.FrameSourceTypes_Depth)
+                                                       PyKinectV2.FrameSourceTypes_Body |
+                                                       PyKinectV2.FrameSourceTypes_Depth)
 
         # back buffer surface for getting Kinect color frames, 32bit color, width and height equal to the Kinect color frame size
         self._frame_surface = pygame.Surface((self._kinect.color_frame_desc.Width, self._kinect.color_frame_desc.Height), 0, 32)
@@ -153,6 +166,8 @@ class BodyGameRuntime(object):
         processes = []
         frame_list = []
         depth_list = []
+        body_list = []
+        time_list = []
         while not self._done:
             # --- Main event loop
             for event in pygame.event.get(): # User did something
@@ -172,41 +187,45 @@ class BodyGameRuntime(object):
                 pygame.time.wait(66-(pygame.time.get_ticks()-last_video))
                 last_video = pygame.time.get_ticks()
                 frame = self._kinect.get_last_color_frame()
-                depth=self._kinect.get_last_depth_frame()
+                depth = self._kinect.get_last_depth_frame()
+                self._bodies = self._kinect.get_last_body_frame()
+                time_list.append(datetime.datetime.now())
                 self.draw_color_frame(frame, self._frame_surface)
                 src_image = np.reshape(frame, (1080,1920,4))
-
                 src_depth = np.reshape(depth, (424, 512))
+                frame_bodies = []
+                if self._bodies is not None:
+                    for i in range(0, self._kinect.max_body_count):
+                        frame_bodies.append(self._bodies.bodies[0].joints.contents)
+                        body_list.append(frame_bodies)
                 frame_list.append(src_image)
                 depth_list.append(src_depth)
-                print len(frame_list)
-                if len(frame_list) > 15*5:
-                    processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list,)))
+
+
+                if len(frame_list) > 15*60:
+                    processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list, body_list, time_list,)))
                     processes[vid_cnt].start()
 
                     vid_cnt +=1
                     frame_list = []
                     depth_list = []
+                    body_list = []
+                    time_list = []
                 frame = None
 
 
+            # --- draw skeletons to _frame_surface
+            if self._bodies is not None:
+                for i in range(0, self._kinect.max_body_count):
+                    body = self._bodies.bodies[i]
+                    if not body.is_tracked:
+                        continue
 
-            # # --- Cool! We have a body frame, so can get skeletons
-            # if self._kinect.has_new_body_frame():
-            #     self._bodies = self._kinect.get_last_body_frame()
-            #
-            # # --- draw skeletons to _frame_surface
-            # if self._bodies is not None:
-            #     for i in range(0, self._kinect.max_body_count):
-            #         body = self._bodies.bodies[i]
-            #         if not body.is_tracked:
-            #             continue
-            #
-            #         joints = body.joints
-            #         # convert joint coordinates to color space
-            #         joint_points = self._kinect.body_joints_to_color_space(joints)
-            #         self.draw_body(joints, joint_points, SKELETON_COLORS[i])
-            #
+                    joints = body.joints
+                    # convert joint coordinates to color space
+                    joint_points = self._kinect.body_joints_to_color_space(joints)
+                    self.draw_body(joints, joint_points, SKELETON_COLORS[i])
+
             # --- copy back buffer surface pixels to the screen, resize it if needed and keep aspect ratio
             # --- (screen size may be different from Kinect's color frame size)
             h_to_w = float(self._frame_surface.get_height()) / self._frame_surface.get_width()
@@ -225,7 +244,7 @@ class BodyGameRuntime(object):
         # Close our Kinect sensor, close the window and quit.
         self._kinect.close()
         pygame.quit()
-        processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list,)))
+        processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list, body_list,time_list,)))
         processes[vid_cnt].start()
         for p in processes:
             p.join()

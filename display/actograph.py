@@ -4,6 +4,10 @@ import cPickle as pickle
 import matplotlib.pyplot as plt
 import pdb
 import os
+import matplotlib.dates as mdates
+import matplotlib
+
+matplotlib.rc('font', family='serif')
 
 sbj_ids = ["d6532718", "cb46fd46","e70923c4", "fcb01f7a", "a86a4375", "c95c1e82" ]
 day_starts = [date(2015,6,11), date(2015,4,3), date(2015,9,11), date(2015,3,5), date(2015,2,26), date(2015,5,29)]
@@ -38,14 +42,25 @@ for sbj, sbj_id in enumerate(sbj_ids):
                             mvmt = pickle.load(open(mvmt_loc + sbj_id + "_" + str(d) + "_" + str(s).zfill(4) + ".p","rb"))
                             start_point = (start-start_time).seconds/60
                             mvmt_vals = mvmt[::30*60]*2
-                            mvmt_vals[np.where(mvmt_vals<1.5)[0]] = 0
-                            actograph[start_point:start_point + len(mvmt[::30*60]),0] = 255-mvmt_vals*50
+                            actograph[start_point+np.where(mvmt_vals>2)[0],0] = 255
+                            actograph[start_point+np.where(mvmt_vals>2)[0],1] = 165
+                            actograph[start_point+np.where(mvmt_vals>2)[0],2] =  0
+
 
                             sound = pickle.load(open(sound_loc + str(d) + "\\" + sbj_id + "_" +
                                                      str(d) + "_" + str(s).zfill(4) + ".p","rb"))
-                            sound_vals = sound[::30*60]/(3.6*10**11)
-                            sound_vals[np.where(sound_vals<0.95)[0]] = 0
-                            actograph[start_point:start_point + len(sound[::30*60]),1] = 255-sound_vals*50
+                            sound_vals = sound[::30*60]/(3*10**11)
+                            actograph[start_point+np.where(sound_vals>1.15)[0],0] = 0
+                            actograph[start_point+np.where(sound_vals>1.15)[0],1] = 100
+                            actograph[start_point+np.where(sound_vals>1.15)[0],2] = 0
+
+                            both_vals = np.intersect1d(np.where(sound_vals>1.15)[0],np.where(mvmt_vals>2)[0])
+
+                            if len(both_vals) > 0:
+                                actograph[start_point+both_vals,0] = 160
+                                actograph[start_point+both_vals,1] = 32
+                                actograph[start_point+both_vals,2] = 240
+
 
 
         #y, x = np.mgrid[slice(0, 20, 1),
@@ -55,10 +70,18 @@ for sbj, sbj_id in enumerate(sbj_ids):
         #Z_sound=np.tile(actograph[1,:], (80,1))
         #Z_sound = np.ma.masked_where(Z_sound<1.1, Z_sound)
         graphs.append(np.tile(actograph/255.0, (20, 1, 1)))
+    graphs.append(np.tile(np.zeros(actograph.shape) + 1, (20,1,1)))
 #pdb.set_trace()
-plots.imshow(np.vstack(graphs))
+
+
+xlims = [start_time + timedelta(minutes=x) for x in [0,24*60]]
+xlims = mdates.date2num(xlims)
+plots.imshow(np.vstack(graphs), extent=[xlims[0], xlims[1], 0,100], aspect="auto")
 plots.axes.get_yaxis().set_visible(False)
 plots.axes.get_xaxis().set_visible(False)
+plots.xaxis_date()
+date_format = mdates.DateFormatter('%I %p')
+plots.xaxis.set_major_formatter(date_format)
 plots.set_ylabel("Day " + str(i+3))
 
 
@@ -68,10 +91,9 @@ plots.set_ylabel("Day " + str(i+3))
 #plt.colorbar()
 plots.set_title("Sample Subject Activity")
 plots.set_xlabel("Time")
-hours = [str((start_time + timedelta(minutes=ti)).hour) for ti in range(len(actograph))[::100]]
+#hours = [str((start_time + timedelta(minutes=ti)).hour) for ti in range(len(actograph))[::100]]
 plots.axes.get_xaxis().set_visible(True)
-plots.set_xticks(range(len(actograph))[::100], hours)
-f.tight_layout()
+#plots.set_xticks(range(len(actograph))[::100], hours)
 #plt.show()
 plt.savefig("E:\\mvmt\\" + "actograph.png")
 plt.close()
