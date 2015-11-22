@@ -3,6 +3,7 @@ from pykinect2.PyKinectV2 import *
 from pykinect2 import PyKinectRuntime
 import timeit
 from matplotlib import cm
+import gc
 
 import ctypes
 import _ctypes
@@ -40,14 +41,15 @@ def process_frames(vid_cnt, frame_list, depth_list, body_list, time_list):
 
     print "Processing Chunk #" + str(vid_cnt) + "\n"
     start = time.time()
-    out = VideoWriter("E:\\live\\nov_test_" + str(vid_cnt).zfill(4) + ".avi", fps=15, fourcc='H264', frameSize=(1920,1080))
+    out = VideoWriter("E:\\live\\nov_test2_" + str(vid_cnt).zfill(4) + ".avi", fps=15, fourcc='H264', frameSize=(1920,1080))
     out.open()
-    folder = "E:\\live\\nov_test_" + str(vid_cnt).zfill(4)
-    while (frame_list):
-        frame = frame_list.pop()
-        #print "start: " + str(pygame.time.get_ticks())
+    folder = "E:\\live\\nov_test2_" + str(vid_cnt).zfill(4)
+    for d, frame in enumerate(frame_list):
+        frame = frame_list[d]
+        print "video: " + str(vid_cnt) + "frame : " + str(d)
         #dest_image = cv2.cvtColor(frame[:,:,:3], cv2.COLOR_BGR2RGB)
         out.write(frame[:,:,:3])
+        #image.imsave(folder + "\\" + str(d).zfill(4) + "_rgb.png", frame[:,:,:3])
     out.release()
     print "Finished video saving after " + str(time.time()-start) + " seconds\n"
     if not os.path.isdir(folder):
@@ -168,6 +170,7 @@ class BodyGameRuntime(object):
         depth_list = []
         body_list = []
         time_list = []
+
         while not self._done:
             # --- Main event loop
             for event in pygame.event.get(): # User did something
@@ -188,7 +191,7 @@ class BodyGameRuntime(object):
                 last_video = pygame.time.get_ticks()
                 frame = self._kinect.get_last_color_frame()
                 depth = self._kinect.get_last_depth_frame()
-                self._bodies = self._kinect.get_last_body_frame()
+                #self._bodies = self._kinect.get_last_body_frame()
                 time_list.append(datetime.datetime.now())
                 self.draw_color_frame(frame, self._frame_surface)
                 src_image = np.reshape(frame, (1080,1920,4))
@@ -196,21 +199,23 @@ class BodyGameRuntime(object):
                 frame_bodies = []
                 if self._bodies is not None:
                     for i in range(0, self._kinect.max_body_count):
-                        frame_bodies.append(self._bodies.bodies[0].joints.contents)
-                        body_list.append(frame_bodies)
+                        body = self._bodies.bodies[i]
+                        if body.is_tracked:
+                            frame_bodies.append(body.joints.contents)
+                            body_list.append(frame_bodies)
                 frame_list.append(src_image)
                 depth_list.append(src_depth)
 
 
-                if len(frame_list) > 15*60:
-                    processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list, body_list, time_list,)))
+                if len(frame_list) > 15*5:
+                    processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list,time_list,)))
                     processes[vid_cnt].start()
 
                     vid_cnt +=1
                     frame_list = []
                     depth_list = []
-                    body_list = []
                     time_list = []
+                    gc.collect()
                 frame = None
 
 
@@ -244,7 +249,7 @@ class BodyGameRuntime(object):
         # Close our Kinect sensor, close the window and quit.
         self._kinect.close()
         pygame.quit()
-        processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list, body_list,time_list,)))
+        processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list, time_list,)))
         processes[vid_cnt].start()
         for p in processes:
             p.join()

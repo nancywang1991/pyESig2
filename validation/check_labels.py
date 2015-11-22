@@ -189,7 +189,7 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
         if track in best_corr_clusters and np.where(final_labels[t,:]==1)[0].shape[0]>10\
                 and np.where(final_labels[t,:]==0)[0].shape[0]>10:
             best_cluster = best_corr_clusters[track]
-            thresh = np.percentile(cluster_res[best_cluster,:], 25)
+            thresh = np.percentile(cluster_res[best_cluster,:], 35)
             (recall, precision, f1, accuracy)\
                 = select_cluster_score(final_cluster_results, best_cluster, final_labels[t,:], thresh)
 
@@ -214,7 +214,7 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
             accuracy_mat = np.zeros(1000)
             for i in xrange(1000):
                 map(random.shuffle, final_labels_random)
-                thresh = np.percentile(cluster_res[best_cluster,:], 25)
+                thresh = np.percentile(cluster_res[best_cluster,:], 35)
                 (recall_mat[i], precision_mat[i], f1_mat[i], accuracy_mat[i]) = \
                     select_cluster_score(final_cluster_results, best_corr_clusters[track], final_labels_random[t,:], thresh)
             save_file.write(' '.join(["track:", track, "recall_score:" ,

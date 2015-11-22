@@ -70,16 +70,16 @@ def face_blur(vid_src):
             #     c_x = width/2
             #     c_y = height/2
             #     (x1,y1,x2,y2) = find_center_rect(rects, (c_x,c_y))
-            x1 = 330
-            x2 = 430
-            y1 = 75
-            y2 = 175
+            x1 = 0
+            x2 = 50
+            y1 = 60
+            y2 = 160
             sub_face = img[y1:y2, x1:x2]
-            sub_face=cv2.GaussianBlur(sub_face, (23,23),30)
+            sub_face=cv2.GaussianBlur(sub_face, (23,23),15)
             img[y1:y2, x1:x2] = sub_face
 
-            #cv2.imshow('facedetect', face_im)
-            
+            #cv2.imshow('facedetect', img)
+            #pdb.set_trace()
             if 0xFF & cv2.waitKey(5) == 27:
                 break
             cam.write(img, frame_cnt)
@@ -91,7 +91,4 @@ def face_blur(vid_src):
         cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    if not(len(sys.argv) == 2):
-        print len(sys.argv)
-        raise varError("Arguments should be <Video Path>")
-    face_blur(*sys.argv[1:])
+    face_blur("D:\\NancyStudyData\\ecog\\raw\\e70923c4\\e70923c4_7\\e70923c4_7_0068_2.avi")

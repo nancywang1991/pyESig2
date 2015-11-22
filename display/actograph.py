@@ -79,10 +79,12 @@ xlims = mdates.date2num(xlims)
 plots.imshow(np.vstack(graphs), extent=[xlims[0], xlims[1], 0,100], aspect="auto")
 plots.axes.get_yaxis().set_visible(False)
 plots.axes.get_xaxis().set_visible(False)
+
 plots.xaxis_date()
-date_format = mdates.DateFormatter('%I %p')
+date_format = mdates.DateFormatter('%I:%M %p')
 plots.xaxis.set_major_formatter(date_format)
 plots.set_ylabel("Day " + str(i+3))
+f.autofmt_xdate()
 
 
 #plt.imshow(Z_sound,  vmin=1.5, vmax=4, cmap=plt.cm.Blues, alpha=0.5)
@@ -95,6 +97,6 @@ plots.set_xlabel("Time")
 plots.axes.get_xaxis().set_visible(True)
 #plots.set_xticks(range(len(actograph))[::100], hours)
 #plt.show()
-plt.savefig("E:\\mvmt\\" + "actograph.png")
+plt.savefig("E:\\mvmt\\" + "actograph.png", format='png', dpi=1000)
 plt.close()
 

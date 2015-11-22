@@ -26,20 +26,18 @@ import matplotlib
 
 random.seed()
 #Raw_sources
-level = '3'
+level = '2'
 sbj_id_all = ["d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4" ]
 dates_all = [[4,5,6,7], [7,8,9,10], [8,10,11,12], [4,5,6,7], [4,5,6,7], [4,5,6,7]]
 
-sbj_id_all =["e70923c4"]
-dates_all = [[5]]
-
 final_accuracy = []
+final_f1 = []
 percentile_save_file = csv.writer(open("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation_fewer_components\\percentile_" + level + ".csv", "wb"))
 for s, sbj_id in enumerate(sbj_id_all):
     dates=dates_all[s]
     video_loc="E:\\" + sbj_id + "\\"
     video_loc="D:\\NancyStudyData\\ecog\\raw\\" + sbj_id + "\\"
-    ecog_feature_loc="D:\ecog_processed\d_reduced\\"
+    ecog_feature_loc="D:\\ecog_processed\\d_reduced\\"
     mvmt_loc="E:\\mvmt\\" + sbj_id + "\\"
     sound_loc="E:\\sound\\" + sbj_id + "\\"
     label_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\manual_annotations\\tracks\\"
@@ -48,11 +46,11 @@ for s, sbj_id in enumerate(sbj_id_all):
 
     #Save_locations
 
-    ecog_cluster_loc= "D:\\cluster_results_fewer_components\\" + sbj_id + "\\"
+    ecog_cluster_loc= "D:\\cluster_results_fewer_frequencies\\" + sbj_id + "\\"
     extracted_label_loc="C:\\Users\\wangnxr\Documents\\rao_lab\\video_analysis\\manual_annotations\\extracted_labels_reduced\\"
     extracted_random_label_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\manual_annotations\\extracted_labels_random\\"
-    label_accuracy_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation_fewer_components\\" + sbj_id + "\\"
-    back_project_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\back_project_fewer_components\\"
+    label_accuracy_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation_fewer_frequencies\\" + sbj_id + "\\"
+    back_project_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\back_project_fewer_frequencies\\"
 
     #Internal_save_variables
     best_corr_clusters=[]
@@ -62,55 +60,75 @@ for s, sbj_id in enumerate(sbj_id_all):
     truncated_hier_cluster.hier_cluster_main(sbj_id,dates,ecog_feature_loc,ecog_cluster_loc)
     print "Finished: Clustering"
 
-    #Plot Clusters
-
-    font = {'family' : 'serif',
-        'size'   : 15}
-
-    matplotlib.rc('font', **font)
-
-    time_s = time(9,0,0)
-    day = date(2015,6,11)
-    start_time = datetime.combine(day, time_s)
-    for lev in [3]:
-        f, plots=plt.subplots(1)
-        f.set_size_inches(20.5, 10.5)
-
-        cluster_plt = pickle.load(open(ecog_cluster_loc + sbj_id + "_" + str(5) + "_" + str(lev) + ".p", "rb"))
-        xlims = [start_time + timedelta(seconds=x*16*5) for x in [0,cluster_plt.shape[0]/5+1]]
-        xlims = mdates.date2num(xlims)
-        index = np.argsort(cluster_plt[:,:].sum(axis=0))
-
-        for c in [5,6, 14]:
-            # if c==1:
-            #     leg = "Rest"
-            #     color_c = "gray"
-            # if c==0:
-            #     leg = "Non Rest"
-            #     color_c = "purple"
-            if c==5:
-                leg = "Rest"
-                color_c = "gray"
-            elif c==6:
-                leg = "Speech"
-                color_c = "green"
-            else:
-                leg = "Movement"
-                color_c = "orange"
-            plots.plot([start_time + timedelta(seconds=x*16) for x in range(0,cluster_plt.shape[0],5)]
-                       ,cluster_plt[::5,c].T, label = leg, color=color_c)
-        plots.xaxis_date()
-        date_format = mdates.DateFormatter('%I:%M %p')
-        plots.xaxis.set_major_formatter(date_format)
-        #plots.xlim(xlims)
-        plots.legend(loc=1)
-        # This simply sets the x-axis data to diagonal so it fits better.
-        f.autofmt_xdate()
-        plt.xlabel("Time")
-        plt.ylabel("Cluster Count")
-        plt.title("Clustering results at level " + str(lev+1))
-        #plt.tight_layout()
-        plt.show()
+    # #Plot Clusters
+    # #
+    # font = {'family' : 'serif',
+    #     'size'   : 15}
+    #
+    # matplotlib.rc('font', **font)
+    #
+    # time_s = time(9,0,0)
+    # day = date(2015,6,11)
+    # start_time = datetime.combine(day, time_s)
+    # for lev in [2]:
+    #     f, plots=plt.subplots(1)
+    #     f.set_size_inches(20.5, 10.5)
+    #
+    #     cluster_plt_raw = pickle.load(open(ecog_cluster_loc + sbj_id + "_" + str(7) + "_" + str(lev) + ".p", "rb"))
+    #     cluster_plt = np.zeros(shape=(cluster_plt_raw.shape[0]/10+1, cluster_plt_raw.shape[1]))
+    #     for c in xrange(cluster_plt_raw.shape[1]):
+    #         cluster_plt[:,c] = np.array([np.mean(cluster_plt_raw[x:x+10,c])/8.0 for x in range(0,cluster_plt_raw.shape[0],10)])
+    #     xlims = [start_time + timedelta(seconds=x*16*5) for x in [0,cluster_plt.shape[0]/5*10+1]]
+    #     xlims = mdates.date2num(xlims)
+    #     index = np.argsort(cluster_plt[:,:].sum(axis=0))
+    #
+    #     for c in [4,0,7]:
+    #         #if c==1:
+    #          #   leg = "Rest"
+    #          #   color_c = "gray"
+    #         #if c==0:
+    #         #    leg = "Non Rest"
+    #         #    color_c = "purple"
+    #         if c==7:
+    #             leg = "Rest"
+    #             color_c = "gray"
+    #             t=60*60*1.975
+    #             marker_at=start_time + timedelta(seconds=t)
+    #             m=t/16/10
+    #             marker_shape = 'v'
+    #         elif c==0:
+    #             leg = "Speech"
+    #             color_c = "green"
+    #             t=60*60*7.6
+    #             marker_at=start_time + timedelta(seconds=t)
+    #             m=t/16/10
+    #             marker_shape = 'o'
+    #         else:
+    #             leg = "Movement"
+    #             color_c = "orange"
+    #             t=60*60*3.645
+    #             marker_at=start_time + timedelta(seconds=t)
+    #             marker_shape = 's'
+    #             m=t/16/10
+    #         plots.plot([start_time + timedelta(seconds=x*16*10) for x in range(0,cluster_plt.shape[0])]
+    #                    ,cluster_plt[:,c].T, label = leg, color=color_c)
+    #         plots.plot(marker_at, 0.7, color='red', marker=marker_shape, markersize=10, mec=None )
+    #     plots.xaxis_date()
+    #     date_format = mdates.DateFormatter('%I:%M %p')
+    #     plots.xaxis.set_major_formatter(date_format)
+    #     plots.set_ylim([0,1])
+    #     #plots.xlim(xlims)
+    #     #leg = plots.legend(loc=0)
+    #     #for legobj in leg.legendHandles:
+    #     #    legobj.set_linewidth(2.0)
+    #     # This simply sets the x-axis data to diagonal so it fits better.
+    #     f.autofmt_xdate()
+    #
+    #     plt.ylabel("Fraction of occurence")
+    #     plt.title("Level " + str(lev+1))
+    #     #plt.tight_layout()
+    #     plt.show()
+    # pdb.set_trace()
     #Aggregate sound files
     for date in dates:
         print "Starting: Sound aggregation for day " + str(date)
@@ -162,13 +180,13 @@ for s, sbj_id in enumerate(sbj_id_all):
                                              time_correspondence_file, label_accuracy_loc + level + "_")
 
     #Back project cluster center
-    # for d, date in enumerate(dates):
-    #     print "Starting: Back projecting for day " + str(date)
-    #     pca_model = ecog_feature_loc + "transformed_pca_model_" + sbj_id + "_" + str(date) + ".p"
-    #     cluster_center_file = ecog_cluster_loc + sbj_id + "_" + str(date) + "_" + level + "_centers.p"
-    #
-    #     back_project(pca_model, cluster_center_file,
-    #                  best_corr_clusters[d], back_project_loc + sbj_id + "_" + str(date) + "_" + level + "_")
+    for d, date in enumerate(dates):
+        print "Starting: Back projecting for day " + str(date)
+        pca_model = ecog_feature_loc + "transformed_pca_model_" + sbj_id + "_" + str(date) + ".p"
+        cluster_center_file = ecog_cluster_loc + sbj_id + "_" + str(date) + "_" + level + "_centers.p"
+
+        back_project(pca_model, cluster_center_file,
+                     best_corr_clusters[d], back_project_loc + sbj_id + "_" + str(date) + "_" + level + "_")
 
     #Summary statistics
 
@@ -192,6 +210,7 @@ for s, sbj_id in enumerate(sbj_id_all):
 
 
     final_accuracy.append(total_accuracy)
+    final_f1.append(total_f1)
     print "Recall"
     print_averages(total_recall)
     print "Precision"
@@ -329,7 +348,20 @@ for s, sbj_id in enumerate(sbj_id_all):
     mvmt_acc = np.array(final_accuracy[s]["Mvmt"])
     sound_acc = np.array(final_accuracy[s]["Sound"])
     rest_acc =np.array(final_accuracy[s]["Rest"])
-    table.append(["Subject " + str(s+1), np.mean(mvmt_acc[np.where(mvmt_acc>0)[0]]),
-                                       np.mean(sound_acc[np.where(sound_acc>0)[0]]),
-                                       np.mean(rest_acc[np.where(rest_acc>0)[0]])])
+    table.append(["S" + str(s+1), round(np.mean(mvmt_acc[np.where(mvmt_acc>0)[0]])*100,2),
+                                  round(np.mean(sound_acc[np.where(sound_acc>0)[0]])*100,2),
+                                  round(np.mean(rest_acc[np.where(rest_acc>0)[0]])*100,2)])
+print "Accuracy table"
+print tabulate.tabulate(table, headers, tablefmt="latex")
+
+headers = ["Movement", "Speech", "Rest"]
+table = []
+for s, sbj_id in enumerate(sbj_id_all):
+    mvmt_acc = np.array(final_f1[s]["Mvmt"])
+    sound_acc = np.array(final_f1[s]["Sound"])
+    rest_acc =np.array(final_f1[s]["Rest"])
+    table.append(["S" + str(s+1), round(np.mean(mvmt_acc[np.where(mvmt_acc>0)[0]])*100,2),
+                                  round(np.mean(sound_acc[np.where(sound_acc>0)[0]])*100,2),
+                                  round(np.mean(rest_acc[np.where(rest_acc>0)[0]])*100,2)])
+print "F1 table"
 print tabulate.tabulate(table, headers, tablefmt="latex")

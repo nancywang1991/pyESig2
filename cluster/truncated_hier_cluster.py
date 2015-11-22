@@ -86,7 +86,7 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
 
             order = np.argsort(index)
 
-            data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))
+            data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))[:,:50]
 
             data = np.zeros(shape=data_raw.shape)
             for d in xrange(data.shape[0]):
