@@ -54,7 +54,8 @@ def main():
    sbj_ids = ['a86a4375', 'be66b17c', 'cb46fd46', 'da3971ee', 'fcb01f7a']
    sbj_ids = ['c95c1e82']
    sbj_ids = ["d6532718", "cb46fd46" ]
-   days = ['4','5','6','7','8','9','10']
+   sbj_ids = ["d6532718" ]
+   days = ['8']
    save_folder = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
 
    for sbj_id in sbj_ids:
@@ -70,6 +71,7 @@ def main():
                 vid_name = root_folder + sbj_id + "\\" + sbj_id + "_" + day + \
                                 "\\" + sbj_id + "_" + day + "_" + str(vid_count).zfill(4) + ".avi"
                 with open(save_folder + sbj_id + "_" + day + ".csv", "wb") as csvfile:
+
                    timewriter = csv.writer(csvfile)
                    pos = check_disconnect(cur_time, timedelta(seconds = 1), start)
                    for t in pos:

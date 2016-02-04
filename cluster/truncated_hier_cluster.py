@@ -8,6 +8,7 @@ from sklearn.neighbors import kneighbors_graph
 import matplotlib.pyplot as plt
 import cPickle as pickle
 import numpy as np
+from scipy.stats import mode
 import time
 import sys
 import os
@@ -41,10 +42,11 @@ def hier_cluster(data, ind, prev_stdev, result, level):
     #print "Processing level " + str(level)
     if not (data.shape[0] < 100  or level > 9):
         labels = split_cluster(data, 20/(level+1))
-        cluster0 = data[np.where(labels == 0)[0],:]
-        cluster0_ind = ind[np.where(labels == 0)[0]]
-        cluster1 = data[np.where(labels >= 1)[0],:]
-        cluster1_ind = ind[np.where(labels >= 1)[0]]
+        most_label = mode(labels)[0][0]
+        cluster0 = data[np.where(labels == most_label)[0],:]
+        cluster0_ind = ind[np.where(labels == most_label)[0]]
+        cluster1 = data[np.hstack([np.where(labels < most_label)[0], np.where(labels > most_label)[0]]) ,:]
+        cluster1_ind = ind[np.hstack([np.where(labels > most_label)[0],np.where(labels < most_label)[0]])]
 
         result[level, cluster0_ind] = 0
         result[level, cluster1_ind] = 1
@@ -70,7 +72,7 @@ def condense_time(cluster_result, level, rate):
 def extract_file_num(index):
         file_nums = np.zeros(index.shape[0])
         for i, file in enumerate(index):
-            name = file.split('\\')[-1]
+            name = file.split('/')[-1]
             vid, rest = name.split('_')
             num, _ = rest.split('.')
             file_nums[i] = int(num)
@@ -84,7 +86,7 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
 
             order = np.argsort(index)
 
-            data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))
+            data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))[:,:50]
 
             data = np.zeros(shape=data_raw.shape)
             for d in xrange(data.shape[0]):
@@ -125,7 +127,7 @@ def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
             # Plot Cluster Figures
             plt.figure(figsize=(20,10))
             for l in xrange(5):
-                condensed = condense_time(cluster_result[l, :], l, 15)
+                condensed = condense_time(cluster_result[l, :], l, 16)
                 index = np.argsort(condensed[:,:].sum(axis=0))
 
                 # for c in index[-min(2**(l+1),5):]:

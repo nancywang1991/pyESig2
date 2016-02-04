@@ -14,6 +14,7 @@ class feature_chunk:
         self.cur_feature_chunk_len = len(self.cur_feature_chunk)
         self.cur_frame = 0
         self.cur_file_num += 1
+        self.total_frame = 0
         
         
         
@@ -33,10 +34,15 @@ class feature_chunk:
     
     def next(self):
         if self.cur_frame >= self.cur_feature_chunk_len:
+            #print self.cur_feature_chunk_len
+            #if self.cur_feature_chunk_len/30<100:
+            #    pdb.set_trace()
             self.load_new_file()
+
         feature_chunk_val = self.cur_feature_chunk[self.cur_frame]
         self.cur_frame += 1
-        
+        self.total_frame +=1
+
         return feature_chunk_val
 
     def rewind(self):

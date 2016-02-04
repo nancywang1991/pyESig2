@@ -36,25 +36,30 @@ def top_cluster_score(cluster_res, labels_ind):
             np.nanmax(precision_mat), np.where(precision_mat==np.nanmax(precision_mat))[0][0],
             recall_mat[f1_mat_loc], precision_mat[f1_mat_loc],np.nanmax(f1_mat), f1_mat_loc)
 
-def select_cluster_score(cluster_res, best_cluster, labels_ind):
-    thresh = np.percentile(cluster_res[best_cluster,:], 25)
+def select_cluster_score(cluster_res, best_cluster, labels_ind, thresh):
+
+
 
     total_found = np.where(cluster_res[best_cluster,:]>thresh)[0].shape[0]
     precision=0
     recall=0
+    accuracy = 0
 
     if total_found>0:
         correct = np.where(labels_ind[np.where(cluster_res[best_cluster,:]>thresh)[0]]==1)[0].shape[0]
+        true_neg = np.where(labels_ind[np.where(cluster_res[best_cluster,:]<=thresh)[0]]==0)[0].shape[0]
         total_labels = np.where(labels_ind==1)[0].shape[0]
         recall = correct/float(total_labels)
         precision = correct/float(total_found)
+        accuracy = (correct + true_neg)/float(len(cluster_res[best_cluster,:]))
+
     if (precision+recall)> 0:
         f1 = 2*recall*precision/(precision+recall)
     else:
-        f1=precision
+        f1 = precision
 
 
-    return (recall, precision, f1)
+    return (recall, precision, f1, accuracy)
 
 def repeat1(cluster_res):
     n_data=cluster_res.shape[1]
@@ -93,15 +98,15 @@ def label_accuracy(sbj_id, day, extracted_label_dir, extracted_random_label_dir,
     for file in glob.glob(extracted_label_dir + "/" + sbj_id +"_" + str(day) + "*[0-9].p" ):
         filenum = extract_filenum(file)
         labels = pickle.load(open(file, "rb"))
-        start = int(round((filetime["start"][filenum]-filetime["start"][0]).total_seconds()/15.0))
-        dur = int(round(labels['labels_array'].shape[1]/15.0))
+        start = int(round((filetime["start"][filenum]-filetime["start"][0]).total_seconds()/16.0))
+        dur = int(round(labels['labels_array'].shape[1]/16.0))
         cluster_res_section = cluster_res[start:start+dur,:]
         all_labels.append(labels['labels_array'])
         all_cluster_results.append(cluster_res_section.T)
     all_labels_random = copy.deepcopy(all_labels)
 
-    final_labels = np.hstack(condense(all_labels, 15))
-    final_labels_random = np.hstack(condense(all_labels_random, 15))
+    final_labels = np.hstack(condense(all_labels, 16))
+    final_labels_random = np.hstack(condense(all_labels_random, 16))
     map(random.shuffle, final_labels_random)
 
     final_cluster_results = np.hstack(all_cluster_results)
@@ -136,14 +141,13 @@ def label_accuracy(sbj_id, day, extracted_label_dir, extracted_random_label_dir,
     save_file.close()
 
 def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
-                           condensed_cluster_file, time_correspondence_file, mvmt_file, audio_file, save_loc):
+                           condensed_cluster_file, time_correspondence_file, cluster_file, save_loc):
 
     all_labels = []
     all_cluster_results = []
     filetime = pickle.load(open(time_correspondence_file, "rb"))
     cluster_res = pickle.load(open(condensed_cluster_file, "rb"))
-    audio_res=pickle.load(open(audio_file, "rb"))
-    mvmt_res=pickle.load(open(mvmt_file, "rb"))
+    valid = pickle.load(open(cluster_file, "rb"))[0,:]>=0
     labels_res = np.zeros(np.shape(cluster_res)[0])
     labels_res_neg = np.zeros(np.shape(cluster_res)[0])
     sections=[]
@@ -151,15 +155,15 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
     for file in glob.glob(extracted_label_dir + "/" + sbj_id +"_" + str(day) + "*[0-9].p" ):
         filenum = extract_filenum(file)
         labels = pickle.load(open(file, "rb"))
-        start = int(round((filetime["start"][filenum]-filetime["start"][0]).total_seconds()/15.0))
-        dur = int(round(labels['labels_array'].shape[1]/15.0))
-        if start+dur < cluster_res.shape[0]:
+        start = int(round((filetime["start"][filenum]-filetime["start"][0]).total_seconds()/16.0))
+        dur = int(round(labels['labels_array'].shape[1]/16.0))
+        if start+dur < cluster_res.shape[0] and (valid[start:start+dur]==1).all():
             cluster_res_section = cluster_res[start:start+dur,:]
             sections.append((start,dur))
             all_labels.append(labels['labels_array'])
             all_cluster_results.append(cluster_res_section.T)
-            labels_res[start:start+dur] = condense([labels['labels_array']], 15)[0][0,:]*2
-            labels_res_neg[start:start+dur] = abs(condense([labels['labels_array']], 15)[0][0,:] - 1)
+            labels_res[start:start+dur] = condense([labels['labels_array']], 16)[0][0,:]*2
+            labels_res_neg[start:start+dur] = abs(condense([labels['labels_array']], 16)[0][0,:] - 1)
 #    best_corr_clusters=correlate_signals.correlate_section(audio_res,mvmt_res,cluster_res,sections)
 
     # plt.plot(cluster_res[:400,best_corr_clusters['Mvmt']], label="cluster mvmt")
@@ -168,11 +172,10 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
     # plt.legend()
     # plt.show()
     # pdb.set_trace()
-
     all_labels_random = copy.deepcopy(all_labels)
 
-    final_labels = np.hstack(condense(all_labels, 15))
-    final_labels_random = np.hstack(condense(all_labels_random, 15))
+    final_labels = np.hstack(condense(all_labels, 16))
+    final_labels_random = np.hstack(condense(all_labels_random, 16))
 
     final_cluster_results = np.hstack(all_cluster_results)
 
@@ -181,44 +184,52 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
     results_random = []
 
     for t, track in enumerate(labels['tracks']):
-        if track in best_corr_clusters and np.where(final_labels[t,:]==1)[0].shape[0]>25\
-                and np.where(final_labels[t,:]==0)[0].shape[0]>25:
-            print np.where(final_labels[t,:]==1)[0].shape[0]
-            (recall, precision, f1)\
-                = select_cluster_score(final_cluster_results, best_corr_clusters[track], final_labels[t,:])
+        print np.where(final_labels[t,:]==1)[0].shape[0]
+
+        if track in best_corr_clusters and np.where(final_labels[t,:]==1)[0].shape[0]>10\
+                and np.where(final_labels[t,:]==0)[0].shape[0]>10:
+            best_cluster = best_corr_clusters[track]
+            thresh = np.percentile(cluster_res[best_cluster,:], 35)
+            (recall, precision, f1, accuracy)\
+                = select_cluster_score(final_cluster_results, best_cluster, final_labels[t,:], thresh)
 
             results.append({'sbj_id': sbj_id, 'day':day, "track": track, "recall_score": recall, "precision_score": precision,
-                                "f1_score": f1,"loc": best_corr_clusters[track], "num_labels": final_labels.shape[1]})
+                                "f1_score": f1,"loc": best_corr_clusters[track], "num_labels": final_labels.shape[1], "accuracy_score": accuracy})
             save_file.write(' '.join(["track:", track, "recall_score:" ,
-                                      str(recall), "precision_score:", str(precision),
+                                      str(recall), "precision_score:", str(precision), "accuracy_score:", str(accuracy),
                                 "f1_score:",str(f1),"loc:", str(best_corr_clusters[track]) +"\n"]))
         else:
             results.append({'sbj_id': sbj_id, 'day': day, "track": track,
-                                   "recall_score": -1, "precision_score": -1,
+                                   "recall_score": -1, "precision_score": -1, "accuracy_score": -1,
                                     "f1_score": -1,"loc": -1,
                                    "num_labels": -1})
             save_file.write(' '.join(["track:", track, "Not enough labels\n"]))
     save_file.write("---------------------------RANDOM------------------------------------------\n")
     for t, track in enumerate(labels['tracks']):
-        if track in best_corr_clusters and np.where(final_labels_random[t,:]==1)[0].shape[0]>25\
-             and np.where(final_labels[t,:]==0)[0].shape[0]>25:
+        if track in best_corr_clusters and np.where(final_labels_random[t,:]==1)[0].shape[0]>10\
+             and np.where(final_labels[t,:]==0)[0].shape[0]>10:
             recall_mat = np.zeros(1000)
             precision_mat = np.zeros(1000)
             f1_mat = np.zeros(1000)
+            accuracy_mat = np.zeros(1000)
             for i in xrange(1000):
                 map(random.shuffle, final_labels_random)
-                (recall_mat[i], precision_mat[i], f1_mat[i]) = \
-                    select_cluster_score(final_cluster_results, best_corr_clusters[track], final_labels_random[t,:])
+                thresh = np.percentile(cluster_res[best_cluster,:], 35)
+                (recall_mat[i], precision_mat[i], f1_mat[i], accuracy_mat[i]) = \
+                    select_cluster_score(final_cluster_results, best_corr_clusters[track], final_labels_random[t,:], thresh)
             save_file.write(' '.join(["track:", track, "recall_score:" ,
                                       str(np.nanmean(recall_mat)), "precision_score:", str(np.nanmean(precision_mat)),
+                                      "accuracy_score:", str(np.nanmean(accuracy_mat)),
                                  "f1_score:",str(np.nanmean(f1_mat)),"loc:", str(best_corr_clusters[track]) +"\n"]))
             results_random.append({'sbj_id': sbj_id, 'day': day, "track": track,
                                    "recall_score": recall_mat, "precision_score": precision_mat,
+                                   "accuracy_score": accuracy_mat,
                                     "f1_score": f1_mat,"loc": best_corr_clusters[track],
                                    "num_labels": final_labels.shape[1]})
         else:
             results_random.append({'sbj_id': sbj_id, 'day': day, "track": track,
                                    "recall_score": -1, "precision_score": -1,
+                                   "accuracy_score": -1,
                                     "f1_score": -1,"loc": -1,
                                    "num_labels": -1})
             save_file.write(' '.join(["track:", track, "Not enough labels\n"]))
@@ -288,12 +299,12 @@ def label_histogram_condensed(sbj_id, day, extracted_label_dir, cluster_file, co
     for file in glob.glob(extracted_label_dir + "/" + sbj_id +"_" + str(day) + "*.p" ):
         filenum = extract_filenum(file)
         labels = pickle.load(open(file, "rb"))
-        start = int(round((filetime["start"][filenum]-filetime["start"][0]).total_seconds()/15.0))
-        dur = int(round(labels['labels_array'].shape[1]/15.0))
+        start = int(round((filetime["start"][filenum]-filetime["start"][0]).total_seconds()/16.0))
+        dur = int(round(labels['labels_array'].shape[1]/16.0))
         cluster_res_section = cluster_res[start:start+dur,:]
         all_labels.append(labels['labels_array'])
         all_cluster_results.append(cluster_res_section.T)
-    final_labels = np.hstack(condense(all_labels, 15))
+    final_labels = np.hstack(condense(all_labels, 16))
     raw_cluster_results = np.hstack(all_cluster_results)
     final_cluster_results = np.zeros(shape=raw_cluster_results.shape)
     for t in xrange(raw_cluster_results.shape[1]):
@@ -328,7 +339,7 @@ def label_histogram_cluster(sbj_id, day, extracted_label_dir, level, best_corr_c
     all_labels = []
     all_cluster_results = []
     filetime = pickle.load(open(time_correspondence_file, "rb"))
-    cluster_res = pickle.load(open(cluster_file, "rb"))[level,:]
+    cluster_res = pickle.load(open(cluster_file, "rb"))
 
     for file in glob.glob(extracted_label_dir + "\\" + sbj_id +"_" + str(day) + "*[0-9].p" ):
         filenum = extract_filenum(file)

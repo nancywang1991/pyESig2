@@ -3,13 +3,16 @@ import cPickle as pickle
 import glob
 import os
 import numpy as np
+import pdb
 
 
 labellers = ["rs", "sk"]
 
 sbj_id_all = ["d6532718", "cb46fd46","e70923c4", "fcb01f7a", "a86a4375", "c95c1e82" ]
-dates_all = [[4,5,6,7],[7,8,9,10],[4,5,6,7],[8,9,10,11,12,16], [4,5,6,7], [4,5,7]]
-
+dates_all = [[4,5,6,7],[7,8,9,10],[4,5,6,7],[8,9,10,11,12,16], [4,5,6,7], [4,5,6,7]]
+label1_yes=0
+label2_yes=0
+label_num=0
 consistency_all = []
 
 for s, sbj_id in enumerate(sbj_id_all):
@@ -38,6 +41,9 @@ for s, sbj_id in enumerate(sbj_id_all):
                 accuracy_mat = np.zeros(len(labels1["labels_array"]))
                 for l in xrange(len(labels1["labels_array"])):
                     correct = np.where(labels1["labels_array"][l]==labels2["labels_array"][l])[0].shape[0]
+                    label1_yes += np.where(labels1["labels_array"][l]==1)[0].shape[0]
+                    label2_yes += np.where(labels2["labels_array"][l]==1)[0].shape[0]
+                    label_num += labels1["labels_array"][l].shape[0]
                     accuracy_mat[l] = correct/float(len(labels1["labels_array"][l]))
                 consistency_file.append({"filenum":filenum, "accuracy": accuracy_mat})
         consistency_date.append({"date":date, "file_accu": consistency_file})
@@ -64,7 +70,12 @@ for sbj in consistency_all:
         print np.mean(date_accu)
     print np.mean(sbj_accu)
 
+random_agree=label1_yes/float(label_num)*label2_yes/float(label_num) + \
+             (label_num-label1_yes)/float(label_num)*(label_num-label2_yes)/float(label_num)
+print "Rate of random agreement: " + str(random_agree)
 print "Overall consistency" + str(np.mean(all_accu))
+print "Kappa: " + str((np.mean(all_accu)-random_agree)/(1-random_agree))
+
 
 pickle.dump(consistency_all, open(label_consistency_loc + "labeller_consistency.p", "wb"))
 

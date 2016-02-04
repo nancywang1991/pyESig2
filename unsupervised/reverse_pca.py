@@ -11,6 +11,7 @@ def back_project(pca_model, cluster_center_file, best_corr_cluster, save_loc):
     for track, best_cluster in best_corr_cluster.iteritems():
         if best_cluster < len(cluster_centers):
             orig_activation = model.inverse_transform(cluster_centers[best_cluster])
+            #orig_activation = model.inverse_transform(np.hstack([cluster_centers[best_cluster],np.zeros(50)]))
             shape = [orig_activation.shape[0]/35, 35]
             results[track] = np.reshape(orig_activation,shape)
                 ## Plot the spectrogram
