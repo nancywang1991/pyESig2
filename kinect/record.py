@@ -11,6 +11,7 @@ import pygame
 import sys
 import pdb
 import numpy as np
+import cv2
 from skvideo.io import VideoWriter
 import matplotlib.pyplot as plt
 from multiprocessing import Process
@@ -21,8 +22,6 @@ from matplotlib import image
 import time
 import matplotlib
 import datetime
-import shutil
-
 
 if sys.hexversion >= 0x03000000:
     import _thread as thread
@@ -38,27 +37,23 @@ SKELETON_COLORS = [pygame.color.THECOLORS["red"],
                   pygame.color.THECOLORS["yellow"],
                   pygame.color.THECOLORS["violet"]]
 
-sbj_folder = "E:\\BM\\"
-sbj_folder_store = r'C:\\Users\\UW CSE NSL\\Documents\\BM\\'
+def process_frames(vid_cnt, frame_list, depth_list, body_list, time_list):
 
-def process_frames(folder, vid_cnt, frame_list, body_list, depth_list, time_list):
+    print "Processing Chunk #" + str(vid_cnt) + "\n"
     start = time.time()
-    if not os.path.isdir(folder):
-        os.makedirs(folder)
-    vid_file = folder + "video.avi"
-    if os.path.exists(vid_file):
-        os.remove(vid_file)
-    out = VideoWriter(vid_file, fps=15, fourcc='H264', frameSize=(1920,1080))
+    out = VideoWriter("E:\\live\\nov_test2_" + str(vid_cnt).zfill(4) + ".avi", fps=15, fourcc='H264', frameSize=(1920,1080))
     out.open()
-
+    folder = "E:\\live\\nov_test2_" + str(vid_cnt).zfill(4)
     for d, frame in enumerate(frame_list):
         frame = frame_list[d]
+        print "video: " + str(vid_cnt) + "frame : " + str(d)
         #dest_image = cv2.cvtColor(frame[:,:,:3], cv2.COLOR_BGR2RGB)
-        out.write(frame[:,:,2::-1])
-        #print "Finished video frame " + str(d) + " after " + str(time.time()-start) + " seconds\n"
+        out.write(frame[:,:,:3])
         #image.imsave(folder + "\\" + str(d).zfill(4) + "_rgb.png", frame[:,:,:3])
     out.release()
     print "Finished video saving after " + str(time.time()-start) + " seconds\n"
+    if not os.path.isdir(folder):
+        os.makedirs(folder)
     for d, depth in enumerate(depth_list):
         image.imsave(folder + "\\" + str(d).zfill(4) + ".png", depth, vmin=0, vmax=8000, cmap=cm.gray)
     print "Finished depth saving after " + str(time.time()-start) + " seconds\n"
@@ -66,14 +61,6 @@ def process_frames(folder, vid_cnt, frame_list, body_list, depth_list, time_list
     print "Finished body saving after " + str(time.time()-start) + " seconds\n"
     pickle.dump(time_list, open(folder + "\\timestamps" + ".p", "wb"))
 
-def move_to_backup():
-    cur_day = datetime.date.today()
-    last_date = cur_day-datetime.timedelta(days=1)
-    last_day = str(last_date.month) + str(last_date.day)
-    if os.path.exists(sbj_folder + last_day):
-        if not os.path.exists(sbj_folder_store):
-            os.makedirs(sbj_folder_store)
-        shutil.move(sbj_folder + last_day + "\\", sbj_folder_store)
 
 class BodyGameRuntime(object):
     def __init__(self):
@@ -99,13 +86,14 @@ class BodyGameRuntime(object):
         self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color |
                                                        PyKinectV2.FrameSourceTypes_Body |
                                                        PyKinectV2.FrameSourceTypes_Depth)
-                                                       #PyKinectV2.FrameSourceTypes_Audio)
 
         # back buffer surface for getting Kinect color frames, 32bit color, width and height equal to the Kinect color frame size
         self._frame_surface = pygame.Surface((self._kinect.color_frame_desc.Width, self._kinect.color_frame_desc.Height), 0, 32)
 
         # here we will store skeleton data
         self._bodies = None
+
+
 
     def draw_body_bone(self, joints, jointPoints, color, joint0, joint1):
         joint0State = joints[joint0].TrackingState;
@@ -171,13 +159,13 @@ class BodyGameRuntime(object):
         del address
         target_surface.unlock()
 
+
     def run(self):
         # -------- Main Program Loop -----------
 
         last_video = pygame.time.get_ticks()
         vid_cnt = 0
-        processes_vid = []
-        processes_depth = []
+        processes = []
         frame_list = []
         depth_list = []
         body_list = []
@@ -198,21 +186,12 @@ class BodyGameRuntime(object):
             # --- Getting frames and drawing
             # --- Woohoo! We've got a color frame! Let's fill out back buffer surface with frame's data
 
-
-            if datetime.datetime.now().hour == 1:
-                try:
-                    move_to_backup()
-                except:
-                    e = sys.exc_info()[0]
-                    print "ERROR: Could not move to backup"
-                    print e
-
             if self._kinect.has_new_color_frame():
                 pygame.time.wait(66-(pygame.time.get_ticks()-last_video))
                 last_video = pygame.time.get_ticks()
                 frame = self._kinect.get_last_color_frame()
                 depth = self._kinect.get_last_depth_frame()
-                self._bodies = self._kinect.get_last_body_frame()
+                #self._bodies = self._kinect.get_last_body_frame()
                 time_list.append(datetime.datetime.now())
                 self.draw_color_frame(frame, self._frame_surface)
                 src_image = np.reshape(frame, (1080,1920,4))
@@ -228,25 +207,16 @@ class BodyGameRuntime(object):
                 depth_list.append(src_depth)
 
 
-                if len(frame_list) > 15*10:
-                    print "Processing Chunk #" + str(vid_cnt) + "\n"
-                    folder = sbj_folder + str(time_list[0].month) + str(time_list[0].day) + "\\" + str(vid_cnt).zfill(5) + "\\"
-                    if not os.path.isdir(folder):
-                        os.makedirs(folder)
-                    processes_vid.append(Thread(target=process_frames, args=(folder, vid_cnt, frame_list, body_list, depth_list, time_list,)))
-                    processes_vid[-1].start()
-                    if len(processes_vid)>50:
-                        processes_vid.pop()
+                if len(frame_list) > 15*5:
+                    processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list,time_list,)))
+                    processes[vid_cnt].start()
+
                     vid_cnt +=1
                     frame_list = []
                     depth_list = []
                     time_list = []
-                    body_list=[]
                     gc.collect()
                 frame = None
-
-            if self._kinect.has_new_audio_frame():
-                audio = self._kinect.get_last_audio_frame()
 
 
             # --- draw skeletons to _frame_surface
@@ -279,14 +249,12 @@ class BodyGameRuntime(object):
         # Close our Kinect sensor, close the window and quit.
         self._kinect.close()
         pygame.quit()
-        print "Processing Chunk #" + str(vid_cnt) + "\n"
-        folder = sbj_folder + str(time_list[0].month) + str(time_list[0].day) + "\\" + str(vid_cnt).zfill(5) + "\\"
-        if not os.path.isdir(folder):
-            os.makedirs(folder)
-        processes_vid.append(Thread(target=process_frames, args=(folder, vid_cnt, frame_list, body_list, depth_list, time_list,)))
-        processes_vid[-1].start()
-        for p in processes_vid:
+        processes.append(Thread(target=process_frames, args=(vid_cnt, frame_list, depth_list, time_list,)))
+        processes[vid_cnt].start()
+        for p in processes:
             p.join()
+
+
 
 if __name__== "__main__":
     game = BodyGameRuntime()
