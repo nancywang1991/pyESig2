@@ -256,7 +256,6 @@ class BodyGameRuntime(object):
 
 
 
-
 if __name__== "__main__":
     game = BodyGameRuntime()
     game.run()

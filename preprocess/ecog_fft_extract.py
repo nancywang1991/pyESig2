@@ -1,7 +1,7 @@
 import numpy as np
 import edflib._edflib as edflib
 import pdb
-from pyESig2.Signal.signal_filter import (butter_bandpass_filter, butter_highpass_filter)
+from pyESig2.Signal.signal_filter import (butter_bandpass_filter, butter_bandstop_filter)
 import glob
 import pickle
 import matplotlib.pyplot as plt
@@ -31,7 +31,10 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
                     sig = np.zeros(buffer_size*4)
                     neural_sig.readsignal(c, chunk-buffer_size,
                                           buffer_size*3, sig)
-                    clean_sig = butter_bandpass_filter(sig, 0.1, 160, samp_rate, order=2)
+
+                    band_pass_sig = butter_bandpass_filter(sig, 0.1, 210, samp_rate, order=2)
+                    band_stop_sig = butter_bandstop_filter(band_pass_sig, 59, 61, samp_rate, order=2)
+                    clean_sig = butter_bandstop_filter(band_stop_sig, 119, 121, samp_rate, order=2)
                     chan_sig[c-1,:] = clean_sig[buffer_size:buffer_size*2]
 
 
@@ -74,10 +77,10 @@ n_channels = 84
 #n_channels = 106
 #sbj_id = "d6532718"
 #n_channels = 82
-eeg_file_loc = "/media/nancy/Picon/NancyStudyData/ecog/edf/"
-save_file_loc = "/media/nancy/Picon/ecog_processed/" + sbj_id + "/"
+eeg_file_loc = "/media/nancy/Scorpio/NancyStudyData/ecog/edf/"
+save_file_loc = "/media/nancy/Scorpio/ecog_processed/" + sbj_id + "/"
 f_lo = 1
-f_hi = 301
+f_hi = 601
 
 
 #--------------------------------Signal Extraction-----------------------------
