@@ -1,7 +1,7 @@
 import numpy as np
-import edflib._edflib as edflib
+import edflib.edfreader as edfreader
 import pdb
-from pyESig2.Signal.signal_filter import (butter_bandpass_filter, butter_bandstop_filter)
+from pyESig2.freq.signal_filter import (butter_bandpass_filter, butter_bandstop_filter)
 import glob
 import pickle
 import matplotlib.pyplot as plt
@@ -10,7 +10,7 @@ import os
 
 #-------------------------------Main Function--------------------------------
 def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
-    neural_sig = edflib.Edfreader(file)
+    neural_sig = edfreader.EdfReader(file)
     samp_rate = int(neural_sig.samplefrequency(0))
     buffer_size = samp_rate*100
     window_size = samp_rate*2
@@ -46,8 +46,8 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
                                 chan_sig[c-1,sub_chunk:sub_chunk+window_size]))**2)[f_lo:f_hi:3]
                         pickle.dump(frequency, open(save_file_loc + str(f)
                                                     + "_" + str(cnt) + ".p", "wb"))
-                        print (save_file_loc + str(f)
-                                                    + "_" + str(cnt) + ".p" + " saved")
+                        #print (save_file_loc + str(f)
+                        #                            + "_" + str(cnt) + ".p" + " saved")
 
                         # y, x = np.mgrid[slice(0, n_channels, 1),
                         # slice(0, 100*3, 3)]
@@ -67,18 +67,22 @@ def transform_file(f, file, f_lo, f_hi, save_file_loc, n_channels):
 
 #---------------------------------Subject Params-------------------------------
 
-sbj_id = "fcb01f7a"
-n_channels = 84
-#sbj_id = "e70923c4"
-#n_channels = 86
+#sbj_id = "fcb01f7a"
+#n_channels = 84
+sbj_id = "e70923c4"
+n_channels = 86
 #sbj_id = "a86a4375"
 #n_channels = 104
 #sbj_id = "ffb52f92"
 #n_channels = 106
 #sbj_id = "d6532718"
 #n_channels = 82
-eeg_file_loc = "/media/nancy/Scorpio/NancyStudyData/ecog/edf/"
-save_file_loc = "/media/nancy/Scorpio/ecog_processed/" + sbj_id + "/"
+#sbj_id = "cb46fd46"
+#n_channels = 80
+#sbj_id = "c95c1e82"
+#n_channels = 70
+eeg_file_loc = "/media/wangnxr/Scorpia/NancyStudyData/ecog/edf/"
+save_file_loc = "/media/wangnxr/Scorpia/ecog_processed/" + sbj_id + "/"
 f_lo = 1
 f_hi = 601
 
@@ -89,8 +93,9 @@ files = glob.glob(eeg_file_loc + sbj_id + "/*")
 
 
 for file in files:
-    if not (file[-4:]=="misc"):
-        parent, num = file.split('_')
+    if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
+        
+	parent, num = file.split('_')
         f, ext = num.split('.')
         p = Process(target=transform_file,
                     args=(f, file, f_lo, f_hi, save_file_loc, n_channels))
