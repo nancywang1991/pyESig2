@@ -49,8 +49,8 @@ def label_joints(fname):
                 l_ear = [x,y]
             elif cur_keypoint["@name"] == "R_Ear":
                 r_ear = [x,y]
-        l_eye = np.mean(nose, l_ear)
-        r_eye = np.mean(nose, r_ear)
+        l_eye = np.mean([nose, l_ear], axis=0)
+        r_eye = np.mean([nose, r_ear], axis=0)
         coords[0, part_map["L_Eye"]-1] = l_eye[0]
         coords[1, part_map["L_Eye"]-1] = l_eye[1]
         coords[0, part_map["R_Eye"]-1] = r_eye[0]
