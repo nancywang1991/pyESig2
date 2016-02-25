@@ -76,9 +76,12 @@ def correlate(sound, mvmt, cluster):
     #plt.show()
 
 
-    print mvmt_corr[mvmt_channel]
-    print sound_corr[sound_channel]
-    print average[rest_channel]
+    print str(mvmt_channel) + ":" + str(mvmt_corr[mvmt_channel])
+    print mvmt_corr
+    print str(sound_channel) + ":" + str(sound_corr[sound_channel])
+    print sound_corr
+    print str(rest_channel) + ":" +str(average[rest_channel])
+    print average
     return {'Mvmt':mvmt_channel,'Sound':
         sound_channel,'Rest':rest_channel}
 
@@ -152,9 +155,9 @@ def correlate_section(sound, mvmt, cluster, sections):
     # plt.show()
     #
     # pdb.set_trace()
-    print mvmt_corr[mvmt_channel]
-    print sound_corr[sound_channel]
-    print average[rest_channel]
+    print str(mvmt_channel) + str(mvmt_corr[mvmt_channel])
+    print str(sound_channel) + str(sound_corr[sound_channel])
+    print str(rest_channel) + str(average[rest_channel])
     return {'Mvmt':mvmt_channel,'Sound':
            sound_channel,'Rest':rest_channel}
 

@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from numpy import random
 import copy
 from pyESig2.analysis import correlate_signals
+import os
 random.seed()
 
 def top_cluster_score(cluster_res, labels_ind):
@@ -44,13 +45,16 @@ def select_cluster_score(cluster_res, best_cluster, labels_ind, thresh):
     precision=0
     recall=0
     accuracy = 0
+    specificity = 0
 
     if total_found>0:
         correct = np.where(labels_ind[np.where(cluster_res[best_cluster,:]>thresh)[0]]==1)[0].shape[0]
         true_neg = np.where(labels_ind[np.where(cluster_res[best_cluster,:]<=thresh)[0]]==0)[0].shape[0]
+        total_neg_labels = np.where(labels_ind==0)[0].shape[0]
         total_labels = np.where(labels_ind==1)[0].shape[0]
         recall = correct/float(total_labels)
         precision = correct/float(total_found)
+        specificity = true_neg/float(total_neg_labels)
         accuracy = (correct + true_neg)/float(len(cluster_res[best_cluster,:]))
 
     if (precision+recall)> 0:
@@ -59,7 +63,7 @@ def select_cluster_score(cluster_res, best_cluster, labels_ind, thresh):
         f1 = precision
 
 
-    return (recall, precision, f1, accuracy)
+    return (recall, precision, f1, accuracy, specificity)
 
 def repeat1(cluster_res):
     n_data=cluster_res.shape[1]
@@ -92,8 +96,9 @@ def label_accuracy(sbj_id, day, extracted_label_dir, extracted_random_label_dir,
     all_labels = []
     all_cluster_results = []
     filetime = pickle.load(open(time_correspondence_file, "rb"))
-
     cluster_res = pickle.load(open(condensed_cluster_file, "rb"))
+    if not os.path.isdir(save_loc):
+        os.makedirs(save_loc)
 
     for file in glob.glob(extracted_label_dir + "/" + sbj_id +"_" + str(day) + "*[0-9].p" ):
         filenum = extract_filenum(file)
@@ -189,18 +194,18 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
         if track in best_corr_clusters and np.where(final_labels[t,:]==1)[0].shape[0]>10\
                 and np.where(final_labels[t,:]==0)[0].shape[0]>10:
             best_cluster = best_corr_clusters[track]
-            thresh = np.percentile(cluster_res[best_cluster,:], 35)
-            (recall, precision, f1, accuracy)\
+            thresh = np.percentile(cluster_res[best_cluster,:], 25)
+            (recall, precision, f1, accuracy, specificity)\
                 = select_cluster_score(final_cluster_results, best_cluster, final_labels[t,:], thresh)
 
-            results.append({'sbj_id': sbj_id, 'day':day, "track": track, "recall_score": recall, "precision_score": precision,
+            results.append({'sbj_id': sbj_id, 'day':day, "track": track, "recall_score": recall, "precision_score": precision, "specificity_score": specificity,
                                 "f1_score": f1,"loc": best_corr_clusters[track], "num_labels": final_labels.shape[1], "accuracy_score": accuracy})
-            save_file.write(' '.join(["track:", track, "recall_score:" ,
+            save_file.write(' '.join(["track:", track, "recall_score:" ,"specificity_score", str(specificity),
                                       str(recall), "precision_score:", str(precision), "accuracy_score:", str(accuracy),
                                 "f1_score:",str(f1),"loc:", str(best_corr_clusters[track]) +"\n"]))
         else:
             results.append({'sbj_id': sbj_id, 'day': day, "track": track,
-                                   "recall_score": -1, "precision_score": -1, "accuracy_score": -1,
+                                   "recall_score": -1, "precision_score": -1, "accuracy_score": -1, "specificity_score": -1,
                                     "f1_score": -1,"loc": -1,
                                    "num_labels": -1})
             save_file.write(' '.join(["track:", track, "Not enough labels\n"]))
@@ -212,23 +217,24 @@ def cluster_label_accuracy(sbj_id, day, extracted_label_dir, best_corr_clusters,
             precision_mat = np.zeros(1000)
             f1_mat = np.zeros(1000)
             accuracy_mat = np.zeros(1000)
+            specificity_mat = np.zeros(1000)
             for i in xrange(1000):
                 map(random.shuffle, final_labels_random)
-                thresh = np.percentile(cluster_res[best_cluster,:], 35)
-                (recall_mat[i], precision_mat[i], f1_mat[i], accuracy_mat[i]) = \
+                thresh = np.percentile(cluster_res[best_cluster,:], 25)
+                (recall_mat[i], precision_mat[i], f1_mat[i], accuracy_mat[i], specificity_mat[i]) = \
                     select_cluster_score(final_cluster_results, best_corr_clusters[track], final_labels_random[t,:], thresh)
             save_file.write(' '.join(["track:", track, "recall_score:" ,
                                       str(np.nanmean(recall_mat)), "precision_score:", str(np.nanmean(precision_mat)),
-                                      "accuracy_score:", str(np.nanmean(accuracy_mat)),
+                                      "accuracy_score:", str(np.nanmean(accuracy_mat)), "specificity_score:", str(np.nanmean(specificity_mat)),
                                  "f1_score:",str(np.nanmean(f1_mat)),"loc:", str(best_corr_clusters[track]) +"\n"]))
             results_random.append({'sbj_id': sbj_id, 'day': day, "track": track,
-                                   "recall_score": recall_mat, "precision_score": precision_mat,
+                                   "recall_score": recall_mat, "precision_score": precision_mat,"specificity_score": specificity_mat,
                                    "accuracy_score": accuracy_mat,
                                     "f1_score": f1_mat,"loc": best_corr_clusters[track],
                                    "num_labels": final_labels.shape[1]})
         else:
             results_random.append({'sbj_id': sbj_id, 'day': day, "track": track,
-                                   "recall_score": -1, "precision_score": -1,
+                                   "recall_score": -1, "precision_score": -1,"specificity_score": -1,
                                    "accuracy_score": -1,
                                     "f1_score": -1,"loc": -1,
                                    "num_labels": -1})

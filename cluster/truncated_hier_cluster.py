@@ -45,8 +45,8 @@ def hier_cluster(data, ind, prev_stdev, result, level):
         most_label = mode(labels)[0][0]
         cluster0 = data[np.where(labels == most_label)[0],:]
         cluster0_ind = ind[np.where(labels == most_label)[0]]
-        cluster1 = data[np.hstack([np.where(labels < most_label)[0], np.where(labels > most_label)[0]]) ,:]
-        cluster1_ind = ind[np.hstack([np.where(labels > most_label)[0],np.where(labels < most_label)[0]])]
+        cluster1 = data[np.hstack([np.where(labels < most_label)[0], np.where(labels > most_label)[0]]),:]
+        cluster1_ind = ind[np.hstack([np.where(labels < most_label)[0],np.where(labels > most_label)[0]])]
 
         result[level, cluster0_ind] = 0
         result[level, cluster1_ind] = 1
@@ -77,17 +77,20 @@ def extract_file_num(index):
             num, _ = rest.split('.')
             file_nums[i] = int(num)
         return file_nums
-def hier_cluster_main(sbj_id, dates, features_loc, save_loc):
+def hier_cluster_main(sbj_id, dates, features_loc, save_loc, type = "normal"):
+    if not os.path.isdir(save_loc + "\\" + sbj_id):
+        os.makedirs(save_loc + "\\" + sbj_id)
     for date in dates:
         if not os.path.isfile(save_loc + "/" + sbj_id + "_" + str(date) + "_3_centers.p"):
         #if 1:
             print "Processing date: " + str(date)
-            index = extract_file_num(pickle.load(open(features_loc + "index_pca_" + sbj_id + "_" + str(date) + ".p", "rb")))
-
+            if type == "high_freq":
+                index = extract_file_num(pickle.load(open(features_loc + "index_pca_" + sbj_id + "_" + str(date) + "_all_f.p", "rb")))
+                data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + "_all_f.p", "rb"))[:,:50]
+            else:
+                index = extract_file_num(pickle.load(open(features_loc + "index_pca_" + sbj_id + "_" + str(date) + ".p", "rb")))
+                data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))[:,:50]
             order = np.argsort(index)
-
-            data_raw = pickle.load(open(features_loc + "transformed_pca_" + sbj_id + "_" + str(date) + ".p", "rb"))[:,:50]
-
             data = np.zeros(shape=data_raw.shape)
             for d in xrange(data.shape[0]):
                 data[d] = data_raw[order[d]]

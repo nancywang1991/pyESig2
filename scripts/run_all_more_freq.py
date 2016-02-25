@@ -58,18 +58,18 @@ for s, sbj_id in enumerate(sbj_id_all):
 
     #Save_locations
 
-    ecog_cluster_loc= "E:\\cluster_results_fewer_frequencies2\\" + sbj_id + "\\"
+    ecog_cluster_loc= "E:\\cluster_results\\" + sbj_id + "\\"
     extracted_label_loc="C:\\Users\\wangnxr\Documents\\rao_lab\\video_analysis\\manual_annotations\\extracted_labels_reduced\\"
     extracted_random_label_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\manual_annotations\\extracted_labels_random\\"
-    label_accuracy_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation_fewer_frequencies\\" + sbj_id + "\\"
-    back_project_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\back_project_fewer_frequencies\\"
+    label_accuracy_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation\\" + sbj_id + "\\"
+    back_project_loc="C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\back_project\\"
 
     #Internal_save_variables
     best_corr_clusters=[]
 
     #Generate clusters
     print "Starting: Clustering"
-    truncated_hier_cluster.hier_cluster_main(sbj_id,dates,ecog_feature_loc,ecog_cluster_loc)
+    truncated_hier_cluster.hier_cluster_main(sbj_id,dates,ecog_feature_loc,ecog_cluster_loc, type="high_freq")
     print "Finished: Clustering"
 
     # #Plot Clusters

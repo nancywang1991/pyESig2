@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 import cPickle as pickle
 import numpy as np
-
+from matplotlib import rc
+import pdb
 matplotlib.rc('font', family='serif')
 
 def close_count(num_array, val, thresh):
@@ -13,10 +14,11 @@ def close_count(num_array, val, thresh):
     return cnt
 
 sbj_id_all = ["d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4"]
+
 mymap = plt.get_cmap("rainbow")
 colorspace = np.r_[np.linspace(0.1, 1, 6), np.linspace(0.1, 2, 6)]
 colors = mymap(colorspace)
-level = '2'
+level = '1'
 total_percentiles = {"Mvmt":[], "Sound":[], "Rest":[], "Other":[]}
 
 end1 =  np.mean([len(sbj_id_all)/1.5,len(sbj_id_all)])
@@ -36,7 +38,7 @@ for sbj, sbj_id in enumerate(sbj_id_all):
     f1_counts = {"Mvmt":[], "Sound":[], "Rest":[], "Other":[]}
     for key, args in f1_percentile.iteritems():
         for i,a in enumerate(args):
-            f1_counts[key].append(close_count(args[i:], a, 1))
+            f1_counts[key].append(close_count(args[i:], a, 1.5))
             if a>=0:
                 total_percentiles[key].append(a)
 
@@ -69,7 +71,25 @@ plt.hlines(np.median(total_percentiles["Mvmt"]),0, (len(sbj_id_all)-1)/1.5, labe
 plt.hlines(np.median(total_percentiles["Sound"]),len(sbj_id_all),len(sbj_id_all)+(len(sbj_id_all)-1)/1.5)
 plt.hlines(np.median(total_percentiles["Rest"]),2*len(sbj_id_all),2*len(sbj_id_all)+(len(sbj_id_all)-1)/1.5)
 
-plt.legend(bbox_to_anchor=(0., 1.02, 1.27, 0.), scatterpoints = 1)
-plt.savefig("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation_fewer_frequencies\\percentile_scattergories_f1_" + str(level) + ".png",
+plt.legend(bbox_to_anchor=(0.23, 1.02, 1.3, 0.), scatterpoints = 1, ncol=2)
+
+# cell_text = [[""," + ", " - "],["+","TP", "FP"],["-","FN", "TN"]]
+#
+#
+# # Add a table at the bottom of the axes
+# the_table = plt.table(cellText=cell_text,
+#                       #rowLabels=["Prediction"],
+#                       #colLabels=["Facts"],
+#                       #colWidths=[0.05,0.05],
+#                       loc='bottom right', bbox=[1.05, 0.1, 0.21, 0.3])
+# plt.text(20,48, "Fact")
+# plt.text(17.5,39, "Prediction", rotation="vertical")
+# plt.text(22,41, "Precision=TP/(TP + FP)")
+# plt.text(22,33, "Recall=TP/(TP + FN)")
+# plt.text(23.2,23, "(Precision*Recall)")
+# plt.text(23.3,21, "_________________")
+# plt.text(22,19, "F1=2")
+# plt.text(23.2,15, "(Precision+Recall)")
+plt.savefig("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\validation_fewer_frequencies\\percentile_scattergories_f1_" + str(level) + ".jpg",
             bbox_inches='tight')
 #plt.show()
