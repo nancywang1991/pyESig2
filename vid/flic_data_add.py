@@ -92,14 +92,15 @@ for sbj in subjects:
                 #istest
                 new_example.append([[1]])
             else:
-                tr_indices["tr_plus_indices"][0].append(len(examples['examples'][0])+1)
+                np.append(tr_indices["tr_plus_indices"][0],[len(examples['examples'][0])+1], axis=0)
+                pdb.set_trace()
                 new_example.append([[1]])
                 new_example.append([[0]])
             #isbad
             new_example.append([[0]])
             #isunchecked
             new_example.append([[0]])
-            examples['examples'][0].append(new_example)
+            np.append(examples['examples'][0], new_example, axis=0)
 
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/examples_patients.mat", examples)
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/tr_plus_indices_patients.mat", tr_indices)
