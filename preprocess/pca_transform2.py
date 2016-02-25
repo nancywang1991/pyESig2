@@ -11,7 +11,7 @@ def load_and_track(f, file, total):
     if f%100==0:
         print "loading file " + str(f) + " of " + str(total) + " for file " + file
     #print file
-    data = pickle.load(open(file,"rb"))[:,:70]
+    data = pickle.load(open(file,"rb"))[:,:35]
 
     data[np.where(data>10**11)] = np.nan
 
@@ -19,18 +19,20 @@ def load_and_track(f, file, total):
 
 #sbj_id = "d6532718"
 #days = [4,5,6,7,8]
-components = 100
+components = 50
 
 sbj_id_all = ["d6532718", "cb46fd46", "fcb01f7a", "a86a4375", "c95c1e82", "e70923c4" ]
-dates_all = [[4,5,6,7], [7,8,9,10],[8,10,11,12], [4,5,6,7], [4,5,6,7], [5,6,7]]
+dates_all = [[4,5,6,7], [7,8,9,10],[8,10,11,12], [4,5,6,7], [4,5,6,7], [4,5,6,7]]
 
 sbj_id_all = [ "e70923c4" ]
-dates_all = [[4      ]]
+dates_all = [[7]]
+#sbj_id_all = [ "e70923c4" ]
+#dates_all = [[4      ]]
 
 for s, sbj_id in enumerate(sbj_id_all):
     days = dates_all[s]
     for day in days:
-        datapath = "/media/nancy/Picon/ecog_processed/" + sbj_id + "/" + str(day) + "_"
+        datapath = "/media/wangnxr/Scorpia/ecog_processed/" + sbj_id + "/" + str(day) + "_"
 
         #datapath = "D:\\ecog_processed\\" + sbj_id + "\\" + str(day) + "_"
         files_eeg = glob(datapath + '*.p')
@@ -46,7 +48,7 @@ for s, sbj_id in enumerate(sbj_id_all):
         files_eeg = np.array(new_files_eeg)
         total_files = len(files_eeg)
 
-        pickle.dump(files_eeg, open("/media/nancy/Picon/ecog_processed/d_reduced_all_f/index_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
+        pickle.dump(files_eeg, open("/media/wangnxr/Scorpia/ecog_processed/d_reduced/index_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
         #pickle.dump(files_eeg, open("D:\\ecog_processed\\d_reduced\\index_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
 
         X_eeg = np.array([load_and_track(f, file, total_files)
@@ -56,7 +58,7 @@ for s, sbj_id in enumerate(sbj_id_all):
         X_eeg -= np.nanmean(X_eeg, axis=0)
 
         X_eeg /= np.nanstd(X_eeg, axis=0)
-        X_eeg[:,:,40] = 0
+        #X_eeg[:,:,40] = 0
         #X_eeg = np.nan_to_num(X_eeg)
 
         X_eeg_no_nan_l=[]
@@ -73,9 +75,9 @@ for s, sbj_id in enumerate(sbj_id_all):
         result_temp = pca.fit_transform(X_eeg_no_nan)
         result[valid_pos,:] = result_temp
 
-        pickle.dump(result, open("/media/nancy/Picon/ecog_processed/d_reduced_all_f/transformed_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
-        pickle.dump(pca, open("/media/nancy/Picon/ecog_processed/d_reduced_all_f/transformed_pca_model_" + sbj_id + "_" + str(day) + ".p", "wb"))
-        pickle.dump(valid_pos, open("/media/nancy/Picon/ecog_processed/d_reduced_all_f/valid_pos_" + sbj_id + "_" + str(day) + ".p", "wb"))
+        pickle.dump(result, open("/media/wangnxr/Scorpia/ecog_processed/d_reduced/transformed_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
+        pickle.dump(pca, open("/media/wangnxr/Scorpia/ecog_processed/d_reduced/transformed_pca_model_" + sbj_id + "_" + str(day) + ".p", "wb"))
+        pickle.dump(valid_pos, open("/media/wangnxr/Scorpia/ecog_processed/d_reduced/valid_pos_" + sbj_id + "_" + str(day) + ".p", "wb"))
         #pickle.dump(result, open("D:\\ecog_processed\\d_reduced\\transformed_pca_" + sbj_id + "_" + str(day) + ".p", "wb"))
         #pickle.dump(pca, open("D:\\ecog_processed\\d_reduced\\transformed_pca_model_" + sbj_id + "_" + str(day) + ".p", "wb"))
         #pickle.dump(valid_pos, open("D:\\ecog_processed\\d_reduced\\valid_pos_" + sbj_id + "_" + str(day) + ".p", "wb"))
