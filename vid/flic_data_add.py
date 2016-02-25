@@ -65,42 +65,42 @@ tr_indices = loadmat(open("/home/wangnxr/Documents/deeppose/data/FLIC-full/tr_pl
 
 for sbj in subjects:
     for f in glob.glob(image_path_main + sbj + "/info/" + "*.xml"):
-        new_example = []
+        new_example = np.array(np.empty(1), dtype=np.dtype(examples['examples'][0][0]))
         crop = label_crop(f)
         if crop is not None:
             #poselet_hit_idx
-            new_example.append([np.NAN])
+            new_example[0]=[np.NAN]
             #moviename
-            new_example.append([sbj])
+            new_example[1]=[sbj]
             #coords
-            new_example.append(label_joints(f))
+            new_example[2]=label_joints(f)
             img_name = f.split("/")[-1][:-6] + ".jpg"
             img_path = image_path_main + sbj + "/JPEGImages/" + img_name
             #filepath
-            new_example.append(img_path)
+            new_example[3]=img_path
             img_dim = Image.open(img_path).size
             #imgdims
-            new_example.append([img_dim[0], img_dim[1], 3])
+            new_example[4]=[img_dim[0], img_dim[1], 3]
             frame = int(img_name.split("_")[-1][:-4])
             #currframe
-            new_example.append([[frame]])
+            new_example[5]=[[frame]]
             #torsobox
-            new_example.append(crop)
+            new_example[6]=crop
             if np.random.randint(0,100)>75:
                 #istrain
-                new_example.append([[0]])
+                new_example[7]=[[0]]
                 #istest
-                new_example.append([[1]])
+                new_example[8]=[[1]]
             else:
                 np.append(tr_indices["tr_plus_indices"],np.array([[len(examples['examples'][0])+1]]), axis=0)
-                pdb.set_trace()
-                new_example.append([[1]])
-                new_example.append([[0]])
+                new_example[7]=[[1]]
+                new_example[8]=[[0]]
             #isbad
-            new_example.append([[0]])
+            new_example[9]=[[0]]
             #isunchecked
-            new_example.append([[0]])
-            np.append(examples['examples'][0], np.array([new_example]), axis=0)
+            new_example[10]=[[0]]
+            np.append(examples['examples'][0], new_example, axis=0)
+            pdb.set_trace()
 
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/examples_patients.mat", examples)
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/tr_plus_indices_patients.mat", tr_indices)
