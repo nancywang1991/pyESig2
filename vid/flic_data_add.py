@@ -69,7 +69,7 @@ for sbj in subjects:
         crop = label_crop(f)
         if crop is not None:
             #poselet_hit_idx
-            new_example.append(np.NAN)
+            new_example.append([np.NAN])
             #moviename
             new_example.append([sbj])
             #coords
@@ -92,7 +92,7 @@ for sbj in subjects:
                 #istest
                 new_example.append([[1]])
             else:
-                np.append(tr_indices["tr_plus_indices"][0],[len(examples['examples'][0])+1], axis=0)
+                np.append(tr_indices["tr_plus_indices"],np.array([[len(examples['examples'][0])+1]]), axis=0)
                 pdb.set_trace()
                 new_example.append([[1]])
                 new_example.append([[0]])
@@ -100,7 +100,7 @@ for sbj in subjects:
             new_example.append([[0]])
             #isunchecked
             new_example.append([[0]])
-            np.append(examples['examples'][0], new_example, axis=0)
+            np.append(examples['examples'][0], np.array([new_example]), axis=0)
 
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/examples_patients.mat", examples)
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/tr_plus_indices_patients.mat", tr_indices)
