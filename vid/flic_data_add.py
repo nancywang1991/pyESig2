@@ -44,11 +44,11 @@ def label_joints(fname):
                 coords[0,part_map[cur_keypoint["@name"]]-1]=x
                 coords[1,part_map[cur_keypoint["@name"]]-1]=y
             if cur_keypoint["@name"] == "Nose":
-                nose = (x,y)
+                nose = [x,y]
             elif cur_keypoint["@name"] == "L_Ear":
-                l_ear = (x,y)
+                l_ear = [x,y]
             elif cur_keypoint["@name"] == "R_Ear":
-                r_ear = (x,y)
+                r_ear = [x,y]
         l_eye = np.mean(nose, l_ear)
         r_eye = np.mean(nose, r_ear)
         coords[0, part_map["L_Eye"]-1] = l_eye[0]
