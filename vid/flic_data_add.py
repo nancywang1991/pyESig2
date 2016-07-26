@@ -92,14 +92,14 @@ for sbj in subjects:
                 #istest
                 new_example[0][8]=[[1]]
             else:
-                np.append(tr_indices["tr_plus_indices"],np.array([[len(examples['examples'][0])+1]]), axis=0)
+                tr_indices["tr_plus_indices"]=np.append(tr_indices["tr_plus_indices"],np.array([[len(examples['examples'][0])+1]]), axis=0)
                 new_example[0][7]=[[1]]
                 new_example[0][8]=[[0]]
             #isbad
             new_example[0][9]=[[0]]
             #isunchecked
             new_example[0][10]=[[0]]
-            np.append(examples['examples'][0], new_example, axis=0)
+            examples['examples']=np.array([np.append(examples['examples'][0], new_example, axis=0)])
             pdb.set_trace()
 
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/examples_patients.mat", examples)

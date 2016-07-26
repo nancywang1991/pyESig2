@@ -33,13 +33,13 @@ def aggregate(sbj_id, day, input_file_loc, output_file_loc, has_video_array):
         pickle.dump(total_features, open(output_file_loc + sbj_id + "_" + str(day) + ".p" , "wb"))
 
 if __name__ == "__main__":
-    sbj_id = "e70923c4"
-    day = 5
+    sbj_id = "fcb01f7a"
+    day = 13
     sr=30
-    input_file_loc = "E:\\mvmt\\e70923c4\\"
+    input_file_loc = "E:\\mvmt\\%s\\" % sbj_id
     output_file_loc = input_file_loc
-    has_video_array = has_video("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\disconnect_times\\" \
-        + sbj_id + "_" + str(day) + ".txt", samp_rate = sr)
+    has_video_array = has_video("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\disconnect_times\\%s_%i.txt"
+                                % (sbj_id, day), samp_rate = sr)
     aggregate(sbj_id, day, input_file_loc, output_file_loc, has_video_array)
 # plt.plot(np.array(range(270*30*60))/(60*30.0), total_features[:270*30*60])
 # #plt.ylim([10**11,6*10**15])

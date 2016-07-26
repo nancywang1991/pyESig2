@@ -69,7 +69,7 @@ parser.add_argument('-s_size', '--step_size', type=float, help="Number of second
 
 args = parser.parse_args()
 
-files = glob.glob("%s%s/*_%i.edf" % (args.eeg_fldr, args.subject_id, args.day))
+files = glob.glob("%s%s\\*_%i.edf" % (args.eeg_fldr, args.subject_id, args.day))
 
 for file in files:
     if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
