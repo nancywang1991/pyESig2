@@ -10,6 +10,9 @@ import argparse
 import logging
 from pyESig2.preprocess.misc_info import patient_channels
 import os
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 
 def frequency_integration(data, low, hi, res=1):
     return np.sum(np.abs(data[:,int(low/res):int(hi/res)]), axis=1)

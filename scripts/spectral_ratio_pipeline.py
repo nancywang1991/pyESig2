@@ -4,6 +4,9 @@ import pyESig2.preprocess.spectral_ratios as spec_ratio
 import pyESig2.preprocess.ecog_fft_extract as fft_extract
 import subprocess
 import argparse
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-s', '--sbj_id', required=True, help="Subject id")
