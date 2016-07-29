@@ -60,7 +60,7 @@ def plot_2d_coords(result, ratio1, ratio2):
     return f
 
 def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
-
+    pdb.set_trace()
     if not os.path.exists( "%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
         max_sec = 21*60*60
