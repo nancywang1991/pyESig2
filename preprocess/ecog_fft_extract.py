@@ -57,8 +57,8 @@ def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_ch
                 cnt += buffer_size/(step_size)
 
 def main(f_lo, f_hi, sbj_id, day, win_size, step_size, eeg_loc, save_loc):
-    pdb.set_trace()
-    files = glob.glob("%s%s/*_%i.edf" % (eeg_loc, sbj_id, day))
+
+    files = glob.glob("%s/%s_%i.edf" % (eeg_loc, sbj_id, day))
 
     for file in files:
         if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
