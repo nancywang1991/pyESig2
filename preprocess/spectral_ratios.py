@@ -47,7 +47,7 @@ def plot_2d_coords(result, ratio1, ratio2):
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
     f, axes = plt.subplots(5,1, sharex='col', figsize=(5,9))
 
-    for h in range(0,21,5):
+    for h in range(0,20,5):
         t = h/5
         samples = np.random.choice(len(result[t*60*60:(t+1)*60*60,0]), 0.1*len(result[t*60*60:(t+1)*60*60,0]))
         axes[t].scatter(result[samples,0], result[samples,1], s=0.2, c="black", edgecolors="face")
