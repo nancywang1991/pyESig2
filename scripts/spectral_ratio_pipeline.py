@@ -26,7 +26,7 @@ subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
 
 print "Extract fft"
 fft_extract.main(1,150,args.sbj_id, args.day, 1,0.5, "%s/%s/" %(args.ecog_raw, args.sbj_id),
-                 "%s/%s" %(args.ecog_processed, args.sbj_id))
+                 "%s/%s/" %(args.ecog_processed, args.sbj_id))
 
 print "Calculate and plot ratios"
 for ratio1_0 in range(1,10,1):
