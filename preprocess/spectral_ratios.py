@@ -61,7 +61,7 @@ def plot_2d_coords(result, ratio1, ratio2):
 
 def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
 
-    if not os.path.exists( "%s\\%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+    if not os.path.exists( "%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
         max_sec = 21*60*60
         result_temp_1 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
@@ -72,7 +72,7 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
             if t%(60*60)==0:
                 print "Processing hour: %i" % (t/(60*60))
             try:
-                data = pickle.load(open("%s\\%s\\%i_%i.p" % (data_fldr, sbj_id, day, t)))
+                data = pickle.load(open("%s/%s/%i_%i.p" % (data_fldr, sbj_id, day, t)))
                 result_temp_1[t,:], result_temp_2[t,:]= ratio_measure(data, ratio1, ratio2)
             except IOError:
                 print "Cannot open"
@@ -96,13 +96,13 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
         result[:,1] = smooth(result[:,1])
 
 
-        pickle.dump(result, open("%s\\%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+        pickle.dump(result, open("%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1]), "wb"))
     else:
-        result = pickle.load(open("%s\\%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+        result = pickle.load(open("%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1]), "rb"))
     figure = plot_2d_coords(result, ratio1, ratio2)
-    figure.savefig("%s\\%s_%i_ratio_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
+    figure.savefig("%s/%s_%i_ratio_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1]))
     return result
 
