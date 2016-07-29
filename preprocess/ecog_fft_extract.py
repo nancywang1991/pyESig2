@@ -1,6 +1,6 @@
 import numpy as np
-#import edflib.edfreader as edfreader
-import edflib._edflib as edfreader
+import edflib.edfreader as edfreader
+#import edflib._edflib as edfreader
 from pyESig2.freq.signal_filter import (butter_bandpass_filter, butter_bandstop_filter)
 import glob
 import pickle
@@ -20,7 +20,7 @@ def clean_signal(sig, samp_rate):
 #-------------------------------Main Function--------------------------------
 def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_channels):
 
-    neural_sig = edfreader.Edfreader(file)
+    neural_sig = edfreader.EdfReader(file)
     samp_rate = int(neural_sig.samplefrequency(0))
 
     window_size = int(samp_rate*win_size)
@@ -56,6 +56,14 @@ def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_ch
             else:
                 cnt += buffer_size/(step_size)
 
+def main(f_lo, f_hi, sbj_id, day, win_size, step_size, eeg_loc, save_loc):
+    files = glob.glob("%s%s/*_%i.edf" % (eeg_loc, sbj_id, day))
+
+    for file in files:
+        if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
+            parent, num = file.split('_')
+            f, ext = num.split('.')
+            transform_file(f, file, f_lo, f_hi, win_size, step_size, save_loc, patient_channels[sbj_id])
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-s', '--subject_id', type=str, help = "Subject ID for fft extraction", required=True)
@@ -69,11 +77,7 @@ parser.add_argument('-s_size', '--step_size', type=float, help="Number of second
 
 args = parser.parse_args()
 
-files = glob.glob("%s%s/*_%i.edf" % (args.eeg_fldr, args.subject_id, args.day))
+if __name__== "__main__":
+    main(args.f_lo, args.f_hi, args.sbj_id, args.d, args.win_size, args.step_size, args.eeg_fldr, args.save_fldr)
 
-for file in files:
-    if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
-	parent, num = file.split('_')
-    f, ext = num.split('.')
-    transform_file(f, file, args.f_lo, args.f_hi, args.win_size, args.step_size,
-                   args.save_fldr+args.subject_id+"\\", patient_channels[args.subject_id])
+
