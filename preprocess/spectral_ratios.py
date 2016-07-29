@@ -47,7 +47,7 @@ def plot_2d_coords(result, ratio1, ratio2):
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
     f, axes = plt.subplots(5,1, sharex='col', figsize=(5,9))
 
-    for h in range(0,20,5):
+    for h in range(0,21,5):
         t = h/5
         pdb.set_trace()
         samples = np.random.choice(len(result[t*60*60:(t+1)*60*60,0]), 0.1*len(result[t*60*60:(t+1)*60*60,0]))
@@ -64,7 +64,7 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
 
     if not os.path.exists( "%s\\%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
-        max_sec = 1*60*60
+        max_sec = 21*60*60
         result_temp_1 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
         result_temp_2 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
         result = np.zeros(shape=(max_sec, 2))
