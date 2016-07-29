@@ -19,7 +19,7 @@ def clean_signal(sig, samp_rate):
     return clean_sig
 #-------------------------------Main Function--------------------------------
 def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_channels):
-
+    pdb.set_trace()
     neural_sig = edfreader.EdfReader(file)
     samp_rate = int(neural_sig.samplefrequency(0))
 
