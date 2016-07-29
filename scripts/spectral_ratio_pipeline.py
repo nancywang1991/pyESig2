@@ -21,7 +21,8 @@ print "Download File"
 subprocess.call("mkdir %s/%s" % (args.ecog_raw, args.sbj_id))
 subprocess.call("mkdir %s/%s" % (args.ecog_processed, args.sbj_id))
 subprocess.call("mkdir %s/%s" % (args.ecog_save, args.sbj_id))
-subprocess.call("azure storage blob download main %s_%i %s/%s/" %(args.sbj_id, args.d, args.ecog_raw, args.sbj_id))
+subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
+                (args.sbj_id, args.d, args.ecog_raw, args.sbj_id, args.sbj_id, args.d))
 
 print "Extract fft"
 fft_extract.main(1,150,args.sbj_id, args.day, 1,0.5, "%s/%s/" %(args.ecog_raw, args.sbj_id),
