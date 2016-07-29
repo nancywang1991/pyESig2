@@ -104,6 +104,7 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
 
 
 if __name__ == "__main__":
+    
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--sbj_id', required=True, help="Subject id")
     parser.add_argument('-d', '--day', required=True, help="Day of study", type=int, )

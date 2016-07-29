@@ -65,19 +65,19 @@ def main(f_lo, f_hi, sbj_id, day, win_size, step_size, eeg_loc, save_loc):
             f, ext = num.split('.')
             transform_file(f, file, f_lo, f_hi, win_size, step_size, save_loc, patient_channels[sbj_id])
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-s', '--subject_id', type=str, help = "Subject ID for fft extraction", required=True)
-parser.add_argument('-d', '--day', type=int, help="Day of subject stay to extract", required=True)
-parser.add_argument('-eeg', '--eeg_fldr', type=str, help = "Folder location of eeg edf files", default="D:\\NancyStudyData\\ecog\\edf\\")
-parser.add_argument('-save', '--save_fldr', type=str, help = "Save folder location", default="E:\\ratio_mapping\\ecog_processed\\")
-parser.add_argument('-f_lo', '--f_lo', type=int, help = "Low end  of frequency cutoff", default = 1)
-parser.add_argument('-f_hi', '--f_hi', type=int, help = "High end  of frequency cutoff", default = 150)
-parser.add_argument('-w_size', '--win_size', type=float, help="Number of seconds in window", default = 2 )
-parser.add_argument('-s_size', '--step_size', type=float, help="Number of seconds between windows", default = 1)
-
-args = parser.parse_args()
-
 if __name__== "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--subject_id', type=str, help = "Subject ID for fft extraction", required=True)
+    parser.add_argument('-d', '--day', type=int, help="Day of subject stay to extract", required=True)
+    parser.add_argument('-eeg', '--eeg_fldr', type=str, help = "Folder location of eeg edf files", default="D:\\NancyStudyData\\ecog\\edf\\")
+    parser.add_argument('-save', '--save_fldr', type=str, help = "Save folder location", default="E:\\ratio_mapping\\ecog_processed\\")
+    parser.add_argument('-f_lo', '--f_lo', type=int, help = "Low end  of frequency cutoff", default = 1)
+    parser.add_argument('-f_hi', '--f_hi', type=int, help = "High end  of frequency cutoff", default = 150)
+    parser.add_argument('-w_size', '--win_size', type=float, help="Number of seconds in window", default = 2 )
+    parser.add_argument('-s_size', '--step_size', type=float, help="Number of seconds between windows", default = 1)
+
+    args = parser.parse_args()
+
     main(args.f_lo, args.f_hi, args.sbj_id, args.d, args.win_size, args.step_size, args.eeg_fldr, args.save_fldr)
 
 
