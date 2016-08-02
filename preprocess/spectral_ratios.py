@@ -72,10 +72,9 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
             if t%(60*60)==0:
                 print "Processing hour: %i" % (t/(60*60))
             try:
-                data = pickle.load(open("%s/%s/%i_%i.p" % (data_fldr, sbj_id, day, t)))
+                data = pickle.load(open("%s/%i_%i.p" % (data_fldr, sbj_id, day, t)))
                 result_temp_1[t,:], result_temp_2[t,:]= ratio_measure(data, ratio1, ratio2)
             except IOError:
-                pdb.set_trace()
                 print "Cannot open"
 
         print "remove extremes"
