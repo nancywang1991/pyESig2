@@ -48,14 +48,14 @@ def plot_2d_coords(result, ratio1, ratio2):
     f, axes = plt.subplots(2,1, sharex='col', figsize=(5,5))
 
     for h in range(0,21,12):
-        t = h/12
-        samples = np.random.choice(len(result[h*60*60:(h+16)*60*60,0]), 0.1*len(result[h*60*60:(h+12)*60*60,0]))
+        t = h/5
+        samples = np.random.choice(len(result[h*60*60:(h+3)*60*60,0]), 0.1*len(result[h*60*60:(h+3)*60*60,0]))
         axes[t].scatter(result[samples,0], result[samples,1], s=0.2, c="black", edgecolors="face")
-        axes[t].set_title("%i o'clock to %i o'clock" % ((h+8)%24, ((h+16+8)%24)))
+        axes[t].set_title("%i o'clock" % ((h+8)%24))
         axes[t].set_ylim([-1,1])
 
     axes[-1].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
-    axes[0].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
+    axes[2].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
     plt.tight_layout()
 
     return f
@@ -64,7 +64,7 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
 
     if not os.path.exists( "%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
-        max_sec = 23*60*60
+        max_sec = 21*60*60
         result_temp_1 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
         result_temp_2 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
         result = np.zeros(shape=(max_sec, 2))
