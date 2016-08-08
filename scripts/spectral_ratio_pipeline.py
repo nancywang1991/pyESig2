@@ -29,7 +29,7 @@ fft_extract.main(1,150,args.sbj_id, args.day, 1,0.5, "%s/%s/" %(args.ecog_raw, a
                  "%s/%s/" %(args.ecog_processed, args.sbj_id))
 
 print "Calculate and plot ratios"
-for ratio1_0 in range(1,10,1):
+for ratio1_0 in range(0.5,10,1):
     for ratio1_1 in range(ratio1_0+5, ratio1_0+10, 2):
         for ratio2_0 in range(20, 50, 3):
             for ratio2_1 in range(ratio2_0+5, ratio2_0+50, 5):

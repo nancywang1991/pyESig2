@@ -87,7 +87,6 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
         mask = np.ones(result.shape[0], dtype=bool)
         mask[list(invalid)]=False
         print "pca"
-        pdb.set_trace()
         pca = PCA(n_components=1, whiten=True)
 
         result[mask,0] = np.ndarray.flatten(pca.fit_transform(result_temp_1[mask,:]))
