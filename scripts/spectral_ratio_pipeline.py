@@ -35,6 +35,6 @@ for ratio1_0 in range(0,10,1):
             for ratio2_1 in range(ratio2_0+5, ratio2_0+50, 5):
                 print "Processing %i:%i and %i:%i" %(ratio1_0-0.5, ratio1_1, ratio2_0, ratio2_1)
                 spec_ratio.main("%s/%s/" % (args.ecog_processed, args.sbj_id), args.sbj_id, args.day,
-                                (ratio1_0, ratio1_1), (ratio2_0, ratio2_1), "%s/%s/" %(args.save, args.sbj_id))
+                                (ratio1_0-0.5, ratio1_1), (ratio2_0, ratio2_1), "%s/%s/" %(args.save, args.sbj_id))
 
 
