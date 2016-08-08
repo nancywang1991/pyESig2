@@ -48,7 +48,7 @@ def plot_2d_coords(result, ratio1, ratio2):
     f, axes = plt.subplots(2,1, sharex='col', figsize=(5,5))
 
     for h in range(0,21,12):
-        t = h/2
+        t = h/12
         samples = np.random.choice(len(result[h*60*60:(h+12)*60*60,0]), 0.1*len(result[h*60*60:(h+12)*60*60,0]))
         axes[t].scatter(result[samples,0], result[samples,1], s=0.2, c="black", edgecolors="face")
         axes[t].set_title("%i o'clock to %i o'clock" % ((h+8)%24, (h+12+8%24)))
