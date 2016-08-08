@@ -64,7 +64,7 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
 
     if not os.path.exists( "%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
-        max_sec = 3*60*60
+        max_sec = 23*60*60
         result_temp_1 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
         result_temp_2 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
         result = np.zeros(shape=(max_sec, 2))
