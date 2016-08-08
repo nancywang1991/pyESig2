@@ -55,7 +55,7 @@ def plot_2d_coords(result, ratio1, ratio2):
         axes[t].set_ylim([-1,1])
 
     axes[-1].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
-    axes[2].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
+    axes[0].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
     plt.tight_layout()
 
     return f
