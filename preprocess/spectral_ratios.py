@@ -42,10 +42,10 @@ def plot_2d_coords(result, ratio1, ratio2):
     #plt.scatter(result[samples,0], result[samples,1], s=0.01)
     #mymap = plt.get_cmap("rainbow")
 
-    x = np.arange(2)
-    ys = [i+x+(i*x)**2 for i in range(2)]
+    x = np.arange(5)
+    ys = [i+x+(i*x)**2 for i in range(5)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
-    f, axes = plt.subplots(2,1, sharex='col', figsize=(5,5))
+    f, axes = plt.subplots(5,1, sharex='col', figsize=(5,9))
 
     for h in range(0,21,4):
         t = h/5
