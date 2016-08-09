@@ -112,7 +112,7 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
     figure = plot_2d_coords(result, ratio1, ratio2)
     figure.savefig("%s/%s_%i_ratio_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1]))
-    figure2 = plot_time(result)
+    figure2 = plot_time(result, 0)
     figure2.savefig("%s/%s_%i_ratio_%i_%i_%i_%i_timegraph.jpg" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1]))
     plt.close()
