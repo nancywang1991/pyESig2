@@ -17,13 +17,12 @@ import os
 
 def frequency_integration(data, low, hi, res=1):
     f = plot_time(data, low)
-    f.savefig("%i.jpg" % (low))
-    plt.close()
     return np.sum(np.abs(data[:,int(low/res):int(hi/res)]), axis=1)
 
 def ratio_measure(data, ratio1, ratio2):
 
-    ratio_res1 = frequency_integration(data, 1, ratio1[0]*2)/frequency_integration(data, 1, ratio1[1]*2)
+    #ratio_res1 = frequency_integration(data, 1, ratio1[0]*2)/frequency_integration(data, 1, ratio1[1]*2)
+    ratio_res1 = frequency_integration(data,1,ratio1[0]*2)
     ratio_res2 = frequency_integration(data, 1, ratio2[0]*2)/frequency_integration(data, 1, ratio2[1]*2)
     return (ratio_res1, ratio_res2)
 
