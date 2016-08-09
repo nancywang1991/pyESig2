@@ -16,7 +16,7 @@ import os
 
 
 def frequency_integration(data, low, hi, res=1):
-    f = plot_time(data, low)
+
     return np.sum(np.abs(data[:,int(low/res):int(hi/res)]), axis=1)
 
 def ratio_measure(data, ratio1, ratio2):
