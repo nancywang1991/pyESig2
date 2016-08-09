@@ -62,7 +62,7 @@ def plot_2d_coords(result, ratio1, ratio2):
 
 def plot_time(result):
     f = plt.figure()
-    plt.plot(result[:,1])
+    plt.plot(result[:,0])
     return f
 
 def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
