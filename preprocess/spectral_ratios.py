@@ -42,20 +42,20 @@ def plot_2d_coords(result, ratio1, ratio2):
     #plt.scatter(result[samples,0], result[samples,1], s=0.01)
     #mymap = plt.get_cmap("rainbow")
 
-    x = np.arange(3)
-    ys = [i+x+(i*x)**2 for i in range(3)]
+    x = np.arange(11)
+    ys = [i+x+(i*x)**2 for i in range(11)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
-    f, axes = plt.subplots(3,1, sharex='col', figsize=(5,9))
+    f, axes = plt.subplots(11,1, sharex='col', figsize=(5,15))
 
-    for h in range(0,21,7):
-        t = h/5
-        samples = np.random.choice(len(result[h*60*60:(h+7)*60*60,0]), 0.5*len(result[h*60*60:(h+7)*60*60,0]))
+    for h in range(0,22,2):
+        t = h/2
+        samples = np.random.choice(len(result[h*60*60:(h+2)*60*60,0]), 0.5*len(result[h*60*60:(h+2)*60*60,0]))
         axes[t].scatter(result[samples,0], result[samples,1], s=0.2, c="black", edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
         axes[t].set_ylim([-1,1])
 
     axes[-1].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
-    axes[1].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
+    axes[4].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
     plt.tight_layout()
 
     return f
