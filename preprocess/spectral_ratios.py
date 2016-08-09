@@ -42,22 +42,26 @@ def plot_2d_coords(result, ratio1, ratio2):
     #plt.scatter(result[samples,0], result[samples,1], s=0.01)
     #mymap = plt.get_cmap("rainbow")
 
-    x = np.arange(11)
-    ys = [i+x+(i*x)**2 for i in range(11)]
+    x = np.arange(5)
+    ys = [i+x+(i*x)**2 for i in range(5)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
-    f, axes = plt.subplots(11,1, sharex='col', figsize=(5,15))
+    f, axes = plt.subplots(5,1, sharex='col', figsize=(5,15))
 
-    for h in range(0,22,2):
-        t = h/2
-        samples = np.random.choice(len(result[h*60*60:(h+2)*60*60,0]), 0.5*len(result[h*60*60:(h+2)*60*60,0]))
+    for h in range(0,22,4):
+        t = h/4
+        samples = np.random.choice(len(result[h*60*60:(h+2)*60*60,0]), 0.2*len(result[h*60*60:(h+2)*60*60,0]))
         axes[t].scatter(result[samples,0], result[samples,1], s=0.2, c="black", edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
         axes[t].set_ylim([-1,1])
 
     axes[-1].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
-    axes[4].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
+    axes[3].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
     plt.tight_layout()
 
+    return f
+
+def plot_time(result):
+    plt.plot(result[:,0])
     return f
 
 def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
@@ -104,6 +108,9 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
                                                                 ratio1[1], ratio2[0], ratio2[1]), "rb"))
     figure = plot_2d_coords(result, ratio1, ratio2)
     figure.savefig("%s/%s_%i_ratio_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                ratio1[1], ratio2[0], ratio2[1]))
+    figure2 = plot_time(result)
+    figure2.savefig("%s/%s_%i_ratio_%i_%i_%i_%i_timegraph.jpg" % (save_fldr, sbj_id, day, ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1]))
     plt.close()
     return result
