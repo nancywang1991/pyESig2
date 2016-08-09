@@ -16,6 +16,9 @@ import os
 
 
 def frequency_integration(data, low, hi, res=1):
+    f = plot_time(data, low)
+    f.savefig("%i.jpg" % (low))
+    plt.close()
     return np.sum(np.abs(data[:,int(low/res):int(hi/res)]), axis=1)
 
 def ratio_measure(data, ratio1, ratio2):
@@ -60,9 +63,9 @@ def plot_2d_coords(result, ratio1, ratio2):
 
     return f
 
-def plot_time(result):
+def plot_time(result, c):
     f = plt.figure()
-    plt.plot(result[:,0])
+    plt.plot(result[:,c])
     return f
 
 def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
