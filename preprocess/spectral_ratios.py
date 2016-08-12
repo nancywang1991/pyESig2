@@ -67,23 +67,25 @@ def plot_time(result, c):
     plt.plot(result[:,c])
     return f
 
-def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
+def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
 
-    if not os.path.exists( "%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+    days_str = "_".join([str(day) for day in days])
+    if not os.path.exists( "%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, days[0], ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
         max_sec = 23*60*60
-        result_temp_1 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
-        result_temp_2 = np.zeros(shape=(max_sec, patient_channels[sbj_id]))
-        result = np.zeros(shape=(max_sec, 2))
+        result_temp_1 = np.zeros(shape=(max_sec * len(days), patient_channels[sbj_id]))
+        result_temp_2 = np.zeros(shape=(max_sec * len(days), patient_channels[sbj_id]))
+        result = np.zeros(shape=(max_sec * len(days), 2))
 
-        for t in xrange(max_sec):
-            if t%(60*60)==0:
-                print "Processing hour: %i" % (t/(60*60))
-            try:
-                data = pickle.load(open("%s/%i_%i.p" % (data_fldr, day, t)))
-                result_temp_1[t,:], result_temp_2[t,:]= ratio_measure(data, ratio1, ratio2)
-            except IOError:
-                print "Cannot open"
+        for d in xrange(len(days)):
+            for t in xrange(max_sec):
+                if t%(60*60)==0:
+                    print "Processing day: %i hour: %i" % (d, t/(60*60))
+                try:
+                    data = pickle.load(open("%s/%i_%i.p" % (data_fldr, days[d], t)))
+                    result_temp_1[d*max_sec + t,:], result_temp_2[d*max_sec + t,:]= ratio_measure(data, ratio1, ratio2)
+                except IOError:
+                    print "Cannot open"
 
         print "remove extremes"
         result_temp_1_norm = (result_temp_1 - np.mean(result_temp_1))/np.std(result_temp_1)
@@ -103,19 +105,18 @@ def main(data_fldr, sbj_id, day, ratio1, ratio2, save_fldr):
         result[:,0] = smooth(result[:,0])
         result[:,1] = smooth(result[:,1])
 
-
-        pickle.dump(result, open("%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+        for d in days:
+            pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, d, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1]), "wb"))
     else:
-        result = pickle.load(open("%s/%s_%i_ratio_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                ratio1[1], ratio2[0], ratio2[1]), "rb"))
-    figure = plot_2d_coords(result, ratio1, ratio2)
-    figure.savefig("%s/%s_%i_ratio_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                ratio1[1], ratio2[0], ratio2[1]))
-    figure2 = plot_time(result, 0)
-    figure2.savefig("%s/%s_%i_ratio_%i_%i_%i_%i_timegraph.jpg" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                ratio1[1], ratio2[0], ratio2[1]))
-    plt.close()
+
+        for day in days:
+            result = pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                    ratio1[1], ratio2[0], ratio2[1]), "rb"))
+            figure = plot_2d_coords(result, ratio1, ratio2)
+            figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                        ratio1[1], ratio2[0], ratio2[1]))
+            plt.close()
     return result
 
 
