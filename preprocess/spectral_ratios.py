@@ -113,10 +113,10 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         for day in days:
             result = pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1]), "rb"))
-            figure = plot_2d_coords(result, ratio1, ratio2)
-            figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
+    figure = plot_2d_coords(result, ratio1, ratio2)
+    figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
                                                                         ratio1[1], ratio2[0], ratio2[1]))
-            plt.close()
+    plt.close()
     return result
 
 
