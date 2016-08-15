@@ -53,7 +53,7 @@ def plot_2d_coords(result, ratio1, ratio2):
         t = h/4
 
         for h_s in range(4):
-            samples = np.random.choice(len(result[(h+h_s)*60*60:(h++h_s+1)*60*60,0]), 0.5*len(result[(h+h_s)*60*60:(h++h_s+1)*60*60,0]))
+            samples = np.random.choice(len(result[(h+h_s)*60*60:(h+h_s+1)*60*60,0]), 0.5*len(result[(h+h_s)*60*60:(h+h_s+1)*60*60,0]))
             axes[t].scatter(result[samples + (h+h_s)*60*60,0], result[samples+(h+h_s)*60*60,1], s=0.2, c=colors[h_s], edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
         axes[t].set_ylim([-2,2])
