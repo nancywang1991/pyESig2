@@ -54,7 +54,7 @@ def plot_2d_coords(result, ratio1, ratio2):
         samples = np.random.choice(len(result[h*60*60:(h+3)*60*60,0]), 0.5*len(result[h*60*60:(h+3)*60*60,0]))
         axes[t].scatter(result[samples + h*60*60,0], result[samples+h*60*60,1], s=0.2, c="black", edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
-        axes[t].set_ylim([-1,1])
+        axes[t].set_ylim([-2,2])
 
     axes[-1].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
     axes[3].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
