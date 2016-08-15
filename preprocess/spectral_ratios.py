@@ -108,6 +108,7 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         for d, day in enumerate(days):
             pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1]), "wb"))
+
     else:
         result = []
         for d, day in enumerate(days):
@@ -133,4 +134,4 @@ if __name__ == "__main__":
     parser.add_argument('-r2', '--ratio2', help='Second ratio pair', nargs=2, type=int)
     parser.add_argument('-save', '--save', help='save directory', default="E:\\mvmt_pred_features\\")
     args = parser.parse_args()
-    result = main(args.ecog_processed, args.sbj_id, args.day, args.ratio1, args.ratio2, args.save)
+    final_result = main(args.ecog_processed, args.sbj_id, args.day, args.ratio1, args.ratio2, args.save)
