@@ -45,7 +45,7 @@ def plot_2d_coords(result, ratio1, ratio2):
     mymap = plt.get_cmap("rainbow")
 
     x = np.arange(6)
-    ys = [i+x+(i*x)**2 for i in range(6)]
+    ys = [i+x+(i*x)**2 for i in range(3)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
     f, axes = plt.subplots(6,1, sharex='col', figsize=(5,15))
 
