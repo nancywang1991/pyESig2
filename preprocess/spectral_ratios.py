@@ -97,7 +97,7 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         mask[list(invalid)]=False
         print "pca"
         pca = PCA(n_components=1, whiten=True)
- 
+
         result[mask,0] = np.ndarray.flatten(pca.fit_transform(result_temp_1[mask,:]))
         result[mask,1] = np.ndarray.flatten(pca.fit_transform(result_temp_2[mask,:]))
 
@@ -109,13 +109,15 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
             pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1]), "wb"))
     else:
-
-        for day in days:
-            result = pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                    ratio1[1], ratio2[0], ratio2[1]), "rb"))
-    figure = plot_2d_coords(result, ratio1, ratio2)
-    figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                        ratio1[1], ratio2[0], ratio2[1]))
+        result = []
+        for d, day in enumerate(days):
+            result.append(pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                    ratio1[1], ratio2[0], ratio2[1]), "rb")))
+            result = np.hstack(result)
+    for d, day in enumerate(days):
+        figure = plot_2d_coords(result[d*max_sec:(d+1)*max_sec], ratio1, ratio2)
+        figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                            ratio1[1], ratio2[0], ratio2[1]))
     plt.close()
     return result
 
