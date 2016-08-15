@@ -97,7 +97,7 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         mask[list(invalid)]=False
         print "pca"
         pca = PCA(n_components=1, whiten=True)
-        pdb.set_trace()
+ 
         result[mask,0] = np.ndarray.flatten(pca.fit_transform(result_temp_1[mask,:]))
         result[mask,1] = np.ndarray.flatten(pca.fit_transform(result_temp_2[mask,:]))
 
@@ -105,8 +105,8 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         result[:,0] = smooth(result[:,0])
         result[:,1] = smooth(result[:,1])
 
-        for d in days:
-            pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, d, ratio1[0],
+        for d, day in enumerate(days):
+            pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1]), "wb"))
     else:
 
