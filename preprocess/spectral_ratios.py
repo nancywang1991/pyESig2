@@ -51,7 +51,6 @@ def plot_2d_coords(result, ratio1, ratio2):
 
     for h in range(0,22,4):
         t = h/4
-        pdb.set_trace()
         samples = np.random.choice(len(result[h*60*60:(h+1)*60*60,0]), 0.5*len(result[h*60*60:(h+1)*60*60,0]))
         axes[t].scatter(result[samples + h*60*60,0], result[samples+h*60*60,1], s=0.2, c="black", edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
@@ -98,7 +97,7 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         mask[list(invalid)]=False
         print "pca"
         pca = PCA(n_components=1, whiten=True)
-
+        pdb.set_trace()
         result[mask,0] = np.ndarray.flatten(pca.fit_transform(result_temp_1[mask,:]))
         result[mask,1] = np.ndarray.flatten(pca.fit_transform(result_temp_2[mask,:]))
 
