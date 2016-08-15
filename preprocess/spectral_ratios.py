@@ -51,7 +51,7 @@ def plot_2d_coords(result, ratio1, ratio2):
 
     for h in range(0,22,4):
         t = h/4
-        samples = np.random.choice(len(result[h*60*60:(h+1)*60*60,0]), 0.5*len(result[h*60*60:(h+1)*60*60,0]))
+        samples = np.random.choice(len(result[h*60*60:(h+3)*60*60,0]), 0.5*len(result[h*60*60:(h+3)*60*60,0]))
         axes[t].scatter(result[samples + h*60*60,0], result[samples+h*60*60,1], s=0.2, c="black", edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
         axes[t].set_ylim([-1,1])
@@ -117,7 +117,7 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
                                                                     ratio1[1], ratio2[0], ratio2[1]), "rb")))
         result = np.vstack(result)
     for d, day in enumerate(days):
-        pdb.set_trace()
+
         figure = plot_2d_coords(result[d*max_sec:(d+1)*max_sec], ratio1, ratio2)
         figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
                                                                             ratio1[1], ratio2[0], ratio2[1]))
