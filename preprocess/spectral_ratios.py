@@ -70,9 +70,10 @@ def plot_time(result, c):
 def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
 
     days_str = "_".join([str(day) for day in days])
+    max_sec = 23*60*60
     if not os.path.exists( "%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, days[0], ratio1[0],
                                                                 ratio1[1], ratio2[0], ratio2[1])):
-        max_sec = 23*60*60
+
         result_temp_1 = np.zeros(shape=(max_sec * len(days), patient_channels[sbj_id]))
         result_temp_2 = np.zeros(shape=(max_sec * len(days), patient_channels[sbj_id]))
         result = np.zeros(shape=(max_sec * len(days), 2))
