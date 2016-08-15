@@ -42,7 +42,7 @@ def smooth(x, window_len=20):
 def plot_2d_coords(result, ratio1, ratio2):
     #samples = np.random.choice(len(result), 0.2*len(result))
     #plt.scatter(result[samples,0], result[samples,1], s=0.01)
-    #mymap = plt.get_cmap("rainbow")
+    mymap = plt.get_cmap("rainbow")
 
     x = np.arange(6)
     ys = [i+x+(i*x)**2 for i in range(6)]
@@ -51,8 +51,10 @@ def plot_2d_coords(result, ratio1, ratio2):
 
     for h in range(0,22,4):
         t = h/4
-        samples = np.random.choice(len(result[h*60*60:(h+3)*60*60,0]), 0.5*len(result[h*60*60:(h+3)*60*60,0]))
-        axes[t].scatter(result[samples + h*60*60,0], result[samples+h*60*60,1], s=0.2, c="black", edgecolors="face")
+
+        for h_s in range(4):
+            samples = np.random.choice(len(result[(h+h_s)*60*60:(h++h_s+1)*60*60,0]), 0.5*len(result[(h+h_s)*60*60:(h++h_s+1)*60*60,0]))
+            axes[t].scatter(result[samples + (h+h_s)*60*60,0], result[samples+(h+h_s)*60*60,1], s=0.2, c=mymap[h_s], edgecolors="face")
         axes[t].set_title("%i o'clock" % ((h+8)%24))
         axes[t].set_ylim([-2,2])
 
