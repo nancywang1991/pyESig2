@@ -40,7 +40,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         diff = np.sum(np.abs(cur_coord-use_coord))
         if diff > 30:
             use_coord = cur_coord
-        crop_coords_used.write("_".join([str(i) for i in use_coord]) + "\n")
+        crop_coords_used.write(",".join([str(i) for i in use_coord]) + "\n")
         frame_count += 1
         if sum(use_coord) > 0:
             output_vid.write(frame[use_coord[2]:use_coord[3], use_coord[0]:use_coord[1]])
