@@ -1,7 +1,7 @@
 from pyESig2.vid.my_video_capture import my_video_capture
 import cv2
 import numpy as np
-
+import pdb
 __author__ = 'wangnxr'
 
 def gen_cropped_frames(video_path, coords_path, save_path):
@@ -28,6 +28,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         use_coord = np.array([int(n) for n in open("%s/%s/crop_coords.txt" % (save_path, prev_fname)).readlines()[-1].split(",")])
     else:
         use_coord = np.array([0,0,0,0])
+    pdb.set_trace()
     while vid.has_next():
         frame = vid.read()
         cur_coord = np.array(int(n) for n in coords[frame_count].split(","))
