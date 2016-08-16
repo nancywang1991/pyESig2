@@ -11,10 +11,11 @@ def gen_cropped_frames(video_path, coords_path, save_path):
     fnum = fname.split("_")[-1]
     frame_count = 0
     coords = open(coords_path).readlines()
-    if cap.get(cv2.cv.CV_CAP_PROP_FPS) < 29:
-        append_frame = int(30/(30-cap.get(cv2.cv.CV_CAP_PROP_FPS)))
-        for i in xrange(int(cap.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT)/append_frame)):
-            coords.insert(i*append_frame, coords[i*append_frame])
+    total_frames = cap.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT)
+    if cap.get(total_frames)-len(coords) > 0:
+        append_frame_skip = int(total_frames/(total_frames-len(coords)))
+        for f in range(0,total_frames, append_frame_skip):
+            coords.insert(f, coords[f])
 
     vid = my_video_capture(video_path, frame_rate=30)
 
