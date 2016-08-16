@@ -20,14 +20,14 @@ def main(args):
 
         # Move files over to deeppose
         subprocess.call('mkdir %s/video_data/%s' % (args.deep_home, fname), shell=True)
-        gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), args.save)
+        gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), '%s/video_data/%s/' % (args.deep_home, fname))
         # Pose detection
         os.chdir(args.deep_home)
         subprocess.call(['python', '%s/scripts/evaluate_flic.py' % args.deep_home,
                     '--mode', 'demo', '--model', '%s/results/AlexNet_final/AlexNet_flic.py' % args.deep_home,
                     '--param', '%s/results/AlexNet_final/epoch-1000.model' % args.deep_home,
                     '--resultdir', '%s/%s/' % (args.save, fname), '--gpu', '1',
-                    '--datadir', '%s/video_data/%s/images/' % (args.deep_home, fname)])
+                    '--datadir', '%s/video_data/%s/' % (args.deep_home, fname)])
         #Stich pose results into one video
         subprocess.call('ffmpeg -r 30 -i %s/%s/' %(args.save, fname) + '%04d_pred.png -c:v libx264 '
                        + '-pix_fmt yuv420p %s/%s/%s.avi' % (args.save, fname, fname), shell=True)

@@ -47,7 +47,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         else:
             output_vid.write(frame)
 
-    output_vid.new_img_folder("%s/%s/images/" % (save_path, fname))
+    output_vid.new_img_folder("%s/%s/" % (save_path, fname))
     output_vid.close()
     vid.close()
 
