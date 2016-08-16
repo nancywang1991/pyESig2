@@ -29,8 +29,9 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         use_coord = np.array([int(n) for n in open("%s/%s/crop_coords.txt" % (save_path, prev_fname)).readlines()[-1].split(",")])
     else:
         use_coord = np.array([0,0,0,0])
-    pdb.set_trace()
+
     while vid.has_next():
+
         frame = vid.read()
         cur_coord = np.array([int(n) for n in coords[frame_count].split(",")])
         diff = np.sum(np.abs(cur_coord-use_coord))
@@ -42,6 +43,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
             output_vid.write(frame[use_coord[2]:use_coord[3], use_coord[0]:use_coord[1]])
         else:
             output_vid.write(frame)
+        print vid.has_next()
     output_vid.new_img_folder("%s/%s/images/" % (save_path, fname))
     output_vid.close()
     vid.close()
