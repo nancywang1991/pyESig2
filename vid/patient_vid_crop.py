@@ -6,7 +6,7 @@ __author__ = 'wangnxr'
 
 def gen_cropped_frames(video_path, coords_path, save_path):
 
-    cap = cv2.VideoCapture.open(video_path)
+    cap = cv2.VideoCapture(video_path)
     fname = video_path.split('/')[-1].split('.')[0]
     fnum = fname.split("_")[-1]
     frame_count = 0
