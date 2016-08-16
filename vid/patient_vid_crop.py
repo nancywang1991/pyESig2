@@ -10,7 +10,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
     fname = video_path.split('/')[-1].split('.')[0]
     fnum = fname.split("_")[-1]
     frame_count = 0
-    coords = open("%s/%s.txt" % (coords_path, fnum)).readlines()
+    coords = open(coords_path).readlines()
     if cap.get("CV_CAP_PROP_FPS") < 29:
         append_frame = int(30/(30-cap.get("CV_CAP_PROP_FPS")))
         for i in xrange(cap.get("CV_CAP_PROP_FRAME_COUNT")/append_frame):
