@@ -31,7 +31,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
     pdb.set_trace()
     while vid.has_next():
         frame = vid.read()
-        cur_coord = np.array(int(n) for n in coords[frame_count].split(","))
+        cur_coord = np.array([int(n) for n in coords[frame_count].split(",")])
         diff = np.sum(np.abs(cur_coord-use_coord))
         if diff > 30:
             use_coord = cur_coord
