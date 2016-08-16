@@ -15,7 +15,8 @@ class my_video_capture:
         self.file_loc = file_loc
         self.mode = mode
         self.frame_rate = frame_rate
-
+        if mode=="write":
+            self.vid_dir=file_loc
         os.system("mkdir " + self.vid_dir + slash + "tmp_" + mode)
         if mode=="read":
             self.vid_dir, self.vid_loc = os.path.split(file_loc)
