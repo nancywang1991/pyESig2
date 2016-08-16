@@ -26,6 +26,8 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         prev_fname.append(str(int(fnum)-1).zfill(4))
         prev_fname = "_".join(prev_fname)
         use_coord = np.array([int(n) for n in open("%s/%s/crop_coords.txt" % (save_path, prev_fname)).readlines()[-1].split(",")])
+    else:
+        use_coord = np.array([0,0,0,0])
     while vid.has_next():
         frame = vid.read()
         cur_coord = np.array(int(n) for n in coords[frame_count].split(","))
