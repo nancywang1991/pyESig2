@@ -2,6 +2,7 @@ from pyESig2.vid.my_video_capture import my_video_capture
 import cv2
 import numpy as np
 import pdb
+import os
 __author__ = 'wangnxr'
 
 def gen_cropped_frames(video_path, coords_path, save_path):
@@ -22,10 +23,12 @@ def gen_cropped_frames(video_path, coords_path, save_path):
     crop_coords_used = open("%s/%s/crop_coords.txt" % (save_path, fname), "wb")
     output_vid = my_video_capture(save_path, frame_rate=30, mode="write")
 
-    if int(fnum) > 0:
-        prev_fname = fname.split("_")[:-1]
-        prev_fname.append(str(int(fnum)-1).zfill(4))
-        prev_fname = "_".join(prev_fname)
+    prev_fname = fname.split("_")[:-1]
+    prev_fname.append(str(int(fnum) - 1).zfill(4))
+    prev_fname = "_".join(prev_fname)
+
+    if os.path.exists("%s/%s/crop_coords.txt" % (save_path, prev_fname)):
+
         use_coord = np.array([int(n) for n in open("%s/%s/crop_coords.txt" % (save_path, prev_fname)).readlines()[-1].split(",")])
     else:
         use_coord = np.array([0,0,0,0])
@@ -38,12 +41,14 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         except IndexError:
             pdb.set_trace()
         diff = np.sum(np.abs(cur_coord-use_coord))
-        if diff > 30:
+        if diff > 60:
             use_coord = cur_coord
         crop_coords_used.write(",".join([str(i) for i in use_coord]) + "\n")
         frame_count += 1
         if sum(use_coord) > 0:
+
             output_vid.write(frame[use_coord[2]:use_coord[3], use_coord[0]:use_coord[1]])
+
         else:
             output_vid.write(frame)
 

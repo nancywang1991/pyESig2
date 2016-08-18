@@ -22,6 +22,7 @@ def main(args):
         subprocess.call('mkdir %s/video_data/%s' % (args.deep_home, fname), shell=True)
         gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), '%s/video_data/' % (args.deep_home))
         # Pose detection
+
         os.chdir(args.deep_home)
         subprocess.call(['python', '%s/scripts/evaluate_flic.py' % args.deep_home,
                     '--mode', 'demo', '--model', '%s/results/AlexNet_final/AlexNet_flic.py' % args.deep_home,
