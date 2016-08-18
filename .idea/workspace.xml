@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30d574b0-a325-42eb-8cd4-3c619570c0f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/movement/joint_movement_norm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pyESig2.iml" afterPath="$PROJECT_DIR$/.idea/pyESig2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/my_video_capture.py" afterPath="$PROJECT_DIR$/vid/my_video_capture.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/patient_vid_crop.py" afterPath="$PROJECT_DIR$/vid/patient_vid_crop.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+    <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/preprocess/ecog_lmt_extract_windows.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" afterPath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyESig2.iws" />
     <ignored path=".idea/workspace.xml" />
-    <ignored path="$PROJECT_DIR$/../PyESig2/data_mgmt/" />
-    <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="$PROJECT_DIR$/data_mgmt/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,9 +16,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/pyESig2$spectral_ratio_pipeline.coverage" NAME="spectral_ratio_pipeline Coverage Results" MODIFIED="1470250520970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -33,14 +25,36 @@
     <favorites_list name="pyESig2" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pose_detection_pipeline.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+    <leaf>
+      <file leaf-file-name="ecog_fft_extract_windows.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract_windows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="71" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ecog_fft_extract.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
-                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pca_transform2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess/pca_transform2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="62" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,20 +63,21 @@
       <file leaf-file-name="patient_vid_crop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding>
-                <element signature="e#0#57#0" expanded="true" />
+                <marker date="1471553449075" expanded="true" signature="0:98" placeholder="import ..." />
+                <marker date="1471553449075" expanded="true" signature="1788:1939" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+      <file leaf-file-name="pose_detection_pipeline.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -70,33 +85,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
+      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="89" selection-start-line="28" selection-start-column="89" selection-end-line="28" selection-end-column="89" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#17#0" expanded="true" />
+                <marker date="1471553449073" expanded="true" signature="298:462" placeholder="..." />
+                <marker date="1471553449073" expanded="true" signature="2176:2216" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spectral_ratios.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spectral_ratio_pipeline.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spectral_ratio_pipeline.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5218509">
+              <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
               </folding>
@@ -109,7 +116,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
       </list>
     </option>
@@ -120,26 +126,49 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../PyESig2/vid/pose_detection_pipeline.py.ipynb" />
-        <option value="$PROJECT_DIR$/../PyESig2/vid/pose_detection_pipeline.py" />
-        <option value="$PROJECT_DIR$/movement/joint_movement_norm.py" />
-        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
-        <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
+        <option value="$PROJECT_DIR$/annotation/extract_detection_box.py" />
+        <option value="$PROJECT_DIR$/annotation/gen_train_val_test" />
+        <option value="$PROJECT_DIR$/annotation/extract_key_frames.py" />
+        <option value="$PROJECT_DIR$/scripts/gen_pose_labelling_frames.py" />
+        <option value="$PROJECT_DIR$/annotation/extract_detection_file.py" />
+        <option value="$PROJECT_DIR$/annotation/gen_train_val_test.py" />
+        <option value="$PROJECT_DIR$/preprocess/pca_transform_train_first_day.py" />
+        <option value="$PROJECT_DIR$/validation/check_labels.py" />
+        <option value="$PROJECT_DIR$/analysis/correlate_signals.py" />
+        <option value="$PROJECT_DIR$/cluster/truncated_hier_cluster_train_single_day.py" />
+        <option value="$PROJECT_DIR$/scripts/run_all.py" />
+        <option value="$PROJECT_DIR$/scripts/run_all_more_freq.py" />
+        <option value="$PROJECT_DIR$/cluster/truncated_hier_cluster.py" />
+        <option value="$PROJECT_DIR$/scripts/run_all_train_single_day.py" />
+        <option value="$PROJECT_DIR$/scripts/scattergories_plot_train_single_day.py" />
+        <option value="$PROJECT_DIR$/vid/flic_data_add.py" />
+        <option value="$PROJECT_DIR$/scripts/scattergories_plot.py" />
+        <option value="$PROJECT_DIR$/scripts/extract_pose_accuracy_all_limbs.py" />
+        <option value="$PROJECT_DIR$/scripts/extract_pose_accuracy.py" />
+        <option value="$USER_HOME$/Documents/rao_lab/data_mgmt/de_id.py" />
+        <option value="$PROJECT_DIR$/misc_info.py" />
+        <option value="$PROJECT_DIR$/preprocess/ecog_lmt_extract_windows.py" />
+        <option value="$PROJECT_DIR$/preprocess/ecog_lmp_extract_windows.py" />
+        <option value="$PROJECT_DIR$/vid/aggregate.py" />
+        <option value="$PROJECT_DIR$/preprocess/ecog_fft_extract_windows.py" />
+        <option value="$PROJECT_DIR$/data/mvmt_pred_features.py" />
+        <option value="$PROJECT_DIR$/analysis/mvmt_pred.py" />
+        <option value="$PROJECT_DIR$/analysis/mvmt_pred_diff_day.py" />
+        <option value="$PROJECT_DIR$/preprocess/ecog_fft_extract.py" />
+        <option value="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
         <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
+        <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
+        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+        <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
+  <component name="NamedScopeManager">
+    <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="99" />
-    <option name="y" value="171" />
-    <option name="width" value="1386" />
-    <option name="height" value="697" />
+    <option name="width" value="1920" />
+    <option name="height" value="1022" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -150,6 +179,9 @@
     <OptionsSetting value="true" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -162,12 +194,9 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -196,131 +225,118 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pyESig2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pyESig2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pyESig2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pyESig2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="preprocess" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pyESig2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pyESig2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="movement" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-    <property name="last_opened_file_path" value="/usr/bin/python2.7" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/preprocess/ecog_lmp_extract_windows.py" />
+    <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python.spectral_ratio_pipeline">
-    <configuration default="false" name="spectral_ratio_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Python27\lib\site-packages\pyESig2\preprocess" />
+      <recent name="C:\Python27\lib\site-packages\pyESig2\analysis" />
+      <recent name="C:\Python27\lib\site-packages\pyESig2\scripts" />
+      <recent name="C:\Python27\lib\site-packages\pyESig2\cluster" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Python27\lib\site-packages\pyESig2\preprocess" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.patient_vid_crop">
+    <configuration default="false" name="mvmt_pred" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/analysis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/analysis/mvmt_pred.py" />
+      <option name="PARAMETERS" value="D:\e70923c4\e70923c4_1\ D:\keyframes\e70923c4\" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+    <configuration default="false" name="spectral_ratios" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
+      <option name="PARAMETERS" value="-s a86a4375 -d 3 -e D:\\ratio_mapping\\ecog_processed -save D:\\mvmt_pred_features\\ -r1 2 5 -r2 30 60" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+    <configuration default="false" name="aggregate" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/vid" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/vid/aggregate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+    <configuration default="false" name="mvmt_pred_diff_day" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/analysis" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/analysis/mvmt_pred_diff_day.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="patient_vid_crop" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/vid" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyESig2" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -329,45 +345,15 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/annotation" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/annotation/extract_key_frames.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <module name="pyESig2" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
@@ -380,7 +366,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -400,7 +385,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -420,7 +404,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -442,7 +425,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -465,7 +447,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyESig2" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -480,62 +461,421 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Python.spectral_ratio_pipeline" />
+    <configuration default="false" name="mvmt_pred_features" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyESig2" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/mvmt_pred_features.py" />
+      <option name="PARAMETERS" value="-s fcb01f7a -d 15" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ecog_lmp_extract_windows" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/preprocess" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyESig2" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/preprocess/ecog_lmp_extract_windows.py" />
+      <option name="PARAMETERS" value="-s fcb01f7a -d 12 13 15" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <list size="7">
+      <item index="0" class="java.lang.String" itemvalue="Python.mvmt_pred_features" />
+      <item index="1" class="java.lang.String" itemvalue="Python.ecog_lmp_extract_windows" />
+      <item index="2" class="java.lang.String" itemvalue="Python.mvmt_pred" />
+      <item index="3" class="java.lang.String" itemvalue="Python.spectral_ratios" />
+      <item index="4" class="java.lang.String" itemvalue="Python.aggregate" />
+      <item index="5" class="java.lang.String" itemvalue="Python.mvmt_pred_diff_day" />
+      <item index="6" class="java.lang.String" itemvalue="Python.patient_vid_crop" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.spectral_ratio_pipeline" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.patient_vid_crop" />
+        <item index="1" class="java.lang.String" itemvalue="Python.spectral_ratios" />
+        <item index="2" class="java.lang.String" itemvalue="Python.mvmt_pred_diff_day" />
+        <item index="3" class="java.lang.String" itemvalue="Python.mvmt_pred" />
+        <item index="4" class="java.lang.String" itemvalue="Python.aggregate" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="30d574b0-a325-42eb-8cd4-3c619570c0f2" name="Default" comment="" />
-      <created>1470249075429</created>
+      <changelist id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="" />
+      <created>1452830988908</created>
       <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1470249075429</updated>
+      <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00001" summary="pose pipeline update">
-      <created>1471311399790</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00066" summary="added spectra ratio pipeline and improved figures">
+      <created>1470763543623</created>
+      <option name="number" value="00066" />
       <option name="project" value="LOCAL" />
-      <updated>1471311399790</updated>
+      <updated>1470763543623</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00067" summary="added spectra ratio pipeline and improved figures">
+      <created>1471038106246</created>
+      <option name="number" value="00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1471038106246</updated>
+    </task>
+    <task id="LOCAL-00068" summary="added spectra ratio pipeline and improved figures">
+      <created>1471038155673</created>
+      <option name="number" value="00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1471038155673</updated>
+    </task>
+    <task id="LOCAL-00069" summary="added spectra ratio pipeline and improved figures">
+      <created>1471038200309</created>
+      <option name="number" value="00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1471038200309</updated>
+    </task>
+    <task id="LOCAL-00070" summary="added spectra ratio pipeline and improved figures">
+      <created>1471221414305</created>
+      <option name="number" value="00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1471221414305</updated>
+    </task>
+    <task id="LOCAL-00071" summary="added spectra ratio pipeline and improved figures">
+      <created>1471221605589</created>
+      <option name="number" value="00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1471221605589</updated>
+    </task>
+    <task id="LOCAL-00072" summary="added spectra ratio pipeline and improved figures">
+      <created>1471221658203</created>
+      <option name="number" value="00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1471221658203</updated>
+    </task>
+    <task id="LOCAL-00073" summary="added spectra ratio pipeline and improved figures">
+      <created>1471221690857</created>
+      <option name="number" value="00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1471221690857</updated>
+    </task>
+    <task id="LOCAL-00074" summary="added spectra ratio pipeline and improved figures">
+      <created>1471224634383</created>
+      <option name="number" value="00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1471224634383</updated>
+    </task>
+    <task id="LOCAL-00075" summary="added spectra ratio pipeline and improved figures">
+      <created>1471232808432</created>
+      <option name="number" value="00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1471232808432</updated>
+    </task>
+    <task id="LOCAL-00076" summary="added spectra ratio pipeline and improved figures">
+      <created>1471240631785</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1471240631785</updated>
+    </task>
+    <task id="LOCAL-00077" summary="added spectra ratio pipeline and improved figures">
+      <created>1471240782918</created>
+      <option name="number" value="00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1471240782918</updated>
+    </task>
+    <task id="LOCAL-00078" summary="added spectra ratio pipeline and improved figures">
+      <created>1471240891742</created>
+      <option name="number" value="00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1471240891742</updated>
+    </task>
+    <task id="LOCAL-00079" summary="added spectra ratio pipeline and improved figures">
+      <created>1471240922749</created>
+      <option name="number" value="00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1471240922749</updated>
+    </task>
+    <task id="LOCAL-00080" summary="added spectra ratio pipeline and improved figures">
+      <created>1471240988709</created>
+      <option name="number" value="00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1471240988709</updated>
+    </task>
+    <task id="LOCAL-00081" summary="added spectra ratio pipeline and improved figures">
+      <created>1471241062187</created>
+      <option name="number" value="00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1471241062187</updated>
+    </task>
+    <task id="LOCAL-00082" summary="added spectra ratio pipeline and improved figures">
+      <created>1471241190652</created>
+      <option name="number" value="00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1471241190652</updated>
+    </task>
+    <task id="LOCAL-00083" summary="added spectra ratio pipeline and improved figures">
+      <created>1471241278876</created>
+      <option name="number" value="00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1471241278876</updated>
+    </task>
+    <task id="LOCAL-00084" summary="added spectra ratio pipeline and improved figures">
+      <created>1471291159607</created>
+      <option name="number" value="00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1471291159607</updated>
+    </task>
+    <task id="LOCAL-00085" summary="added spectra ratio pipeline and improved figures">
+      <created>1471291221699</created>
+      <option name="number" value="00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1471291221699</updated>
+    </task>
+    <task id="LOCAL-00086" summary="added spectra ratio pipeline and improved figures">
+      <created>1471291270110</created>
+      <option name="number" value="00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1471291270110</updated>
+    </task>
+    <task id="LOCAL-00087" summary="added spectra ratio pipeline and improved figures">
+      <created>1471291296457</created>
+      <option name="number" value="00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1471291296457</updated>
+    </task>
+    <task id="LOCAL-00088" summary="added spectra ratio pipeline and improved figures">
+      <created>1471297887863</created>
+      <option name="number" value="00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1471297887863</updated>
+    </task>
+    <task id="LOCAL-00089" summary="improved pose_detection pipeline">
+      <created>1471378989414</created>
+      <option name="number" value="00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1471378989420</updated>
+    </task>
+    <task id="LOCAL-00090" summary="improved pose_detection pipeline">
+      <created>1471379407964</created>
+      <option name="number" value="00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1471379407964</updated>
+    </task>
+    <task id="LOCAL-00091" summary="improved pose_detection pipeline">
+      <created>1471379757095</created>
+      <option name="number" value="00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1471379757095</updated>
+    </task>
+    <task id="LOCAL-00092" summary="improved pose_detection pipeline">
+      <created>1471380063467</created>
+      <option name="number" value="00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1471380063467</updated>
+    </task>
+    <task id="LOCAL-00093" summary="improved pose_detection pipeline">
+      <created>1471380427623</created>
+      <option name="number" value="00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1471380427623</updated>
+    </task>
+    <task id="LOCAL-00094" summary="improved pose_detection pipeline">
+      <created>1471380801311</created>
+      <option name="number" value="00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1471380801311</updated>
+    </task>
+    <task id="LOCAL-00095" summary="improved pose_detection pipeline">
+      <created>1471380998690</created>
+      <option name="number" value="00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1471380998690</updated>
+    </task>
+    <task id="LOCAL-00096" summary="improved pose_detection pipeline">
+      <created>1471381248167</created>
+      <option name="number" value="00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1471381248168</updated>
+    </task>
+    <task id="LOCAL-00097" summary="improved pose_detection pipeline">
+      <created>1471381541364</created>
+      <option name="number" value="00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1471381541364</updated>
+    </task>
+    <task id="LOCAL-00098" summary="improved pose_detection pipeline">
+      <created>1471381912841</created>
+      <option name="number" value="00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1471381912841</updated>
+    </task>
+    <task id="LOCAL-00099" summary="improved pose_detection pipeline">
+      <created>1471382366150</created>
+      <option name="number" value="00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1471382366150</updated>
+    </task>
+    <task id="LOCAL-00100" summary="improved pose_detection pipeline">
+      <created>1471382469948</created>
+      <option name="number" value="00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1471382469948</updated>
+    </task>
+    <task id="LOCAL-00101" summary="improved pose_detection pipeline">
+      <created>1471382629828</created>
+      <option name="number" value="00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1471382629828</updated>
+    </task>
+    <task id="LOCAL-00102" summary="improved pose_detection pipeline">
+      <created>1471382906457</created>
+      <option name="number" value="00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1471382906457</updated>
+    </task>
+    <task id="LOCAL-00103" summary="improved pose_detection pipeline">
+      <created>1471383189046</created>
+      <option name="number" value="00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1471383189046</updated>
+    </task>
+    <task id="LOCAL-00104" summary="improved pose_detection pipeline">
+      <created>1471383874692</created>
+      <option name="number" value="00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1471383874692</updated>
+    </task>
+    <task id="LOCAL-00105" summary="improved pose_detection pipeline">
+      <created>1471383997632</created>
+      <option name="number" value="00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1471383997632</updated>
+    </task>
+    <task id="LOCAL-00106" summary="improved pose_detection pipeline">
+      <created>1471384349190</created>
+      <option name="number" value="00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1471384349190</updated>
+    </task>
+    <task id="LOCAL-00107" summary="improved pose_detection pipeline">
+      <created>1471384431758</created>
+      <option name="number" value="00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1471384431758</updated>
+    </task>
+    <task id="LOCAL-00108" summary="improved pose_detection pipeline">
+      <created>1471387602858</created>
+      <option name="number" value="00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1471387602858</updated>
+    </task>
+    <task id="LOCAL-00109" summary="improved pose_detection pipeline">
+      <created>1471387878152</created>
+      <option name="number" value="00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1471387878152</updated>
+    </task>
+    <task id="LOCAL-00110" summary="improved pose_detection pipeline">
+      <created>1471389463935</created>
+      <option name="number" value="00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1471389463935</updated>
+    </task>
+    <task id="LOCAL-00111" summary="improved pose_detection pipeline">
+      <created>1471390402797</created>
+      <option name="number" value="00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1471390402797</updated>
+    </task>
+    <task id="LOCAL-00112" summary="improved pose_detection pipeline">
+      <created>1471390569955</created>
+      <option name="number" value="00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1471390569955</updated>
+    </task>
+    <task id="LOCAL-00113" summary="improved pose_detection pipeline">
+      <created>1471390727051</created>
+      <option name="number" value="00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1471390727051</updated>
+    </task>
+    <task id="LOCAL-00114" summary="improved pose_detection pipeline">
+      <created>1471553431174</created>
+      <option name="number" value="00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1471553431174</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="99" y="171" width="1386" height="697" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1022" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25252524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2129481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31885713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32902467" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18331374" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31885713" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4137143" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20835537" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -549,109 +889,398 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pose pipeline update" />
-    <option name="LAST_COMMIT_MESSAGE" value="pose pipeline update" />
+    <MESSAGE value="added some train_first_day stuff" />
+    <MESSAGE value="added flic_data format extractions" />
+    <MESSAGE value="improved ecog fft extraction scripts, added local motor potential extraction and scripts for finding and plotting spectral ratios" />
+    <MESSAGE value="added spectra ratio pipeline and improved figures" />
+    <MESSAGE value="improved pose_detection pipeline" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved pose_detection pipeline" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/kinect/record.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#79#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/unsupervised/feature_extract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#79#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../PyESig2/vid/pose_detection_pipeline.py.ipynb" />
-    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_downsample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#79#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/pca_transform_train_first_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_all_more_freq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48320413">
+          <caret line="419" column="0" selection-start-line="419" selection-start-column="0" selection-end-line="487" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_all.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40568477">
+          <caret line="144" column="22" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unsupervised/reverse_pca.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29501083">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster/truncated_hier_cluster_train_single_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.463357">
+          <caret line="65" column="71" selection-start-line="65" selection-start-column="68" selection-end-line="65" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validation/check_labels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="222" column="69" selection-start-line="222" selection-start-column="69" selection-end-line="222" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/dataset_compile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scattergories_plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="108" selection-start-line="33" selection-start-column="108" selection-end-line="33" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scattergories_plot_train_single_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="162" selection-start-line="113" selection-start-column="162" selection-end-line="113" selection-end-column="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/gen_train_val_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/sample_videos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/flic_data_add.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/gen_pose_labelling_frames.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/extract_pose_accuracy_all_limbs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/extract_key_frames.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/extract_labels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/extract_pose_accuracy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/change_specification_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/extract_detection_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="50" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/mu_drop_funcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/freq_time_spectrum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/freq_time_spectrum_hilb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/freq_time_spectrum_hilb_sound.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_all_train_single_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster/truncated_hier_cluster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="114" selection-start-line="88" selection-start-column="114" selection-end-line="88" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/correlate_signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="17" selection-start-line="83" selection-start-column="17" selection-end-line="83" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/freq/frequency_transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/mvmt_aggregate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/display/show_ECoG_traces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/misc_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14285715">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7941177">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/display/visualize_pca.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/rao_lab/data_mgmt/de_id.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="40" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/misc_funcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_lmp_extract_windows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/mvmt_pred.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/mvmt_pred_diff_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/aggregate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract_windows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="71" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="72" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.43145162">
+          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+          <folding>
+            <element signature="e#23#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
+    <entry file="file://$PROJECT_DIR$/data/mvmt_pred_features.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.68164796">
+          <caret line="68" column="114" selection-start-line="68" selection-start-column="114" selection-end-line="68" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/pca_transform_single_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5224719">
+          <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="89" selection-start-line="28" selection-start-column="89" selection-end-line="28" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <marker date="1471553449073" expanded="true" signature="298:462" placeholder="..." />
+            <marker date="1471553449073" expanded="true" signature="2176:2216" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/pca_transform2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="62" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <element signature="e#0#57#0" expanded="true" />
+            <marker date="1471553449075" expanded="true" signature="0:98" placeholder="import ..." />
+            <marker date="1471553449075" expanded="true" signature="1788:1939" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5218509">
+          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
           </folding>
         </state>
       </provider>

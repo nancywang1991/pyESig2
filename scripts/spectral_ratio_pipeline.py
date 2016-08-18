@@ -24,7 +24,8 @@ for day in args.days:
     subprocess.call("mkdir %s/%s" % (args.ecog_raw, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.ecog_processed, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.save, args.sbj_id),shell=True)
-    if args.dl==True:
+    
+    if args.dl_raw==True:
         subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
                     (args.sbj_id, day, args.ecog_raw, args.sbj_id, args.sbj_id, day), shell=True)
 
