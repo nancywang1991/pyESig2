@@ -12,6 +12,8 @@ parser.add_argument('-e', '--ecog_processed',
                         help='FFT extracted ecog file location')
 parser.add_argument('-e_raw', '--ecog_raw',
                         help='Raw FFT location')
+parser.add_argument('-dl', '--dl_raw', default=True,
+                        help='Download raw files?')
 #parser.add_argument('-r1', '--ratio1', help='First ratio pair', nargs=2, type=int)
 #parser.add_argument('-r2', '--ratio2', help='Second ratio pair', nargs=2, type=int)
 parser.add_argument('-save', '--save', help='save directory')
@@ -22,7 +24,8 @@ for day in args.days:
     subprocess.call("mkdir %s/%s" % (args.ecog_raw, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.ecog_processed, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.save, args.sbj_id),shell=True)
-    subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
+    if args.dl==True:
+        subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
                     (args.sbj_id, day, args.ecog_raw, args.sbj_id, args.sbj_id, day), shell=True)
 
     print "Extract fft"
