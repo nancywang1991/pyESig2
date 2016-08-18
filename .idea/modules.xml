@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pyESig2.iml" filepath="$PROJECT_DIR$/.idea/pyESig2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pyESig2/.idea/pyESig2.iml" filepath="$PROJECT_DIR$/../pyESig2/.idea/pyESig2.iml" />
     </modules>
   </component>
 </project>
