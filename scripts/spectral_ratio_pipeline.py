@@ -24,7 +24,7 @@ for day in args.days:
     subprocess.call("mkdir %s/%s" % (args.ecog_raw, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.ecog_processed, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.save, args.sbj_id),shell=True)
-    
+
     if args.dl_raw==True:
         subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
                     (args.sbj_id, day, args.ecog_raw, args.sbj_id, args.sbj_id, day), shell=True)
@@ -34,10 +34,10 @@ for day in args.days:
                      "%s/%s/" %(args.ecog_processed, args.sbj_id))
 
 print "Calculate and plot ratios"
-for ratio1_0 in range(4,6,1):
-    for ratio1_1 in range(ratio1_0+5, ratio1_0+7, 1):
-        for ratio2_0 in range(20, 30, 3):
-            for ratio2_1 in range(ratio2_0+30, ratio2_0+50, 5):
+for ratio1_0 in range(4,5,1):
+    for ratio1_1 in range(ratio1_0+5, ratio1_0+6, 1):
+        for ratio2_0 in range(25, 26, 3):
+            for ratio2_1 in range(ratio2_0+30, ratio2_0+35, 5):
                 print "Processing %i:%i and %i:%i" %(ratio1_0, ratio1_1, ratio2_0, ratio2_1)
                 spec_ratio.main("%s/%s/" % (args.ecog_processed, args.sbj_id), args.sbj_id, args.days,
                                 (ratio1_0, ratio1_1), (ratio2_0, ratio2_1), "%s/%s/" %(args.save, args.sbj_id))
