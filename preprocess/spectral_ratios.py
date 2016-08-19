@@ -56,7 +56,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
         ax.set_ylim([-2,2])
         ax.set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
         ax.set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
-        plt.tight_layout()
+        #plt.tight_layout()
         f.savefig("%s/figures/%i_%04d.jpg" % (save_fldr, day, count))
         count += 1
         plt.close()
