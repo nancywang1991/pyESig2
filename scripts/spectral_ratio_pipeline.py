@@ -24,6 +24,7 @@ for day in args.days:
     subprocess.call("mkdir %s/%s" % (args.ecog_raw, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.ecog_processed, args.sbj_id), shell=True)
     subprocess.call("mkdir %s/%s" % (args.save, args.sbj_id),shell=True)
+    subprocess.call("mkdir %s/%s/figures" % (args.save, args.sbj_id),shell=True)
 
     if args.dl_raw==True:
         subprocess.call("azure storage blob download main %s_%i.edf %s/%s/%s_%i.edf" %
@@ -41,5 +42,10 @@ for ratio1_0 in range(4,5,1):
                 print "Processing %i:%i and %i:%i" %(ratio1_0, ratio1_1, ratio2_0, ratio2_1)
                 spec_ratio.main("%s/%s/" % (args.ecog_processed, args.sbj_id), args.sbj_id, args.days,
                                 (ratio1_0, ratio1_1), (ratio2_0, ratio2_1), "%s/%s/" %(args.save, args.sbj_id))
+                for day in args.days:
+                    subprocess.call("ffmpeg -start_number 0 -r 15 -i %s/%s/figures/%i_%04d.png -vcodec mpeg4 %s/%s/%s_%i_ratios_%i_%i_%i_%i"
+                                % (args.save, args.sbj_id, day, args.save, args.sbj_id, args.sbj_id, day, ratio1_0, ratio1_1, ratio2_0, ratio2_1), shell=True)
+                    subprocess.call("rm %s/%s/figures/*" % (args.save, args.sbj_id))
+
 
 

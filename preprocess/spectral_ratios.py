@@ -39,30 +39,27 @@ def smooth(x, window_len=20):
      return y[window_len/2:len(y)-(window_len/2-1)]
 
 
-def plot_2d_coords(result, ratio1, ratio2):
+def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
     #samples = np.random.choice(len(result), 0.2*len(result))
     #plt.scatter(result[samples,0], result[samples,1], s=0.01)
     mymap = plt.get_cmap("rainbow")
 
     x = np.arange(6)
-    ys = [i+x+(i*x)**2 for i in range(3)]
+    ys = [i+x+(i*x)**2 for i in range(10)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
-    f, axes = plt.subplots(6,1, sharex='col', figsize=(5,15))
-
-    for h in range(0,22,4):
-        t = h/4
-
-        for h_s in range(3):
-            samples = np.random.choice(len(result[(h+h_s)*60*60:(h+h_s+1)*60*60,0]), 0.5*len(result[(h+h_s)*60*60:(h+h_s+1)*60*60,0]))
-            axes[t].scatter(result[samples + (h+h_s)*60*60,0], result[samples+(h+h_s)*60*60,1], s=0.2, c=colors[h_s], edgecolors="face")
-        axes[t].set_title("%i o'clock" % ((h+8)%24))
-        axes[t].set_ylim([-2,2])
-
-    axes[-1].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
-    axes[3].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
-    plt.tight_layout()
-
-    return f
+    f, axes = plt.subplots(1,1, sharex='col', figsize=(5,5))
+    count = 0
+    for m in range(0,22*60,5):
+        for m_s in range(5):
+            axes[0].scatter(result[m*60:(m+m_s)*60,0], result[m*60:(m+m_s)*60,1], s=0.2, c=colors[m_s], edgecolors="face")
+        axes[0].set_title("Time %i:%i" % ((m/60+8)%24, m%60))
+        axes[0].set_ylim([-2,2])
+        axes[0].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
+        axes[0].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
+        plt.tight_layout()
+        f.savefig("%s/figures/%i_%04d.jpg" % (save_fldr, day, count))
+        count += 1
+        f.close()
 
 def plot_time(result, c):
     f = plt.figure()
@@ -120,9 +117,9 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         result = np.vstack(result)
     for d, day in enumerate(days):
 
-        figure = plot_2d_coords(result[d*max_sec:(d+1)*max_sec], ratio1, ratio2)
-        figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                            ratio1[1], ratio2[0], ratio2[1]))
+        plot_2d_coords(result[d*max_sec:(d+1)*max_sec], ratio1, ratio2, save_fldr, sbj_id, day)
+        #figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
+        #                                                                    ratio1[1], ratio2[0], ratio2[1]))
     plt.close()
     return result
 
