@@ -59,7 +59,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
         plt.tight_layout()
         f.savefig("%s/figures/%i_%04d.jpg" % (save_fldr, day, count))
         count += 1
-        f.close()
+        plt.close()
 
 def plot_time(result, c):
     f = plt.figure()
