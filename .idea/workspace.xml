@@ -98,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.85626537">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+              <caret line="47" column="91" selection-start-line="47" selection-start-column="91" selection-end-line="47" selection-end-column="91" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
               </folding>
@@ -534,12 +534,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00079" summary="added spectra ratio pipeline and improved figures">
-      <created>1471240922749</created>
-      <option name="number" value="00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1471240922749</updated>
-    </task>
     <task id="LOCAL-00080" summary="added spectra ratio pipeline and improved figures">
       <created>1471240988709</created>
       <option name="number" value="00080" />
@@ -828,7 +822,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471650237850</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="improved pose_detection pipeline">
+      <created>1471650377212</created>
+      <option name="number" value="00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1471650377212</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1283,7 +1283,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.85626537">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+          <caret line="47" column="91" selection-start-line="47" selection-start-column="91" selection-end-line="47" selection-end-column="91" />
           <folding>
             <element signature="e#24#79#0" expanded="true" />
           </folding>
