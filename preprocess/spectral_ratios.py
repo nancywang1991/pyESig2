@@ -47,15 +47,15 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
     x = np.arange(6)
     ys = [i+x+(i*x)**2 for i in range(10)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
-    f, axes = plt.subplots(1,1, sharex='col', figsize=(5,5))
+    f, ax = plt.subplots(1,1, sharex='col', figsize=(5,5))
     count = 0
     for m in range(0,22*60,5):
         for m_s in range(5):
-            axes[0].scatter(result[m*60:(m+m_s)*60,0], result[m*60:(m+m_s)*60,1], s=0.2, c=colors[m_s], edgecolors="face")
-        axes[0].set_title("Time %i:%i" % ((m/60+8)%24, m%60))
-        axes[0].set_ylim([-2,2])
-        axes[0].set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
-        axes[0].set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
+            ax.scatter(result[m*60:(m+m_s)*60,0], result[m*60:(m+m_s)*60,1], s=0.2, c=colors[m_s], edgecolors="face")
+        ax.set_title("Time %i:%i" % ((m/60+8)%24, m%60))
+        ax.set_ylim([-2,2])
+        ax.set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
+        ax.set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
         plt.tight_layout()
         f.savefig("%s/figures/%i_%04d.jpg" % (save_fldr, day, count))
         count += 1
