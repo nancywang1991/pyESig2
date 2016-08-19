@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" afterPath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocess/spectral_ratios.py" afterPath="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -76,8 +75,8 @@
       <file leaf-file-name="spectral_ratios.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.042997543">
-              <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.4987715">
+              <caret line="119" column="83" selection-start-line="119" selection-start-column="83" selection-end-line="119" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -142,8 +141,8 @@
         <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
         <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
-        <option value="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
+        <option value="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
       </list>
     </option>
   </component>
@@ -509,12 +508,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00068" summary="added spectra ratio pipeline and improved figures">
-      <created>1471038155673</created>
-      <option name="number" value="00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1471038155673</updated>
-    </task>
     <task id="LOCAL-00069" summary="added spectra ratio pipeline and improved figures">
       <created>1471038200309</created>
       <option name="number" value="00069" />
@@ -803,7 +796,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471553890254</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="improved pose_detection pipeline">
+      <created>1471640120578</created>
+      <option name="number" value="00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1471640120579</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1261,8 +1260,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.042997543">
-          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.4987715">
+          <caret line="119" column="83" selection-start-line="119" selection-start-column="83" selection-end-line="119" selection-end-column="83" />
           <folding />
         </state>
       </provider>
