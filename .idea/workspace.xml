@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" afterPath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocess/spectral_ratios.py" afterPath="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -72,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spectral_ratios.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="spectral_ratios.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17567568">
+            <state vertical-scroll-proportion="0.0">
               <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
               <folding />
             </state>
@@ -94,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spectral_ratio_pipeline.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spectral_ratio_pipeline.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.77272725">
+              <caret line="45" column="95" selection-start-line="45" selection-start-column="95" selection-end-line="45" selection-end-column="95" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
               </folding>
@@ -153,8 +154,8 @@
         <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
         <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
-        <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
         <option value="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
+        <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
       </list>
     </option>
   </component>
@@ -534,12 +535,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00093" summary="improved pose_detection pipeline">
-      <created>1471380427623</created>
-      <option name="number" value="00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1471380427623</updated>
-    </task>
     <task id="LOCAL-00094" summary="improved pose_detection pipeline">
       <created>1471380801311</created>
       <option name="number" value="00094" />
@@ -828,7 +823,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471652794255</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="improved pose_detection pipeline">
+      <created>1471652811807</created>
+      <option name="number" value="00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1471652811807</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1261,16 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-          <folding>
-            <element signature="e#24#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1284,9 +1275,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17567568">
+        <state vertical-scroll-proportion="0.0">
           <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77272725">
+          <caret line="45" column="95" selection-start-line="45" selection-start-column="95" selection-end-line="45" selection-end-column="95" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
