@@ -48,7 +48,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
     ys = [i+x+(i*x)**2 for i in range(300)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
     count = 0
-    for m in range(0,60*60/30,1):
+    for m in range(0,5*60*60,1):
         f, ax = plt.subplots(1,1, sharex='col', figsize=(5,5))
         for m_s in range(300):
             ax.scatter(result[(m+m_s):(m+(m_s+1)),0], result[(m+m_s):(m+(m_s+1)),1], s=0.5, c=colors[m_s], edgecolors="face")
@@ -58,7 +58,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
         ax.set_xlabel("Ratio %i:%i Hz" %(ratio1[0], ratio1[1] ))
         ax.set_ylabel("Ratio %i:%i Hz" %(ratio2[0], ratio2[1] ))
         #plt.tight_layout()
-        f.savefig("%s/figures/%i_%04d.png" % (save_fldr, day, count))
+        f.savefig("%s/figures/%i_%05d.png" % (save_fldr, day, count))
         count += 1
         plt.close('all')
         plt.clf()
