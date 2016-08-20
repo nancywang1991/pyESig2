@@ -76,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.31572482">
-              <caret line="53" column="71" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="71" />
+              <caret line="53" column="92" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -534,12 +534,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00085" summary="added spectra ratio pipeline and improved figures">
-      <created>1471291221699</created>
-      <option name="number" value="00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1471291221699</updated>
-    </task>
     <task id="LOCAL-00086" summary="added spectra ratio pipeline and improved figures">
       <created>1471291270110</created>
       <option name="number" value="00086" />
@@ -828,7 +822,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471651325738</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="improved pose_detection pipeline">
+      <created>1471651362664</created>
+      <option name="number" value="00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1471651362664</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1285,7 +1285,7 @@
     <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31572482">
-          <caret line="53" column="71" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="71" />
+          <caret line="53" column="92" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
           <folding />
         </state>
       </provider>
