@@ -75,8 +75,8 @@
       <file leaf-file-name="spectral_ratios.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54545456">
-              <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.31572482">
+              <caret line="53" column="102" selection-start-line="53" selection-start-column="102" selection-end-line="53" selection-end-column="102" />
               <folding />
             </state>
           </provider>
@@ -534,12 +534,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00088" summary="added spectra ratio pipeline and improved figures">
-      <created>1471297887863</created>
-      <option name="number" value="00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1471297887863</updated>
-    </task>
     <task id="LOCAL-00089" summary="improved pose_detection pipeline">
       <created>1471378989414</created>
       <option name="number" value="00089" />
@@ -828,7 +822,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471651562894</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="improved pose_detection pipeline">
+      <created>1471651735041</created>
+      <option name="number" value="00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1471651735041</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1284,8 +1284,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54545456">
-          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.31572482">
+          <caret line="53" column="102" selection-start-line="53" selection-start-column="102" selection-end-line="53" selection-end-column="102" />
           <folding />
         </state>
       </provider>
