@@ -51,7 +51,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
     for m in range(0,22*60*60,10):
         for m_s in range(6):
             f, ax = plt.subplots(1,1, sharex='col', figsize=(5,5))
-            ax.scatter(result[m+m_s*10:m+(m_s+1)*10,0], result[m:m+(m_s+1)*10,1], s=0.2, c=colors[m_s], edgecolors="face")
+            ax.scatter(result[m+m_s*10:m+(m_s+1)*10,0], result[m+m_s*10:m+(m_s+1)*10,1], s=0.2, c=colors[m_s], edgecolors="face")
         ax.set_title("Time %i:%i:%i" % ((m/60/60+8)%24, (m/60)%60, (m%60)))
         ax.set_ylim([-3,3])
         ax.set_xlim([-3,3])
