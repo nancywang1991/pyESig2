@@ -52,7 +52,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
         for m_s in range(6):
             f, ax = plt.subplots(1,1, sharex='col', figsize=(5,5))
             ax.scatter(result[(m+m_s*10):(m+(m_s+1)*10),0], result[(m+m_s*10):(m+(m_s+1)*10),1], s=0.2, c=colors[m_s], edgecolors="face")
-            pdb.set_trace()
+        pdb.set_trace()
         ax.set_title("Time %02i:%02i:%02i" % ((m/60/60+8)%24, (m/60)%60, (m%60)))
         ax.set_ylim([-3,3])
         ax.set_xlim([-3,3])
@@ -62,7 +62,7 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
         f.savefig("%s/figures/%i_%04d.jpg" % (save_fldr, day, count))
         count += 1
         plt.close('all')
-        plt.clf()
+        #plt.clf()
 
 def plot_time(result, c):
     f = plt.figure()
