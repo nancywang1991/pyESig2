@@ -45,14 +45,13 @@ def plot_2d_coords(result, ratio1, ratio2, save_fldr, day):
     mymap = plt.get_cmap("rainbow")
 
     x = np.arange(6)
-    ys = [i+x+(i*x)**2 for i in range(6)]
+    ys = [i+x+(i*x)**2 for i in range(8)]
     colors = cm.rainbow(np.linspace(0, 1, len(ys)))
     count = 0
     for m in range(0,22*60*60,10):
+        f, ax = plt.subplots(1,1, sharex='col', figsize=(5,5))
         for m_s in range(6):
-            f, ax = plt.subplots(1,1, sharex='col', figsize=(5,5))
             ax.scatter(result[(m+m_s*10):(m+(m_s+1)*10),0], result[(m+m_s*10):(m+(m_s+1)*10),1], s=0.5, c=colors[m_s], edgecolors="face")
-        pdb.set_trace()
         ax.set_title("Time %02i:%02i:%02i" % ((m/60/60+8)%24, (m/60)%60, (m%60)))
         ax.set_ylim([-3,3])
         ax.set_xlim([-3,3])
