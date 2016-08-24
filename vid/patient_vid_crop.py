@@ -20,16 +20,16 @@ def gen_cropped_frames(video_path, coords_path, save_path):
 
     vid = my_video_capture(video_path, frame_rate=30)
 
-    crop_coords_used = open("%s/%s/crop_coords.txt" % (save_path, fname), "wb")
+    crop_coords_used = open("%s/%s/cropped/crop_coords.txt" % (save_path, fname), "wb")
     output_vid = my_video_capture(save_path, frame_rate=30, mode="write")
 
     prev_fname = fname.split("_")[:-1]
     prev_fname.append(str(int(fnum) - 1).zfill(4))
     prev_fname = "_".join(prev_fname)
 
-    if os.path.exists("%s/%s/crop_coords.txt" % (save_path, prev_fname)):
+    if os.path.exists("%s/%s/cropped/crop_coords.txt" % (save_path, prev_fname)):
 
-        use_coord = np.array([int(n) for n in open("%s/%s/crop_coords.txt" % (save_path, prev_fname)).readlines()[-1].split(",")])
+        use_coord = np.array([int(n) for n in open("%s/%s/cropped/crop_coords.txt" % (save_path, prev_fname)).readlines()[-1].split(",")])
     else:
         use_coord = np.array([0,0,0,0])
 
@@ -52,7 +52,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
         else:
             output_vid.write(frame)
 
-    output_vid.new_img_folder("%s/%s/" % (save_path, fname))
+    output_vid.new_img_folder("%s/%s/cropped/" % (save_path, fname))
     output_vid.close()
     vid.close()
 
