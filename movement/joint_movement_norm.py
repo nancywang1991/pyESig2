@@ -23,7 +23,7 @@ def numerate_coords(coords):
 
 def normalize_to_neck(coords):
     coords = numerate_coords(coords)
-    neck = np.mean([coords[2], coords[4]])
+    #neck = np.mean([coords[2], coords[4]])
     #shoulder_length = calc_dist([coords[2]],[coords[4]])
     #norm_coords = [(coord - neck) for coord in coords]
     return coords

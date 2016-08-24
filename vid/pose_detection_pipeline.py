@@ -19,8 +19,8 @@ def main(args):
                         (args.dark_home, args.yolo_config, args.yolo_weights, file), shell=True)
 
         # Move files over to deeppose
-        subprocess.call('mkdir %s/video_data/%s' % (args.deep_home, fname), shell=True)
-        gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), '%s/video_data/' % (args.deep_home))
+        subprocess.call('mkdir %s/%s/tmp/' % (args.save, fname), shell=True)
+        gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), '%s/%s/tmp/' % (args.save, fname))
         # Pose detection
 
         os.chdir(args.deep_home)
@@ -28,7 +28,7 @@ def main(args):
                     '--mode', 'demo', '--model', '%s/results/AlexNet_final/AlexNet_flic.py' % args.deep_home,
                     '--param', '%s/results/AlexNet_final/epoch-1000.model' % args.deep_home,
                     '--resultdir', '%s/%s/' % (args.save, fname), '--gpu', '1',
-                    '--datadir', '%s/video_data/%s/' % (args.deep_home, fname)])
+                    '--datadir', '%s/%s/tmp' % (args.save, fname)])
         #Stich pose results into one video
         subprocess.call('ffmpeg -r 30 -i %s/%s/' %(args.save, fname) + '%04d_pred.png -c:v libx264 '
                        + '-pix_fmt yuv420p %s/%s/%s.avi' % (args.save, fname, fname), shell=True)
