@@ -69,4 +69,6 @@ class my_video_capture:
 
     def new_img_folder(self, dst):
         for file in glob.glob(self.vid_dir + slash + "tmp_" + self.mode + slash + "*"):
+            if os.path.exists(dst):
+                shutil.rmtree(dst)
             shutil.move(file, dst)

@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/my_video_capture.py" afterPath="$PROJECT_DIR$/vid/my_video_capture.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pyESig2.iml" afterPath="$PROJECT_DIR$/.idea/pyESig2.iml" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/my_video_capture.py" afterPath="$PROJECT_DIR$/vid/my_video_capture.py" />
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
     </list>
@@ -103,15 +107,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
               <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
 =======
               <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
+=======
+            <state vertical-scroll-proportion="0.8685567">
+              <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -119,10 +128,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spectral_ratio_pipeline.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="spectral_ratio_pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.87469286">
+            <state vertical-scroll-proportion="0.0">
               <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
@@ -177,6 +186,7 @@
         <option value="$PROJECT_DIR$/preprocess/ecog_fft_extract.py" />
         <option value="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_display.py" />
         <option value="$PROJECT_DIR$/movement/joint_movement_norm.py" />
@@ -189,6 +199,12 @@
         <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
+=======
+        <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
+        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+        <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
+        <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
       </list>
     </option>
   </component>
@@ -562,6 +578,7 @@
       <updated>1452830988908</updated>
     </task>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <task id="LOCAL-00104" summary="improved pose_detection pipeline">
       <created>1471383874692</created>
       <option name="number" value="00104" />
@@ -572,6 +589,8 @@
       <option name="project" value="LOCAL" />
       <updated>1470763543623</updated>
     </task>
+=======
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
     <task id="LOCAL-00067" summary="added spectra ratio pipeline and improved figures">
       <created>1471038106246</created>
       <option name="number" value="00067" />
@@ -862,6 +881,7 @@
       <updated>1471553431174</updated>
     </task>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <task id="LOCAL-00152" summary="improved pose_detection pipeline">
       <created>1472077621151</created>
       <option name="number" value="00152" />
@@ -872,6 +892,15 @@
 =======
     <option name="localTasksCounter" value="115" />
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
+=======
+    <task id="LOCAL-00115" summary="improved pose_detection pipeline">
+      <created>1472160064437</created>
+      <option name="number" value="00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1472160064437</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
     <servers />
   </component>
   <component name="TodoView">
@@ -913,6 +942,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2129481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31885713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -921,7 +951,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1300,6 +1329,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/vid/misc_funcs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1780822">
@@ -1311,17 +1341,9 @@
     <entry file="file://$PROJECT_DIR$/vid/vid_time.py">
 =======
     <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+=======
     <entry file="file://$PROJECT_DIR$/preprocess/pca_transform2.py">
->>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="53" selection-start-line="54" selection-start-column="53" selection-end-line="54" selection-end-column="62" />
@@ -1331,7 +1353,12 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/preprocess/pca_transform2.py">
+>>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
+=======
     <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
@@ -1341,16 +1368,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="80" selection-start-line="22" selection-start-column="80" selection-end-line="22" selection-end-column="80" />
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1362,14 +1400,21 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
+=======
+    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="80" selection-start-line="22" selection-start-column="80" selection-end-line="22" selection-end-column="80" />
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="68" selection-start-line="49" selection-start-column="68" selection-end-line="49" selection-end-column="68" />
@@ -1377,8 +1422,12 @@
 =======
         <state vertical-scroll-proportion="0.87469286">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.8685567">
+          <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+>>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
           <folding>
-            <element signature="e#24#79#0" expanded="true" />
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
         </state>
