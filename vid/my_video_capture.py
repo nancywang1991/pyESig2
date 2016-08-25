@@ -68,5 +68,5 @@ class my_video_capture:
                         "tmp_" + self.mode + slash + "%05d.png -vcodec mpeg4 " + dst, shell=True)
 
     def new_img_folder(self, dst):
-        for file in glob.glob(self.vid_dir + slash + "tmp_" + self.mode + slash + "* "):
+        for file in glob.glob(self.vid_dir + slash + "tmp_" + self.mode + slash + "*"):
             shutil.move(file, dst)

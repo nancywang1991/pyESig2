@@ -29,9 +29,9 @@ def main(args):
                     '--mode', 'demo', '--model', '%s/results/AlexNet_final/AlexNet_flic.py' % args.home,
                     '--param', '%s/results/AlexNet_final/epoch-1000.model' % args.home,
                     '--resultdir', '%s/%s/' % (args.save, fname), '--gpu', '1',
-                    '--datadir', '%s/%s/tmp' % (args.save, fname)])
+                    '--datadir', '%s/%s/cropped/' % (args.save, fname)])
         #Stich pose results into one video
-        subprocess.call('ffmpeg -r 30 -i %s/%s/' %(args.save, fname) + '%04d_pred.png -c:v libx264 '
+        subprocess.call('ffmpeg -r 30 -i %s/%s/' %(args.save, fname) + '%05d_pred.png -c:v libx264 '
                        + '-pix_fmt yuv420p %s/%s/%s.avi' % (args.save, fname, fname), shell=True)
         subprocess.call(['python', '/home/wangnxr/PycharmProjects/pyESig2/movement/joint_movement_norm.py',
                          '-f', '%s/%s/joint_coords.csv' % (args.save, fname), '-s', '%s/%s' %(args.save, fname) ])
@@ -39,7 +39,7 @@ def main(args):
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-h', '--home', required=True, help="Home", default="/home/wangnxr/")
+    parser.add_argument('-home', '--home', help="Home", default="/home/wangnxr/Documents/")
     parser.add_argument('-d', '--dir', required=True, help="Video directory")
     parser.add_argument('-s', '--save', required=True, help="Save Directory" )
     parser.add_argument('-dark', '--dark_home', default='/home/wangnxr/Documents/darknet/', help='Darknet home' )
