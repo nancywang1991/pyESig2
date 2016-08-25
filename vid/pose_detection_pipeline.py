@@ -19,14 +19,15 @@ def main(args):
                         (args.dark_home, args.yolo_config, args.yolo_weights, file), shell=True)
 
         # Move files over to deeppose
-        subprocess.call('mkdir %s/%s/tmp/' % (args.save, fname), shell=True)
-        gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), '%s/%s/tmp/' % (args.save, fname))
+        subprocess.call('mkdir %s/%s/' % (args.save, fname), shell=True)
+        subprocess.call('mkdir %s/%s/cropped/' % (args.save, fname), shell=True)
+        gen_cropped_frames(file,"%s/tmp/coords.txt" %(args.dark_home), '%s/' % (args.save))
         # Pose detection
 
         os.chdir(args.deep_home)
         subprocess.call(['python', '%s/scripts/evaluate_flic.py' % args.deep_home,
-                    '--mode', 'demo', '--model', '%s/results/AlexNet_final/AlexNet_flic.py' % args.deep_home,
-                    '--param', '%s/results/AlexNet_final/epoch-1000.model' % args.deep_home,
+                    '--mode', 'demo', '--model', '%s/results/AlexNet_final/AlexNet_flic.py' % args.home,
+                    '--param', '%s/results/AlexNet_final/epoch-1000.model' % args.home,
                     '--resultdir', '%s/%s/' % (args.save, fname), '--gpu', '1',
                     '--datadir', '%s/%s/cropped' % (args.save, fname)])
         #Stich pose results into one video
@@ -39,6 +40,7 @@ def main(args):
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('-h', '--home', required=True, help="Home", default="/home/wangnxr/")
     parser.add_argument('-d', '--dir', required=True, help="Video directory")
     parser.add_argument('-s', '--save', required=True, help="Save Directory" )
     parser.add_argument('-dark', '--dark_home', default='/home/wangnxr/Documents/darknet/', help='Darknet home' )
