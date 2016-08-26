@@ -113,6 +113,7 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
               <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
@@ -126,6 +127,10 @@
 >>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
               <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
 >>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
+=======
+            <state vertical-scroll-proportion="0.5618557">
+              <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+>>>>>>> c9da9c9c422a3168c43bd2f4a77a9221c2991b7b
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -264,6 +269,14 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="pyESig2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.9 (C:\Python27\python.exe) (7) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -589,6 +602,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <task id="LOCAL-00104" summary="improved pose_detection pipeline">
       <created>1471383874692</created>
       <option name="number" value="00104" />
@@ -636,6 +650,8 @@
       <option name="project" value="LOCAL" />
       <updated>1471221605589</updated>
     </task>
+=======
+>>>>>>> c9da9c9c422a3168c43bd2f4a77a9221c2991b7b
     <task id="LOCAL-00072" summary="added spectra ratio pipeline and improved figures">
       <created>1471221658203</created>
       <option name="number" value="00072" />
@@ -933,8 +949,30 @@
       <option name="project" value="LOCAL" />
       <updated>1472170624558</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="118" />
 >>>>>>> c30c262792c26087ede46f6988d3947cd19ff24a
+=======
+    <task id="LOCAL-00118" summary="improved pose_detection pipeline">
+      <created>1472172072795</created>
+      <option name="number" value="00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1472172072795</updated>
+    </task>
+    <task id="LOCAL-00119" summary="improved pose_detection pipeline">
+      <created>1472175097321</created>
+      <option name="number" value="00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1472175097322</updated>
+    </task>
+    <task id="LOCAL-00120" summary="improved pose_detection pipeline">
+      <created>1472177755478</created>
+      <option name="number" value="00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1472177755478</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
+>>>>>>> c9da9c9c422a3168c43bd2f4a77a9221c2991b7b
     <servers />
   </component>
   <component name="TodoView">
@@ -1477,6 +1515,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.35797665">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
 =======
@@ -1487,6 +1526,10 @@
 =======
           <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="58" />
 >>>>>>> c30c262792c26087ede46f6988d3947cd19ff24a
+=======
+        <state vertical-scroll-proportion="0.5618557">
+          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+>>>>>>> c9da9c9c422a3168c43bd2f4a77a9221c2991b7b
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
