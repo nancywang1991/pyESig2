@@ -60,7 +60,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
 
 
 def main(args):
-    prev_poses = [normalize_to_camera(row) for row in csv.reader(open(args.file)).readlines()]
+    prev_poses = [normalize_to_camera(row) for row in csv.reader(open(args.file))]
     for itr in xrange(10):
         movement = []
         new_poses = []
