@@ -15,7 +15,7 @@ def main(args):
         subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
 
         os.chdir(args.dark_home)
-        subprocess.call('%s/darknet yolo demo %s %s -file %s' %
+        subprocess.call('%s/darknet yolo demo %s %s %s' %
                         (args.dark_home, args.yolo_config, args.yolo_weights, file), shell=True)
 
         # Move files over to deeppose

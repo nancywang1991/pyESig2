@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
-<<<<<<< HEAD
-<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/my_video_capture.py" afterPath="$PROJECT_DIR$/vid/my_video_capture.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
@@ -13,6 +11,9 @@
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/my_video_capture.py" afterPath="$PROJECT_DIR$/vid/my_video_capture.py" />
 >>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
     </list>
@@ -95,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pose_detection_pipeline.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pose_detection_pipeline.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="80" selection-start-line="22" selection-start-column="80" selection-end-line="22" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.35503685">
+              <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -107,9 +108,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
@@ -119,6 +121,9 @@
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
 =======
             <state vertical-scroll-proportion="0.8685567">
+=======
+            <state vertical-scroll-proportion="-17.736841">
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
               <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
 >>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
               <folding>
@@ -201,10 +206,13 @@
 >>>>>>> 9c24179f6b03404a9e780047711841b242a4c5c6
 =======
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
-        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
         <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
+<<<<<<< HEAD
 >>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
+=======
+        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
       </list>
     </option>
   </component>
@@ -579,6 +587,7 @@
     </task>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <task id="LOCAL-00104" summary="improved pose_detection pipeline">
       <created>1471383874692</created>
       <option name="number" value="00104" />
@@ -598,6 +607,8 @@
       <option name="project" value="LOCAL" />
       <updated>1471038106246</updated>
     </task>
+=======
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
     <task id="LOCAL-00068" summary="added spectra ratio pipeline and improved figures">
       <created>1471038155673</created>
       <option name="number" value="00068" />
@@ -899,8 +910,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472160064437</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="116" />
 >>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
+=======
+    <task id="LOCAL-00116" summary="improved pose_detection pipeline">
+      <created>1472160636961</created>
+      <option name="number" value="00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1472160636961</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
     <servers />
   </component>
   <component name="TodoView">
@@ -1390,6 +1411,7 @@
     </entry>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1406,14 +1428,21 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="80" selection-start-line="22" selection-start-column="80" selection-end-line="22" selection-end-column="80" />
 >>>>>>> 5bf3f8a18dcbd5fc805125df906d9f569e51683f
+=======
+    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.736841">
+          <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
@@ -1437,6 +1466,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35797665">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.35503685">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+>>>>>>> 29c982668dffa4b69f6e9f1a9882233743b8786b
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
