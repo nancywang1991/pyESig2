@@ -86,8 +86,8 @@
       <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82474226">
-              <caret line="70" column="84" selection-start-line="70" selection-start-column="84" selection-end-line="70" selection-end-column="84" />
+            <state vertical-scroll-proportion="0.5618557">
+              <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -200,6 +200,14 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="pyESig2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.9 (C:\Python27\python.exe) (7) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -521,18 +529,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00070" summary="added spectra ratio pipeline and improved figures">
-      <created>1471221414305</created>
-      <option name="number" value="00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1471221414305</updated>
-    </task>
-    <task id="LOCAL-00071" summary="added spectra ratio pipeline and improved figures">
-      <created>1471221605589</created>
-      <option name="number" value="00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1471221605589</updated>
-    </task>
     <task id="LOCAL-00072" summary="added spectra ratio pipeline and improved figures">
       <created>1471221658203</created>
       <option name="number" value="00072" />
@@ -815,7 +811,19 @@
       <option name="project" value="LOCAL" />
       <updated>1472172072795</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="improved pose_detection pipeline">
+      <created>1472175097321</created>
+      <option name="number" value="00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1472175097322</updated>
+    </task>
+    <task id="LOCAL-00120" summary="improved pose_detection pipeline">
+      <created>1472177755478</created>
+      <option name="number" value="00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1472177755478</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1270,8 +1278,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82474226">
-          <caret line="70" column="84" selection-start-line="70" selection-start-column="84" selection-end-line="70" selection-end-column="84" />
+        <state vertical-scroll-proportion="0.5618557">
+          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
