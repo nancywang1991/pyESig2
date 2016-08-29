@@ -93,21 +93,20 @@ def main(args):
         movement = []
         new_poses = []
         prev_data = prev_poses[0]
-        prev_frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, 1)), cv2.COLOR_BGR2GRAY)
+        prev_frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, 1)), (220,220)),  cv2.COLOR_BGR2GRAY)
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
         for r, row in enumerate(prev_poses[1:]):
             pdb.set_trace()
-            img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220),
-                             interpolation=cv2.INTER_NEAREST)
+            img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220))
             img_pred = draw_joints(img_pred, row, True, 1)
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
             print r
-            frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r+2)),  cv2.COLOR_BGR2GRAY)     
+            frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+2)), (220,220)),  cv2.COLOR_BGR2GRAY)
             opt_poses = optical_flow_mvmt(frame, prev_frame, row, crop_coords[r+1])
             movement.append(calc_dist(prev_data, prev_poses_normalized[r+1]))
             new_poses.append([np.mean([cur_pose, opt_pose], axis=0) for cur_pose, opt_pose in zip(row, opt_poses)])
-            prev_data = prev_poses_normalized[r+1]
+            prev_data = prev_poses[r+1]
         prev_poses = new_poses
 
 
