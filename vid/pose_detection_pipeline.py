@@ -7,9 +7,9 @@ from pyESig2.vid.patient_vid_crop import gen_cropped_frames
 
 def main(args):
 
-    # for file in sorted(glob.glob('%s/*.avi' % args.dir)):
-    #     print file
-    #     fname = file.split('/')[-1].split('.')[0]
+    for file in sorted(glob.glob('%s/*.avi' % args.dir)):
+         print file
+         fname = file.split('/')[-1].split('.')[0]
     #     fnum = fname.split("_")[-1]
     #     #Patient detection
     #     subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
