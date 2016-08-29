@@ -98,8 +98,8 @@ def main(args):
         prev_frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, 1)), (220,220)),  cv2.COLOR_BGR2GRAY)
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
+        pdb.set_trace()
         for r, row in enumerate(prev_poses[1:]):
-
             img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220))
             img_pred = draw_joints(img_pred, row, True, 1)
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
@@ -109,8 +109,6 @@ def main(args):
             movement.append(calc_dist(prev_data, prev_poses_normalized[r+1]))
             new_poses.append([np.mean([cur_pose, opt_pose], axis=0) for cur_pose, opt_pose in zip(row, opt_poses)])
             prev_data = prev_poses[r+1]
-        prev_poses = new_poses
-
 
         movement = np.array(movement)
         pickle.dump(movement, open('%s/movement_%i.p' % (args.save, itr), "wb"))
