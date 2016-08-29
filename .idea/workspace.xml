@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movement/joint_movement_norm.py" afterPath="$PROJECT_DIR$/movement/joint_movement_norm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyESig2.iws" />
@@ -51,8 +50,8 @@
       <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70638824">
-              <caret line="98" column="27" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.72727275">
+              <caret line="99" column="80" selection-start-line="99" selection-start-column="80" selection-end-line="99" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -644,12 +643,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00083" summary="added spectra ratio pipeline and improved figures">
-      <created>1471241278876</created>
-      <option name="number" value="00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1471241278876</updated>
-    </task>
     <task id="LOCAL-00084" summary="added spectra ratio pipeline and improved figures">
       <created>1471291159607</created>
       <option name="number" value="00084" />
@@ -938,7 +931,13 @@
       <option name="project" value="LOCAL" />
       <updated>1472501919089</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="improved pose_detection pipeline">
+      <created>1472501960300</created>
+      <option name="number" value="00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1472501960300</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1393,8 +1392,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70638824">
-          <caret line="98" column="27" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.72727275">
+          <caret line="99" column="80" selection-start-line="99" selection-start-column="80" selection-end-line="99" selection-end-column="80" />
           <folding />
         </state>
       </provider>
