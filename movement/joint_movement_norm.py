@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import pickle
 import pdb
 import cv2
+from test_flic_dataset import draw_joints
+import os
+import subprocess
 
 joint_map = ['left hand', 'left elbow', 'left shoulder', 'head', 'right shoulder', 'right elbow', 'right hand']
 
@@ -89,7 +92,11 @@ def main(args):
 
         prev_data = prev_poses[0]
         prev_frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, 1)), cv2.COLOR_BGR2GRAY)
+        if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
+            os.makedirs('%s/poses_%i/' % (args.save, itr))
         for r, row in enumerate(prev_poses[1:]):
+            img_pred = draw_joints(prev_frame, prev_poses[r+1], True, 1)
+            cv2.imwrite(img_pred, '%s/poses_%i/%05i.png' % (args.save, itr, r+1))
             print r
             frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r+2)),  cv2.COLOR_BGR2GRAY)     
             opt_poses = optical_flow_mvmt(frame, prev_frame, row, crop_coords[r+1])
@@ -99,6 +106,9 @@ def main(args):
 
         movement = np.array(movement)
         pickle.dump(movement, open('%s/movement_%i.p' % (args.save, itr), "wb"))
+        #Stich pose results into one video
+        subprocess.call('ffmpeg -r 30 -i %s/poses_%i/' %(args.save, itr) + '%05i.png -c:v libx264 '
+                       + '-pix_fmt yuv420p %s/poses_itr_%i.avi' % (args.save, itr), shell=True)
         f, axes = plt.subplots(7, 1, sharex='col', figsize=(7, 9))
         plt.title("Joint movement over time for file %s in iteration %i" % (args.file.split('/')[-1].split('.')[0], itr))
 
