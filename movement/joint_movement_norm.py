@@ -1,3 +1,5 @@
+import matplotlib as mpl
+mpl.use('Agg')
 import numpy as np
 import csv
 import argparse
@@ -29,16 +31,24 @@ def normalize_to_neck(coords):
     norm_coords = [(coord - neck) for coord in coords]
     return norm_coords
 
-def normalize_to_camera(coords, crop_coords):
+def normalize_to_camera(coords, crop_coord):
     coords = numerate_coords(coords)
-    norm_coords_tmp = [(coord[0] + crop_coords[1]) for coord in coords]
-    norm_coords = [(coord[1] + crop_coords[0]) for coord in norm_coords_tmp]
+    norm_coords = [(coord[0] + crop_coord[0], coord[1] + crop_coord[1]) for coord in coords]
+    
     return norm_coords
 
-def optical_flow_mvmt(frame, prev_frame, pose_pos):
+def optical_flow_mvmt(frame, prev_frame, pose_pos, crop_coord):
+   
+    frame_tmp = np.zeros(shape=(640,480), dtype=np.uint8)
+    frame_tmp[:frame.shape[0], :frame.shape[1]]=frame
+    frame = frame_tmp
+    frame_tmp = np.zeros(shape=(640,480), dtype=np.uint8)
+    frame_tmp[:prev_frame.shape[0], :prev_frame.shape[1]]=prev_frame
+    prev_frame = frame_tmp
+
     # params for ShiTomasi corner detection
-    feature_params = dict( maxCorners = 100,
-                       qualityLevel = 0.3,
+    feature_params = dict( maxCorners = 200,
+                       qualityLevel = 0.05,
                        minDistance = 7,
                        blockSize = 7 )
 
@@ -46,34 +56,46 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
     lk_params = dict( winSize  = (15,15),
                   maxLevel = 2,
                   criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
-
+   
     p0 = cv2.goodFeaturesToTrack(frame, mask = None, **feature_params)
-
-    # calculate optical flow
-    p1, st, err = cv2.calcOpticalFlowPyrLK(prev_frame, frame, p0, None, **lk_params)
+   
+    # calculate optical flow 
+    try:
+         p1, st, err = cv2.calcOpticalFlowPyrLK(prev_frame, frame, p0, None, **lk_params)
+    except:
+         pdb.set_trace()
+    
+    p1 = np.array([np.array([p[0][0] + crop_coord[1], p[0][1] + crop_coord[0]]) for p in p1])
     optical_pos = []
     for pos in pose_pos:
-        point_dist = np.array([np.sum(np.abs(pos-p)) for p in p0])
-        nearby_points = np.where(point_dist < 10)[0]
-        optical_pos.append(np.mean(p1[nearby_points]))
+        
+        point_dist = np.array([np.abs(pos[0]-(p[0][0] + crop_coord[0])) + np.abs(pos[1]-(p[0][1] + crop_coord[1])) for p in p0])
+        nearby_points = np.where(point_dist < 30)[0]
+        if len(nearby_points)==0:
+             optical_pos.append(pos)
+        else:
+             optical_pos.append(np.mean(p1[nearby_points]))
     return optical_pos
 
 
 def main(args):
-    prev_poses = [normalize_to_camera(row) for row in csv.reader(open(args.file))]
-    for itr in xrange(10):
+
+    crop_coords = [(int(crop_coord.split(',')[0]),int(crop_coord.split(',')[2])) for crop_coord in open("%s/cropped/crop_coords.txt" % args.save).readlines()]   
+    prev_poses = [normalize_to_camera(row, crop_coord) for row, crop_coord in zip(csv.reader(open(args.file)), crop_coords)]
+       
+    for itr in xrange(3):
         movement = []
         new_poses = []
 
         prev_data = prev_poses[0]
-        prev_frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, 0)))
+        prev_frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, 1)), cv2.COLOR_BGR2GRAY)
         for r, row in enumerate(prev_poses[1:]):
-            frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r)))
-            cur_data = normalize_to_camera(row)
-            opt_poses = optical_flow_mvmt(frame, prev_frame, cur_data)
-            movement.append(calc_dist(prev_data, cur_data))
-            new_poses.append([[np.mean([cur_pose, opt_pose]) for cur_pose, opt_pose in zip(cur_poses, opt_poses)] for cur_poses in cur_data])
-            prev_data = cur_data
+            print r
+            frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r+2)),  cv2.COLOR_BGR2GRAY)     
+            opt_poses = optical_flow_mvmt(frame, prev_frame, row, crop_coords[r+1])
+            movement.append(calc_dist(prev_data, row))
+            new_poses.append([np.mean([cur_pose, opt_pose], axis=0) for cur_pose, opt_pose in zip(row, opt_poses)])
+            prev_data = row
 
         movement = np.array(movement)
         pickle.dump(movement, open('%s/movement_%i.p' % (args.save, itr), "wb"))
