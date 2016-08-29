@@ -91,7 +91,6 @@ def main(args):
     for itr in xrange(3):
         movement = []
         new_poses = []
-        pdb.set_trace()
         prev_data = prev_poses[0]
         prev_frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, 1)), cv2.COLOR_BGR2GRAY)
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
