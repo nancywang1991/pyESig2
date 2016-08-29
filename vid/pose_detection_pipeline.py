@@ -15,7 +15,7 @@ def main(args):
         subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
 
         os.chdir(args.dark_home)
-        subprocess.call('%s/darknet yolo demo %s %s -file %s' %
+        subprocess.call('%s/darknet yolo demo %s %s %s' %
                         (args.dark_home, args.yolo_config, args.yolo_weights, file), shell=True)
 
         # Move files over to deeppose
@@ -43,7 +43,7 @@ if __name__== "__main__":
     parser.add_argument('-home', '--home', help="Home", default="/home/wangnxr/Documents/")
     parser.add_argument('-d', '--dir', required=True, help="Video directory")
     parser.add_argument('-s', '--save', required=True, help="Save Directory" )
-    parser.add_argument('-dark', '--dark_home', default='/home/wangnxr/Documents/darknet/', help='Darknet home' )
+    parser.add_argument('-dark', '--dark_home', default='/home/wangnxr/Documents/darknet_new/darknet/', help='Darknet home' )
     parser.add_argument('-deep', '--deep_home', default='/home/wangnxr/Documents/deeppose/', help='Deeppose home')
     parser.add_argument('-w', '--yolo_weights',
                         default = '/home/wangnxr/Documents/darknet/yolo/backup/all_sbj/yolo_patient_mod_19000.weights',
