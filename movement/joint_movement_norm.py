@@ -37,7 +37,7 @@ def normalize_to_neck(coords):
     return norm_coords
 
 def normalize_to_camera(coords, crop_coord):
-    coords = numerate_coords(coords)
+
     norm_coords = [(coord[0] + crop_coord[0], coord[1] + crop_coord[1]) for coord in coords]
     
     return norm_coords
