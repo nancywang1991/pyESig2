@@ -33,7 +33,7 @@ def main(args):
     #     #Stich pose results into one video
     #     subprocess.call('ffmpeg -r 30 -i %s/%s/' %(args.save, fname) + '%05d_pred.png -c:v libx264 '
     #                    + '-pix_fmt yuv420p %s/%s/%s.avi' % (args.save, fname, fname), shell=True)
-        subprocess.call(['python', '/home/wangnxr/PycharmProjects/pyESig2/movement/joint_movement_norm.py',
+         subprocess.call(['python', '/home/wangnxr/PycharmProjects/pyESig2/movement/joint_movement_norm.py',
                          '-f', '%s/%s/joint_coords.csv' % (args.save, fname), '-s', '%s/%s' %(args.save, fname),
                          '--datadir', '%s/%s/cropped' % (args.save, fname) ])
 
