@@ -96,6 +96,7 @@ def main(args):
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
         for r, row in enumerate(prev_poses[1:]):
+            pdb.set_trace()
             img_pred = draw_joints(prev_frame, prev_poses[r+1], True, 1)
             cv2.imwrite(img_pred, '%s/poses_%i/%05i.png' % (args.save, itr, r+1))
             print r
