@@ -73,7 +73,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos, crop_coord):
     p1 = np.array([np.array([p[0][0] + crop_coord[1], p[0][1] + crop_coord[0]]) for p in p1])
     optical_pos = []
     for pos in pose_pos:
-        
+        pdb.set_trace()
         point_dist = np.array([np.abs(pos[0]-(p[0][0] + crop_coord[0])) + np.abs(pos[1]-(p[0][1] + crop_coord[1])) for p in p0])
         nearby_points = np.where(point_dist < 30)[0]
         if len(nearby_points)==0:
@@ -97,7 +97,7 @@ def main(args):
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
         for r, row in enumerate(prev_poses[1:]):
-            pdb.set_trace()
+
             img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220))
             img_pred = draw_joints(img_pred, row, True, 1)
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
