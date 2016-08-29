@@ -115,7 +115,7 @@ def main(args):
         movement = np.array(movement)
         pickle.dump(movement, open('%s/movement_%i.p' % (args.save, itr), "wb"))
         #Stich pose results into one video
-        subprocess.call('ffmpeg -r 30 -i %s/poses_%i/' %(args.save, itr) + '%%05i.png -c:v libx264 '
+        subprocess.call('ffmpeg -r 30 -i %s/poses_%i/' %(args.save, itr) + '%05d.png -c:v libx264 '
                        + '-pix_fmt yuv420p %s/poses_itr_%i.avi' % (args.save, itr), shell=True)
         f, axes = plt.subplots(7, 1, sharex='col', figsize=(7, 9))
         plt.title("Joint movement over time for file %s in iteration %i" % (args.file.split('/')[-1].split('.')[0], itr))
