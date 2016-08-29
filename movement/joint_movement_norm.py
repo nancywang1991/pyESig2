@@ -86,9 +86,10 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos, crop_coord):
 def main(args):
 
     crop_coords = [(int(crop_coord.split(',')[0]),int(crop_coord.split(',')[2])) for crop_coord in open("%s/cropped/crop_coords.txt" % args.save).readlines()]   
-    prev_poses = [normalize_to_camera(row, crop_coord) for row, crop_coord in zip(csv.reader(open(args.file)), crop_coords)]
-       
+
+    prev_poses = [row for row in csv.reader(open(args.file))]
     for itr in xrange(3):
+        prev_poses_normalized = [normalize_to_camera(row, crop_coord) for row, crop_coord in zip(prev_poses, crop_coords)]
         movement = []
         new_poses = []
         prev_data = prev_poses[0]
@@ -101,9 +102,11 @@ def main(args):
             print r
             frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r+2)),  cv2.COLOR_BGR2GRAY)     
             opt_poses = optical_flow_mvmt(frame, prev_frame, row, crop_coords[r+1])
-            movement.append(calc_dist(prev_data, row))
+            movement.append(calc_dist(prev_data, prev_poses_normalized[r+1]))
             new_poses.append([np.mean([cur_pose, opt_pose], axis=0) for cur_pose, opt_pose in zip(row, opt_poses)])
-            prev_data = row
+            prev_data = prev_poses_normalized[r+1]
+        prev_poses = new_poses
+
 
         movement = np.array(movement)
         pickle.dump(movement, open('%s/movement_%i.p' % (args.save, itr), "wb"))
