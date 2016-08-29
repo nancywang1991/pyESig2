@@ -42,7 +42,7 @@ def normalize_to_camera(coords, crop_coord):
     
     return norm_coords
 
-def optical_flow_mvmt(frame, prev_frame, pose_pos, crop_coord):
+def optical_flow_mvmt(frame, prev_frame, pose_pos):
    
     frame_tmp = np.zeros(shape=(640,480), dtype=np.uint8)
     frame_tmp[:frame.shape[0], :frame.shape[1]]=frame
@@ -69,18 +69,17 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos, crop_coord):
          p1, st, err = cv2.calcOpticalFlowPyrLK(prev_frame, frame, p0, None, **lk_params)
     except:
          pdb.set_trace()
-    
-    p1 = np.array([np.array([p[0][0] + crop_coord[1], p[0][1] + crop_coord[0]]) for p in p1])
+
     optical_pos = []
     for pos in pose_pos:
 
-        point_dist = np.array([np.abs(pos[0]-(p[0][0] + crop_coord[0])) + np.abs(pos[1]-(p[0][1] + crop_coord[1])) for p in p0])
+        point_dist = np.array([np.abs(pos[0]-p[0][0]) + np.abs(pos[1]-p[0][1]) for p in p0])
         pdb.set_trace()
         nearby_points = np.where(point_dist < 30)[0]
         if len(nearby_points)==0:
              optical_pos.append(pos)
         else:
-             optical_pos.append(np.mean(p1[nearby_points]))
+             optical_pos.append(np.mean(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
 
@@ -104,7 +103,7 @@ def main(args):
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
             print r
             frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+2)), (220,220)),  cv2.COLOR_BGR2GRAY)
-            opt_poses = optical_flow_mvmt(frame, prev_frame, row, crop_coords[r+1])
+            opt_poses = optical_flow_mvmt(frame, prev_frame, row)
             movement.append(calc_dist(prev_data, prev_poses_normalized[r+1]))
             new_poses.append([np.mean([cur_pose, opt_pose], axis=0) for cur_pose, opt_pose in zip(row, opt_poses)])
             prev_data = prev_poses[r+1]
