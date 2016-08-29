@@ -73,8 +73,9 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos, crop_coord):
     p1 = np.array([np.array([p[0][0] + crop_coord[1], p[0][1] + crop_coord[0]]) for p in p1])
     optical_pos = []
     for pos in pose_pos:
-        pdb.set_trace()
+
         point_dist = np.array([np.abs(pos[0]-(p[0][0] + crop_coord[0])) + np.abs(pos[1]-(p[0][1] + crop_coord[1])) for p in p0])
+        pdb.set_trace()
         nearby_points = np.where(point_dist < 30)[0]
         if len(nearby_points)==0:
              optical_pos.append(pos)
