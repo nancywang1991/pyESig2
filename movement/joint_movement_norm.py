@@ -69,7 +69,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
          p1, st, err = cv2.calcOpticalFlowPyrLK(prev_frame, frame, p0, None, **lk_params)
     except:
          pdb.set_trace()
-    pdb.set_trace()
+
     optical_pos = []
     p0 = np.array([p[0] for p in p0])
     p1 = np.array([p[0] for p in p1])
