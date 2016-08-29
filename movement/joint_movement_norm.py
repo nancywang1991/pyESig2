@@ -87,7 +87,7 @@ def main(args):
 
     crop_coords = [(int(crop_coord.split(',')[0]),int(crop_coord.split(',')[2])) for crop_coord in open("%s/cropped/crop_coords.txt" % args.save).readlines()]   
 
-    prev_poses = [row for row in csv.reader(open(args.file))]
+    prev_poses = [numerate_coords(row) for row in csv.reader(open(args.file))]
     for itr in xrange(3):
         prev_poses_normalized = [normalize_to_camera(row, crop_coord) for row, crop_coord in zip(prev_poses, crop_coords)]
         movement = []

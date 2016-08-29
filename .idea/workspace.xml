@@ -50,8 +50,8 @@
       <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4809348">
-              <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.10332103">
+              <caret line="89" column="38" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -644,12 +644,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00091" summary="improved pose_detection pipeline">
-      <created>1471379757095</created>
-      <option name="number" value="00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1471379757095</updated>
-    </task>
     <task id="LOCAL-00092" summary="improved pose_detection pipeline">
       <created>1471380063467</created>
       <option name="number" value="00092" />
@@ -938,7 +932,13 @@
       <option name="project" value="LOCAL" />
       <updated>1472503436611</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="improved pose_detection pipeline">
+      <created>1472503463207</created>
+      <option name="number" value="00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1472503463207</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1393,8 +1393,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4809348">
-          <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.10332103">
+          <caret line="89" column="38" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
           <folding />
         </state>
       </provider>
