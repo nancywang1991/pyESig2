@@ -107,7 +107,7 @@ def main(args):
             frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+2)), (220,220)),  cv2.COLOR_BGR2GRAY)
             opt_poses = optical_flow_mvmt(frame, prev_frame, row)
             movement.append(calc_dist(prev_data, prev_poses_normalized[r+1]))
-            new_poses.append([tuple(np.mean([cur_pose, opt_pose], axis=0)) for cur_pose, opt_pose in zip(row, opt_poses)])
+            new_poses.append([tuple(np.int(np.round(np.mean([cur_pose, opt_pose])), axis=0)) for cur_pose, opt_pose in zip(row, opt_poses)])
             prev_data = prev_poses[r+1]
 
         movement = np.array(movement)
