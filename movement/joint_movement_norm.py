@@ -127,7 +127,7 @@ def main(args):
 
         plt.tight_layout()
         plt.savefig('%s/movement_fig_%i.png' % (args.save, itr))
-        prev_poses = new_poses
+        prev_poses = np.array(new_poses)
         pickle.dump(prev_poses, open('%s/adjusted_poses_%i.p' % (args.save, itr), "wb"))
 
 if __name__ == "__main__":
