@@ -97,7 +97,7 @@ def main(args):
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
         for r, row in enumerate(prev_poses[1:]):
-            img_pred = draw_joints(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), prev_poses[r+1], True, 1)
+            img_pred = draw_joints(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), row, True, 1)
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
             print r
             frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r+2)),  cv2.COLOR_BGR2GRAY)     
