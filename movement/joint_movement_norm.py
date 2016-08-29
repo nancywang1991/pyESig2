@@ -98,7 +98,9 @@ def main(args):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
         for r, row in enumerate(prev_poses[1:]):
             pdb.set_trace()
-            img_pred = draw_joints(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), row, True, 1)
+            img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220),
+                             interpolation=cv2.INTER_NEAREST)
+            img_pred = draw_joints(img_pred, row, True, 1)
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
             print r
             frame = cv2.cvtColor(cv2.imread("%s/%05i.png" % (args.datadir, r+2)),  cv2.COLOR_BGR2GRAY)     
