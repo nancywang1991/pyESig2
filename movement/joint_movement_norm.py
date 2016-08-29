@@ -69,19 +69,19 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
          p1, st, err = cv2.calcOpticalFlowPyrLK(prev_frame, frame, p0, None, **lk_params)
     except:
          pdb.set_trace()
-
+    pdb.set_trace()
     optical_pos = []
     p0 = np.array([p[0] for p in p0])
     p1 = np.array([p[0] for p in p1])
     for pos in pose_pos:
 
         point_dist = np.array([np.abs(pos[0]-p[0]) + np.abs(pos[1]-p[1]) for p in p0])
-        pdb.set_trace()
+
         nearby_points = np.where(point_dist < 30)[0]
         if len(nearby_points)==0:
              optical_pos.append(pos)
         else:
-             optical_pos.append(np.mean(p1[nearby_points]-p0[nearby_points], axis=0))
+             optical_pos.append(pos + np.mean(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
 
