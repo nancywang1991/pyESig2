@@ -1,5 +1,7 @@
 import matplotlib as mpl
 mpl.use('Agg')
+import sys
+sys.path.append('/home/wangnxr/Documents/deeppose/tests')
 import numpy as np
 import csv
 import argparse
