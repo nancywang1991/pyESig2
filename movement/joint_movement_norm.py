@@ -98,7 +98,7 @@ def main(args):
         prev_frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, 1)), (220,220)),  cv2.COLOR_BGR2GRAY)
         if not os.path.exists('%s/poses_%i/' % (args.save, itr)):
             os.makedirs('%s/poses_%i/' % (args.save, itr))
-        pdb.set_trace()
+
         for r, row in enumerate(prev_poses[1:]):
             img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220))
             img_pred = draw_joints(img_pred, row, True, 1)

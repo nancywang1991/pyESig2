@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movement/joint_movement_norm.py" afterPath="$PROJECT_DIR$/movement/joint_movement_norm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyESig2.iws" />
@@ -50,8 +51,8 @@
       <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27445257">
-              <caret line="111" column="37" selection-start-line="111" selection-start-column="37" selection-end-line="111" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.3328467">
+              <caret line="70" column="12" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -61,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -129,8 +130,8 @@
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
         <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
-        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
         <option value="$PROJECT_DIR$/movement/joint_movement_norm.py" />
+        <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
       </list>
     </option>
   </component>
@@ -644,12 +645,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00110" summary="improved pose_detection pipeline">
-      <created>1471389463935</created>
-      <option name="number" value="00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1471389463935</updated>
-    </task>
     <task id="LOCAL-00111" summary="improved pose_detection pipeline">
       <created>1471390402797</created>
       <option name="number" value="00111" />
@@ -938,7 +933,13 @@
       <option name="project" value="LOCAL" />
       <updated>1472507075605</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="improved pose_detection pipeline">
+      <created>1472507186966</created>
+      <option name="number" value="00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1472507186966</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1371,16 +1372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1391,10 +1382,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27445257">
-          <caret line="111" column="37" selection-start-line="111" selection-start-column="37" selection-end-line="111" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.3328467">
+          <caret line="70" column="12" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="12" />
           <folding />
         </state>
       </provider>

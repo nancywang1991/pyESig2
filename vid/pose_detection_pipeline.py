@@ -36,7 +36,7 @@ def main(args):
         subprocess.call(['python', '/home/wangnxr/PycharmProjects/pyESig2/movement/joint_movement_norm.py',
                          '-f', '%s/%s/joint_coords.csv' % (args.save, fname), '-s', '%s/%s' %(args.save, fname),
                          '--datadir', '%s/%s/cropped' % (args.save, fname) ])
-        pdb.set_trace()
+
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
