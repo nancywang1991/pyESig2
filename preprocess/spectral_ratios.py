@@ -68,7 +68,7 @@ def plot_time(result, c):
     plt.plot(result[:,c])
     return f
 
-def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
+def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr, comp):
 
     days_str = "_".join([str(day) for day in days])
     max_sec = 23*60*60
@@ -98,24 +98,24 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr):
         mask = np.ones(result.shape[0], dtype=bool)
         mask[list(invalid)]=False
         print "pca"
-        pca = PCA(n_components=1, whiten=True)
+        pca = PCA(n_components=10, whiten=True)
 
-        result[mask,0] = np.ndarray.flatten(pca.fit_transform(result_temp_1[mask,:]))
-        result[mask,1] = np.ndarray.flatten(pca.fit_transform(result_temp_2[mask,:]))
+        result[mask,0] = np.ndarray.flatten(pca.fit_transform(result_temp_1[mask,:])[:,comp])
+        result[mask,1] = np.ndarray.flatten(pca.fit_transform(result_temp_2[mask,:])[:,comp])
 
         print "Smoothing"
         result[:,0] = smooth(result[:,0])
         result[:,1] = smooth(result[:,1])
 
         for d, day in enumerate(days):
-            pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                    ratio1[1], ratio2[0], ratio2[1]), "wb"))
+            pickle.dump(result[d*max_sec:(d+1)*max_sec], open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i_comp_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                    ratio1[1], ratio2[0], ratio2[1], comp), "wb"))
 
     else:
         result = []
         for d, day in enumerate(days):
-            result.append(pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
-                                                                    ratio1[1], ratio2[0], ratio2[1]), "rb")))
+            result.append(pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i_comp_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
+                                                                    ratio1[1], ratio2[0], ratio2[1], comp), "rb")))
         result = np.vstack(result)
     for d, day in enumerate(days):
 
