@@ -83,7 +83,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
         else:
              if np.any(np.mean(p1[nearby_points]-p0[nearby_points], axis=0)>30):
                  pdb.set_trace()
-             optical_pos.append(pos + np.mean(p1[nearby_points]-p0[nearby_points], axis=0))
+             optical_pos.append(pos + np.median(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
 
