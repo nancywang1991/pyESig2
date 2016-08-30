@@ -81,6 +81,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
         if len(nearby_points)==0:
              optical_pos.append(pos)
         else:
+             print np.mean(p1[nearby_points]-p0[nearby_points], axis=0)
              optical_pos.append(pos + np.mean(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
@@ -103,7 +104,6 @@ def main(args):
             img_pred = cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+1)), (220,220))
             img_pred = draw_joints(img_pred, row, True, 1)
             cv2.imwrite('%s/poses_%i/%05i.png' % (args.save, itr, r+1), img_pred)
-            print r
             frame = cv2.cvtColor(cv2.resize(cv2.imread("%s/%05i.png" % (args.datadir, r+2)), (220,220)),  cv2.COLOR_BGR2GRAY)
             opt_poses = optical_flow_mvmt(frame, prev_frame, row)
             movement.append(calc_dist(prev_data, prev_poses_normalized[r+1]))
