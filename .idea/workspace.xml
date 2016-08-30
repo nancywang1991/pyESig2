@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" afterPath="$PROJECT_DIR$/scripts/spectral_ratio_pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocess/spectral_ratios.py" afterPath="$PROJECT_DIR$/preprocess/spectral_ratios.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -88,8 +86,8 @@
       <file leaf-file-name="spectral_ratios.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17704011">
-              <caret line="110" column="80" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.2766252">
+              <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -673,12 +671,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00113" summary="improved pose_detection pipeline">
-      <created>1471390727051</created>
-      <option name="number" value="00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1471390727051</updated>
-    </task>
     <task id="LOCAL-00114" summary="improved pose_detection pipeline">
       <created>1471553431174</created>
       <option name="number" value="00114" />
@@ -967,7 +959,13 @@
       <option name="project" value="LOCAL" />
       <updated>1472508517452</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="improved pose_detection pipeline">
+      <created>1472515402572</created>
+      <option name="number" value="00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1472515402572</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1426,8 +1424,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocess/spectral_ratios.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17704011">
-          <caret line="110" column="80" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.2766252">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
           <folding />
         </state>
       </provider>
