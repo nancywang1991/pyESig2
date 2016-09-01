@@ -117,9 +117,9 @@ def main(data_fldr, sbj_id, days, ratio1, ratio2, save_fldr, comp):
             result.append(pickle.load(open("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i_comp_%i.p" % (save_fldr, sbj_id, day, ratio1[0],
                                                                     ratio1[1], ratio2[0], ratio2[1], comp), "rb")))
         result = np.vstack(result)
-    for d, day in enumerate(days):
+    #for d, day in enumerate(days):
 
-        plot_2d_coords(result[d*max_sec:(d+1)*max_sec], ratio1, ratio2, save_fldr,  day)
+        #plot_2d_coords(result[d*max_sec:(d+1)*max_sec], ratio1, ratio2, save_fldr,  day)
         #figure.savefig("%s/%s_%i_ratio_multi_day_%i_%i_%i_%i.jpg" % (save_fldr, sbj_id, day, ratio1[0],
         #                                                                    ratio1[1], ratio2[0], ratio2[1]))
     plt.close()
