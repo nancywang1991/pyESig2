@@ -35,7 +35,7 @@ for day in args.days:
                      "%s/%s/" %(args.ecog_processed, args.sbj_id))
 
 print "Calculate and plot ratios"
-for comp in range(1,8):
+for comp in range(2,8):
     for ratio1_0 in range(4,5,1):
         for ratio1_1 in range(ratio1_0+5, ratio1_0+6, 1):
             for ratio2_0 in range(25, 26, 3):
