@@ -62,7 +62,7 @@ def disconnected(starts, ends, cur_time):
             return True
     return False
 
-def main(sbj_id, day, result, video_loc, disconnect_file, save_fldr):
+def main(sbj_id, day, result, video_loc, disconnect_file, save_fldr, comp):
     img_fldr = "%s/images" % save_fldr
     img_fldr_final = "%s/images_final" % save_fldr
     if not os.path.exists(img_fldr):
@@ -70,7 +70,7 @@ def main(sbj_id, day, result, video_loc, disconnect_file, save_fldr):
     if not os.path.exists(img_fldr_final):
         os.makedirs(img_fldr_final)
     start_time, end_time, start, end = get_disconnected_times(disconnect_file)
-    duration = 60*60*23
+    duration = 60*60*3
     video_starts = pickle.load(open("C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\%s_%i.p" % (sbj_id, day), "rb"))
 
     plot_2d_coords(result, (4,9), (25,55), img_fldr, day, start_time, duration)
@@ -100,17 +100,18 @@ def main(sbj_id, day, result, video_loc, disconnect_file, save_fldr):
         concat = concat_images(plot, frame)
         movie.write(concat)
     cur_vid.close()
-    movie.new_vid("%s/movie.avi" % save_fldr)
+    movie.new_vid("%s/movie_comp%i.avi" % (save_fldr, comp))
     movie.close()
 
 if __name__ == "__main__":
     sbj_id = "cb46fd46"
     day = 7
     result_fldr = "D:/ratio_mapping/visualizations/"
-    result = pickle.load(open("%s/%s_%i_ratio_multi_day_4_9_25_55.p" % (result_fldr, sbj_id, day)))
-    disconnect_file = "C:/Users/wangnxr/Documents/rao_lab/video_analysis/disconnect_times/%s_%i.txt" % (sbj_id, day)
-    video_loc = "D:/cb_7/"
-    main(sbj_id, day, result, video_loc, disconnect_file, result_fldr)
+    for comp in range(2, 8):
+        result = pickle.load(open("%s/%s_%i_ratio_multi_day_4_9_25_55_comp_%i.p" % (result_fldr, sbj_id, day, comp)))
+        disconnect_file = "C:/Users/wangnxr/Documents/rao_lab/video_analysis/disconnect_times/%s_%i.txt" % (sbj_id, day)
+        video_loc = "D:/cb_7/"
+        main(sbj_id, day, result, video_loc, disconnect_file, result_fldr, comp)
 
 
 
