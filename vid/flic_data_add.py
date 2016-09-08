@@ -10,21 +10,24 @@ from PIL import Image
 def label_crop(fname):
     with open(fname) as fd:
         doc = xmltodict.parse(fd.read())
-        if doc["annotation"]["keypoints"] is None:
+        if doc["annotation"]["keypoints"] is None or doc["annotation"]["keypoints"]["keypoint"] is None:
             return None
         xmin = np.inf
         xmax = -np.inf
         ymin = np.inf
         ymax = -np.inf
         for i in xrange(len(doc["annotation"]["keypoints"]["keypoint"])):
-            cur_keypoint = doc["annotation"]["keypoints"]["keypoint"][i]
+            try:
+                cur_keypoint = doc["annotation"]["keypoints"]["keypoint"][i]
+            except KeyError:
+                return None
             xmin = min(xmin, float(cur_keypoint["@x"])-20)
             ymin = min(ymin, float(cur_keypoint["@y"])-20)
             xmax = max(xmax, float(cur_keypoint["@x"])+20)
             ymax = max(ymax, float(cur_keypoint["@y"])+20)
             if cur_keypoint["@name"] == "Nose":
                 ymin = min(ymin, float(cur_keypoint["@y"])-70)
-                ymax = min(ymin, float(cur_keypoint["@y"])+270)
+                ymax = max(ymax, float(cur_keypoint["@y"])+270)
     return [[xmin, ymin, xmax, ymax]]
 
 def label_joints(fname):
@@ -49,17 +52,22 @@ def label_joints(fname):
                 l_ear = [x,y]
             elif cur_keypoint["@name"] == "R_Ear":
                 r_ear = [x,y]
-        l_eye = np.mean([nose, l_ear], axis=0)
-        r_eye = np.mean([nose, r_ear], axis=0)
-        coords[0, part_map["L_Eye"]-1] = l_eye[0]
-        coords[1, part_map["L_Eye"]-1] = l_eye[1]
-        coords[0, part_map["R_Eye"]-1] = r_eye[0]
-        coords[1, part_map["R_Eye"]-1] = r_eye[1]
+        print fname
+        try:
+            l_eye = np.mean([nose, l_ear], axis=0)
+            r_eye = np.mean([nose, r_ear], axis=0)
+            coords[0, part_map["L_Eye"]-1] = l_eye[0]
+            coords[1, part_map["L_Eye"]-1] = l_eye[1]
+            coords[0, part_map["R_Eye"]-1] = r_eye[0]
+            coords[1, part_map["R_Eye"]-1] = r_eye[1]
+        except UnboundLocalError:
+            return []
 
     return [list(coords[0,:]),list(coords[1,:])]
 
-image_path_main= "/home/wangnxr/Documents/darknet/yolo/train_data/VOCdevkit/"
-subjects=["a0f66459", "a86a4375", "ab2431d9", "c95c1e82", "cb46fd46", "d6532718", "d7d5f068", "e70923c4"]
+image_path_main= "/home/wangnxr/Documents/patient_pose_data/"
+subjects=["a0f66459", "a9e06539", "a86a4375", "ab2431d9", "b3c91874", "bfb65b46", "c95c1e82", "cb46fd46", "d5378b52",
+          "d6532718", "d7d5f068", "deb4cf78", "e70923c4", "e1556efa", "ea430431", "fcb01f7a", "ffb52f92"]
 examples = loadmat(open("/home/wangnxr/Documents/deeppose/data/FLIC-full/examples.mat", "rb"))
 tr_indices = loadmat(open("/home/wangnxr/Documents/deeppose/data/FLIC-full/tr_plus_indices.mat", "rb"))
 
@@ -74,33 +82,34 @@ for sbj in subjects:
             new_example[0][1]=[sbj]
             #coords
             new_example[0][2]=label_joints(f)
-            img_name = f.split("/")[-1][:-6] + ".jpg"
-            img_path = image_path_main + sbj + "/JPEGImages/" + img_name
-            #filepath
-            new_example[0][3]=img_path
-            img_dim = Image.open(img_path).size
-            #imgdims
-            new_example[0][4]=[img_dim[0], img_dim[1], 3]
-            frame = int(img_name.split("_")[-1][:-4])
-            #currframe
-            new_example[0][5]=[[frame]]
-            #torsobox
-            new_example[0][6]=crop
-            if np.random.randint(0,100)>75:
-                #istrain
-                new_example[0][7]=[[0]]
-                #istest
-                new_example[0][8]=[[1]]
-            else:
-                tr_indices["tr_plus_indices"]=np.append(tr_indices["tr_plus_indices"],np.array([[len(examples['examples'][0])+1]]), axis=0)
-                new_example[0][7]=[[1]]
-                new_example[0][8]=[[0]]
-            #isbad
-            new_example[0][9]=[[0]]
-            #isunchecked
-            new_example[0][10]=[[0]]
-            examples['examples']=np.array([np.append(examples['examples'][0], new_example, axis=0)])
-            pdb.set_trace()
+            if len(new_example[0][2]) > 0:
+                img_name = f.split("/")[-1][:-6] + ".jpg"
+                img_path = image_path_main + sbj + "/images/" + img_name
+                #filepath
+                new_example[0][3]=img_path
+                img_dim = Image.open(img_path).size
+                #imgdims
+                new_example[0][4]=[img_dim[0], img_dim[1], 3]
+                frame = int(img_name.split("_")[-1][:-4])
+                #currframe
+                new_example[0][5]=[[frame]]
+                #torsobox
+                new_example[0][6]=crop
+                if np.random.randint(0,100)>75:
+                    #istrain
+                    new_example[0][7]=[[0]]
+                    #istest
+                    new_example[0][8]=[[1]]
+                else:
+                    tr_indices["tr_plus_indices"]=np.append(tr_indices["tr_plus_indices"],np.array([[len(examples['examples'][0])+1]]), axis=0)
+                    new_example[0][7]=[[1]]
+                    new_example[0][8]=[[0]]
+                #isbad
+                new_example[0][9]=[[0]]
+                #isunchecked
+                new_example[0][10]=[[0]]
+                examples['examples']=np.array([np.append(examples['examples'][0], new_example, axis=0)])
+
 
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/examples_patients.mat", examples)
 savemat("/home/wangnxr/Documents/deeppose/data/FLIC-full/tr_plus_indices_patients.mat", tr_indices)

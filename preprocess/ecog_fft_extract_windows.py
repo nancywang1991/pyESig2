@@ -44,7 +44,7 @@ def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_ch
                     chan_sig[c-1,:] = clean_sig[buffer_size:buffer_size*2]
 
                 for sub_chunk in xrange(0,buffer_size,step_size):
-                   if not os.path.isfile("%s%s_%i.p" % (save_file_loc, f, cnt)):
+                   if not os.path.isfile("%s%s_%i.p" % (save_file_loc, yah, cnt)):
                         for c in xrange(1, n_channels+1):
                             frequency[c-1,:] = (np.abs(np.fft.fft( chan_sig[c-1,sub_chunk:sub_chunk+window_size]))**2)[f_lo:f_hi]
 
