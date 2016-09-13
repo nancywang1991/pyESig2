@@ -50,7 +50,7 @@ for m in range(0,mvmt.shape[0]):
 
 
 cam = my_video_capture(video_file_loc + \
-    "Timm~Katrina_497a1ff8-9b6f-4868-bd2d-752c6b86e192_0145_2.avi", 30)
+    "_0145_2.avi", 30)
 frame_cnt = 1
 
 while cam.has_next():
@@ -74,7 +74,7 @@ while cam.has_next():
     print frame_cnt
     plt.close('all')
 fileName, fileExt = os.path.splitext(video_file_loc + \
-            "Timm~Katrina_497a1ff8-9b6f-4868-bd2d-752c6b86e192_0145.avi")
+            "_0145.avi")
 cam.new_vid(fileName + "_3" + fileExt)
 cam.close()
 cv2.destroyAllWindows()
