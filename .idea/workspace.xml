@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyESig2.iws" />
@@ -84,8 +83,8 @@
       <file leaf-file-name="show_mvmt_on_video_ecog_2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94498384">
-              <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.6699029">
+              <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
               <folding>
                 <element signature="e#23#46#0" expanded="true" />
               </folding>
@@ -791,12 +790,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00126" summary="improved pose_detection pipeline">
-      <created>1472500797354</created>
-      <option name="number" value="00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1472500797354</updated>
-    </task>
     <task id="LOCAL-00127" summary="improved pose_detection pipeline">
       <created>1472500836843</created>
       <option name="number" value="00127" />
@@ -1085,7 +1078,13 @@
       <option name="project" value="LOCAL" />
       <updated>1473727183316</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="heatmap data processing&#10;">
+      <created>1473727302927</created>
+      <option name="number" value="00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1473727302927</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1553,8 +1552,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94498384">
-          <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.6699029">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
           <folding>
             <element signature="e#23#46#0" expanded="true" />
           </folding>
