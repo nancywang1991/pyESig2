@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Python27\lib\site-packages\pyESig2\display\show_mvmt_on_video.py" afterPath="$PROJECT_DIR$/display/show_mvmt_on_video2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyESig2.iws" />
@@ -69,13 +69,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show_mvmt_on_video2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show_mvmt_on_video2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/display/show_mvmt_on_video2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.7394822">
+            <state vertical-scroll-proportion="0.0">
               <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show_mvmt_on_video_ecog_2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.94498384">
+              <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+              <folding>
+                <element signature="e#23#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -181,6 +193,7 @@
         <option value="$PROJECT_DIR$/display/interactive_ratio.py" />
         <option value="$PROJECT_DIR$/display/show_mvmt_on_video_ecog.py" />
         <option value="$PROJECT_DIR$/display/show_mvmt_on_video.py" />
+        <option value="$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py" />
       </list>
     </option>
   </component>
@@ -778,12 +791,6 @@
       <option name="number" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00125" summary="improved pose_detection pipeline">
-      <created>1472500766756</created>
-      <option name="number" value="00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1472500766756</updated>
-    </task>
     <task id="LOCAL-00126" summary="improved pose_detection pipeline">
       <created>1472500797354</created>
       <option name="number" value="00126" />
@@ -1072,7 +1079,13 @@
       <option name="project" value="LOCAL" />
       <updated>1473726894905</updated>
     </task>
-    <option name="localTasksCounter" value="174" />
+    <task id="LOCAL-00174" summary="heatmap data processing&#10;">
+      <created>1473727183316</created>
+      <option name="number" value="00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1473727183316</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1530,10 +1543,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/display/show_mvmt_on_video2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7394822">
+        <state vertical-scroll-proportion="0.0">
           <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94498384">
+          <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+          <folding>
+            <element signature="e#23#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
