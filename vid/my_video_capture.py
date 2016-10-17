@@ -65,7 +65,7 @@ class my_video_capture:
 
     def new_vid(self, dst):
         subprocess.call("ffmpeg -start_number 1 -r " + str(self.frame_rate) + " -i " + self.vid_dir + slash + \
-                        "tmp_" + self.mode + slash + "%05d.png -vcodec mpeg4 " + dst, shell=True)
+                        "tmp_" + self.mode + slash + "%05d.png -vcodec libx264 " + dst, shell=True)
 
     def new_img_folder(self, dst):
         for file in glob.glob(self.vid_dir + slash + "tmp_" + self.mode + slash + "*"):
