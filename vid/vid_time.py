@@ -8,36 +8,13 @@ import re
 import subprocess
 import pdb
 import cPickle as pickle
+from pyESig2.vid.vid_start_end import get_disconnected_times
 
 def get_len(filename):
     
    result = subprocess.Popen(["ffprobe", filename, '-print_format', 'json', '-show_streams', '-loglevel', 'quiet'],
      stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
    return float(json.loads(result.stdout.read())['streams'][0]['duration'])
-
-def get_disconnected_times(disconnect_file_loc):
-    disconnect_info = open(disconnect_file_loc, "rb")
-    start = []
-    end = []
-    start_line = disconnect_info.readline()
-    end_line = disconnect_info.readline()
-    
-    match = re.search(r'\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}', start_line)
-    start_time = datetime.strptime(match.group(), '%m-%d-%Y %H:%M:%S')
-    match = re.search(r'\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}', end_line)
-    end_time = datetime.strptime(match.group(), '%m-%d-%Y %H:%M:%S')
-
-    disconnect_info.readline()
-    for line in disconnect_info:
-        
-        match = re.search(r'\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}', line)
-        match2 = re.search(r' \d{2}:\d{2}:\d{2}\r\n', line)
-        
-
-        start.append(datetime.strptime(match.group(), '%m-%d-%Y %H:%M:%S'))
-        end.append(datetime.strptime(match.group()[:11] + match2.group()[1:-2], '%m-%d-%Y %H:%M:%S'))
-
-    return start_time, end_time, start, end
 
 def check_disconnect(cur_time, vid_len, start):
     disconnections = []

@@ -30,20 +30,23 @@ def activity_bar(activity, colors, start_time, day):
     plt.show()
     return f, plots
 
-def cluster_scatter(cluster, data, colors):
+def cluster_scatter(cluster, data, colors, size=0.1):
     fig = plt.figure()
     ax = fig.gca()
     points = np.zeros(shape=(len(data), 2))
     for c in xrange(max(cluster)+1):
         cluster_ind = np.where(cluster==c)[0]
-        ax.scatter(data[cluster_ind][:,0],data[cluster_ind][:,1], color=colors[c], s=0.1)
-        points[cluster_ind,:] = ax.transData.transform(data[cluster_ind].T)
+        ax.scatter(data[cluster_ind,0],data[cluster_ind,1], color=colors[c], s=size)
+    for c in xrange(max(cluster)+1):
+        cluster_ind = np.where(cluster==c)[0]
+        points[cluster_ind,:] = ax.transData.transform(data[cluster_ind,:2])
     width, height = fig.canvas.get_width_height()
     points[:,1] = height - points[:,1]
-    return fig, points
+    return fig, points, ax
 
-def main():
-    n_clusters = 10
+
+def main(sbj_id, day):
+    n_clusters = 5
 
     time_s = datetime.combine(date(2015,6,11), time(8,0,0))
 
@@ -51,14 +54,16 @@ def main():
 
 
     vid_start_end = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
-    ratio_file_1 = pickle.load(open("E:/ratio_mapping/visualizations/cb46fd46_7_ratio_multi_day_4_9_25_55.p"))
-    ratio_file_2 = pickle.load(open("E:/ratio_mapping/visualizations/cb46fd46_7_ratio_multi_day_4_9_25_55_comp_1.p"))
+    ratio_file_1 = pickle.load(open("E:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_0.p" %(sbj_id, day)))
+    ratio_file_2 = pickle.load(open("E:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_1.p" % (sbj_id, day)))
     ratio_file = np.hstack([ratio_file_1, ratio_file_2])
     estimator = KMeans(n_clusters, n_init=10, max_iter=1000)
     labels = estimator.fit_predict(ratio_file)
-    figure, pixel_points = cluster_scatter(labels, ratio_file_1, colors)
-    #fig, plots = activity_bar(labels, colors, time_s, 7)
-    return labels, ratio_file, figure, pixel_points
+    fig_scatter, pixel_points, ax = cluster_scatter(labels, ratio_file_1, colors)
+    plt.show()
+    fig_bar, plots = activity_bar(labels, colors, time_s, 7)
+    plt.show()
+    return labels, ratio_file, fig_scatter, pixel_points
 
-
-
+if __name__=="__main__":
+    main("cb46fd46", 7)
