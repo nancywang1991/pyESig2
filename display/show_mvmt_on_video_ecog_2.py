@@ -1,3 +1,4 @@
+__author__ = 'wangnxr'
 import subprocess as sp
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,14 +27,14 @@ output_file_loc = video_file_loc
 mvmt = pickle.load(open(mvmt_file_loc, "rb"))
 #pdb.set_trace()
 ##for m in range(0,mvmt.shape[0], 30):
-##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] > 5:        
+##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] > 5:
 ##        mvmt[m:m+30] = 1
-##    if np.where(mvmt[m:m+30] > 1.2)[0].shape[0] > 5:        
+##    if np.where(mvmt[m:m+30] > 1.2)[0].shape[0] > 5:
 ##        mvmt[m:m+30] = 2
-##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] < 5:        
+##    if np.where(mvmt[m:m+30] > 1.1)[0].shape[0] < 5:
 ##        mvmt[m:m+30] = 0
 mvmt2 = np.zeros(mvmt.shape[0])
-for m in range(0,mvmt.shape[0]-30):       
+for m in range(0,mvmt.shape[0]-30):
     mvmt2[m] = np.mean(mvmt[np.where(mvmt[m:m+30]>0)[0]+m])
 
 
@@ -50,7 +51,7 @@ for m in range(0,mvmt.shape[0]):
 
 
 cam = my_video_capture(video_file_loc + \
-    "Timm~Katrina_497a1ff8-9b6f-4868-bd2d-752c6b86e192_0145_2.avi", 30)
+    "_0145_2.avi", 30)
 frame_cnt = 1
 
 while cam.has_next():
@@ -64,7 +65,7 @@ while cam.has_next():
     marker_on = frame_cnt-15
     plt.plot(marker_on, 2, marker = '|', mew=2, markersize=100)
     plt.savefig(output_file_loc + "tmp.png", dpi = 100)
-    
+
 
     img = cam.read()
     graph = cv2.imread(output_file_loc + "tmp.png")
@@ -74,10 +75,7 @@ while cam.has_next():
     print frame_cnt
     plt.close('all')
 fileName, fileExt = os.path.splitext(video_file_loc + \
-            "Timm~Katrina_497a1ff8-9b6f-4868-bd2d-752c6b86e192_0145.avi")
+            "_0145.avi")
 cam.new_vid(fileName + "_3" + fileExt)
 cam.close()
 cv2.destroyAllWindows()
-    
-    
-
