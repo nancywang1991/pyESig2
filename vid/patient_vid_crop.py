@@ -41,7 +41,7 @@ def gen_cropped_frames(video_path, coords_path, save_path):
 	    future_coords = [np.array([int(n) for n in coords[frame_count+f_offset].split(",")]) for f_offset in xrange(5)]
         except IndexError:
             pdb.set_trace()
-        diff = np.mean(np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords))
+        diff = np.mean(np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords)
         if diff > 100:
             use_coord = cur_coord
         crop_coords_used.write(",".join([str(i) for i in use_coord]) + "\n")
@@ -86,17 +86,18 @@ def gen_cropped_vid(video_path, coords_path, save_path):
         use_coord = np.array([0,0,0,0])
 
     while vid.has_next():
-
         frame = vid.read()
         try:
             cur_coord = np.array([int(n) for n in coords[frame_count].split(",")])
+            future_coords = [np.array([int(n) for n in coords[frame_count+f_offset].split(",")]) for f_offset in xrange(5)]
         except IndexError:
             pdb.set_trace()
-        diff = np.sum(np.abs(cur_coord-use_coord))
-        if diff > 200:
+        diff = np.mean(np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords)
+        if diff > 100:
             use_coord = cur_coord
         crop_coords_used.write(",".join([str(i) for i in use_coord]) + "\n")
         frame_count += 1
+
         if sum(use_coord) > 0:
             output_vid.write(cv2.resize(frame[use_coord[2]:use_coord[3], use_coord[0]:use_coord[1]], (256, 256)))
         else:
