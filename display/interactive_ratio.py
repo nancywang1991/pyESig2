@@ -59,6 +59,8 @@ class MouseButtons:
     WHEEL_DOWN = 5
 
 def script_init(sbj_id, day, disconnect_file):
+    #Colors
+    green = (0,200,0)
     labels, ratios, fig, pixel_points = rc.main(sbj_id, day)
     all_markers = {}
     start_time, end_time, start, end = get_disconnected_times(disconnect_file)
@@ -75,13 +77,17 @@ def script_init(sbj_id, day, disconnect_file):
     renderer = canvas.get_renderer()
     raw_data = renderer.tostring_rgb()
 
-    window = pygame.display.set_mode((1400, 600), pygame.locals.DOUBLEBUF)
+    window = pygame.display.set_mode((1280, 480), pygame.locals.DOUBLEBUF)
     screen = pygame.display.get_surface()
 
     size = canvas.get_width_height()
 
     surf = pygame.image.fromstring(raw_data, size, "RGB")
     screen.blit(surf, (0,0))
+    pygame.draw.rect(screen, green,(0,0,80,40))
+    TextSurf, TextRect = text_objects("Restart", pygame.font.Font('freesansbold.ttf',20))
+    TextRect.center = ((40),(20))
+    screen.blit(TextSurf, TextRect)
     pygame.display.flip()
     return all_markers, screen
 
@@ -90,9 +96,9 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 def wait_screen(screen):
-    largeText = pygame.font.Font('freesansbold.ttf',80)
+    largeText = pygame.font.Font('freesansbold.ttf',60)
     TextSurf, TextRect = text_objects("Recalculating", largeText)
-    TextRect.center = ((800/2),(600/2))
+    TextRect.center = ((330),(250))
     screen.blit(TextSurf, TextRect)
     pygame.display.update()
 
@@ -134,6 +140,7 @@ def redraw(all_markers):
     labels = estimator.fit_predict(positions)
 
     fig, pixel_points, ax = rc.cluster_scatter(labels, positions, colors, size=1000/float(len(labels)))
+
     width, height = fig.canvas.get_width_height()
     all_markers_new = {}
 
@@ -162,6 +169,10 @@ def redraw(all_markers):
 
     surf = pygame.image.fromstring(raw_data, size, "RGB")
     screen.blit(surf, (0,0))
+    pygame.draw.rect(screen, (0, 200, 0),(0,0,80,40))
+    TextSurf, TextRect = text_objects("Restart", pygame.font.Font('freesansbold.ttf',20))
+    TextRect.center = ((40),(20))
+    screen.blit(TextSurf, TextRect)
     pygame.display.flip()
 
     return all_markers_new
@@ -180,13 +191,13 @@ def display_image(selected, video_loc, vid_start_end, disconnect_file):
         subprocess.call("ffmpeg -ss %i -i %s/%s_%i_%04i.avi -t 1 -f image2 -update 1 tmp.png" % (vid_time, video_loc, sbj_id, day, vid_counter), shell=True)
     #window = pygame.display.set_mode((1400, 600), pygame.locals.DOUBLEBUF)
     screen = pygame.display.get_surface()
-
-    surf = pygame.image.load("tmp.png")
-    os.remove("tmp.png")
-    screen.blit(surf, (600,0))
-    pygame.display.update()
-
-
+    try:
+        surf = pygame.image.load("tmp.png")
+        os.remove("tmp.png")
+        screen.blit(surf, (640,0))
+        pygame.display.update()
+    except:
+        print "image not found"
 
 def main(sbj_id, day, vid_start_end, disconnect_fldr, video_loc):
 
@@ -198,11 +209,13 @@ def main(sbj_id, day, vid_start_end, disconnect_fldr, video_loc):
         for event in ev:
             if event.type == pygame.MOUSEBUTTONUP and event.button==MouseButtons.LEFT:
                 wait_screen(screen)
-                selected = find_selected_marker(all_markers, pygame.mouse.get_pos())
-                #pdb.set_trace()
-                inactivate_markers(all_markers, selected.cluster_id)
-                all_markers = redraw(all_markers)
-                pygame.event.get()
+                if pygame.mouse.get_pos()[0] < 80 and pygame.mouse.get_pos()[1] < 40:
+                    all_markers, screen = script_init(sbj_id, day, disconnect_file)
+                else:
+                    selected = find_selected_marker(all_markers, pygame.mouse.get_pos())
+                    #pdb.set_trace()
+                    inactivate_markers(all_markers, selected.cluster_id)
+                    all_markers = redraw(all_markers)
             elif event.type == pygame.MOUSEBUTTONUP and event.button==MouseButtons.RIGHT:
                 selected = find_selected_marker(all_markers, pygame.mouse.get_pos())
                 display_image(selected, video_loc, vid_start_end, disconnect_file)
@@ -210,8 +223,8 @@ def main(sbj_id, day, vid_start_end, disconnect_fldr, video_loc):
 if __name__=="__main__":
     vid_start_end = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
     disconnect_fldr = "C:/Users/wangnxr/Documents/rao_lab/video_analysis/disconnect_times/"
-    video_loc = "E:/cb_7/"
-    sbj_id = "cb46fd46"
-    day = 7
+    video_loc = "E:/optical_flow_head_only/"
+    sbj_id = "e70923c4"
+    day = 4
     main(sbj_id, day, vid_start_end, disconnect_fldr,  video_loc)
 

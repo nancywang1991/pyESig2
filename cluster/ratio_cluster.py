@@ -40,6 +40,9 @@ def cluster_scatter(cluster, data, colors, size=0.1):
     for c in xrange(max(cluster)+1):
         cluster_ind = np.where(cluster==c)[0]
         points[cluster_ind,:] = ax.transData.transform(data[cluster_ind,:2])
+    ax.set_xlabel("Ratio %i:%i Hz" %(4, 9 ))
+    ax.set_ylabel("Ratio %i:%i Hz" %(25, 55))
+    ax.set_title("Clusters of ECoG power ratios")
     width, height = fig.canvas.get_width_height()
     points[:,1] = height - points[:,1]
     return fig, points, ax
@@ -56,7 +59,7 @@ def main(sbj_id, day):
     vid_start_end = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
     ratio_file_1 = pickle.load(open("E:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_0.p" %(sbj_id, day)))
     ratio_file_2 = pickle.load(open("E:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_1.p" % (sbj_id, day)))
-    ratio_file = np.hstack([ratio_file_1, ratio_file_2])
+    ratio_file = np.hstack([ratio_file_1[:-1000], ratio_file_2[:-1000]])
     estimator = KMeans(n_clusters, n_init=10, max_iter=1000)
     labels = estimator.fit_predict(ratio_file)
     fig_scatter, pixel_points, ax = cluster_scatter(labels, ratio_file_1, colors)

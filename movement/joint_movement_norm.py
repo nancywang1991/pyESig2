@@ -43,7 +43,10 @@ def normalize_to_neck(coords):
     return norm_coords
 
 def normalize_to_camera(coords, crop_coord):
-    rescale_factor = ((crop_coord[1]-crop_coord[0])/256.0, (crop_coord[3]-crop_coord[2])/256.0)
+    if sum(crop_coord) <= 0:
+        rescale_factor = (640/256.0, 480/256.0)
+    else:
+        rescale_factor = ((crop_coord[1]-crop_coord[0])/256.0, (crop_coord[3]-crop_coord[2])/256.0)
     norm_coords = [(coord[0]*rescale_factor[0] + crop_coord[0], coord[1]*rescale_factor[1] + crop_coord[2]) for coord in coords]
     return norm_coords
 
