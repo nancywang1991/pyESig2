@@ -1,12 +1,9 @@
-from pyESig.vid.my_video_capture import my_video_capture
-import glob
 import json
 import os
 import csv
 from datetime import time, datetime, timedelta
 import re
 import subprocess
-import pdb
 import cPickle as pickle
 import numpy as np
 import argparse
