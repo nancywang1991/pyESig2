@@ -94,7 +94,7 @@ if __name__ == "__main__":
    parser.add_argument('-f', '--disc_fldr', default = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\disconnect_times\\", help="Disconnect folder")
    parser.add_argument('-s', '--save', default = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\", help="Save directory" )
    parser.add_argument('-v', '--vid_folder', default = "E:\\", help="Video directory" )
-   parser.add_argument('-s', '--sbj_id', required=True, help="Subject id", type=str, nargs='+')
+   parser.add_argument('-sbj', '--sbj_id', required=True, help="Subject id", type=str, nargs='+')
    parser.add_argument('-d', '--days', required=True, help="Day of study", type=str, nargs='+')
    args = parser.parse_args()
    main(args.vid_folder, args.save, args.disc_fldr, args.sbj_id, args.days)
