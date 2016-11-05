@@ -67,16 +67,20 @@ def main(vid_folder, save_folder, disconnect_fldr, sbj_ids, days):
                    while os.path.exists(vid_name):
 
                        vid_len = timedelta(seconds = get_len(vid_name))
-                       vid_len -= timedelta(seconds=0.000040*vid_len.total_seconds())
-                       pos = check_disconnect(cur_time, timedelta(seconds = 2), start)
-                       for t in pos:
-                           cur_time += end[t] - start[t]
+                       vid_len -= timedelta(seconds=0.000041*vid_len.total_seconds())
+                       if vid_len > timedelta(seconds=2):
+                           pos = check_disconnect(cur_time, timedelta(seconds = 2), start)
+                           for t in pos:
+                               cur_time += end[t] - start[t]
 
                        timewriter.writerow([vid_name, cur_time.year, cur_time.month,
                            cur_time.day, cur_time.hour, cur_time.minute, cur_time.second, cur_time.microsecond])
 
                        video_start_times.append(cur_time)
-                       pos = check_disconnect(cur_time + timedelta(seconds = 2), vid_len- timedelta(seconds = 2), start)
+                       if vid_len > timedelta(seconds=2):
+                           pos = check_disconnect(cur_time + timedelta(seconds = 2), vid_len- timedelta(seconds = 2), start)
+                       else:
+                           pos = check_disconnect(cur_time , vid_len, start)
                        cur_time += vid_len
                        for t in pos:
                            cur_time += end[t] - start[t]

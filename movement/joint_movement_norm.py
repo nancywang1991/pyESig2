@@ -30,9 +30,10 @@ def calc_dist_vectors(a,b):
 
 def numerate_coords(coords):
     final_coords = []
+    #print coords.split(')\n')[0].split('),')
     for coord in coords.split(')\n')[0].split('),'):
         (x,y,c) = coord.split('(')[1].split(',')
-        final_coords.append((float(x),float(y)))
+        final_coords.append((float(x),float(y), float(c)))
     return final_coords
 
 def normalize_to_neck(coords):
@@ -47,7 +48,9 @@ def normalize_to_camera(coords, crop_coord):
         rescale_factor = (640/256.0, 480/256.0)
     else:
         rescale_factor = ((crop_coord[1]-crop_coord[0])/256.0, (crop_coord[3]-crop_coord[2])/256.0)
-    norm_coords = [(coord[0]*rescale_factor[0] + crop_coord[0], coord[1]*rescale_factor[1] + crop_coord[2]) for coord in coords]
+
+    norm_coords = [(coord[0]*rescale_factor[0] + crop_coord[0], coord[1]*rescale_factor[1] + crop_coord[2]) if coord[2] > 0.25 else (0,0) for coord in coords]
+
     return norm_coords
 
 def optical_flow_mvmt(frame, prev_frame, pose_pos):
