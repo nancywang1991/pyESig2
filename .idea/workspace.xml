@@ -49,8 +49,8 @@
       <file leaf-file-name="movement_video_data_gen.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/movement_video_data_gen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="53" column="82" selection-start-line="53" selection-start-column="82" selection-end-line="53" selection-end-column="82" />
+            <state relative-caret-position="753">
+              <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -791,13 +791,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00138" summary="improved pose_detection pipeline">
-      <created>1472503344212</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1472503344212</updated>
-    </task>
     <task id="LOCAL-00139" summary="improved pose_detection pipeline">
       <created>1472503436611</created>
       <option name="number" value="00139" />
@@ -1134,7 +1127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480472084904</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="joint movement updates&#10;">
+      <created>1480472418368</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1480472418368</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1565,8 +1565,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/movement_video_data_gen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="53" column="82" selection-start-line="53" selection-start-column="82" selection-end-line="53" selection-end-column="82" />
+        <state relative-caret-position="753">
+          <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
