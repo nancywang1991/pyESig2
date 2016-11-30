@@ -1,14 +1,12 @@
-from pyESig.vid.my_video_capture import my_video_capture
-import glob
+import cPickle as pickle
+import csv
 import json
 import os
-import csv
-from datetime import time, datetime, timedelta
-import re
 import subprocess
-import pdb
-import cPickle as pickle
-from pyESig2.vid.vid_start_end import get_disconnected_times
+from datetime import timedelta
+
+from vid.video_sync.vid_start_end import get_disconnected_times
+
 
 def get_len(filename):
     

@@ -1,6 +1,6 @@
 import numpy as np
 #import edflib.edfreader as edfreader
-import edflib._edflib as edfreader
+import pyedflib.edfreader as edfreader
 from pyESig2.freq.signal_filter import (butter_bandpass_filter, butter_bandstop_filter)
 import glob
 import pickle
@@ -20,9 +20,10 @@ def clean_signal(sig, samp_rate):
 #-------------------------------Main Function--------------------------------
 def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_channels):
 
-    neural_sig = edfreader.Edfreader(file)
-    samp_rate = int(neural_sig.samplefrequency(0))
-
+    neural_sig = edfreader.EdfReader(file)
+    samp_rate = 1000
+    if neural_sig.getSampleFrequency(0) < 999:
+        pdb.set_trace()
     window_size = int(samp_rate*win_size)
     step_size = int(samp_rate*step_size)
     buffer_size = step_size*100
@@ -44,7 +45,7 @@ def transform_file(f, file, f_lo, f_hi, win_size, step_size, save_file_loc, n_ch
                     chan_sig[c-1,:] = clean_sig[buffer_size:buffer_size*2]
 
                 for sub_chunk in xrange(0,buffer_size,step_size):
-                   if not os.path.isfile("%s%s_%i.p" % (save_file_loc, yah, cnt)):
+                   if not os.path.isfile("%s%s_%i.p" % (save_file_loc, f, cnt)):
                         for c in xrange(1, n_channels+1):
                             frequency[c-1,:] = (np.abs(np.fft.fft( chan_sig[c-1,sub_chunk:sub_chunk+window_size]))**2)[f_lo:f_hi]
 
@@ -73,7 +74,8 @@ files = glob.glob("%s%s\\*_%i.edf" % (args.eeg_fldr, args.subject_id, args.day))
 
 for file in files:
     if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
-	parent, num = file.split('_')
-    f, ext = num.split('.')
-    transform_file(f, file, args.f_lo, args.f_hi, args.win_size, args.step_size,
+        parent, num = file.split('_')
+        f, ext = num.split('.')
+        os.makedirs(args.save_fldr+args.subject_id + "\\")
+        transform_file(f, file, args.f_lo, args.f_hi, args.win_size, args.step_size,
                    args.save_fldr+args.subject_id+"\\", patient_channels[args.subject_id])

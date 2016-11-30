@@ -1,16 +1,12 @@
-import subprocess
-import pandas as pd
-import sys
-import pdb
-import numpy as np
-import cPickle as pickle
-from pyESig2.vid.vid_start_end import get_len
-import datetime, time
-import re
-import random
 import argparse
+import cPickle as pickle
 import glob
 import os
+
+import numpy as np
+import pandas as pd
+from vid.video_sync.vid_start_end import get_len
+
 
 #def getLength(filename):
 #    result = subprocess.Popen(["ffprobe", filename],

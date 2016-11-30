@@ -12,19 +12,15 @@ import matplotlib.backends.backend_agg as agg
 import pygame
 import pygame.locals
 import pyESig2.cluster.ratio_cluster as rc
-import matplotlib.pyplot as plt
 import pdb
 import numpy as np
 from sklearn.cluster import KMeans
 import matplotlib.cm as cm
-from pyESig2.vid.vid_time import get_disconnected_times
-from datetime import time, datetime, timedelta
+from datetime import timedelta
 from pyESig2.scripts.spectral_ratio_display import disconnected
 import cPickle as pickle
-import skvideo
 import subprocess
-import cv2
-from pyESig2.vid.vid_start_end import get_disconnected_times
+from vid.video_sync.vid_start_end import get_disconnected_times
 import os
 
 class Marker:
@@ -201,7 +197,7 @@ def display_image(selected, video_loc, vid_start_end, disconnect_file):
 
 def main(sbj_id, day, vid_start_end, disconnect_fldr, video_loc):
 
-    disconnect_file = "%s\\%s_%i.txt" % (disconnect_fldr, sbj_id, day)
+    disconnect_file = "%s/%s_%i.txt" % (disconnect_fldr, sbj_id, day)
     pygame.init()
     all_markers, screen = script_init(sbj_id, day, disconnect_file)
     while True:
@@ -221,9 +217,9 @@ def main(sbj_id, day, vid_start_end, disconnect_fldr, video_loc):
                 display_image(selected, video_loc, vid_start_end, disconnect_file)
 
 if __name__=="__main__":
-    vid_start_end = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
-    disconnect_fldr = "C:/Users/wangnxr/Documents/rao_lab/video_analysis/disconnect_times/"
-    video_loc = "E:/optical_flow_head_only/"
+    vid_start_end = "C:/Users/Nancy/OneDrive/Documents/Documents/rao_lab/video_analysis/vid_real_time/"
+    disconnect_fldr = "C:/Users/Nancy/OneDrive/Documents/Documents/rao_lab/video_analysis/disconnect_times/"
+    video_loc = "D:/optical_flow_head_only/"
     sbj_id = "e70923c4"
     day = 4
     main(sbj_id, day, vid_start_end, disconnect_fldr,  video_loc)

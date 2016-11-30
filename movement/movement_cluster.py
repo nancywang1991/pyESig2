@@ -3,19 +3,15 @@ mpl.use('Agg')
 import sys
 sys.path.append('/home/wangnxr/Documents/deeppose/tests')
 import numpy as np
-import csv
 import argparse
-import matplotlib.pyplot as plt
 import pickle
-import pdb
-import cv2
 import glob
 #from test_flic_dataset import draw_joints
 import os
 import subprocess
 from sklearn.cluster import KMeans
-from pyESig2.vid.vid_start_end import get_len
-from datetime import time, datetime, timedelta
+from vid.video_sync.vid_start_end import get_len
+from datetime import timedelta
 import shutil
 import scipy
 
