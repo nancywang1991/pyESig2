@@ -6,7 +6,7 @@ import numpy as np
 import os
 import pdb
 import matplotlib.pyplot as plt
-from pyESig2.vid.my_video_capture import my_video_capture
+from PyESig2.vid.my_video_capture import my_video_capture
 import cv2
 
 def scoring(truth, predicted):
