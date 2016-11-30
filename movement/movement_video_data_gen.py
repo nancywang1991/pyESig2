@@ -29,8 +29,8 @@ def scoring(truth, predicted):
 
 def main(mv_file, vid_file, day, sbj_id, vid_num, writer):
     mv_file = pickle.load(open(mv_file))
-    vid_file = my_video_capture(vid_file, 30)
     vid_name = vid_file.split("/")[-1].split('.')[0]
+    vid_file = my_video_capture(vid_file, 30)
     left_arm_mvmt = np.sum(mv_file[:,(2,4,6)], axis=1)
     right_arm_mvmt = np.sum(mv_file[:,(1,3,5)], axis=1)
     head_mvmt = mv_file[:,0]
