@@ -49,8 +49,8 @@
       <file leaf-file-name="movement_video_data_gen.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/movement_video_data_gen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            <state relative-caret-position="264">
+              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -789,13 +789,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00131" summary="improved pose_detection pipeline">
-      <created>1472501919089</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1472501919089</updated>
-    </task>
     <task id="LOCAL-00132" summary="improved pose_detection pipeline">
       <created>1472501960300</created>
       <option name="number" value="00132" />
@@ -1132,7 +1125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480469812252</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="joint movement updates&#10;">
+      <created>1480470930552</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1480470930552</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1563,8 +1563,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/movement_video_data_gen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        <state relative-caret-position="264">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
           <folding />
         </state>
       </provider>
