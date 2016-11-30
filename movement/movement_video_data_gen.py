@@ -47,15 +47,15 @@ def main(mv_file, vid_file, save_dir):
         img = vid_file.read()
         if np.all(left_arm_mvmt[f:f+5]>2):
             cv2.imwrite("%s/l_arm_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
-        elif np.all(left_arm_mvmt[f:f+5]>0) and np.all(left_arm_mvmt[f:f+5]<1):
+        elif np.all(left_arm_mvmt[f:f+5]>=0) and np.all(left_arm_mvmt[f:f+5]<1):
             cv2.imwrite("%s/l_arm_0/%s_%i.png" % (save_dir, vid_name, f-15), img)
         if np.all(right_arm_mvmt[f:f+5]>2):
             cv2.imwrite("%s/r_arm_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
-        elif np.all(right_arm_mvmt[f:f+5]>0) and np.all(right_arm_mvmt[f:f+5]<1):
+        elif np.all(right_arm_mvmt[f:f+5]>=0) and np.all(right_arm_mvmt[f:f+5]<1):
             cv2.imwrite("%s/r_arm_0/%s_%i.png" % (save_dir, vid_name, f-15), img)
-        if np.all(head_mvmt[f:f+5]>2):
+        if np.all(head_mvmt[f:f+5]>1):
             cv2.imwrite("%s/head_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
-        elif np.all(head_mvmt[f:f+5]>0) and np.all(head_mvmt[f:f+5]<1):
+        elif np.all(head_mvmt[f:f+5]>=0) and np.all(head_mvmt[f:f+5]<0.5):
             cv2.imwrite("%s/head_0/%s_%i.png" % (save_dir, vid_name, f-15), img)
 
 
