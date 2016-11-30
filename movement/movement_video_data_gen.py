@@ -43,7 +43,7 @@ def main(mv_file, vid_file, save_dir):
         os.makedirs(args.save_dir + "/l_arm_0")
         os.makedirs(args.save_dir + "/l_arm_1")
 
-    for f in range(15,len(mv_file)):
+    for f in range(15,len(mv_file), 5):
         img = vid_file.read()
         if np.all(left_arm_mvmt[f:f+5]>2):
             cv2.imwrite("%s/l_arm_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
