@@ -27,7 +27,7 @@ def scoring(truth, predicted):
 
     return [precision, recall, true/30.0]
 
-def main(mv_file, vid_file, day, sbj_id, vid_num, writer):
+def main(mv_file, vid_file, save_dir):
     mv_file = pickle.load(open(mv_file))
     vid_name = vid_file.split("/")[-1].split('.')[0]
     vid_file = my_video_capture(vid_file, 30)
@@ -46,17 +46,17 @@ def main(mv_file, vid_file, day, sbj_id, vid_num, writer):
     for f in range(15,len(mv_file)):
         img = vid_file.read()
         if left_arm_mvmt[f]>2:
-            cv2.imwrite("%s/l_arm_1/%s_%i.png" %(args.save_dir, vid_name, f), img)
+            cv2.imwrite("%s/l_arm_1/%s_%i.png" %(save_dir, vid_name, f), img)
         elif left_arm_mvmt[f]>0 and left_arm_mvmt[f]<1:
-            cv2.imwrite("%s/l_arm_0/%s_%i.png" % (args.save_dir, vid_name, f), img)
+            cv2.imwrite("%s/l_arm_0/%s_%i.png" % (save_dir, vid_name, f), img)
         if right_arm_mvmt[f]>2:
-            cv2.imwrite("%s/r_arm_1/%s_%i.png" %(args.save_dir, vid_name, f), img)
+            cv2.imwrite("%s/r_arm_1/%s_%i.png" %(save_dir, vid_name, f), img)
         elif right_arm_mvmt[f]>0 and right_arm_mvmt[f]<1:
-            cv2.imwrite("%s/r_arm_0/%s_%i.png" % (args.save_dir, vid_name, f), img)
+            cv2.imwrite("%s/r_arm_0/%s_%i.png" % (save_dir, vid_name, f), img)
         if head_mvmt[f]>2:
-            cv2.imwrite("%s/head_1/%s_%i.png" %(args.save_dir, vid_name, f), img)
+            cv2.imwrite("%s/head_1/%s_%i.png" %(save_dir, vid_name, f), img)
         elif head_mvmt[f]>0 and head_mvmt[f]<1:
-            cv2.imwrite("%s/head_0/%s_%i.png" % (args.save_dir, vid_name, f), img)
+            cv2.imwrite("%s/head_0/%s_%i.png" % (save_dir, vid_name, f), img)
 
 
 if __name__ == "__main__":
@@ -68,5 +68,5 @@ if __name__ == "__main__":
     for file in glob.glob(args.mv_dir + "/*.p"):
         sbj_id, day, vid_num, _ = file.split("/")[-1].split(".")[0].split("_")
         vid_name = "%s/%s_%s_%s.avi" %(args.vid_dir, sbj_id, day, vid_num)
-        main(file, args.vid_dir, day, sbj_id, vid_num, args.save_dir)
+        main(file, vid_name, args.save_dir)
 
