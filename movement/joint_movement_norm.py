@@ -103,7 +103,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
 
 
 def main(joints_file, save_folder, joints_dir):
-    filename = "_".join(joints_file.split('/')[-1].split('.')[0].split("_")[:3])
+    filename = "_".join(joints_file.split('\\')[-1].split('.')[0].split("_")[:3])
     try:
         crop_coords = [[int(coord) for coord in crop_coord.split(',')] for crop_coord in open("%s/crop_coords/%s" % (joints_dir, filename +'.txt')).readlines()]
     except IOError:
@@ -125,7 +125,7 @@ def main(joints_file, save_folder, joints_dir):
         prev_data = poses_normalized[r+1]
 
     movement = np.array(movement)
-    pickle.dump(np.array(movement), open('%s/%s_movement.p' % (save_folder, filename), "wb"))
+    pickle.dump(np.array(movement), open('%s\\%s_movement.p' % (save_folder, filename), "wb"))
     #Stich pose results into one video
     f, axes = plt.subplots(7, 1, sharex='col', figsize=(7, 9))
     plt.title("Joint movement over time for file %s" % (filename))
@@ -138,7 +138,7 @@ def main(joints_file, save_folder, joints_dir):
     axes[3].set_ylabel('Normalized distance')
 
     plt.tight_layout()
-    plt.savefig('%s/movement_fig_%s.png' % (save_folder, filename))
+    plt.savefig('%s\\movement_fig_%s.png' % (save_folder, filename))
     plt.close()
     plt.clf()
 if __name__ == "__main__":
@@ -146,5 +146,5 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--dir', required=True, help="Joint coordinate directory")
     parser.add_argument('-s', '--save', required=True, help="Save directory" )
     args = parser.parse_args()
-    for file in glob.glob(args.dir + "/*.txt"):
+    for file in glob.glob(args.dir + "\\*.txt"):
         main(file, args.save, args.dir)
