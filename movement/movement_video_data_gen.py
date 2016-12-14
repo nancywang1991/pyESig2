@@ -52,7 +52,7 @@ def main(mv_file, vid_file, save_dir):
         if np.all(head_mvmt[f:f+5]>1):
             cv2.imwrite("%s/head_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
     vid_file.rewind()
-    for f in range(15, len(mv_file), 60):
+    for f in range(16, len(mv_file), 60):
         vid_file.forward_to(f-15)
         img = vid_file.read()
         if np.all(left_arm_mvmt[f:f + 5] >= 0) and np.all(left_arm_mvmt[f:f + 5] < 0.1):

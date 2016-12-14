@@ -5,8 +5,8 @@ import os
 
 import numpy as np
 import pandas as pd
-from vid.video_sync.vid_start_end import get_len
-
+from pyESig2.vid.video_sync.vid_start_end import get_len
+import pdb
 
 #def getLength(filename):
 #    result = subprocess.Popen(["ffprobe", filename],
@@ -61,6 +61,20 @@ def convert_detailed_labels_to_array(labels, sbj_indexes, vid_length, tracks, pr
     labels_array[-1,:] = 1
     for track in xrange(len(tracks)-1):
         labels_array[-1,:] *= (1-labels_array[track])
+
+    return {'tracks':tracks, 'pretty_tracks': pretty_tracks, 'labels_array': labels_array}
+
+def convert_detailed_mvmt_labels_to_array(labels, sbj_indexes, vid_length, tracks, pretty_tracks):
+
+    labels_array=np.zeros(shape=(len(tracks), int(round(vid_length*30))))
+    for t in sbj_indexes:
+        track = labels.track[t]
+
+        ind = tracks.index(track)
+        start = int(round(float(labels.start[t])*30))
+        end = int(round(float(labels.end[t])*30))
+        labels_array[ind,start:end] = 1
+
 
     return {'tracks':tracks, 'pretty_tracks': pretty_tracks, 'labels_array': labels_array}
 
@@ -134,9 +148,28 @@ def extract_detailed_labels(sbj_id, day, labels_file, vid_start_end_folder, dst_
 
             pickle.dump(result, open(dst_folder + "\\" + sbj_id + "_" + day + "_" + file_num + ".p", "wb"))
 
+def extract_detailed_mvmt_labels(sbj_id, day, labels_file, vid_folder, dst_folder):
+
+    labels=pd.read_csv(labels_file, sep=' ', dtype=str)
+
+    tracks = ["Head", "Left.shoulder", "Left.elbow", "Left.wrist","Right.shoulder", "Right.elbow", "Right.wrist"]
+
+    pretty_tracks = tracks
+
+    for i in xrange(800):
+        file_num = "%s_%s_%s" %(sbj_id, day, str(i).zfill(4))
+        sbj_indexes = np.where(np.array(labels.filename)== file_num)[0]
+        #pdb.set_trace()
+        if sbj_indexes.shape[0] > 0:
+            vid_length = get_len("%s\\%s_%s_%04i.avi" % (vid_folder, sbj_id, day, i))
+            result = convert_detailed_mvmt_labels_to_array(labels,sbj_indexes, vid_length, tracks, pretty_tracks)
+
+            pickle.dump(result, open(dst_folder + "\\" + sbj_id + "_" + day + "_" + file_num + ".p", "wb"))
+
 def extract_reduced_labels(sbj_id, day, labels_file, vid_folder, dst_folder):
 
     labels=pd.read_csv(labels_file, sep=':', dtype=str)
+
     tracks = ["Laughing", "Movement.Head", "Movement.Other",
               "Movement.arm", "Speaking", "Multiple_people",
               "Sleeping","Eating", "Listening.Watching_Media",
@@ -184,13 +217,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dir', required=True, help="Label directory")
     parser.add_argument('-v', '--vid_dir', required=True, help="Video directory or video_start_time directory")
-    parser.add_argument('-sbj', '--sbj_id', help="subject ID")
-    parser.add_argument('-day', '--day', help="day", type=int)
+    #parser.add_argument('-sbj', '--sbj_id', help="subject ID")
+    #parser.add_argument('-day', '--day', help="day", type=int)
     parser.add_argument('-s', '--save', required=True, help="Save directory" )
     parser.add_argument('-m', '--mode', help="Mode of label extraction", default="detailed" )
     args = parser.parse_args()
-    for file in glob.glob(args.dir + "\\*"):
+    for file in glob.glob(args.dir + "\\*.txt"):
         #pdb.set_trace()
         sbj_id, day = file.split("\\")[-1].split(".")[0].split("_")
         if args.mode == "detailed":
-            extract_detailed_labels(sbj_id, day, file, args.vid_dir, args.save)
+            extract_detailed_mvmt_labels(sbj_id, day, file, args.vid_dir, args.save)
