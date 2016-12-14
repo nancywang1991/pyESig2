@@ -28,6 +28,7 @@ def scoring(truth, predicted):
 def main(mv_file, label_file, day, sbj_id, vid_num, writer):
     mv_file = pickle.load(open(mv_file))
     label_file = pickle.load(open(label_file))
+    legit = np.where((mv_file<40) & (mv_file>0))[0]
     left_arm_mvmt = np.sum(mv_file[:,(2,4,6)], axis=1) > 1
     right_arm_mvmt = np.sum(mv_file[:,(1,3,5)], axis=1) > 1
     head_mvmt = mv_file[:,0] > 0.5
@@ -36,9 +37,11 @@ def main(mv_file, label_file, day, sbj_id, vid_num, writer):
     pred_len = len(head_mvmt)
     print sbj_id
     print vid_num
-    writer.writerow([sbj_id, day, vid_num, "Head"] + scoring(label_file["labels_array"][label_file["pretty_tracks"].index("Head")][:pred_len], mv_file[:truth_len, 0]> 4))
-    writer.writerow([sbj_id, day, vid_num, "Left wrist"] + scoring(label_file["labels_array"][label_file["pretty_tracks"].index("Left.wrist")][:pred_len], mv_file[:truth_len, 1]> 3))
-    writer.writerow([sbj_id, day, vid_num, "Right wrist"] + scoring(label_file["labels_array"][label_file["pretty_tracks"].index("Right.wrist")][:pred_len], mv_file[:truth_len, 4]> 3))
+    pdb.set_trace()
+    writer.writerow([sbj_id, day, vid_num, "Head"] + scoring(label_file["labels_array"][label_file["pretty_tracks"].index("Head")][:pred_len][legit], mv_file[:truth_len, 0][legit]> 3))
+    writer.writerow([sbj_id, day, vid_num, "Left wrist"] + scoring(label_file["labels_array"][label_file["pretty_tracks"].index("Left.wrist")][:pred_len][legit], mv_file[:truth_len, 2][legit]> 3))
+    writer.writerow([sbj_id, day, vid_num, "Right wrist"] + scoring(label_file["labels_array"][label_file["pretty_tracks"].index("Right.wrist")][:pred_len][legit], mv_file[:truth_len, 1][legit]> 3))
+    writer.writerow([sbj_id, day, vid_num, "Eligible", len(legit)/float(len(mv_file))])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

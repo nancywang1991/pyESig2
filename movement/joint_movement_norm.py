@@ -19,7 +19,7 @@ joint_map = ['head', 'right wrist', 'left wrist', 'right elbow', 'left elbow',  
 def calc_dist(a,b):
     final_dist = []
     for i, coord in enumerate(a):
-        if np.all(coord > -1000) and np.all(a[i] > -1000):
+        if np.all(np.array(coord) > -1000) and np.all(np.array(a[i]) > -1000):
             final_dist.append(np.sqrt((coord[0]-b[i][0])**2 + (coord[1]-b[i][1])**2))
         else:
             final_dist.append(-1000)
@@ -28,7 +28,7 @@ def calc_dist(a,b):
 def calc_dist_vectors(a,b):
     final_dist = []
     for i, coord in enumerate(b):
-        if np.all(coord>-1000) and np.all(a[i]>-1000):
+        if np.all(np.array(coord)>-1000) and np.all(np.array(a[i])>-1000):
             final_dist.append(np.array((coord[0]-a[i][0], coord[1]-a[i][1])))
         else:
             final_dist.append(-1000)
