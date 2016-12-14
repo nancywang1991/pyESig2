@@ -19,6 +19,7 @@ joint_map = ['head', 'right wrist', 'left wrist', 'right elbow', 'left elbow',  
 def calc_dist(a,b):
     final_dist = []
     for i, coord in enumerate(a):
+        pdb.set_trace()
         if np.all(coord > -1000) and np.all(a[i] > -1000):
             final_dist.append(np.sqrt((coord[0]-b[i][0])**2 + (coord[1]-b[i][1])**2))
         else:
