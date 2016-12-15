@@ -16,20 +16,21 @@ class my_video_capture:
         self.file_loc = file_loc
         self.mode = mode
         self.frame_rate = frame_rate
+        self.pid = str( os.getpid() )
         if mode=="write":
             self.vid_dir=file_loc
-            if os.path.exists(self.vid_dir + slash + "tmp_" + mode):
-                shutil.rmtree(self.vid_dir + slash + "tmp_" + mode)
-            os.makedirs(self.vid_dir + slash + "tmp_" + mode)
+            if os.path.exists(self.vid_dir + slash + self.pid + "_tmp_" + mode):
+                shutil.rmtree(self.vid_dir + slash +  self.pid + "_tmp_" + mode)
+            os.makedirs(self.vid_dir + slash +  self.pid + "_tmp_" + mode)
         if mode=="read":
             self.vid_dir, self.vid_loc = os.path.split(file_loc)
-            if os.path.exists(self.vid_dir + slash + "tmp_" + mode):
-                shutil.rmtree(self.vid_dir + slash + "tmp_" + mode)
-            os.makedirs(self.vid_dir + slash + "tmp_" + mode)
+            if os.path.exists(self.vid_dir + slash +  self.pid + "_tmp_" + mode):
+                shutil.rmtree(self.vid_dir + slash +  self.pid + "_tmp_" + mode)
+            os.makedirs(self.vid_dir + slash +  self.pid + "_tmp_" + mode)
             subprocess.call("ffmpeg -i " + file_loc + " -f image2 -r " + \
                         str(frame_rate) + " " + self.vid_dir + slash + \
-                        "tmp_" + self.mode + slash + "%05d.png", shell=True)
-            self.total_frames = len(glob.glob(self.vid_dir + slash + "tmp_" + self.mode + slash + "*"))
+                            self.pid + "_tmp_" + self.mode + slash + "%05d.png", shell=True)
+            self.total_frames = len(glob.glob(self.vid_dir + slash +  self.pid + "_tmp_" + self.mode + slash + "*"))
 
         self.frame_num = 1
         self.isOpen = 1
@@ -41,12 +42,12 @@ class my_video_capture:
         return self.frame_num<self.total_frames
     
     def read(self):
-        img = cv2.imread(self.vid_dir + slash + "tmp_" + self.mode + slash + str(self.frame_num).zfill(5) + ".png")
+        img = cv2.imread(self.vid_dir + slash +  self.pid + "_tmp_" + self.mode + slash + str(self.frame_num).zfill(5) + ".png")
         self.frame_num += 1
         return img
 
     def write(self, img):
-        cv2.imwrite(self.vid_dir + slash + "tmp_" + self.mode + slash + str(self.frame_num).zfill(5) + ".png", img)
+        cv2.imwrite(self.vid_dir + slash +  self.pid + "_tmp_" + self.mode + slash + str(self.frame_num).zfill(5) + ".png", img)
         self.frame_num += 1
     
     def rewind(self):
@@ -60,15 +61,15 @@ class my_video_capture:
 
     def close(self):
         self.isOpen = 0
-        shutil.rmtree(self.vid_dir + slash + "tmp_" + self.mode)
+        shutil.rmtree(self.vid_dir + slash + self.pid + "_tmp_" + self.mode)
         self.frame_num = 1
 
     def new_vid(self, dst):
         subprocess.call("ffmpeg -start_number 1 -r " + str(self.frame_rate) + " -i " + self.vid_dir + slash + \
-                        "tmp_" + self.mode + slash + "%05d.png -vcodec libx264 " + dst, shell=True)
+                        self.pid + "_tmp_" + self.mode + slash + "%05d.png -vcodec libx264 " + dst, shell=True)
 
     def new_img_folder(self, dst):
-        for file in glob.glob(self.vid_dir + slash + "tmp_" + self.mode + slash + "*"):
+        for file in glob.glob(self.vid_dir + slash +  self.pid + "_tmp_" + self.mode + slash + "*"):
             if os.path.exists(dst + file.split("/")[-1]):
                 os.remove(dst + file.split("/")[-1])
             shutil.move(file, dst)
