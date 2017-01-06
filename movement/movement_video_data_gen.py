@@ -27,50 +27,90 @@ def scoring(truth, predicted):
 
     return [precision, recall, true/30.0]
 
-def main(mv_file, vid_file, save_dir):
+def main(mv_file, vid_file, save_dir, offset):
     mv_file = pickle.load(open(mv_file))
-    vid_name = vid_file.split("/")[-1].split('.')[0]
+    if np.sum(mv_file[np.where(mv_file>0)])<0.5*3000:
+        #Very little going on in this file
+        print vid_file
+        return
+    vid_name = os.path.split(vid_file)[-1].split('.')[0]
     vid_file = my_video_capture(vid_file, 30)
     left_arm_mvmt = np.sum(mv_file[:,(2,4,6)], axis=1)
     right_arm_mvmt = np.sum(mv_file[:,(1,3,5)], axis=1)
     head_mvmt = mv_file[:,0]
+    train_dir = os.path.join(save_dir, "train")
+    test_dir = os.path.join(save_dir, "test")
 
-    if not os.path.exists(args.save_dir + "/l_arm_1"):
-        os.makedirs(args.save_dir + "/head_0")
-        os.makedirs(args.save_dir + "/head_1")
-        os.makedirs(args.save_dir + "/r_arm_0")
-        os.makedirs(args.save_dir + "/r_arm_1")
-        os.makedirs(args.save_dir + "/l_arm_0")
-        os.makedirs(args.save_dir + "/l_arm_1")
+    if not os.path.exists(train_dir):
+        os.makedirs(train_dir)
+    if not os.path.exists(test_dir):
+        os.makedirs(test_dir)
+    if not os.path.exists(os.path.join(train_dir, "l_arm_1")):
+        os.makedirs(os.path.join(train_dir,"head_0"))
+        os.makedirs(os.path.join(train_dir,"head_1"))
+        os.makedirs(os.path.join(train_dir,"r_arm_0"))
+        os.makedirs(os.path.join(train_dir,"r_arm_1"))
+        os.makedirs(os.path.join(train_dir,"l_arm_0"))
+        os.makedirs(os.path.join(train_dir,"l_arm_1"))
+        os.makedirs(os.path.join(train_dir,"mv_1"))
+        os.makedirs(os.path.join(train_dir,"mv_0"))
 
-    for f in range(15,len(mv_file)):
+    if not os.path.exists(os.path.join(test_dir,"l_arm_1")):
+        os.makedirs(os.path.join(test_dir,"head_0"))
+        os.makedirs(os.path.join(test_dir,"head_1"))
+        os.makedirs(os.path.join(test_dir,"r_arm_0"))
+        os.makedirs(os.path.join(test_dir,"r_arm_1"))
+        os.makedirs(os.path.join(test_dir,"l_arm_0"))
+        os.makedirs(os.path.join(test_dir,"l_arm_1"))
+        os.makedirs(os.path.join(test_dir,"mv_1"))
+        os.makedirs(os.path.join(test_dir,"mv_0"))
+    if np.random.randint(100) < 75:
+        cur_dir = train_dir
+    else:
+        cur_dir = test_dir
+
+    for f in range(offset+1,len(mv_file), 10):
+        vid_file.forward_to(f - offset)
         img = vid_file.read()
-        if np.all(left_arm_mvmt[f:f+5]>2):
-            cv2.imwrite("%s/l_arm_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
-        if np.all(right_arm_mvmt[f:f+5]>2):
-            cv2.imwrite("%s/r_arm_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
-        if np.all(head_mvmt[f:f+5]>1):
-            cv2.imwrite("%s/head_1/%s_%i.png" %(save_dir, vid_name, f-15), img)
+
+        if np.mean(left_arm_mvmt[f:f+5]>5):
+            #cv2.imwrite(os.path.join(cur_dir, "l_arm_1", "%s_%i.png" %(vid_name,f - offset)), img)
+            cv2.imwrite(os.path.join(cur_dir, "mv_1", "%s_%i.png" % (vid_name, f - offset)), img)
+        elif np.mean(right_arm_mvmt[f:f+5]>5):
+            #cv2.imwrite(os.path.join(cur_dir, "r_arm_1", "%s_%i.png" % (vid_name, f - offset)), img)
+            cv2.imwrite(os.path.join(cur_dir, "mv_1", "%s_%i.png" % (vid_name, f - offset)), img)
+        elif np.mean(head_mvmt[f:f+5]>3):
+            #cv2.imwrite(os.path.join(cur_dir, "head_1", "%s_%i.png" % (vid_name, f - offset)), img)
+            cv2.imwrite(os.path.join(cur_dir, "mv_1", "%s_%i.png" % (vid_name, f - offset)), img)
     vid_file.rewind()
-    for f in range(16, len(mv_file), 60):
-        vid_file.forward_to(f-15)
+    for f in range(offset+1, len(mv_file), 60):
+        vid_file.forward_to(f-offset)
         img = vid_file.read()
-        if np.all(left_arm_mvmt[f:f + 5] >= 0) and np.all(left_arm_mvmt[f:f + 5] < 0.1):
-            cv2.imwrite("%s/l_arm_0/%s_%i.png" % (save_dir, vid_name, f - 15), img)
-        if np.all(right_arm_mvmt[f:f + 5] >= 0) and np.all(right_arm_mvmt[f:f + 5] < 0.1):
-            cv2.imwrite("%s/r_arm_0/%s_%i.png" % (save_dir, vid_name, f - 15), img)
-        if np.all(head_mvmt[f:f + 5] >= 0) and np.all(head_mvmt[f:f + 5] < 0.1):
-            cv2.imwrite("%s/head_0/%s_%i.png" % (save_dir, vid_name, f - 15), img)
+        flag = 0
 
+        if np.all(left_arm_mvmt[f:f+5] >= 0) and np.mean(left_arm_mvmt[f:f + 5]) < 1:
+            #cv2.imwrite(os.path.join(cur_dir, "l_arm_0", "%s_%i.png" % (vid_name, f - offset)), img)
+            flag+=1
+        if np.all(right_arm_mvmt[f:f + 5] >= 0) and np.mean(right_arm_mvmt[f:f + 5]) < 1:
+            #cv2.imwrite(os.path.join(cur_dir, "r_arm_0", "%s_%i.png" % (vid_name, f - offset)), img)
+            flag+=1
+        if np.all(head_mvmt[f:f + 5] >= 0) and np.mean(head_mvmt[f:f + 5]) < 1:
+            #cv2.imwrite(os.path.join(cur_dir, "head_0", "%s_%i.png" % (vid_name, f - offset)), img)
+            flag+=1
+        if flag==3:
+            cv2.imwrite(os.path.join(cur_dir, "mv_0", "%s_%i.png" % (vid_name, f - offset)), img)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-m', '--mv_dir', required=True, help="Joint movement directory")
-    parser.add_argument('-l', '--vid_dir', required=True, help="video directory")
+    parser.add_argument('-v', '--vid_dir', required=True, help="video directory")
     parser.add_argument('-s', '--save_dir', required=True, help="Save directory")
+    parser.add_argument('-o', '--offset', default=15, type=int, help="how many frames into the future")
     args = parser.parse_args()
-    for file in glob.glob(args.mv_dir + "/*.p"):
-        sbj_id, day, vid_num, _ = file.split("/")[-1].split(".")[0].split("_")
-        vid_name = "%s/%s_%s_%s.avi" %(args.vid_dir, sbj_id, day, vid_num)
-        main(file, vid_name, args.save_dir)
+
+    for file in sorted(glob.glob(args.mv_dir + "/*.p")):
+        #pdb.set_trace()
+        sbj_id, day, vid_num, _ = os.path.split(file)[-1].split(".")[0].split("_")
+        vid_name = os.path.join(args.vid_dir, "%s_%s_%s.avi" %( sbj_id, day, vid_num))
+        main(file, vid_name, args.save_dir, args.offset)
 

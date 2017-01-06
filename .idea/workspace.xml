@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movement/joint_movement_norm.py" afterPath="$PROJECT_DIR$/movement/joint_movement_norm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/annotation/extract_labels.py" afterPath="$PROJECT_DIR$/annotation/extract_labels.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movement/movement_accuracy.py" afterPath="$PROJECT_DIR$/movement/movement_accuracy.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movement/movement_video_data_gen.py" afterPath="$PROJECT_DIR$/movement/movement_video_data_gen.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/my_video_capture.py" afterPath="$PROJECT_DIR$/vid/my_video_capture.py" />
     </list>
     <ignored path="pyESig2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            <state relative-caret-position="1617">
+              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -38,8 +40,8 @@
       <file leaf-file-name="movement_accuracy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/movement/movement_accuracy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+            <state relative-caret-position="594">
+              <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -50,8 +52,8 @@
       <file leaf-file-name="extract_labels.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotation/extract_labels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1715">
-              <caret line="146" column="97" selection-start-line="146" selection-start-column="96" selection-end-line="146" selection-end-column="97" />
+            <state relative-caret-position="5478">
+              <caret line="166" column="56" selection-start-line="166" selection-start-column="56" selection-end-line="166" selection-end-column="56" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -59,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="movement_video_data_gen.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="movement_video_data_gen.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/movement_video_data_gen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1059">
-              <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+            <state relative-caret-position="396">
+              <caret line="72" column="39" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -74,8 +76,8 @@
       <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2013">
-              <caret line="67" column="78" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
+            <state relative-caret-position="1450">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -177,7 +179,6 @@
         <option value="$PROJECT_DIR$/display/show_mvmt_on_video_ecog.py" />
         <option value="$PROJECT_DIR$/display/show_mvmt_on_video.py" />
         <option value="$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py" />
-        <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_display.py" />
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
         <option value="$PROJECT_DIR$/movement/movement_cluster.py" />
@@ -188,19 +189,20 @@
         <option value="$PROJECT_DIR$/annotation/vid_conversion.py" />
         <option value="$PROJECT_DIR$/display/interactive_ratio.py" />
         <option value="$PROJECT_DIR$/cluster/ratio_cluster.py" />
-        <option value="$PROJECT_DIR$/movement/movement_video_data_gen.py" />
-        <option value="$PROJECT_DIR$/annotation/extract_labels.py" />
         <option value="$PROJECT_DIR$/vid/video_sync/rename_vid_files.py" />
         <option value="$PROJECT_DIR$/vid/video_sync/vid_start_end.py" />
-        <option value="$PROJECT_DIR$/movement/movement_accuracy.py" />
         <option value="$PROJECT_DIR$/movement/joint_movement_norm.py" />
+        <option value="$PROJECT_DIR$/annotation/extract_labels.py" />
+        <option value="$PROJECT_DIR$/movement/movement_accuracy.py" />
+        <option value="$PROJECT_DIR$/vid/my_video_capture.py" />
+        <option value="$PROJECT_DIR$/movement/movement_video_data_gen.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-14" />
     <option name="y" value="1" />
-    <option name="width" value="3844" />
+    <option name="width" value="3812" />
     <option name="height" value="2073" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -787,13 +789,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00143" summary="improved pose_detection pipeline">
-      <created>1472504277740</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1472504277740</updated>
-    </task>
     <task id="LOCAL-00144" summary="improved pose_detection pipeline">
       <created>1472504606666</created>
       <option name="number" value="00144" />
@@ -1130,7 +1125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481069650425</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="joint movement fix&#10;">
+      <created>1481759820401</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1481759820401</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1143,10 +1145,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-14" y="1" width="3844" height="2073" extended-state="0" />
+    <frame x="-14" y="1" width="3812" height="2073" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2295383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25142857" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1208,7 +1210,8 @@
     <MESSAGE value="heatmap data processing&#10;" />
     <MESSAGE value="joint movement updates&#10;" />
     <MESSAGE value="video syncing updates&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="video syncing updates&#10;" />
+    <MESSAGE value="joint movement fix&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="joint movement fix&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1217,13 +1220,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/preprocess/misc_info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/audio/audio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1475,14 +1471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2013">
-          <caret line="67" column="78" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/annotation/vid_conversion.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1521,10 +1509,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1617">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/extract_detection_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1450">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/movement/movement_accuracy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/annotation/extract_labels.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1715">
-          <caret line="146" column="97" selection-start-line="146" selection-start-column="96" selection-end-line="146" selection-end-column="97" />
+        <state relative-caret-position="5478">
+          <caret line="166" column="56" selection-start-line="166" selection-start-column="56" selection-end-line="166" selection-end-column="56" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -1533,29 +1555,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/movement_video_data_gen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1059">
-          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+        <state relative-caret-position="396">
+          <caret line="72" column="39" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/movement/movement_accuracy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>

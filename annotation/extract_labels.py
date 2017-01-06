@@ -164,7 +164,7 @@ def extract_detailed_mvmt_labels(sbj_id, day, labels_file, vid_folder, dst_folde
             vid_length = get_len("%s\\%s_%s_%04i.avi" % (vid_folder, sbj_id, day, i))
             result = convert_detailed_mvmt_labels_to_array(labels,sbj_indexes, vid_length, tracks, pretty_tracks)
 
-            pickle.dump(result, open(dst_folder + "\\" + sbj_id + "_" + day + "_" + file_num + ".p", "wb"))
+            pickle.dump(result, open(dst_folder + "\\" + file_num + ".p", "wb"))
 
 def extract_reduced_labels(sbj_id, day, labels_file, vid_folder, dst_folder):
 
