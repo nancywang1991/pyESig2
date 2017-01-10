@@ -16,7 +16,7 @@ def main(args, password):
             fnum = fname.split("_")[-1]
             #Patient detection
             subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
-            subprocess.call('openssl enc -d -des -pass:%s -in %s -out %s' %(password, file, file[:-4]), shell=True)
+            subprocess.call('openssl enc -d -des -pass pass:%s -in %s -out %s' %(password, file, file[:-4]), shell=True)
             os.chdir(args.dark_home)
             subprocess.call('%s/darknet yolo demo %s %s %s' %
                         (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4]), shell=True)
@@ -27,7 +27,7 @@ def main(args, password):
         #shutil.move("%s/tmp/coords.txt" %(args.dark_home), '%s/%s.txt' % (args.save, fname))
 
         for file in glob.glob("%s/*.avi" % args.save):
-            subprocess.call('openssl enc -des -pass:%s -in %s -out %s' % (password, file, file + ".enc"), shell=True)
+            subprocess.call('openssl enc -des -pass pass:%s -in %s -out %s' % (password, file, file + ".enc"), shell=True)
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
