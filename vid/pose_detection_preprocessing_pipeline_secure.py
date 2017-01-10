@@ -15,7 +15,7 @@ def main(args, password):
             fname = file.split('/')[-1].split('.')[0]
             fnum = fname.split("_")[-1]
             #Patient detection
-            subprocess.call('wipe %s/tmp/*' % args.dark_home, shell=True)
+            subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
             subprocess.call('openssl enc -d -des -pass:%s -in %s -out %s' %(password, file, file[:-4]), shell=True)
             os.chdir(args.dark_home)
             subprocess.call('%s/darknet yolo demo %s %s %s' %
@@ -23,7 +23,7 @@ def main(args, password):
 
         # Move files over to videobase
         gen_cropped_vid(file[:-4],"%s/tmp/coords.txt" %(args.dark_home), '%s/' % (args.save))
-        subprocess.call('wipe %s' % file[:-4], shell=True)
+        subprocess.call('rm %s' % file[:-4], shell=True)
         #shutil.move("%s/tmp/coords.txt" %(args.dark_home), '%s/%s.txt' % (args.save, fname))
 
         for file in glob.glob("%s/*.avi" % args.save):
