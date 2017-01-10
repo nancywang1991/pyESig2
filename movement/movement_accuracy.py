@@ -17,20 +17,20 @@ def detect_breaks(legit):
     return breaks
 
 def scoring(truth, predicted_in, legit):
-    breaks = detect_breaks(legit)
-    for i, ind in enumerate(breaks[:-1]):
-        if len(predicted_in[breaks[i]+1:breaks[i+1]])> 50:
-            predicted_in[breaks[i]+1:breaks[i+1]] = savgol_filter(predicted_in[breaks[i]+1:breaks[i+1]], 31, 2)
-        elif len(predicted_in[breaks[i]+1:breaks[i+1]])> 10:
-            predicted_in[breaks[i]+1:breaks[i+1]] = savgol_filter(predicted_in[breaks[i]+1:breaks[i+1]], 5, 2)
-    # plt.plot(legit/30.0, truth*15, label="truth")
-    # plt.plot(legit/30.0, predicted_in, label="predicted")
-    # plt.plot(legit/30.0, np.zeros(len(legit))+0.75)
-    # plt.ylim([0,20])
-    # plt.legend()
-    # plt.show()
+    #breaks = detect_breaks(legit)
+    #for i, ind in enumerate(breaks[:-1]):
+    #    if len(predicted_in[breaks[i]+1:breaks[i+1]])> 50:
+    #        predicted_in[breaks[i]+1:breaks[i+1]] = savgol_filter(predicted_in[breaks[i]+1:breaks[i+1]], 31, 2)
+    #    elif len(predicted_in[breaks[i]+1:breaks[i+1]])> 10:
+    #        predicted_in[breaks[i]+1:breaks[i+1]] = savgol_filter(predicted_in[breaks[i]+1:breaks[i+1]], 5, 2)
+    #plt.plot(legit/30.0, truth*15, label="truth")
+    #plt.plot(legit/30.0, predicted_in, label="predicted")
+    #plt.plot(legit/30.0, np.zeros(len(legit))+0.6)
+    #plt.ylim([0,20])
+    #plt.legend()
+    #plt.show()
 
-    pred_locs = np.where(predicted_in>0.75)[0]
+    pred_locs = np.where(predicted_in>0.5)[0]
     predicted = np.zeros(len(predicted_in))
     predicted[pred_locs] = 1
     for loc in pred_locs:
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     parser.add_argument('-l', '--label_dir', required=True, help="Manual labels directory")
     parser.add_argument('-s', '--save_dir', required=True, help="Save directory")
     args = parser.parse_args()
-    write_file = open("%s\\accuracy_5.csv" % (args.save_dir), "wb")
+    write_file = open("%s\\%s_accuracy.csv" % (args.save_dir, args.mv_dir.split("\\")[-1].split("_")[0]), "wb")
     writer = csv.writer(write_file)
     writer.writerow(["sbj_id", "day", "vid_num", "Body part", "Eligible","Precision", "Recall", "Movement_secs"])
     scores = []

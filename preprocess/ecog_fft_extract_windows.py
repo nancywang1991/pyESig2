@@ -71,11 +71,12 @@ parser.add_argument('-s_size', '--step_size', type=float, help="Number of second
 args = parser.parse_args()
 
 files = glob.glob("%s%s\\*_%i.edf" % (args.eeg_fldr, args.subject_id, args.day))
-
+#pdb.set_trace()
 for file in files:
     if not (file[-4:]=="misc" or file[-4:]=="Misc" or file[-5:]=="other"):
         parent, num = file.split('_')
         f, ext = num.split('.')
-        os.makedirs(args.save_fldr+args.subject_id + "\\")
+        if not os.path.exists(args.save_fldr+args.subject_id + "\\"):
+            os.makedirs(args.save_fldr+args.subject_id + "\\")
         transform_file(f, file, args.f_lo, args.f_hi, args.win_size, args.step_size,
                    args.save_fldr+args.subject_id+"\\", patient_channels[args.subject_id])

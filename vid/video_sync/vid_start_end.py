@@ -51,7 +51,7 @@ def check_disconnect(cur_time, vid_len, start):
     return disconnections
 
 
-def main(vid_folder, save_folder, disconnect_fldr, sbj_ids, days, vid_offset=0.000024):
+def main(vid_folder, save_folder, disconnect_fldr, sbj_ids, days, vid_offset=0.000035):
     for sbj_id in sbj_ids:
         for day in days:
             disconnect_file= os.path.normpath("%s/%s_%s.txt" %(disconnect_fldr, sbj_id, day))
