@@ -26,9 +26,9 @@ def main(args, password):
         subprocess.call('rm %s' % file[:-4], shell=True)
         #shutil.move("%s/tmp/coords.txt" %(args.dark_home), '%s/%s.txt' % (args.save, fname))
 
-        for file in glob.glob("%s/*.avi" % args.save):
+        for file in glob.glob("%s/*.mp4" % args.save):
             subprocess.call('openssl enc -des -pass pass:%s -in %s -out %s' % (password, file, file + ".enc"), shell=True)
-
+            subprocess.call('rm %s' % file, shell=True)
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-home', '--home', help="Home", default="/home/wangnxr/Documents/")
