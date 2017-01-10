@@ -36,7 +36,7 @@ if __name__== "__main__":
     parser.add_argument('-s', '--save', required=True, help="Save Directory" )
     parser.add_argument('-dark', '--dark_home', default='/home/wangnxr/Documents/darknet/', help='Darknet home' )
     parser.add_argument('-w', '--yolo_weights',
-                        default = '/home/wangnxr/Documents/darknet/model/yolo_patient_mod_23000.weights',
+                        default = '/home/wangnxr/Documents/darknet/models/yolo_patient_mod_23000.weights',
                         help = 'darknet yolo weights')
     parser.add_argument('-c', '--yolo_config',
                         default = '/home/wangnxr/Documents/darknet/cfg/yolo_patient_mod.cfg',
