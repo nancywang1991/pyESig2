@@ -36,12 +36,13 @@ def gen_cropped_frames(video_path, coords_path, save_path):
     while vid.has_next():
 
         frame = vid.read()
+        cur_coord = np.array([int(n) for n in coords[frame_count].split(",")])
         try:
-            cur_coord = np.array([int(n) for n in coords[frame_count].split(",")])
-	    future_coords = [np.array([int(n) for n in coords[frame_count+f_offset].split(",")]) for f_offset in xrange(5)]
+            future_coords = [np.array([int(n) for n in coords[frame_count + f_offset].split(",")]) for f_offset in
+                         xrange(5)]
         except IndexError:
-            pdb.set_trace()
-        
+            print "out of coords"
+
         diff = np.mean(np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords)
         if diff > 100:
             use_coord = cur_coord
