@@ -12,14 +12,21 @@ import glob
 
 def get_len(filename):
 
+    """
+    Returns the length of file in filename based on values from ffprobe
+    """
+
     result = subprocess.Popen(["ffprobe", filename, '-print_format', 'json', '-show_streams', '-loglevel', 'quiet'],
                               stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
     result = json.loads(result.stdout.read())
-    #print result['streams'][0]
-    #pdb.set_trace()
     return float(result['streams'][0]['duration'])
 
 def get_disconnected_times(disconnect_file_loc):
+
+    """
+    Returns all times where there as a disconnection in the video files as indicated by disconnect_file_loc
+    """
+
     disconnect_info = open(disconnect_file_loc, "rb")
     start = []
     end = []
@@ -43,6 +50,11 @@ def get_disconnected_times(disconnect_file_loc):
     return start_time, end_time, start, end
 
 def check_disconnect(cur_time, vid_len, start):
+
+    """
+    Returns the start time of all disconnections between cur_time and cur_time+vid_len.
+    """
+
     disconnections = []
     for i, t in enumerate(start):
         if (t>=cur_time and t<=(cur_time + vid_len)):
@@ -54,54 +66,44 @@ def check_disconnect(cur_time, vid_len, start):
 def main(vid_folder, save_folder, disconnect_fldr, sbj_ids, days, vid_offset=0.000035):
     for sbj_id in sbj_ids:
         for day in days:
-            disconnect_file= os.path.normpath("%s/%s_%s.txt" %(disconnect_fldr, sbj_id, day))
-            if os.path.isfile(disconnect_file):
-                print disconnect_file
-                start_time, end_time, start, end = get_disconnected_times(disconnect_file)
-                vid_count = 0
-                cur_time = start_time
+            disconnect_file=os.path.normpath("%s/%s_%s.txt" %(disconnect_fldr, sbj_id, day))
+            print disconnect_file
+            start_time, end_time, start, end = get_disconnected_times(disconnect_file)
+            cur_time = start_time
 
-                vid_name = glob.glob(os.path.normpath("%s/%s/%s_%s/*_%04i.avi" %(vid_folder, sbj_id, sbj_id, day, vid_count)))[0]
-                vid_de_id_name = "%s_%s_%04i.avi" % (sbj_id, day, vid_count)
-                with open(os.path.normpath("%s/%s_%s.csv" %(save_folder, sbj_id, day)), "wb") as csvfile:
-                    timewriter = csv.writer(csvfile)
-                    pos = check_disconnect(cur_time, timedelta(seconds = 1), start)
-                    for t in pos:
-                        cur_time += end[t] - start[t]
-                    video_start_times = []
-                    video_end_times = []
-                    while os.path.exists(vid_name):
-                        #pdb.set_trace()
-                        vid_len = timedelta(seconds = get_len(vid_name))
-                        vid_len -= timedelta(seconds=vid_offset*vid_len.total_seconds())
-                        if vid_len > timedelta(seconds=2):
-                            pos = check_disconnect(cur_time, timedelta(seconds = 2), start)
-                            for t in pos:
-                                cur_time += end[t] - start[t]
+            vid_names = sorted(glob.glob(os.path.normpath("%s/%s/%s_%s/*.avi" %(vid_folder, sbj_id, sbj_id, day,))))
 
-                        timewriter.writerow([vid_de_id_name, cur_time.year, cur_time.month,
-                                             cur_time.day, cur_time.hour, cur_time.minute, cur_time.second, cur_time.microsecond])
-
-                        video_start_times.append(cur_time)
-                        if vid_len > timedelta(seconds=2):
-                            pos = check_disconnect(cur_time + timedelta(seconds = 2), vid_len- timedelta(seconds = 2), start)
-                        else:
-                            pos = check_disconnect(cur_time , vid_len, start)
-                        cur_time += vid_len
+            with open(os.path.normpath("%s/%s_%s.csv" %(save_folder, sbj_id, day)), "wb") as csvfile:
+                timewriter = csv.writer(csvfile)
+                pos = check_disconnect(cur_time, timedelta(seconds = 1), start)
+                for t in pos:
+                    cur_time += end[t] - start[t]
+                video_start_times = []
+                video_end_times = []
+                for vid_name in vid_names:
+                    #pdb.set_trace()
+                    vid_count = int(os.path.basename(vid_name).split("_")[-1].split(".")[0])
+                    vid_de_id_name = "%s_%s_%04i.avi" % (sbj_id, day, vid_count)
+                    vid_len = timedelta(seconds = get_len(vid_name))
+                    vid_len -= timedelta(seconds=vid_offset*vid_len.total_seconds())
+                    if vid_len > timedelta(seconds=2):
+                        pos = check_disconnect(cur_time, timedelta(seconds = 2), start)
                         for t in pos:
                             cur_time += end[t] - start[t]
 
-                        video_end_times.append(cur_time)
-                        vid_count += 1
-                        try:
-                            vid_name = glob.glob(os.path.normpath("%s/%s/%s_%s/*_%04i.avi" % (vid_folder, sbj_id, sbj_id, day, vid_count)))[0]
-                            vid_de_id_name = "%s_%s_%04i.avi" % (sbj_id, day, vid_count)
-                        except IndexError:
-                            break
-                    pos = check_disconnect(cur_time, timedelta(seconds = 1), start)
+                    timewriter.writerow([vid_de_id_name, cur_time.year, cur_time.month,
+                                        cur_time.day, cur_time.hour, cur_time.minute, cur_time.second, cur_time.microsecond])
+
+                    video_start_times.append(cur_time)
+                    pos = check_disconnect(cur_time , vid_len, start)
+                    cur_time += vid_len
                     for t in pos:
                         cur_time += end[t] - start[t]
+
+                    video_end_times.append(cur_time)
+
                     result = {"start": np.array(video_start_times), "end": np.array(video_end_times)}
+
                 print result["end"][-1] - end_time
                 pickle.dump(result, open(os.path.normpath("%s/%s_%s.p" %(save_folder, sbj_id, day)), "wb"))
 

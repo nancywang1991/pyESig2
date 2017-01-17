@@ -93,7 +93,7 @@ def gen_cropped_vid(video_path, coords_path, save_path):
             cur_coord = np.array([int(n) for n in coords[frame_count].split(",")])
             future_coords = [np.array([int(n) for n in coords[frame_count+f_offset].split(",")]) for f_offset in xrange(5)]
         except IndexError:
-            pdb.set_trace()
+            pass
        
 	diff = np.mean([np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords])
         if diff > 100:
