@@ -67,8 +67,8 @@
       <file leaf-file-name="pose_detection_preprocessing_pipeline_secure.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+            <state relative-caret-position="602">
+              <caret line="24" column="93" selection-start-line="24" selection-start-column="93" selection-end-line="24" selection-end-column="93" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -780,13 +780,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00155" summary="improved pose_detection pipeline">
-      <created>1472506746362</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1472506746362</updated>
-    </task>
     <task id="LOCAL-00156" summary="improved pose_detection pipeline">
       <created>1472506920258</created>
       <option name="number" value="00156" />
@@ -1123,7 +1116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484623292567</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
+      <created>1484635953010</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1484635953010</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1560,8 +1560,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+        <state relative-caret-position="602">
+          <caret line="24" column="93" selection-start-line="24" selection-start-column="93" selection-end-line="24" selection-end-column="93" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
