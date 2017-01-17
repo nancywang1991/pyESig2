@@ -10,7 +10,7 @@ import getpass
 def main(args, password):
 
     for file in sorted(glob.glob('%s/*.avi.enc' % args.dir)):
-        if not args.use_prev:
+        if hasattr(args, "use_prev"):
             print file
             fname = file.split('/')[-1].split('.')[0]
             fnum = fname.split("_")[-1]
@@ -46,7 +46,7 @@ if __name__== "__main__":
     parser.add_argument('-gpu', '--gpu_id', default=0, type=int, help = "which gpu to use")
     parser.add_argument('-pass', '--password', help="password for secure processing")
     args = parser.parse_args()
-    if not args.password:
+    if not hasattr(args, "password"):
         password = getpass.getpass()
 
     main(args, password)

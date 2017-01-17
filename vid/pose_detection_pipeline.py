@@ -34,6 +34,7 @@ if __name__== "__main__":
                         default='/home/wangnxr/Documents/darknet/cfg/yolo_patient_mod.cfg',
                         help='darknet yolo config')
     parser.add_argument('-gpu', '--gpu_id', default=0, type=int, help = "which gpu to use")
+    parser.add_argument('-use_prev','--use_prev', default=0, help = "use previous?")
     args = parser.parse_args()
     parser.add_argument('-pass', '--password', help="Password for secure processing")
     args = parser.parse_args()

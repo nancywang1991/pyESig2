@@ -4,6 +4,7 @@
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" afterPath="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py" afterPath="$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py" />
     </list>
     <ignored path="pyESig2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pose_detection_preprocessing_pipeline_secure.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pose_detection_preprocessing_pipeline_secure.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="333">
+              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -79,19 +80,21 @@
       <file leaf-file-name="patient_vid_crop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1018">
-              <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+            <state relative-caret-position="414">
+              <caret line="85" column="10" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pose_detection_pipeline.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pose_detection_pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-              <folding />
+            <state relative-caret-position="1221">
+              <caret line="37" column="8" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -182,9 +185,9 @@
         <option value="$PROJECT_DIR$/movement/joint_movement_norm.py" />
         <option value="$PROJECT_DIR$/util/encrypt_files.py" />
         <option value="$PROJECT_DIR$/vid/video_sync/vid_start_end.py" />
-        <option value="$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py" />
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
         <option value="$PROJECT_DIR$/vid/pose_detection_pipeline.py" />
+        <option value="$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py" />
       </list>
     </option>
   </component>
@@ -778,13 +781,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00152" summary="improved pose_detection pipeline">
-      <created>1472506138915</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1472506138915</updated>
-    </task>
     <task id="LOCAL-00153" summary="improved pose_detection pipeline">
       <created>1472506280238</created>
       <option name="number" value="00153" />
@@ -1121,7 +1117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484621618228</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
+      <created>1484622773077</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1484622773077</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1514,14 +1517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mirror_files.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vid/video_sync/vid_start_end.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="715">
@@ -1530,10 +1525,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
+    <entry file="file://$PROJECT_DIR$/scripts/mirror_files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1018">
-          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1546,21 +1541,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py">
+    <entry file="file://$PROJECT_DIR$/vid/patient_vid_crop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="414">
+          <caret line="85" column="10" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1221">
+          <caret line="37" column="8" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="8" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-          <folding />
+        <state relative-caret-position="333">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
