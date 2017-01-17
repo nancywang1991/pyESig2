@@ -95,7 +95,7 @@ def gen_cropped_vid(video_path, coords_path, save_path):
         except IndexError:
             pass
        
-	diff = np.mean([np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords])
+	    diff = np.mean([np.sum(np.abs(future_coord-use_coord)) for future_coord in future_coords])
         if diff > 100:
             use_coord = cur_coord
         crop_coords_used.write(",".join([str(i) for i in use_coord]) + "\n")
