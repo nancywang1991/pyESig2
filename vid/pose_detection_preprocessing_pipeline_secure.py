@@ -10,7 +10,8 @@ import getpass
 def main(args, password):
 
     for file in sorted(glob.glob('%s/*.avi.enc' % args.dir)):
-        if hasattr(args, "use_prev"):
+        #pdb.set_trace()
+        if args.use_prev==0 or not os.path.exists("%s/%s.mp4.enc" %(args.s_temp, os.path.basename(file).split(".")[0])) :
             print file
             fname = file.split('/')[-1].split('.')[0]
             fnum = fname.split("_")[-1]
@@ -21,14 +22,14 @@ def main(args, password):
             subprocess.call('%s/darknet yolo demo %s %s %s -i ' %
                         (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4]), shell=True)
 
-        # Move files over to videobase
-        gen_cropped_vid(file[:-4],"%s/tmp/coords.txt" %(args.dark_home), '%s/' % (args.s_temp))
-        subprocess.call('rm %s' % file[:-4], shell=True)
+            # Move files over to videobase
+            gen_cropped_vid(file[:-4],"%s/tmp/coords.txt" %(args.dark_home), '%s/' % (args.s_temp))
+            subprocess.call('rm %s' % file[:-4], shell=True)
         #shutil.move("%s/tmp/coords.txt" %(args.dark_home), '%s/%s.txt' % (args.save, fname))
 
-        for file in glob.glob("%s/*.mp4" % args.s_temp):
-            subprocess.call('openssl enc -des -pass pass:%s -in %s -out %s' % (password, file, file + ".enc"), shell=True)
-            subprocess.call('rm %s' % file, shell=True)
+            for file in glob.glob("%s/*.mp4" % args.s_temp):
+                subprocess.call('openssl enc -des -pass pass:%s -in %s -out %s' % (password, file, file + ".enc"), shell=True)
+                subprocess.call('rm %s' % file, shell=True)
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()

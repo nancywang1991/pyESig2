@@ -15,7 +15,7 @@ def main(args, password):
         os.makedirs(args.s_temp)
     patient_extract(args, password)
     os.chdir(args.deep_home)
-    subprocess.call("python python/pose/demo_secure.py -v %s -s %s -gpu %i" % (args.s_temp, args.save), shell=True)
+    subprocess.call("python python/pose/demo_secure.py -v %s -s %s -gpu %i" % (args.s_temp, args.save, args.gpu_id), shell=True)
     subprocess.call("scp -r %s wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/" % (args.save), shell=True)
     subprocess.call("scp -r %s/crop_coords wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/%s/" % (args.s_temp, os.path.basename(args.save)), shell=True)
 
@@ -34,8 +34,7 @@ if __name__== "__main__":
                         default='/home/wangnxr/Documents/darknet/cfg/yolo_patient_mod.cfg',
                         help='darknet yolo config')
     parser.add_argument('-gpu', '--gpu_id', default=0, type=int, help = "which gpu to use")
-    parser.add_argument('-use_prev','--use_prev', default=0, help = "use previous?")
-    args = parser.parse_args()
+    parser.add_argument('-use_prev','--use_prev', default=1, help = "use previous?")
     parser.add_argument('-pass', '--password', help="Password for secure processing")
     args = parser.parse_args()
     if not args.password:
