@@ -4,7 +4,7 @@ import glob
 import pdb
 import os
 from pyESig2.vid.patient_vid_crop import gen_cropped_frames
-from pyESig2.vid.pose_detection_preprocessing_pipeline import main as patient_extract
+from pyESig2.vid.pose_detection_preprocessing_pipeline_secure import main as patient_extract
 import getpass
 
 def main(args, password):
