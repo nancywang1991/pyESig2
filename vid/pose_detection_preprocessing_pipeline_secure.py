@@ -18,8 +18,8 @@ def main(args, password):
             subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
             subprocess.call('openssl enc -d -des -pass pass:%s -in %s -out %s' %(password, file, file[:-4]), shell=True)
             os.chdir(args.dark_home)
-            subprocess.call('%s/darknet yolo demo %s %s %s -i %i' %
-                        (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4], args.gpu_id), shell=True)
+            subprocess.call('%s/darknet yolo demo %s %s %s -i ' %
+                        (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4]), shell=True)
 
         # Move files over to videobase
         gen_cropped_vid(file[:-4],"%s/tmp/coords.txt" %(args.dark_home), '%s/' % (args.save))
