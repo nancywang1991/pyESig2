@@ -23,7 +23,7 @@ def main(args, password):
                         (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4]), shell=True)
 
             # Move files over to videobase
-            gen_cropped_vid(file[:-4],"%s/tmp/coords.txt" %(args.dark_home), '%s/' % (args.s_temp))
+            gen_cropped_vid(file[:-4],"%s/tmp/%scoords.txt" %(args.dark_home, os.path.basename(file[:-4])), '%s/' % (args.s_temp))
             subprocess.call('rm %s' % file[:-4], shell=True)
         #shutil.move("%s/tmp/coords.txt" %(args.dark_home), '%s/%s.txt' % (args.save, fname))
 
