@@ -17,10 +17,11 @@ def main(args, password):
             fnum = fname.split("_")[-1]
             #Patient detection
             subprocess.call('rm %s/tmp/%scoords.txt' % (args.dark_home,os.path.basename(file[:-4])), shell=True)
-            subprocess.call('openssl enc -d -des -pass pass:%s -in %s -out %s' %(password, file, file[:-4]), shell=True)
+            subprocess.call('openssl enc -d -des -pass pass:%s -in %s -out %s ' %(password, file, file[:-4]), shell=True)
             os.chdir(args.dark_home)
-            subprocess.call('%s/darknet yolo demo %s %s %s' %
-                        (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4]), shell=True)
+            pdb.set_trace()
+            subprocess.call('%s/darknet yolo demo %s %s %s -i %i' %
+                        (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4], args.gpu_id), shell=True)
 
             # Move files over to videobase
             gen_cropped_vid(file[:-4],"%s/tmp/%scoords.txt" %(args.dark_home, os.path.basename(file[:-4])), '%s/' % (args.s_temp))
