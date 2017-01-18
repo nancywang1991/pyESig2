@@ -16,10 +16,10 @@ def main(args, password):
             fname = file.split('/')[-1].split('.')[0]
             fnum = fname.split("_")[-1]
             #Patient detection
-            subprocess.call('rm %s/tmp/*' % args.dark_home, shell=True)
+            subprocess.call('rm %s/tmp/%scoords.txt' % (args.dark_home,os.path.basename(file[:-4])), shell=True)
             subprocess.call('openssl enc -d -des -pass pass:%s -in %s -out %s' %(password, file, file[:-4]), shell=True)
             os.chdir(args.dark_home)
-            subprocess.call('%s/darknet yolo demo %s %s %s -i ' %
+            subprocess.call('%s/darknet yolo demo %s %s %s' %
                         (args.dark_home, args.yolo_config, args.yolo_weights, file[:-4]), shell=True)
 
             # Move files over to videobase
