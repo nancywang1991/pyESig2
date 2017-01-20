@@ -15,9 +15,9 @@ def main(args, password):
         os.makedirs(args.s_temp)
     patient_extract(args, password)
     os.chdir(args.deep_home)
-    subprocess.call("python python/pose/demo_secure.py -v %s -s %s -gpu %i -pass %s" % (args.s_temp, args.save_dir, args.gpu_id, password), shell=True)
+    subprocess.call("python python/pose/demo_secure.py -v %s -s %s -f %s -gpu %i -pass %s" % (args.s_temp, args.save_dir, args.flo_dir, args.gpu_id, password), shell=True)
     subprocess.call("scp -r %s wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/" % (args.save_dir), shell=True)
-    subprocess.call("scp -r %s/crop_coords wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/%s/" % (args.s_temp, os.path.basename(args.save_dir)), shell=True)
+    subprocess.call("scp -r %s/*.txt wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/%s/" % (args.s_temp, os.path.basename(args.save_dir)), shell=True)
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
@@ -26,7 +26,8 @@ if __name__== "__main__":
     parser.add_argument('-s_temp', '--s_temp', required=True, help="Patient Extracted Video Save Directory")
     parser.add_argument('-s', '--save_dir', required=True, help="Save Directory" )
     parser.add_argument('-dark', '--dark_home', default='/home/wangnxr/Documents/darknet/', help='Darknet home' )
-    parser.add_argument('-deep', '--deep_home', default='/home/wangnxr/Documents/caffe-heatmap/', help='Caffe-heatmap home')
+    parser.add_argument('-deep', '--deep_home', default='/home/wangnxr/Documents/caffe-heatmap/', help='Caffe-heatmap home') 
+    parser.add_argument('-flo', '--flo_dir', default='/mnt/flo_dir/', help='flo save home')
     parser.add_argument('-w', '--yolo_weights',
                         default='/home/wangnxr/Documents/darknet/models/yolo_patient_mod_23000.weights',
                         help='darknet yolo weights')
