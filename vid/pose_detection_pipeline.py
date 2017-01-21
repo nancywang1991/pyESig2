@@ -17,7 +17,7 @@ def main(args, password):
     os.chdir(args.deep_home)
     subprocess.call("python python/pose/demo_secure.py -v %s -s %s -f %s -gpu %i -pass %s" % (args.s_temp, args.save_dir, args.flo_dir, args.gpu_id, password), shell=True)
     subprocess.call("scp -r %s wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/" % (args.save_dir), shell=True)
-    subprocess.call("scp -r %s/*.txt wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/%s/" % (args.s_temp, os.path.basename(args.save_dir)), shell=True)
+    subprocess.call("scp -r %s/*.txt wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/crop_dir/" % (args.s_temp), shell=True)
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
