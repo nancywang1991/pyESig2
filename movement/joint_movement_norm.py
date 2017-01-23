@@ -153,6 +153,7 @@ def main(joints_file, save_folder):
     plt.clf()
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    
     parser.add_argument('-d', '--dir', required=True, help="Joint coordinate directory")
     parser.add_argument('-s', '--save', required=True, help="Save directory" )
     args = parser.parse_args()
