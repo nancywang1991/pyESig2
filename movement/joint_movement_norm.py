@@ -109,10 +109,10 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
     return optical_pos
 
 
-def main(joints_file, save_folder):
+def main(joints_file, save_folder, crop_coord):
     filename = "_".join(joints_file.split('\\')[-1].split('.')[0].split("_")[:3])
     try:
-        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open("%s/crop_coords/%s" % (save_folder, filename +'.txt')).readlines()])
+        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open("%s/%s" % (crop_coord, filename +'.txt')).readlines()])
     except IOError:
         print "Crop coords for %s not found" % (filename)
         return
@@ -153,9 +153,9 @@ def main(joints_file, save_folder):
     plt.clf()
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    
+    parser.add_argument('-c', '--crop', required=True, help="Directory of crop coords")
     parser.add_argument('-d', '--dir', required=True, help="Joint coordinate directory")
     parser.add_argument('-s', '--save', required=True, help="Save directory" )
     args = parser.parse_args()
     for file in glob.glob(args.dir + "\\*.txt"):
-        main(file, args.save)
+        main(file, args.save, args.crop)
