@@ -110,9 +110,9 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
 
 
 def main(joints_file, save_folder, crop_coord):
-    filename = "_".join(joints_file.split('\\')[-1].split('.')[0].split("_")[:3])
+    filename = "_".join(os.path.basename(joints_file).split('.')[0].split("_")[:3])
     try:
-        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open(os.path.normpath("%s/%s" % (crop_coord, filename +'.txt'))).readlines()])
+        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open(os.path.normpath("%s/%s.txt" % (crop_coord, filename))).readlines()])
     except IOError:
         print "Crop coords for %s not found" % (filename)
         return
