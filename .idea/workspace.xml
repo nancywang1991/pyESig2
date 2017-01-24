@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movement/joint_movement_norm.py" afterPath="$PROJECT_DIR$/movement/joint_movement_norm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/annotation/extract_difficult_frames.py" afterPath="$PROJECT_DIR$/annotation/extract_difficult_frames.py" />
     </list>
     <ignored path="pyESig2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
@@ -66,21 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="misc_info.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocess/misc_info.py">
+      <file leaf-file-name="extract_difficult_frames.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/annotation/extract_difficult_frames.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
+            <state relative-caret-position="495">
+              <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample_videos.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/annotation/sample_videos.py">
+      <file leaf-file-name="my_video_capture.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-773">
+              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -185,7 +185,6 @@
         <option value="$PROJECT_DIR$/preprocess/ecog_fft_extract_windows.py" />
         <option value="$PROJECT_DIR$/analysis/power_map.py" />
         <option value="$PROJECT_DIR$/movement/movement_accuracy.py" />
-        <option value="$PROJECT_DIR$/annotation/extract_difficult_frames.py" />
         <option value="$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline.py" />
         <option value="$PROJECT_DIR$/util/encrypt_files.py" />
         <option value="$PROJECT_DIR$/vid/video_sync/vid_start_end.py" />
@@ -193,6 +192,7 @@
         <option value="$PROJECT_DIR$/vid/patient_vid_crop.py" />
         <option value="$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py" />
         <option value="$PROJECT_DIR$/movement/joint_movement_norm.py" />
+        <option value="$PROJECT_DIR$/annotation/extract_difficult_frames.py" />
       </list>
     </option>
   </component>
@@ -905,13 +905,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00162" summary="improved pose_detection pipeline">
-      <created>1472515402572</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1472515402572</updated>
-    </task>
     <task id="LOCAL-00163" summary="improved pose_detection pipeline">
       <created>1472515655336</created>
       <option name="number" value="00163" />
@@ -1248,7 +1241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485220072395</updated>
     </task>
-    <option name="localTasksCounter" value="211" />
+    <task id="LOCAL-00211" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
+      <created>1485220203853</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1485220203853</updated>
+    </task>
+    <option name="localTasksCounter" value="212" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1452,13 +1452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2277">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analysis/freq_time_spectrum.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -1512,13 +1505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/annotation/extract_difficult_frames.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1689,6 +1675,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vid/my_video_capture.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-773">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotation/extract_difficult_frames.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
           <folding />
         </state>
       </provider>

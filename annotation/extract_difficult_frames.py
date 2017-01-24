@@ -9,18 +9,20 @@ import cv2
 
 def main(joints_file, vid_file, save_dir):
     poses = np.array([numerate_coords(row) for row in (open(joints_file)).readlines()])
+    downsample_fact = 6
     difficult_frames = []
     for p, pose in enumerate(poses):
         if np.any(pose[:,2]<0.1):
             difficult_frames.append(p)
 
     vid_name = os.path.split(vid_file)[-1].split('.')[0]
-    vid_file = my_video_capture(vid_file, 30)
+    vid_file = my_video_capture(vid_file, 30/downsample_fact)
 
     for f in difficult_frames:
-        vid_file.forward_to(f)
-        img = vid_file.read()
-        cv2.imwrite(os.path.join(save_dir, "%s_%i.png" %(vid_name,f)), img)
+        if f%downsample_fact==0:
+            vid_file.forward_to(f/downsample_fact)
+            img = vid_file.read()
+            cv2.imwrite(os.path.join(save_dir, "%s_%i.png" %(vid_name,f)), img)
 
 
 if __name__ == "__main__":
