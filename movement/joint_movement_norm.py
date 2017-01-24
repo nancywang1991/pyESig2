@@ -112,7 +112,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
 def main(joints_file, save_folder, crop_coord):
     filename = "_".join(joints_file.split('\\')[-1].split('.')[0].split("_")[:3])
     try:
-        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open(os.path.norm("%s/%s" % (crop_coord, filename +'.txt'))).readlines()])
+        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open(os.path.normpath("%s/%s" % (crop_coord, filename +'.txt'))).readlines()])
     except IOError:
         print "Crop coords for %s not found" % (filename)
         return
@@ -135,7 +135,7 @@ def main(joints_file, save_folder, crop_coord):
         movement_vectors.append(calc_dist_vectors(poses_normalized[r], poses_normalized[r+1]))
     #pdb.set_trace()
     movement = np.array(movement)
-    pickle.dump(np.array(movement), open(os.path.norm('%s/%s_movement.p' % (save_folder, filename)), "wb"))
+    pickle.dump(np.array(movement), open(os.path.normpath('%s/%s_movement.p' % (save_folder, filename)), "wb"))
     #Stich pose results into one video
     f, axes = plt.subplots(7, 1, sharex='col', figsize=(7, 9))
     plt.title("Joint movement over time for file %s" % (filename))
@@ -148,7 +148,7 @@ def main(joints_file, save_folder, crop_coord):
     axes[3].set_ylabel('Normalized distance')
 
     plt.tight_layout()
-    plt.savefig(os.path.norm('%s/movement_fig_%s.png') % (save_folder, filename))
+    plt.savefig(os.path.normpath('%s/movement_fig_%s.png') % (save_folder, filename))
     plt.close()
     plt.clf()
 if __name__ == "__main__":
