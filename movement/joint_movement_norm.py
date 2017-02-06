@@ -172,5 +172,5 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--dir', required=True, help="Joint coordinate directory")
     parser.add_argument('-s', '--save', required=True, help="Save directory" )
     args = parser.parse_args()
-    for file in glob.glob(os.path.join(args.dir,"*.txt")):
+    for file in sorted(glob.glob(os.path.join(args.dir,"*.txt"))):
         main(file, args.save, args.crop)
