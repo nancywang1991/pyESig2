@@ -113,13 +113,13 @@ def my_savgol_filter(xy, win_size, order, axis=0):
     xy_copy = copy.copy(xy)
     flag=0
     last_valid=0
-    for i, (x,y) in enumerate(xy):
-        if x<0 and y<0 and flag==0:
+    for i in xrange(len(xy)):
+        if xy[i,0]<0 and xy[i,1]<0 and flag==0:
             if (i-last_valid)>5:
                 cur_win_size=min(win_size, i-last_valid)
                 xy_copy[last_valid:i]=savgol_filter(xy[last_valid:i], cur_win_size, order, axis=0)
             flag=1
-        elif x>0 and y>0 and flag==1:
+        elif xy[i,0]>0 and xy[i,1]>0 and flag==1:
             last_valid=i
             flag=0
     return xy_copy
