@@ -61,8 +61,8 @@
       <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+            <state relative-caret-position="722">
+              <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -787,13 +787,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00172" summary="heatmap data processing&#10;">
-      <created>1473726765111</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1473726765111</updated>
-    </task>
     <task id="LOCAL-00173" summary="heatmap data processing&#10;">
       <created>1473726894905</created>
       <option name="number" value="00173" />
@@ -1130,7 +1123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486411489537</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="fixed joint movement norm filtering&#10;">
+      <created>1486412055924</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1486412055924</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1567,8 +1567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+        <state relative-caret-position="722">
+          <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
           <folding />
         </state>
       </provider>
