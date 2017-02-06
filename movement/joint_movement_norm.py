@@ -117,7 +117,7 @@ def my_savgol_filter(xy, win_size, order, axis=0):
         for j in xrange(7):
             if xy[i,j,0]<0 and xy[i,j,1]<0 and flag==0:
                 if (i-last_valid)>5:
-                    cur_win_size=min(win_size, i-last_valid)
+                    cur_win_size=min(win_size, i-last_valid + 1-(i-last_valid)%2)
                     xy[j,last_valid:i]=savgol_filter(xy[j,last_valid:i], cur_win_size, order, axis)
                 flag=1
             elif xy[i,j,0]>0 and xy[i,j,1]>0 and flag==1:
