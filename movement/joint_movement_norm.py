@@ -109,22 +109,21 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
              optical_pos.append(pos + np.median(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
-def my_savgol_filter(xy, win_size, order, axis=0):
-    pdb.set_trace()
-    xy_copy = copy.copy(xy)
-    flag=0
-    last_valid=0
-    for i in xrange(len(xy)):
+def my_savgol_filter(xy, win_size, order):
 
-        if xy[i,0]<0 and xy[i,1]<0 and flag==0:
-            if (i-last_valid)>5:
-                cur_win_size=min(win_size, i-last_valid)
-                xy_copy[last_valid:i]=savgol_filter(xy[last_valid:i], cur_win_size, order, axis=0)
-            flag=1
-        elif xy[i,0]>0 and xy[i,1]>0 and flag==1:
-            last_valid=i
-            flag=0
-    return xy_copy
+    for i in xrange(len(xy)):
+        flag = 0
+        last_valid = 0
+        for j in xrange(7):
+            if xy[i,j,0]<0 and xy[i,j,1]<0 and flag==0:
+                if (i-last_valid)>5:
+                    cur_win_size=min(win_size, i-last_valid)
+                    xy[j,last_valid:i]=savgol_filter(xy[j,last_valid:i], cur_win_size, order, axis=0)
+                flag=1
+            elif xy[i,j,0]>0 and xy[i,j,1]>0 and flag==1:
+                last_valid=i
+                flag=0
+    return xy
 
 def main(joints_file, save_folder, crop_coord):
     filename = "_".join(os.path.basename(joints_file).split('.')[0].split("_")[:3])
