@@ -109,7 +109,7 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
              optical_pos.append(pos + np.median(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
-def my_savgol_filter(xy, win_size, order):
+def my_savgol_filter(xy, win_size, order, axis=0):
 
     for i in xrange(len(xy)):
         flag = 0
@@ -118,7 +118,7 @@ def my_savgol_filter(xy, win_size, order):
             if xy[i,j,0]<0 and xy[i,j,1]<0 and flag==0:
                 if (i-last_valid)>5:
                     cur_win_size=min(win_size, i-last_valid)
-                    xy[j,last_valid:i]=savgol_filter(xy[j,last_valid:i], cur_win_size, order, axis=0)
+                    xy[j,last_valid:i]=savgol_filter(xy[j,last_valid:i], cur_win_size, order, axis)
                 flag=1
             elif xy[i,j,0]>0 and xy[i,j,1]>0 and flag==1:
                 last_valid=i
