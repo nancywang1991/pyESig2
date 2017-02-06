@@ -14,6 +14,7 @@ import glob
 import os
 import subprocess
 from scipy.signal import savgol_filter
+import copy
 
 joint_map = ['head', 'right wrist', 'left wrist', 'right elbow', 'left elbow',  'right shoulder', 'left shoulder']
 
@@ -108,6 +109,20 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
              optical_pos.append(pos + np.median(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
+def my_savgol_filter(xy, win_size, order, axis=0):
+    xy_copy = copy.copy(xy)
+    flag=0
+    last_valid=0
+    for i, (x,y) in enumerate(xy):
+        if x<0 and y<0 and flag==0:
+            if (i-last_valid)>5:
+                cur_win_size=min(win_size, i-last_valid)
+                xy_copy[last_valid:i]=savgol_filter(xy[last_valid:i], cur_win_size, order, axis=0)
+            flag=1
+        elif x>0 and y>0 and flag==1:
+            last_valid=i
+            flag=0
+    return xy_copy
 
 def main(joints_file, save_folder, crop_coord):
     filename = "_".join(os.path.basename(joints_file).split('.')[0].split("_")[:3])
@@ -121,9 +136,8 @@ def main(joints_file, save_folder, crop_coord):
     poses = np.array([numerate_coords(row) for row in (open(joints_file)).readlines()])
 
     poses_normalized = np.array([normalize_to_camera(row, crop_coord) for row, crop_coord in zip(poses, crop_coords)])
-    poses_normalized = savgol_filter(poses_normalized, 25, 3, axis=0)
-
     poses_normalized = filter_confidence(poses_normalized, poses[:,:,2])
+    poses_normalized = my_savgol_filter(poses_normalized, 25, 3, axis=0)
     #pdb.set_trace()
 
     movement = []
