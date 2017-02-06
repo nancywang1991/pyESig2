@@ -110,10 +110,12 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
     return optical_pos
 
 def my_savgol_filter(xy, win_size, order, axis=0):
+    pdb.set_trace()
     xy_copy = copy.copy(xy)
     flag=0
     last_valid=0
     for i in xrange(len(xy)):
+
         if xy[i,0]<0 and xy[i,1]<0 and flag==0:
             if (i-last_valid)>5:
                 cur_win_size=min(win_size, i-last_valid)

@@ -61,8 +61,8 @@
       <file leaf-file-name="joint_movement_norm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="716">
-              <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
+            <state relative-caret-position="655">
+              <caret line="112" column="19" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -787,13 +787,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00167" summary="improved pose_detection pipeline">
-      <created>1472517515090</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1472517515090</updated>
-    </task>
     <task id="LOCAL-00168" summary="improved pose_detection pipeline">
       <created>1472518353692</created>
       <option name="number" value="00168" />
@@ -1130,7 +1123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486410809521</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="fixed joint movement norm filtering&#10;">
+      <created>1486411045351</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1486411045351</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1567,8 +1567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
+        <state relative-caret-position="655">
+          <caret line="112" column="19" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
           <folding />
         </state>
       </provider>
