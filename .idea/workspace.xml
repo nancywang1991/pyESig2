@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="854">
-              <caret line="119" column="79" selection-start-line="119" selection-start-column="79" selection-end-line="119" selection-end-column="79" />
+              <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -788,13 +788,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00175" summary="heatmap data processing&#10;">
-      <created>1473727302927</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1473727302927</updated>
-    </task>
     <task id="LOCAL-00176" summary="heatmap data processing&#10;">
       <created>1473731010440</created>
       <option name="number" value="00176" />
@@ -1131,7 +1124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486412728388</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="fixed joint movement norm filtering&#10;">
+      <created>1486412823072</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1486412823072</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1569,7 +1569,7 @@
     <entry file="file://$PROJECT_DIR$/movement/joint_movement_norm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="854">
-          <caret line="119" column="79" selection-start-line="119" selection-start-column="79" selection-end-line="119" selection-end-column="79" />
+          <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
           <folding />
         </state>
       </provider>
