@@ -14,6 +14,7 @@ import glob
 import os
 import subprocess
 from scipy.signal import savgol_filter
+import copy
 
 joint_map = ['head', 'right wrist', 'left wrist', 'right elbow', 'left elbow',  'right shoulder', 'left shoulder']
 
@@ -108,11 +109,26 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
              optical_pos.append(pos + np.median(p1[nearby_points]-p0[nearby_points], axis=0))
     return optical_pos
 
+def my_savgol_filter(xy, win_size, order, axis=0):
 
-def main(joints_file, save_folder):
-    filename = "_".join(joints_file.split('\\')[-1].split('.')[0].split("_")[:3])
+    for j in xrange(7):
+        flag = 0
+        last_valid = 0
+        for i in xrange(len(xy)):
+            if ((xy[i,j,0]<0 and xy[i,j,1]<0) or i==len(xy)) and flag==0:
+                if (i-last_valid)>7:
+                    cur_win_size=min(win_size, i-last_valid -3-(i-last_valid)%2)
+                    xy[last_valid:i,j]=savgol_filter(xy[last_valid:i,j], cur_win_size, order, axis=axis)
+                flag=1
+            elif xy[i,j,0]>0 and xy[i,j,1]>0 and flag==1:
+                last_valid=i
+                flag=0
+    return xy
+
+def main(joints_file, save_folder, crop_coord):
+    filename = "_".join(os.path.basename(joints_file).split('.')[0].split("_")[:3])
     try:
-        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open("%s/crop_coords/%s" % (save_folder, filename +'.txt')).readlines()])
+        crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open(os.path.normpath("%s/%s.txt" % (crop_coord, filename))).readlines()])
     except IOError:
         print "Crop coords for %s not found" % (filename)
         return
@@ -121,9 +137,8 @@ def main(joints_file, save_folder):
     poses = np.array([numerate_coords(row) for row in (open(joints_file)).readlines()])
 
     poses_normalized = np.array([normalize_to_camera(row, crop_coord) for row, crop_coord in zip(poses, crop_coords)])
-    poses_normalized = savgol_filter(poses_normalized, 25, 3, axis=0)
-
     poses_normalized = filter_confidence(poses_normalized, poses[:,:,2])
+    poses_normalized = my_savgol_filter(poses_normalized, 25, 3, axis=0)
     #pdb.set_trace()
 
     movement = []
@@ -135,7 +150,7 @@ def main(joints_file, save_folder):
         movement_vectors.append(calc_dist_vectors(poses_normalized[r], poses_normalized[r+1]))
     #pdb.set_trace()
     movement = np.array(movement)
-    pickle.dump(np.array(movement), open('%s\\%s_movement.p' % (save_folder, filename), "wb"))
+    pickle.dump(np.array(movement), open(os.path.normpath('%s/%s_movement.p' % (save_folder, filename)), "wb"))
     #Stich pose results into one video
     f, axes = plt.subplots(7, 1, sharex='col', figsize=(7, 9))
     plt.title("Joint movement over time for file %s" % (filename))
@@ -148,13 +163,14 @@ def main(joints_file, save_folder):
     axes[3].set_ylabel('Normalized distance')
 
     plt.tight_layout()
-    plt.savefig('%s\\movement_fig_%s.png' % (save_folder, filename))
+    plt.savefig(os.path.normpath('%s/movement_fig_%s.png') % (save_folder, filename))
     plt.close()
     plt.clf()
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--crop', required=True, help="Directory of crop coords")
     parser.add_argument('-d', '--dir', required=True, help="Joint coordinate directory")
     parser.add_argument('-s', '--save', required=True, help="Save directory" )
     args = parser.parse_args()
-    for file in glob.glob(args.dir + "\\*.txt"):
-        main(file, args.save)
+    for file in sorted(glob.glob(os.path.join(args.dir,"*.txt"))):
+        main(file, args.save, args.crop)
