@@ -110,20 +110,21 @@ def optical_flow_mvmt(frame, prev_frame, pose_pos):
     return optical_pos
 
 def my_savgol_filter(xy, win_size, order, axis=0):
-
+    result = copy.copy(xy)
     for j in xrange(7):
         flag = 0
         last_valid = 0
         for i in xrange(len(xy)):
-            if ((xy[i,j,0]<0 and xy[i,j,1]<0) or i==len(xy)) and flag==0:
+            if (np.all(xy[i,j]<0) or i==(len(xy)-1)) and flag==0:
                 if (i-last_valid)>7:
+                    
                     cur_win_size=min(win_size, i-last_valid -3-(i-last_valid)%2)
-                    xy[last_valid:i,j]=savgol_filter(xy[last_valid:i,j], cur_win_size, order, axis=axis)
+                    result[last_valid:i,j]=savgol_filter(xy[last_valid:i,j], cur_win_size, order, axis=axis)
                 flag=1
-            elif xy[i,j,0]>0 and xy[i,j,1]>0 and flag==1:
+            elif (np.all(xy[i,j]>0) and flag==1):
                 last_valid=i
                 flag=0
-    return xy
+    return result
 
 def main(joints_file, save_folder, crop_coord):
     filename = "_".join(os.path.basename(joints_file).split('.')[0].split("_")[:3])
@@ -135,11 +136,12 @@ def main(joints_file, save_folder, crop_coord):
 
     print "Processing %s" % (filename)
     poses = np.array([numerate_coords(row) for row in (open(joints_file)).readlines()])
-
+    
     poses_normalized = np.array([normalize_to_camera(row, crop_coord) for row, crop_coord in zip(poses, crop_coords)])
-    poses_normalized = filter_confidence(poses_normalized, poses[:,:,2])
-    poses_normalized = my_savgol_filter(poses_normalized, 25, 3, axis=0)
-    #pdb.set_trace()
+    poses_normalized_filtered = filter_confidence(poses_normalized, poses[:,:,2])
+    
+    poses_normalized = my_savgol_filter(poses_normalized_filtered, 21, 3, axis=0)
+    
 
     movement = []
     movement_vectors = []
@@ -148,8 +150,9 @@ def main(joints_file, save_folder, crop_coord):
 
         movement.append(calc_dist(poses_normalized[r], poses_normalized[r+1]))
         movement_vectors.append(calc_dist_vectors(poses_normalized[r], poses_normalized[r+1]))
-    #pdb.set_trace()
+    
     movement = np.array(movement)
+    movement = my_savgol_filter(movement, 21, 3, axis=0)
     pickle.dump(np.array(movement), open(os.path.normpath('%s/%s_movement.p' % (save_folder, filename)), "wb"))
     #Stich pose results into one video
     f, axes = plt.subplots(7, 1, sharex='col', figsize=(7, 9))
@@ -158,7 +161,7 @@ def main(joints_file, save_folder, crop_coord):
     for i in xrange(7):
         axes[i].plot(np.array(range(len(movement)))/30.0, movement[:,i])
         axes[i].set_title(joint_map[i])
-        axes[i].set_ylim([0,3])
+        axes[i].set_ylim([0,10])
     axes[-1].set_xlabel('seconds')
     axes[3].set_ylabel('Normalized distance')
 
