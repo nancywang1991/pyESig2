@@ -4,6 +4,7 @@ import os
 import time
 import shutil
 import xml.etree.ElementTree as ET
+import winsound
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Listen for file changes and mirror changed files to a second location.')
@@ -35,16 +36,17 @@ if __name__ == "__main__":
             if ind == len(sorted_keyframes):
                 print "Yay, all done!"
             else:
-                new_f_name = sorted_keyframes[ind+1]
-                new_xml_f = os.path.normpath(source_folder+"/"+new_f_name.split(".")[0] + "_1.xml")
-                shutil.copyfile(os.path.normpath(source_folder+"/"+max_file), new_xml_f)
-                tree = ET.parse(new_xml_f)
-                root = tree.getroot()
-                for image in root.iter("image"):
-                    image.text = new_f_name.split(".")[0]
-                    image.set("updated","yes")
-                tree.write(new_xml_f)
-                last_time = os.stat(new_xml_f).st_mtime
-                print "Next frame pose copied"
+                for i in range(1,11):
+                    new_f_name = sorted_keyframes[ind+i]
+                    new_xml_f = os.path.normpath(source_folder+"/"+new_f_name.split(".")[0] + "_1.xml")
+                    shutil.copyfile(os.path.normpath(source_folder+"/"+max_file), new_xml_f)
+                    tree = ET.parse(new_xml_f)
+                    root = tree.getroot()
+                    for image in root.iter("image"):
+                        image.text = new_f_name.split(".")[0]
+                        image.set("updated","yes")
+                    tree.write(new_xml_f)
+                    last_time = os.stat(new_xml_f).st_mtime
+                    print "Frame %i pose copied" % (int+i)
+                winsound.beep(300,500)
 
-        time.sleep(1)
