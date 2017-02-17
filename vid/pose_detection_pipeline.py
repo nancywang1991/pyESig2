@@ -13,11 +13,12 @@ def main(args, password):
         os.makedirs(args.save_dir)
     if not os.path.exists(args.s_temp):
         os.makedirs(args.s_temp)
+    #pdb.set_trace()
     patient_extract(args, password)
     os.chdir(args.deep_home)
     subprocess.call("python python/pose/demo_secure.py -v %s -s %s -f %s -gpu %i -pass %s" % (args.s_temp, args.save_dir, args.flo_dir, args.gpu_id, password), shell=True)
     subprocess.call("scp -r %s wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/" % (args.save_dir), shell=True)
-    subprocess.call("scp -r %s/*.txt wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/crop_dir/" % (args.s_temp), shell=True)
+    subprocess.call("scp -r %s/*.txt wangnxr@visiongpu.cs.washington.edu:/mnt/transferred_results/pose/crop_coords/" % (args.s_temp), shell=True)
 
 if __name__== "__main__":
     parser = argparse.ArgumentParser()
