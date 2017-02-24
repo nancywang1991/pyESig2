@@ -16,7 +16,7 @@ def main(ecog_loc, f_min, f_max):
         print "Working on %s" % track
         for f, file in enumerate(sorted(glob.glob(ecog_loc + "/%s/*.npy" % track))[:20]):
             ecog = np.load(file)
-            frequency = np.zeros(len(64, f_max-f_min))
+            frequency = np.zeros(shape=(64, f_max-f_min))
             for c in xrange(len(ecog)):
                 frequency[c, :] = np.abs(np.fft.fft(ecog[c,100:-100]) ** 2)[f_min:f_max]
             tracks[track].append(frequency)
