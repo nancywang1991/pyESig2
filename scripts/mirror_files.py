@@ -5,6 +5,7 @@ import time
 import shutil
 import xml.etree.ElementTree as ET
 import winsound
+import pdb
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Listen for file changes and mirror changed files to a second location.')
@@ -19,9 +20,8 @@ if __name__ == "__main__":
             "You must provide "
             "a source folder and keyframe folder")
     source_folder = os.path.normpath(args.source)
-    last_time = os.stat(os.path.normpath(source_folder + "/" + max(os.listdir(source_folder)))).st_mtime
-    sorted_keyframes = os.listdir(os.path.normpath(args.keyframe))
-    sorted_keyframes.sort()
+    last_time = os.stat(os.path.normpath(source_folder + "/" + max(sorted(os.listdir(source_folder))))).st_mtime
+    sorted_keyframes = sorted(os.listdir(os.path.normpath(args.keyframe)))
     # currently only ctrl+c will terminate
     while (True):
         try:
@@ -30,7 +30,8 @@ if __name__ == "__main__":
             print "Encountered a OSError, skipping file:"
             print e
             continue
-        max_file = max(os.listdir(source_folder))
+        max_file = max(sorted(os.listdir(source_folder)))
+        pdb.set_trace()
         if os.stat(os.path.normpath(source_folder+"/"+max_file)).st_mtime > last_time:
             ind = sorted_keyframes.index(max_file.split(".")[0][:-2]+".jpg")
             if ind == len(sorted_keyframes):
