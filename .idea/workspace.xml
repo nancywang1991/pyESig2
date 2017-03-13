@@ -89,8 +89,8 @@
       <file leaf-file-name="standardize_dataset.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/util/standardize_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+            <state relative-caret-position="327">
+              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -793,13 +793,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00185" summary="joint movement updates&#10;">
-      <created>1480471614028</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1480471614028</updated>
-    </task>
     <task id="LOCAL-00186" summary="joint movement updates&#10;">
       <created>1480472084904</created>
       <option name="number" value="00186" />
@@ -1136,7 +1129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1489438603569</updated>
     </task>
-    <option name="localTasksCounter" value="234" />
+    <task id="LOCAL-00234" summary="mirror files update to multiple frame copies">
+      <created>1489441477020</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1489441477020</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1606,8 +1606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/util/standardize_dataset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+        <state relative-caret-position="327">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

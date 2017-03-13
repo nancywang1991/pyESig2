@@ -40,7 +40,7 @@ def main(dir, test_day):
         for file in to_remove_list[:to_remove]:
             os.remove(file)
     # Make train set total size be a power of 24
-    to_remove = len(glob.glob("%s/train/%s/*" % (dir, subdir)))%24
+    to_remove = len(glob.glob("%s/train/*/*" % (dir)))%24
     to_remove_list = glob.glob("%s/train/mv_0/*" % (dir))
     np.random.shuffle(to_remove_list)
     for file in to_remove_list[:to_remove]:
