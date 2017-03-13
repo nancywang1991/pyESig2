@@ -22,7 +22,7 @@ def main(dir, test_day):
 
             if not os.path.exists("%s/val/%s" % (dir, subdir)):
                 os.makedirs("%s/val/%s" % (dir, subdir))
-            subprocess.call("mv %s/train/%s/*_*_*[5-9]9_ %s/val/%s/" % (dir, subdir, test_day, dir, subdir), shell=True)
+            subprocess.call("mv %s/train/%s/*_*_*[5-9]9_ %s/val/%s/" % (dir, subdir, dir, subdir), shell=True)
     # Balance test set
     min_set_size = min([len(glob.glob("%s/test/%s/*" % (dir,subdir))) for subdir in os.listdir(dir + "/test/")])
     for subdir in os.listdir(dir + "/test/"):
