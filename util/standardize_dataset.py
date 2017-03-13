@@ -14,7 +14,7 @@ def main(dir, test_day):
     # Make testset
     for subdir in os.listdir(dir + "/train/"):
         if len(glob.glob("%s/train/%s/*" % (dir, subdir))) == 0:
-            os.removedirs("%s/train/%s/*" % (dir, subdir))
+            os.removedirs("%s/train/%s" % (dir, subdir))
         else:
             if not os.path.exists("%s/test/%s" % (dir, subdir)):
                 os.makedirs("%s/test/%s" %  (dir, subdir))
