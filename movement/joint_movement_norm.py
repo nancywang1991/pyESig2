@@ -128,6 +128,9 @@ def my_savgol_filter(xy, win_size, order, axis=0):
 
 def main(joints_file, save_folder, crop_coord):
     filename = "_".join(os.path.basename(joints_file).split('.')[0].split("_")[:3])
+    save_folder = save_folder + "/" + os.path.basename(os.path.dirname(joints_file))
+    if not os.path.exists(save_folder):
+	os.makedirs(save_folder)
     try:
         crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in open(os.path.normpath("%s/%s.txt" % (crop_coord, filename))).readlines()])
     except IOError:
