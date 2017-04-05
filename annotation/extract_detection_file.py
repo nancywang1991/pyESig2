@@ -29,14 +29,16 @@ def label_parse(fname):
 
 
 
-label_dir = "D:\\keyframes\\fcb01f7a\\"
+label_dir = "C:\\Users\\Nancy\\Downloads\\OneDrive_2017-03-01\\cb46fd46\\"
+
+
 if not os.path.isdir(label_dir + "Annotations"):
     os.makedirs(label_dir + "Annotations")
 
 for fname in glob.glob(label_dir + "\\info\\*"):
     xmin, ymin, xmax, ymax = label_parse(fname)
     if not (xmin == -1):
-        basename = "_".join(fname.split("\\")[-1].split("_")[:3])
+        basename = "_".join(fname.split("\\")[-1].split("_")[:3]) + "_1500"
         img = Image.open(label_dir + "\\images\\" + basename + ".jpg")
         (image_width, image_height) = img.size
 
