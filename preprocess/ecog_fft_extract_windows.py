@@ -1,6 +1,6 @@
 import numpy as np
 #import edflib.edfreader as edfreader
-import pyedflib.edfreader as edfreader
+
 from pyESig2.freq.signal_filter import (butter_bandpass_filter, butter_bandstop_filter)
 import glob
 import pickle
