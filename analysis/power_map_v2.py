@@ -10,27 +10,27 @@ import scipy.stats
 
 def main(ecog_loc, f_min, f_max):
 
-    tracks = {"arm_r_1": [], "mv_0": []}
+    tracks = {"r_arm_1": [], "mv_0": [], "l_arm_1": [], "head_1": []}
     tracks_final = {}
+    significance = {}
     for track in tracks.iterkeys():
         print "Working on %s" % track
-        for f, file in enumerate(sorted(glob.glob(ecog_loc + "/%s/*.npy" % track))[:20]):
+        for f, file in enumerate(sorted(glob.glob(ecog_loc + "/%s/*.npy" % track))):
             ecog = np.load(file)
             frequency = np.zeros(shape=(64, f_max-f_min))
             for c in xrange(len(ecog)):
                 frequency[c, :] = np.abs(np.fft.fft(ecog[c,100:-100]) ** 2)[f_min:f_max]
             tracks[track].append(frequency)
-    frequency_mean = np.mean(np.hstack([track for track in tracks.itervalues()]), axis=1)
-    frequency_std = np.std(np.hstack([track for track in tracks.itervalues()]), axis=1)
-
-    for track in tracks.itervalues():
-        track = [(freq-frequency_mean)/frequency_std for freq in track]
-
-    for track in tracks_final.iterkeys():
-        #pdb.set_trace()
-        significance[track] = scipy.stats.ttest_ind(np.sum(tracks["arm_mv_1"], axis=2), np.sum(tracks["mv_0"], axis=2), equal_var=False)
+    
+    frequency_mean = np.mean(tracks["mv_0"], axis=0)
+    frequency_std = np.std(tracks["mv_0"], axis=0)
+    for t,track in tracks.iteritems():
+        tracks[t] = [(freq-frequency_mean)/frequency_std for freq in track]
+	
+    for track in tracks.iterkeys():
+        significance[track] = scipy.stats.ttest_ind(np.sum(tracks[track], axis=2), np.sum(tracks["mv_0"], axis=2), equal_var=False)
         tracks_final[track] = np.mean(np.array(tracks[track]), axis=0)
-
+    print significance
     return tracks_final, significance
 
 

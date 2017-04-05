@@ -14,24 +14,28 @@ if __name__ == "__main__":
     filename=os.path.basename(args.file).split("_")[0]
     if (args.step<=0):
     	subprocess.call("openssl enc -d -des -in %s -out %s -pass pass:%s -nopad" % (args.file, args.file.split(".")[0] + ".tar", password), shell=True)
-    	os.remove(args.file)
+    	#os.remove(args.file)
     if args.step<=1:
         #pdb.set_trace()
-    	subprocess.call("tar -xvzf %s.tar -C /%s/" % (args.file, parent), shell=True)
+    	subprocess.call("tar -xvzf %s.tar " % (args.file), shell=True)
     	os.remove("%s.tar" % args.file.split(".")[0])
     if args.step<=2:
-    	new_folder = glob.glob("%s/*/*/*/*/*/*/%s/*/*" % (parent, filename))
+    	new_folder = glob.glob("%s/media/wangnxr/*/*/*/*/%s/*/*" % (parent, filename))
         #pdb.set_trace()
         if len(new_folder) == 0:
-	    new_folder = glob.glob("%s/*/*/*/*/*/*/*/%s/*/*" % (parent, filename))
+	    new_folder = glob.glob("%s/media/wangnxr/*/*/*/*/*/%s/*/*" % (parent, filename))
         if len(new_folder) == 0:
-            new_folder = glob.glob("%s/*/*/*/*/*/%s/*/*" % (parent, filename))
+            #pdb.set_trace()
+            new_folder = glob.glob("%s/media/wangnxr/*/*/*/%s/*/*" % (parent, filename))
+	if len(new_folder) == 0:
+            #pdb.set_trace()
+            new_folder = glob.glob("%s/media/wangnxr/*/*/%s/*/*" % (parent, filename))
 	new_folder = new_folder[0]
-    	subprocess.call("mv %s %s/%s" %("/".join(new_folder.split("/")[:-2]), parent, filename), shell=True)
+    	subprocess.call("mv %s decrypted/%s" %("/".join(new_folder.split("/")[:-2]),  filename), shell=True)
     if args.step<=3:
-    	for file in glob.glob(parent + "/%s/*/*.avi" % filename):
+    	for file in glob.glob("decrypted/%s/*/*.avi" % filename):
         	subprocess.call("openssl enc -e -des -in %s -out %s -pass pass:%s" % (file, file + ".enc", password), shell=True)
     if args.step<=4:
-	for file in glob.glob(parent + "/%s/*/*" % filename):
+	for file in glob.glob("decrypted/%s/*/*" % filename):
             if not file.split(".")[-1] == "enc" and not os.path.isdir(file):
                 os.remove(file)

@@ -22,7 +22,7 @@ def main(joints_file, vid_file, save_dir):
         if f%downsample_fact==0:
             vid_file.forward_to(f/downsample_fact)
             img = vid_file.read()
-            cv2.imwrite(os.path.join(save_dir, "%s_%i.png" %(vid_name,f)), img)
+            cv2.imwrite(os.path.join(save_dir, "%s_%i.jpg" %(vid_name,f)), img)
 
 
 if __name__ == "__main__":
