@@ -18,8 +18,8 @@ def main(ecog_loc, f_min, f_max):
         for f, file in enumerate(sorted(glob.glob(ecog_loc + "/%s/*.npy" % track))):
             ecog = np.load(file)
             frequency = np.zeros(shape=(64, f_max-f_min))
-            for c in xrange(len(ecog)):
-                frequency[c, :] = np.abs(np.fft.fft(ecog[c,100:-100]) ** 2)[f_min:f_max]
+            for c in xrange(64):
+                frequency[c, :] = np.abs(np.fft.fft(ecog[c,-1500:-500]) ** 2)[f_min:f_max] -np.abs(np.fft.fft(ecog[c,-5000:-4000]) ** 2)[f_min:f_max]
             tracks[track].append(frequency)
     
     frequency_mean = np.mean(tracks["mv_0"], axis=0)
