@@ -6,8 +6,8 @@ download_files=["af859cc5", "af859cc5_0331_kinect", "af859cc5_0401_kinect", "af8
 keep_file = ["a86a4375_vid", "d7d5f068_vid"]
 
 for file in download_files:
-	#if not file.split("_")[-1]=="kinect":
-	#	subprocess.call("azure storage blob download ecog2016v2 %s /data/%s" % (file, file), shell=True)
+	if file.split("_")[-1]=="kinect":
+		subprocess.call("azure storage blob download ecog2016v2 %s /data/%s" % (file, file), shell=True)
 	subprocess.call("glacier-cmd upload ecog-video /data/%s" % file, shell=True)
 	#if not file in keep_file:
 		#os.remove("/mnt/%s" % file)
