@@ -5,7 +5,18 @@ from datetime import datetime
 import os
 import getpass
 import subprocess
+import botocore
 
+def check_exist(bucketname, filename, s3):
+	try:
+    		s3.Object(bucketname, filename).load()
+	except botocore.exceptions.ClientError as e:
+    		if e.response['Error']['Code'] == "404":
+        		return False
+    		else:
+        		raise
+	else:
+    		return True
 def upload_vid(loc, bucketname, s3):
 	pass_flag = 0
 	while pass_flag == 0:
@@ -18,16 +29,16 @@ def upload_vid(loc, bucketname, s3):
 	os.chdir(loc)
 	files = glob.glob("*/*/*")
 	for f, file in enumerate(files):
-		if (os.path.isdir(file) or file.split(".")[-1] == "doc"):
+		if (os.path.isdir(file) or file.split(".")[-1] == "doc" or check_exist(bucketname, file + ".enc", boto3.resource('s3'))):
 			continue
 		subprocess.call("openssl enc -e -des -in %s -out %s -pass pass:%s" % (file, file + ".enc", password), shell=True)
 		if f % 100 == 0:
 			print "Uploading %i of %i files" % (f, len(files))
 		try:
 			s3.upload_file(file + ".enc", bucketname, file + ".enc")
+			os.remove(file + ".enc")
 		except:
 			print file 
-		os.remove(file + ".enc")
 	print "Upload complete for location %s at %s" % (loc, str(datetime.now()))
 
 def upload_edf(loc, bucketname, s3):
