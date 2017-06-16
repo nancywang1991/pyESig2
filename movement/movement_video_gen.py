@@ -10,14 +10,12 @@ def main(file, vid_name, save_dir):
     right_arm_mvmt = mv_file[:, 1]
     start = -1
     for f in range(0, len(mv_file), 2):
-        if np.mean(right_arm_mvmt[f:f+5])>1 and np.all(right_arm_mvmt[f-10:f] >= 0) and np.mean(right_arm_mvmt[f-10:f]) < 0.5:
+        if np.mean(right_arm_mvmt[f:f+5])>1.5 and np.all(right_arm_mvmt[f-10:f] >= 0) and np.mean(right_arm_mvmt[f-10:f]) < 0.5:
             start = f
-        if start > 0 and np.mean(right_arm_mvmt[f:f+5])<0.5 and np.all(right_arm_mvmt[f:f+5] >= 0):
+        if start > 0 and np.all(right_arm_mvmt[f:f+5]<1) and (f-start)>30:# and np.all(right_arm_mvmt[f:f+2] >= 0):
             end = f
             savename = "%s/%s_%i_%i.avi" % (save_dir, vid_name.split("/")[-1].split(".")[0], start, end)
-            subprocess.call(
-                "ffmpeg -i %s -ss %i -c copy -t %i %s" % (vid_name, start / 30, int(round(end - start) / 30.0), savename),
-                shell=True)
+            subprocess.call("ffmpeg -i %s -ss %f -c copy -t %f %s" % (vid_name, start / 30.0, (end - start) / 30.0, savename), shell=True)
             start = -1
 
 if __name__ == "__main__":
