@@ -14,7 +14,7 @@ def main(file, vid_name, save_dir):
             start = f
         if start > 0 and np.mean(right_arm_mvmt[f:f+5])<0.5 and np.all(right_arm_mvmt[f:f+5] >= 0):
             end = f
-            savename = "%s/%s_i_i.avi" % (save_dir, vid_name.split("/")[-1].split(".")[0], start, end)
+            savename = "%s/%s_%i_%i.avi" % (save_dir, vid_name.split("/")[-1].split(".")[0], start, end)
             subprocess.call(
                 "ffmpeg -i %s -ss %i -c copy -t %i %s" % (vid_name, start / 30, int(round(end - start) / 30.0), savename),
                 shell=True)
