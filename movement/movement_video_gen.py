@@ -8,6 +8,7 @@ import subprocess
 def main(file, vid_name, save_dir):
     mv_file = pickle.load(open(file))
     right_arm_mvmt = mv_file[:, 1]
+    start = -1
     for f in range(0, len(mv_file), 2):
         if np.mean(right_arm_mvmt[f:f+5])>1 and np.all(right_arm_mvmt[f-10:f] >= 0) and np.mean(right_arm_mvmt[f-10:f]) < 0.5:
             start = f
