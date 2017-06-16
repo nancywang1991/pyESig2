@@ -9,13 +9,14 @@ import matplotlib
 matplotlib.use("agg")
 import matplotlib.pyplot as plt
 
-def main(file, vid_name, joints_file, crop_coords, save_dir):
+def main(file, vid_name, joints_file, crop_file, save_dir):
     mv_file = pickle.load(open(file))
     right_arm_mvmt = mv_file[:, 1]
     start = -1
 
     # Pose calculation
-
+    crop_coords = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in
+                            open(crop_file).readlines()])
     poses = np.array([numerate_coords(row) for row in (open(joints_file)).readlines()])
     poses_normalized = np.array(
         [normalize_to_camera(row, crop_coord) for row, crop_coord in zip(poses, crop_coords)])
