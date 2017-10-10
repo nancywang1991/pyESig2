@@ -219,7 +219,7 @@ def main(sbj_id, day, vid_start_end, disconnect_fldr, video_loc):
 if __name__=="__main__":
     vid_start_end = "C:/Users/Nancy/OneDrive/Documents/Documents/rao_lab/video_analysis/vid_real_time/"
     disconnect_fldr = "C:/Users/Nancy/OneDrive/Documents/Documents/rao_lab/video_analysis/disconnect_times/"
-    video_loc = "D:/optical_flow_head_only/"
+    video_loc = "E:/optical_flow_head_only/"
     sbj_id = "e70923c4"
     day = 4
     main(sbj_id, day, vid_start_end, disconnect_fldr,  video_loc)

@@ -57,8 +57,8 @@ def main(sbj_id, day):
 
 
     vid_start_end = "C:\\Users\\wangnxr\\Documents\\rao_lab\\video_analysis\\vid_real_time\\"
-    ratio_file_1 = pickle.load(open("D:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_0.p" %(sbj_id, day)))
-    ratio_file_2 = pickle.load(open("D:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_1.p" % (sbj_id, day)))
+    ratio_file_1 = pickle.load(open("E:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_0.p" %(sbj_id, day)))
+    ratio_file_2 = pickle.load(open("E:/ratio_mapping/visualizations/%s_%i_ratio_multi_day_4_9_25_55_comp_1.p" % (sbj_id, day)))
     ratio_file = np.hstack([ratio_file_1[:-1000], ratio_file_2[:-1000]])
     estimator = KMeans(n_clusters, n_init=10, max_iter=1000)
     labels = estimator.fit_predict(ratio_file)
