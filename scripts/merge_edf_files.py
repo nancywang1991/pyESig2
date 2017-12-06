@@ -44,15 +44,16 @@ for d in xrange(conversion.shape[0]):
     physical_min = edf_files[0].getPhysicalMaximum(1)
     main_data = []
     for channel in range(1, n_channels+1):
-        chan_data = [physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0])
+        chan_data = np.array([physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0]))
         pdb.set_trace()
         for f, file in enumerate(edf_files):
+            print "loading channel %i of file %s" % (channel, file)
             if final_end_time_orig < start_end_times[f][1]:
-                chan_data += file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]
+                chan_data = np.hstack([chan_data, file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]])
             else:
-                chan_data += file.readSignal(channel)
+                chan_data = np.hstack([chan_data, file.readSignal(channel)])
             if f+1 < len(start_end_times):
-                chan_data += [physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0])
+                chan_data = np.hstack(chan_data, np.array([physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0])))
         main_data.append(chan_data)
     edf_out.writeSamples(main_data)
     edf_out.close()
