@@ -9,7 +9,7 @@ sbj_id = "cb46fd46"
 conversion_file = "/home/nancy/Documents/data_release/%s.csv" % sbj_id
 disconnect_times_dir = "/home/nancy/Documents/disconnect_times/"
 orig_edf_dir = "/data/decrypted_edf/%s/" % sbj_id
-save_dir = "/space/data_by_day/"
+save_dir = "/space/nancy/data_by_day/"
 
 def get_sample_len(time1, time2):
     return max(0, int((time2-time1).total_seconds()*1000))
