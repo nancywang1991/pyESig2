@@ -2,7 +2,7 @@ import pyedflib
 import pandas
 import numpy as np
 from vid.video_sync.vid_start_end import get_disconnected_times
-import datetime
+from datetime import datetime
 import pdb
 
 sbj_id = "cb46fd46"
