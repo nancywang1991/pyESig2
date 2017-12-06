@@ -38,7 +38,7 @@ for d in xrange(conversion.shape[0]):
     edf_out.setStartdatetime(final_start_time)
 
     # Set signal header
-    edf_out.setSignalHeaders(edf_files[0].getSignalHeaders[1:n_channels+1])
+    edf_out.setSignalHeaders(edf_files[0].getSignalHeaders()[1:n_channels+1])
 
     # write data
     physical_min = edf_files[0].getPhysicalMaximum(1)

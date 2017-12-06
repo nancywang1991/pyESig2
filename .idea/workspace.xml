@@ -85,8 +85,8 @@
       <file leaf-file-name="merge_edf_files.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="1064">
+              <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -199,10 +199,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="311" />
-    <option name="y" value="75" />
+    <option name="x" value="10" />
     <option name="width" value="3844" />
-    <option name="height" value="2092" />
+    <option name="height" value="2074" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -788,13 +787,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00204" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
-      <created>1484635953010</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1484635953010</updated>
-    </task>
     <task id="LOCAL-00205" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
       <created>1484636361341</created>
       <option name="number" value="00205" />
@@ -1131,7 +1123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512527617641</updated>
     </task>
-    <option name="localTasksCounter" value="253" />
+    <task id="LOCAL-00253" summary="data release scripts">
+      <created>1512527684326</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1512527684326</updated>
+    </task>
+    <option name="localTasksCounter" value="254" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1144,7 +1143,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="311" y="75" width="3844" height="2092" extended-state="0" />
+    <frame x="10" y="0" width="3844" height="2074" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19700944" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1606,8 +1605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        <state relative-caret-position="1064">
+          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
