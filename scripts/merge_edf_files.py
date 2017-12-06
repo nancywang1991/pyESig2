@@ -24,7 +24,7 @@ for d in xrange(conversion.shape[0]):
     final_start_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["start_time"][d], '%m-%d-%Y %H:%M:%S:%f')
     final_end_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
 
-    pdb.set_trace()
+
     final_start_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["start_time"][d], '%m/%d/%Y %H:%M:%S:%f')
     final_end_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["end_time"][d], '%m/%d/%Y %H:%M:%S:%f')
 
@@ -45,7 +45,8 @@ for d in xrange(conversion.shape[0]):
     main_data = []
     for channel in range(1, n_channels+1):
         chan_data = [physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0])
-        for f, file in edf_files:
+        pdb.set_trace()
+        for f, file in enumerate(edf_files):
             if final_end_time_orig < start_end_times[f][1]:
                 chan_data += file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]
             else:
