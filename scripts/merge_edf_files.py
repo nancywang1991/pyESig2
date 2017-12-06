@@ -53,7 +53,7 @@ for d in xrange(conversion.shape[0]):
             else:
                 chan_data = np.hstack([chan_data, file.readSignal(channel)])
             if f+1 < len(start_end_times):
-                chan_data = np.hstack(chan_data, np.array([physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0])))
+                chan_data = np.hstack([chan_data, np.array([physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0]))])
         main_data.append(chan_data)
     edf_out.writeSamples(main_data)
     edf_out.close()
