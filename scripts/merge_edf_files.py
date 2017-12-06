@@ -17,13 +17,14 @@ def get_sample_len(time1, time2):
 conversion = pandas.read_csv(conversion_file)
 
 for d in xrange(conversion.shape[0]):
-    pdb.set_trace()
+
     orig_files = ["%s/%s.edf" % (orig_edf_dir, orig_file) for orig_file in [conversion["file1"][d],conversion["file2"][d],conversion["file3"][d]] if not isinstance(orig_file, float)]
     start_end_times = [get_disconnected_times("%s/%s.txt" % (disconnect_times_dir, orig_file))[:2]
                        for orig_file in [conversion["file1"][d],conversion["file2"][d],conversion["file3"][d]] if not isinstance(orig_file, float)]
     final_start_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["start_time"][d], '%m-%d-%Y %H:%M:%S:%f')
     final_end_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
 
+    pdb.set_trace()
     final_start_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["start_time"][d], '%m-%d-%Y %H:%M:%S:%f')
     final_end_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
 
