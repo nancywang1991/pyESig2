@@ -47,7 +47,7 @@ for d in xrange(conversion.shape[0]):
         chan_data = np.array([physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0]))
         pdb.set_trace()
         for f, file in enumerate(edf_files):
-            print "loading channel %i of file %s" % (channel, file)
+            print "loading channel %i of file %s" % (channel, orig_files[f])
             if final_end_time_orig < start_end_times[f][1]:
                 chan_data = np.hstack([chan_data, file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]])
             else:

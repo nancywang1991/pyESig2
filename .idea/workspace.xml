@@ -85,8 +85,8 @@
       <file leaf-file-name="merge_edf_files.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1559">
-              <caret line="55" column="138" selection-start-line="55" selection-start-column="138" selection-end-line="55" selection-end-column="138" />
+            <state relative-caret-position="1361">
+              <caret line="49" column="75" selection-start-line="49" selection-start-column="75" selection-end-line="49" selection-end-column="75" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -787,13 +787,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00208" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
-      <created>1485216034444</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
-      <option name="project" value="LOCAL" />
-      <updated>1485216034444</updated>
-    </task>
     <task id="LOCAL-00209" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
       <created>1485219995453</created>
       <option name="number" value="00209" />
@@ -1130,7 +1123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512585855049</updated>
     </task>
-    <option name="localTasksCounter" value="257" />
+    <task id="LOCAL-00257" summary="data release scripts">
+      <created>1512585885103</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1512585885103</updated>
+    </task>
+    <option name="localTasksCounter" value="258" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1605,8 +1605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1559">
-          <caret line="55" column="138" selection-start-line="55" selection-start-column="138" selection-end-line="55" selection-end-column="138" />
+        <state relative-caret-position="1361">
+          <caret line="49" column="75" selection-start-line="49" selection-start-column="75" selection-end-line="49" selection-end-column="75" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
