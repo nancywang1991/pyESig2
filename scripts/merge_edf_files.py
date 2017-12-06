@@ -25,8 +25,8 @@ for d in xrange(conversion.shape[0]):
     final_end_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
 
     pdb.set_trace()
-    final_start_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["start_time"][d], '%m-%d-%Y %H:%M:%S:%f')
-    final_end_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
+    final_start_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["start_time"][d], '%m/%d/%Y %H:%M:%S:%f')
+    final_end_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["end_time"][d], '%m/%d/%Y %H:%M:%S:%f')
 
     # Set up final edf file
     edf_files = [pyedflib.EdfReader(file) for file in orig_files]
