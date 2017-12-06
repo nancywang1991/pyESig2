@@ -3,6 +3,7 @@ import pandas
 import numpy as np
 from vid.video_sync.vid_start_end import get_disconnected_times
 import datetime
+import pdb
 
 sbj_id = "cb46fd46"
 conversion_file = "/home/nancy/Documents/data_release/%s.csv" % sbj_id
@@ -15,20 +16,21 @@ def get_sample_len(time1, time2):
 
 conversion = pandas.read_csv(conversion_file)
 
-for day in conversion:
-    orig_files = ["%s/%s.edf" % (orig_edf_dir, orig_file) for orig_file in [day["file1"],day["file2"],day["file3"]] if len(orig_file)> 0]
+for d in xrange(conversion.shape[0]):
+    pdb.set_trace()
+    orig_files = ["%s/%s.edf" % (orig_edf_dir, orig_file) for orig_file in [conversion["file1"][d],conversion["file2"][d],conversion["file3"][d]] if len(orig_file)> 0]
     start_end_times = [get_disconnected_times("%s/%s.txt" % (disconnect_times_dir, orig_file))[:2]
-                       for orig_file in [day["file1"], day["file2"], day["file3"]] if len(orig_file) > 0]
-    final_start_time = datetime.strptime("01-0%i-1000 " % day["day"] + day["start_time"], '%m-%d-%Y %H:%M:%S:%f')
-    final_end_time = datetime.strptime("01-0%i-1000 " % day["day"] + day["end_time"], '%m-%d-%Y %H:%M:%S:%f')
+                       for orig_file in [conversion["file1"][d],conversion["file2"][d],conversion["file3"][d]] if len(orig_file) > 0]
+    final_start_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["start_time"][d], '%m-%d-%Y %H:%M:%S:%f')
+    final_end_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
 
-    final_start_time_orig = datetime.strptime(day["start_date"] + " " + day["start_time"], '%m-%d-%Y %H:%M:%S:%f')
-    final_end_time_orig = datetime.strptime(day["start_date"] + " " + day["end_time"], '%m-%d-%Y %H:%M:%S:%f')
+    final_start_time_orig = datetime.strptime(conversion["start_date"][d] + " " + conversion["start_time"][d], '%m-%d-%Y %H:%M:%S:%f')
+    final_end_time_orig = datetime.strptime(conversion["start_date"][d] + " " + conversion["end_time"][d], '%m-%d-%Y %H:%M:%S:%f')
 
     # Set up final edf file
     edf_files = [pyedflib.EdfReader(file) for file in orig_files]
     n_channels = edf_files[0].getSignalLabels().index('ECGR')
-    edf_out = pyedflib.EdfWriter("%s/%s_day_%i.edf" % (save_dir, sbj_id, day["day"]), n_channels)
+    edf_out = pyedflib.EdfWriter("%s/%s_day_%i.edf" % (save_dir, sbj_id, conversion["day"][d]), n_channels)
 
     # De-identify date of patient stay and update start time
     edf_out.setHeader(edf_files[0].getHeader())
