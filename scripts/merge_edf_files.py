@@ -3,7 +3,9 @@ import pandas
 import numpy as np
 from vid.video_sync.vid_start_end import get_disconnected_times
 from datetime import datetime
+from copy import copy
 import pdb
+import gc
 
 sbj_id = "cb46fd46"
 conversion_file = "/home/nancy/Documents/data_release/%s.csv" % sbj_id
@@ -16,7 +18,7 @@ def get_sample_len(time1, time2):
 
 conversion = pandas.read_csv(conversion_file)
 
-for d in xrange(conversion.shape[0]):
+for d in range(1, conversion.shape[0]):
 
     orig_files = ["%s/%s.edf" % (orig_edf_dir, orig_file) for orig_file in [conversion["file1"][d],conversion["file2"][d],conversion["file3"][d]] if not isinstance(orig_file, float)]
     start_end_times = [get_disconnected_times("%s/%s.txt" % (disconnect_times_dir, orig_file))[:2]
@@ -43,22 +45,60 @@ for d in xrange(conversion.shape[0]):
     # write data
     physical_min = edf_files[0].getPhysicalMaximum(1)
     main_data = []
+    gc.collect()
     for channel in range(1, n_channels+1):
         chan_data = np.array([physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0]))
-        pdb.set_trace()
         for f, file in enumerate(edf_files):
             print "loading channel %i of file %s" % (channel, orig_files[f])
-            if final_end_time_orig < start_end_times[f][1]:
+            if final_start_time_orig > start_end_times[f][0]:
+		chan_data = np.hstack([chan_data, file.readSignal(channel)[get_sample_len(start_end_times[f][0], final_start_time_orig):]])
+	    elif final_end_time_orig < start_end_times[f][1]:
                 chan_data = np.hstack([chan_data, file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]])
             else:
                 chan_data = np.hstack([chan_data, file.readSignal(channel)])
             if f+1 < len(start_end_times):
                 chan_data = np.hstack([chan_data, np.array([physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0]))])
+	chan_data = copy(chan_data[:len(chan_data)/3])
+	main_data.append(chan_data)
+    
+    edf_out.writeSamples(main_data)
+    
+    main_data = []
+    gc.collect()
+    for channel in range(1, n_channels+1):
+        chan_data = np.array([physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0]))
+        for f, file in enumerate(edf_files):
+            print "loading channel %i of file %s" % (channel, orig_files[f])
+            if final_start_time_orig > start_end_times[f][0]:
+                chan_data = np.hstack([chan_data, file.readSignal(channel)[get_sample_len(start_end_times[f][0], final_start_time_orig):]])
+            elif final_end_time_orig < start_end_times[f][1]:
+                chan_data = np.hstack([chan_data, file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]])
+            else:
+                chan_data = np.hstack([chan_data, file.readSignal(channel)])
+            if f+1 < len(start_end_times):
+                chan_data = np.hstack([chan_data, np.array([physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0]))])
+        chan_data = copy(chan_data[len(chan_data)/3:2*len(chan_data)/3])
+	main_data.append(chan_data)
+    edf_out.writeSamples(main_data)
+
+    main_data = []
+    gc.collect()
+    for channel in range(1, n_channels+1):
+        chan_data = np.array([physical_min]*get_sample_len(final_start_time_orig, start_end_times[0][0]))
+        for f, file in enumerate(edf_files):
+            print "loading channel %i of file %s" % (channel, orig_files[f])
+            if final_start_time_orig > start_end_times[f][0]:
+                chan_data = np.hstack([chan_data, file.readSignal(channel)[get_sample_len(start_end_times[f][0], final_start_time_orig):]])
+            elif final_end_time_orig < start_end_times[f][1]:
+                chan_data = np.hstack([chan_data, file.readSignal(channel)[:get_sample_len(start_end_times[f][0], final_end_time_orig)]])
+            else:
+                chan_data = np.hstack([chan_data, file.readSignal(channel)])
+            if f+1 < len(start_end_times):
+                chan_data = np.hstack([chan_data, np.array([physical_min]*get_sample_len(start_end_times[f][1], start_end_times[f+1][0]))])
+	chan_data = copy(chan_data[2*len(chan_data)/3:])
         main_data.append(chan_data)
     edf_out.writeSamples(main_data)
+
     edf_out.close()
-
-
-
-
-
+    for file in edf_files:
+	file._close()
