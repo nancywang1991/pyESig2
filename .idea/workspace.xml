@@ -97,8 +97,8 @@
       <file leaf-file-name="gen_hourly_pose.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/gen_hourly_pose.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="664">
-              <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
+            <state relative-caret-position="1167">
+              <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -909,13 +909,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00211" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
-      <created>1485220203853</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1485220203853</updated>
-    </task>
     <task id="LOCAL-00212" summary="wrote pose detection full pipeline on cluster&#10;&#10;">
       <created>1485225232866</created>
       <option name="number" value="00212" />
@@ -1252,7 +1245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513034195192</updated>
     </task>
-    <option name="localTasksCounter" value="260" />
+    <task id="LOCAL-00260" summary="data release scripts">
+      <created>1513036816536</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1513036816536</updated>
+    </task>
+    <option name="localTasksCounter" value="261" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1721,8 +1721,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/gen_hourly_pose.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
+        <state relative-caret-position="1167">
+          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

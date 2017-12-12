@@ -41,8 +41,8 @@ def is_purged(cur_vid, frame):
         start = rows["start time"][r]
         end = rows["end time"][r]
         time = frame/30
-        if time > int(start.split(":")[0])*60 + int(start.split(":")[1]) and
-            time < int(end.split(":")[0])*60 + int(end.split(":")[1]):
+        if (time > (int(start.split(":")[0])*60 + int(start.split(":")[1]))) and \
+                (time < (int(end.split(":")[0])*60 + int(end.split(":")[1]))):
             return True
     return False
 
