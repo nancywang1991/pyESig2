@@ -35,6 +35,7 @@ for file in glob.glob("%s/%s_*.edf" % (merge_edf_dir, sbj_id)):
         for channel in range(n_channels):
             chan_data = np.place(orig_edf.readSignal(channel), purge_array, orig_edf.getPhysicalMinimum())
         main_data.append(chan_data)
+
     edf_out.writeSamples(main_data)
     edf_out.close()
     orig_edf._close()
