@@ -7,7 +7,7 @@ from copy import copy
 import pdb
 import gc
 
-sbj_id = "c95c1e82"
+sbj_id = "d6532718"
 conversion_file = "/home/nancy/Documents/data_release/%s.csv" % sbj_id
 disconnect_times_dir = "/home/nancy/Documents/disconnect_times/"
 orig_edf_dir = "/data/decrypted_edf/%s/" % sbj_id

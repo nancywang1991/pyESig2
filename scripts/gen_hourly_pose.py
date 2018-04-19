@@ -10,7 +10,7 @@ import ezodf
 import pdb
 import os
 
-sbj_id = "c95c1e82"
+sbj_id = "a0f66459"
 conversion_file = "/home/nancy/Documents/data_release/%s.csv" % sbj_id
 disconnect_times_dir = "/home/nancy/Documents/disconnect_times/"
 vid_start_ends_dir = "/home/nancy/Documents/vid_start_end/"
@@ -45,7 +45,7 @@ def is_purged(cur_vid, frame, df):
     except KeyError:
 	return False
     for r in xrange(len(rows)):
-        start = rows["start time"].iloc[r]
+	start = rows["start time"].iloc[r]
         end = rows["end time"].iloc[r]
         time = frame/30.0
         if (time > (int(start.split(":")[0])*60 + float(start.split(":")[1]))) and \
@@ -57,56 +57,58 @@ def is_purged(cur_vid, frame, df):
 
 conversion = pandas.read_csv(conversion_file)
 
-for d in range(conversion.shape[0]):
+for d in range(7, conversion.shape[0]):
     start_end_times = [get_disconnected_times("%s/%s.txt" % (disconnect_times_dir, orig_file))[:2]
                        for orig_file in [conversion["file1"][d], conversion["file2"][d], conversion["file3"][d]] if
                        not isinstance(orig_file, float)]
     vid_start_ends = [pickle.load(open("%s/%s.p" % (vid_start_ends_dir, orig_file)))
                        for orig_file in [conversion["file1"][d], conversion["file2"][d], conversion["file3"][d]] if
                        not isinstance(orig_file, float)]
-    final_start_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["start_time"][d],
+    final_start_time = datetime.strptime("01-%02i-1000 " % conversion["day"][d] + conversion["start_time"][d],
                                          '%m-%d-%Y %H:%M:%S:%f')
-    final_end_time = datetime.strptime("01-0%i-1000 " % conversion["day"][d] + conversion["end_time"][d],
+    final_end_time = datetime.strptime("01-%02i-1000 " % conversion["day"][d] + conversion["end_time"][d],
                                        '%m-%d-%Y %H:%M:%S:%f')
 
     final_start_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["start_time"][d],
                                               '%m/%d/%Y %H:%M:%S:%f')
     final_end_time_orig = datetime.strptime(conversion["date"][d] + " " + conversion["end_time"][d],
                                             '%m/%d/%Y %H:%M:%S:%f')
-    header = ["time", "missing", "purged", "head", "r_shoulder", "l_shoulder", "r_elbow", "l_elbow", "r_wrist", "l_wrist"]
+    header = ["time", "missing", "purged", "head", "r_wrist", "l_wrist", "r_elbow", "l_elbow", "r_shoulder", "l_shoulder"]
     result_file = []
     #result_file = pandas.DataFrame({"time":[], "missing":[], "purged": [], "head":[], "r_shoulder":[], "l_shoulder":[], "r_elbow":[], "l_elbow":[], "r_wrist":[], "l_wrist":[]})
     cur_time = final_start_time_orig
     cur_vid_end = final_start_time_orig - timedelta(seconds=1)
     while cur_time < final_end_time_orig:
 	fnum, vnum, cur_vid_start, cur_vid_end = time_to_vid(cur_time, vid_start_ends)
-        while fnum == None:
+        while fnum == None and cur_time < final_end_time_orig:
             result_file.append(pandas.DataFrame([[print_time(cur_time), 1, 0] + [(-1,-1,-1) for i in xrange(7)]], columns=header))
             cur_time += timedelta(seconds=0.99975/30.0)
 	    fnum, vnum, cur_vid_start, cur_vid_end = time_to_vid(cur_time, vid_start_ends)
-	cur_vid = "%s_%04i" % (conversion["file%i" % (int(fnum)+1)][d], int(vnum))
-        poses = open("%s/%s/%s.txt" % (orig_pose_dir, conversion["file%i" % (int(fnum)+1)][d], cur_vid)).readlines()
-	crop_coord = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in  open("%s/crop_coords/%s.txt" % (orig_pose_dir, cur_vid)).readlines()])
-        start_frame = int((cur_time-cur_vid_start).total_seconds()*30*0.99975)
-	print (cur_vid, cur_time, start_frame)
-        sbj_id, day, vid = cur_vid.split("_")
-        if not os.path.exists("%s/%s/%s_%s_purgetimes.ods" % (purge_dir, sbj_id, sbj_id, day)):
-            df = None
-	else:
-	    df = read_ods("%s/%s/%s_%s_purgetimes.ods" % (purge_dir, sbj_id, sbj_id, day))
-
-	for p, pose in enumerate(poses[start_frame:]):
-            if not is_purged(cur_vid, p+start_frame, df):
-                norm_poses = normalize_to_camera(numerate_coords(pose), crop_coord[p])
-                result_file.append(pandas.DataFrame([[print_time(cur_time), 0, 0] +
-                                                    [(norm_pose[0], norm_pose[1], orig_pose[2]) for norm_pose, orig_pose in zip(norm_poses, numerate_coords(pose))]], columns=header))
+	if cur_time < final_end_time_orig:
+	    cur_vid = "%s_%04i" % (conversion["file%i" % (int(fnum)+1)][d], int(vnum))
+	    poses = open("%s/%s/%s.txt" % (orig_pose_dir, conversion["file%i" % (int(fnum)+1)][d], cur_vid)).readlines()
+	    crop_coord = np.array([np.array([int(coord) for coord in crop_coord.split(',')]) for crop_coord in  open("%s/crop_coords/%s.txt" % (orig_pose_dir, cur_vid)).readlines()])
+            start_frame = int((cur_time-cur_vid_start).total_seconds()*30*0.99975)
+	    print (cur_vid, cur_time, start_frame)
+	    sbj_id, day, vid = cur_vid.split("_")
+            if not os.path.exists("%s/%s/%s_%s_purgetimes.ods" % (purge_dir, sbj_id, sbj_id, day)):
+                df = None
 	    else:
+	        df = read_ods("%s/%s/%s_%s_purgetimes.ods" % (purge_dir, sbj_id, sbj_id, day))
+	        df.columns = [x.lower() if x is not None else x for x in df.columns]
+	    end_frame = min(len(poses), int((final_end_time_orig-cur_time).total_seconds()*30*0.99975))
+	    for p, pose in enumerate(poses[start_frame:end_frame]):
+                if not is_purged(cur_vid, p+start_frame, df):
+                    norm_poses = normalize_to_camera(numerate_coords(pose), crop_coord[p])
+                    result_file.append(pandas.DataFrame([[print_time(cur_time), 0, 0] +
+                                                    [(norm_pose[0], norm_pose[1], orig_pose[2]) for norm_pose, orig_pose in zip(norm_poses, numerate_coords(pose))]], columns=header))
+	        else:
 		#pdb.set_trace()
-                result_file.append(
+                    result_file.append(
                     pandas.DataFrame([[print_time(cur_time), 0, 1] + [(-1, -1, -1) for i in xrange(7)]], columns=header))
-	    cur_time += timedelta(seconds=0.99975/30.0)
-	fnum2, vnum2, _, _ = time_to_vid(cur_time, vid_start_ends)
-	while cur_time< final_end_time_orig and fnum2 is not None and fnum2==fnum and vnum2 != vnum+1:
+	        cur_time += timedelta(seconds=0.99975/30.0)
+	    fnum2, vnum2, _, _ = time_to_vid(cur_time, vid_start_ends)
+	    while cur_time< final_end_time_orig and fnum2 is not None and fnum2==fnum and vnum2 != vnum+1:
 		print "adding"
 		result_file.append(pandas.DataFrame([[print_time(cur_time), 1, 0] + [(-1,-1,-1) for i in xrange(7)]], columns=header))
 		cur_time += timedelta(seconds=0.99975/30.0)
