@@ -32,7 +32,7 @@ def ecog_map_single_sentence_multi_channel(ecog_clip, transcript, syn_dict, map_
         try:
             map_dict[synset]["map"] += spectrogram
             map_dict[synset]["count"] += 1
-        except IndexError:
+        except KeyError:
             map_dict[synset] = {"map": spectrogram, "count": 1}
     return
 
