@@ -65,7 +65,7 @@ data_loc = "/home/nancy/Documents/speech/synset_mapping/"
 
 data = []
 synsets =[]
-for file in glob.glob("/%s/*/power_feature_maps.p" % sbj_id):
+for file in glob.glob("%s/%s/*/power_feature_maps.p" % (data_loc, sbj_id)):
     input_data = pickle.load(open(file, "rb"))
     data += input_data["power"]
     synsets += input_data["synset"]
