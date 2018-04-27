@@ -68,40 +68,43 @@ def gen_synsets_to_do(synset_dict, cutoff, n_way):
     return [synsets for synsets in combos if synsets[0].split(".")[1]==synsets[1].split(".")[1]]
 
 
+def main():
+    sbj_id = "a0f66459"
+    data_loc = "/home/nancy/Documents/speech/synset_mapping/"
 
-sbj_id = "a0f66459"
-data_loc = "/home/nancy/Documents/speech/synset_mapping/"
+    data = []
+    synsets =[]
+    for file in glob.glob("%s/%s/*/power_feature_maps.p" % (data_loc, sbj_id)):
+        if file.split("/")[-2] == "cb46fd46_4":
+            continue
+        input_data = pickle.load(open(file, "rb"))
+        data += input_data["power"]
+        synsets += input_data["synset"]
+    valid_ind = [i for i, datum in enumerate(data) if not (np.isnan(datum).any() or np.isinf(datum).any())]
+    data = np.array(data)[valid_ind]
+    synsets = np.array(synsets)[valid_ind]
+    synset_dict = synset_summary(synsets)
+    synsets_to_do_list = gen_synsets_to_do(synset_dict, 300, 2)
 
-data = []
-synsets =[]
-for file in glob.glob("%s/%s/*/power_feature_maps.p" % (data_loc, sbj_id)):
-    if file.split("/")[-2] == "cb46fd46_4":
-        continue
-    input_data = pickle.load(open(file, "rb"))
-    data += input_data["power"]
-    synsets += input_data["synset"]
-valid_ind = [i for i, datum in enumerate(data) if not (np.isnan(datum).any() or np.isinf(datum).any())]
-data = np.array(data)[valid_ind]
-synsets = np.array(synsets)[valid_ind]
-synset_dict = synset_summary(synsets)
-synsets_to_do_list = gen_synsets_to_do(synset_dict, 300, 2)
+    for synsets_to_do in synsets_to_do_list:
+        samples = gen_classification_data(data, synsets, synsets_to_do)
+        if min([len(value) for value in samples.itervalues()]) < 200:
+            continue
+        trainX, trainY, testX, testY, valX, valY = train_val_test_split(samples, synsets_to_do)
+        model = sklearn.ensemble.RandomForestClassifier()
+        print synsets_to_do
+        print np.mean(cross_val_score(model, trainX, trainY, cv=10))
+        #model.fit(trainX, trainY)
+        #score =  model.score(testX, testY)
+        #if score > 0.55:
+        #    print synsets_to_do
+        #    print score
+        #    print model.score(valX, valY)
+        #    print np.mean(cross_val_score(model, trainX, trainY, cv=10))
+        #    print model.score(trainX, trainY)
+        #pdb.set_trace()
 
-for synsets_to_do in synsets_to_do_list:
-    samples = gen_classification_data(data, synsets, synsets_to_do)
-    if min([len(value) for value in samples.itervalues()]) < 200:
-        continue
-    trainX, trainY, testX, testY, valX, valY = train_val_test_split(samples, synsets_to_do)
-    model = sklearn.ensemble.RandomForestClassifier()
-    print synsets_to_do
-    print np.mean(cross_val_score(model, trainX, trainY, cv=10))
-    #model.fit(trainX, trainY)
-    #score =  model.score(testX, testY)
-    #if score > 0.55:
-    #    print synsets_to_do
-    #    print score
-    #    print model.score(valX, valY)
-    #    print np.mean(cross_val_score(model, trainX, trainY, cv=10))
-    #    print model.score(trainX, trainY)
-    #pdb.set_trace()
+if __name__=="__main__":
+    main()
 
 
