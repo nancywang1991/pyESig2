@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/speech/classify_synsets.py" afterPath="$PROJECT_DIR$/speech/classify_synsets.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/speech/cluster_samples.py" afterPath="$PROJECT_DIR$/speech/cluster_samples.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analysis/power_map_synsets.py" afterPath="$PROJECT_DIR$/analysis/power_map_synsets.py" />
     </list>
     <ignored path="pyESig2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,23 +86,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="power_map_synsets.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="power_map_synsets.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analysis/power_map_synsets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="40" column="59" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="59" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="784">
+              <caret line="98" column="20" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="classify_synsets.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="classify_synsets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/speech/classify_synsets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="107" column="10" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
+            <state relative-caret-position="726">
+              <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -114,7 +111,7 @@
       <file leaf-file-name="cluster_samples.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/speech/cluster_samples.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
+            <state relative-caret-position="1185">
               <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="10" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
@@ -187,9 +184,9 @@
         <option value="$PROJECT_DIR$/scripts/merge_edf_files.py" />
         <option value="$PROJECT_DIR$/scripts/purge_edf_files.py" />
         <option value="$PROJECT_DIR$/scripts/detected_word_statistics.py" />
-        <option value="$PROJECT_DIR$/analysis/power_map_synsets.py" />
         <option value="$PROJECT_DIR$/speech/cluster_samples.py" />
         <option value="$PROJECT_DIR$/speech/classify_synsets.py" />
+        <option value="$PROJECT_DIR$/analysis/power_map_synsets.py" />
       </list>
     </option>
   </component>
@@ -908,13 +905,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00220" summary="fixed joint movement norm filtering&#10;">
-      <created>1486411489537</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1486411489537</updated>
-    </task>
     <task id="LOCAL-00221" summary="fixed joint movement norm filtering&#10;">
       <created>1486412055924</created>
       <option name="number" value="00221" />
@@ -1251,7 +1241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524799433555</updated>
     </task>
-    <option name="localTasksCounter" value="269" />
+    <task id="LOCAL-00269" summary="mapping power over synsets">
+      <created>1524799684720</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1524799684720</updated>
+    </task>
+    <option name="localTasksCounter" value="270" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1670,16 +1667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analysis/power_map_synsets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="40" column="59" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/annotation/extract_annotated_joint_locations.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -1704,9 +1691,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/speech/classify_synsets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/speech/cluster_samples.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
+        <state relative-caret-position="1185">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="10" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
@@ -1714,13 +1711,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/speech/classify_synsets.py">
+    <entry file="file://$PROJECT_DIR$/analysis/power_map_synsets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="107" column="10" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="784">
+          <caret line="98" column="20" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

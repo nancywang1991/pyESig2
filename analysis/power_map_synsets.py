@@ -81,6 +81,7 @@ def main(ecog_file, syn_dict, transcript, vid_start_end, f_min, f_max, save_dir)
     map_dict = {}
     save_dict = {"power":[], "synset":[], "transcript": []}
     ecog = pyedflib.EdfReader(ecog_file)
+    sbj, day = ecog_file.split("/")[-1].split(".")[0].split("_")
     good_channels = []
     for c in xrange(ecog.signals_in_file):
         test_clip = ecog.readSignal(c, start=200000, n=100)
@@ -89,7 +90,13 @@ def main(ecog_file, syn_dict, transcript, vid_start_end, f_min, f_max, save_dir)
     for l, line in enumerate(open(transcript).readlines()):
         if l % 100==0:
             print l
-        filename, words = line.split(",")
+        try:
+            filename, words = line.split(",")
+        except:
+            _, filename, _, words = line.split(",")
+        line_sbj, line_day, _,_,_ = filename.split("/")[-1][:-4].split("_")
+        if not (line_sbj==sbj and line_day == day):
+            continue
         edf_start, edf_dur = time_clip2edf_pos(filename, pickle.load(open(vid_start_end)), ecog.getStartdatetime())
         ecog_clip = np.zeros(shape=(len(good_channels), edf_dur))
         prev_clip = np.zeros(shape=(len(good_channels), 10000))
