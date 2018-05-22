@@ -3,6 +3,7 @@ import cPickle as pickle
 import pdb
 import argparse
 import subprocess
+import os
 
 def main(sbj_id):
     save_dir = "~/transcriptions/"
@@ -13,6 +14,8 @@ def main(sbj_id):
     word2synset = pickle.load(open(synset_file,"r"))
     for trans_file in glob.glob("%s/%s/*_trans.csv" % (transcript_dir, sbj_id)):
         day = trans_file.split("/")[-1].split("_")[1]
+        if not os.path.exists("%s/%s/" % (save_dir, sbj_id)):
+            os.makedirs("%s/%s/" % (save_dir, sbj_id))
         save_file = "%s/%s/%s_%s_trans_clean.csv" % (save_dir, sbj_id, sbj_id, day)
         cur_ind = 0
         try:

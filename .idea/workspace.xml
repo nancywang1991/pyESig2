@@ -39,11 +39,9 @@
       <file leaf-file-name="check_synset_words_audio.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/annotation/check_synset_words_audio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1461">
-              <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="132">
+              <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -813,13 +811,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00225" summary="fixed joint movement norm filtering&#10;">
-      <created>1486412852478</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1486412852478</updated>
-    </task>
     <task id="LOCAL-00226" summary="fixed joint movement norm filtering&#10;">
       <created>1486412939279</created>
       <option name="number" value="00226" />
@@ -1156,7 +1147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527013397022</updated>
     </task>
-    <option name="localTasksCounter" value="274" />
+    <task id="LOCAL-00274" summary="transcription code">
+      <created>1527013614168</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1527013614168</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1634,11 +1632,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/annotation/check_synset_words_audio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1461">
-          <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="132">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
