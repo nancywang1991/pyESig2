@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/annotation/check_synset_words_audio.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1461">
-              <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
+              <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -85,8 +85,8 @@
       <file leaf-file-name="check_labels.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/validation/check_labels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1023">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -813,13 +813,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00224" summary="fixed joint movement norm filtering&#10;">
-      <created>1486412823072</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
-      <option name="project" value="LOCAL" />
-      <updated>1486412823072</updated>
-    </task>
     <task id="LOCAL-00225" summary="fixed joint movement norm filtering&#10;">
       <created>1486412852478</created>
       <option name="number" value="00225" />
@@ -1156,7 +1149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527013313465</updated>
     </task>
-    <option name="localTasksCounter" value="273" />
+    <task id="LOCAL-00273" summary="transcription code">
+      <created>1527013397022</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1527013397022</updated>
+    </task>
+    <option name="localTasksCounter" value="274" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1578,32 +1578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/audio/audio_snippet_denoising.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/upload_to_glacier_2016.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/validation/check_labels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/audio/transcription_csv_gen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -1622,6 +1596,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/audio/audio_snippet_denoising.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/OneDrive - UW/Documents/Documents/classes/systems_ml/assignment2.tar/assignment2/assignment2-2018/tests/mnist_dlsys.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1632,10 +1614,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/util/upload_to_glacier_2016.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validation/check_labels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1023">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/annotation/check_synset_words_audio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1461">
-          <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
+          <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

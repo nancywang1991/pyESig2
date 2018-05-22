@@ -4,8 +4,6 @@ import pdb
 import argparse
 import subprocess
 
-sbj_id = "a0f66459"
-
 def main(sbj_id):
     save_dir = "~/transcriptions/"
     audio_dir = "/data1/voice_activity_orig/"
@@ -55,7 +53,7 @@ def main(sbj_id):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--sbj_id", help="subject id")
+    parser.add_argument("-s", "--sbj_id", help="subject id", required=True)
     args = parser.parse_args()
     main(args.sbj_id)
 
