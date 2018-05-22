@@ -22,11 +22,11 @@ def matches(list1, list2):
     for item in list1:
         if item in list2:
             match.append(item)
-    return match
+    return list(set(match))
 
 def train_val_test_split(samples, synsets_to_do):
     data_len = min([len(value) for value in samples.itervalues()])
-    train_len = int(0.8*data_len)
+    train_len = data_len #int(0.8*data_len)
     val_len = int(0.9*data_len)-int(0.8*data_len)
     test_len = data_len-int(0.9*data_len)
     sample_shape = np.ndarray.flatten(samples.values()[0][0]).shape[0]
@@ -60,6 +60,8 @@ def gen_classification_data(data, data_synset, synsets_to_do):
         match = matches(data_synset[i], synsets_to_do)
         if len(match) == 1:
             samples[match[0]].append(data[i])
+    for value in samples.values():
+        print len(value)
     return samples
 
 def gen_synsets_to_do(synset_dict, cutoff, n_way):
@@ -69,7 +71,7 @@ def gen_synsets_to_do(synset_dict, cutoff, n_way):
 
 
 def main():
-    sbj_id = "a0f66459"
+    sbj_id = "d6532718"
     data_loc = "/home/nancy/Documents/speech/synset_mapping/"
 
     data = []
@@ -88,12 +90,12 @@ def main():
 
     for synsets_to_do in synsets_to_do_list:
         samples = gen_classification_data(data, synsets, synsets_to_do)
-        if min([len(value) for value in samples.itervalues()]) < 200:
+        if min([len(value) for value in samples.itervalues()]) < 300:
             continue
         trainX, trainY, testX, testY, valX, valY = train_val_test_split(samples, synsets_to_do)
         model = sklearn.ensemble.RandomForestClassifier()
         print synsets_to_do
-        print np.mean(cross_val_score(model, trainX, trainY, cv=10))
+        print np.mean(cross_val_score(model, trainX, trainY, cv=len(trainX)/2))
         #model.fit(trainX, trainY)
         #score =  model.score(testX, testY)
         #if score > 0.55:

@@ -6,7 +6,7 @@ import subprocess
 import os
 
 def main(sbj_id):
-    save_dir = "~/transcriptions/"
+    save_dir = "%s/transcriptions/" % os.getenv("HOME")
     audio_dir = "/data1/voice_activity_orig/"
     transcript_dir = "/data1/voice_activity_orig/"
     synset_file = "/data1/voice_activity_orig/word2synset_dict.p"
@@ -41,13 +41,13 @@ def main(sbj_id):
                     print ", ".join(["%i-%s" %(n, word) for n, word in enumerate(words_to_do)])
                     subset += length
                     audio = "%s/%s" % (audio_dir, "/".join(audio_file.split("/")[-3:]))
-                    subprocess.call("ffplay %s" % audio, shell=True)
+                    subprocess.call("mplayer -really-quiet %s" % audio, shell=True)
                     corrects = raw_input("corrects (separated by comma), r to replay:").split(",")
                     while corrects == ["r"]:
-                        subprocess.call("ffplay %s" % audio, shell=True)
+                        subprocess.call("mplayer -really-quiet %s" % audio, shell=True)
                         corrects = raw_input("corrects (separated by comma), r to replay:").split(",")
                     if not corrects == [""]:
-                        result.write(",".join([audio_file, transcript[:-1], " ".join([words_to_do[int(correct)] for correct in corrects])]) + "\n")
+                        result.write(",".join([audio_file, transcript[:-1], " ".join([correct for correct in corrects])]) + "\n")
                         #result.write(",".join([audio_file, transcript[:-1],corrects[0]]) + "\n")
                     else:
                         result.write(",".join([audio_file, transcript[:-1], " "]) + "\n")

@@ -94,9 +94,9 @@ def main(ecog_file, syn_dict, transcript, vid_start_end, f_min, f_max, save_dir)
             filename, words = line.split(",")
         except:
             _, filename, _, words = line.split(",")
-        line_sbj, line_day, _,_,_ = filename.split("/")[-1][:-4].split("_")
-        if not (line_sbj==sbj and line_day == day):
-            continue
+            line_sbj, line_day = filename.split("/")[-1][:-4].split("_")[:2]
+            if not (line_sbj==sbj and line_day == day and len(filename.split("/")[-1][:-4].split("_"))==5):
+                continue
         edf_start, edf_dur = time_clip2edf_pos(filename, pickle.load(open(vid_start_end)), ecog.getStartdatetime())
         ecog_clip = np.zeros(shape=(len(good_channels), edf_dur))
         prev_clip = np.zeros(shape=(len(good_channels), 10000))
