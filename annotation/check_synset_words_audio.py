@@ -1,4 +1,3 @@
-import winsound
 import glob
 import cPickle as pickle
 import pdb
@@ -41,7 +40,7 @@ def main(sbj_id):
                     print ", ".join(["%i-%s" %(n, word) for n, word in enumerate(words_to_do)])
                     subset += length
                     audio = "%s/%s" % (audio_dir, "/".join(audio_file.split("/")[-3:]))
-                    winsound.PlaySound(audio, winsound.SND_FILENAME)
+                    subprocess.call("ffplay %s" % audio, shell=True)
                     corrects = raw_input("corrects (separated by comma), r to replay:").split(",")
                     while corrects == ["r"]:
                         subprocess.call("ffplay %s" % audio, shell=True)
