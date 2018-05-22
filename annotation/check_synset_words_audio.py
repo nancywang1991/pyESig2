@@ -53,9 +53,9 @@ def main(sbj_id):
                     result.flush()
         print subset, total, subset/total
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument("-s", "--sbj_id", help="subject id", default="mlp")
-args = parser.parse_args()
-main(args.sbj_id)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--sbj_id", help="subject id")
+    args = parser.parse_args()
+    main(args.sbj_id)
 
