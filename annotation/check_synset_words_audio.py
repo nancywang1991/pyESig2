@@ -52,7 +52,7 @@ def main(sbj_id):
                     else:
                         result.write(",".join([audio_file, transcript[:-1], " "]) + "\n")
                     result.flush()
-        print subset, total, subset/total
+        print subset, total
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
