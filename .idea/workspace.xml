@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="">
+    <list default="true" id="ef47fd59-86a6-4355-a639-629ebc79c9c1" name="Default" comment="transcription code">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analysis/electrode_regression.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/annotation/check_synset_words_audio.py" afterPath="$PROJECT_DIR$/annotation/check_synset_words_audio.py" />
     </list>
     <ignored path="pyESig2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,19 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="autodiff.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/OneDrive - UW/Documents/Documents/classes/systems_ml/assignment2.tar/assignment2/assignment2-2018/python/dlsys/autodiff.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8118">
-              <caret line="252" column="32" selection-start-line="252" selection-start-column="23" selection-end-line="252" selection-end-column="32" />
-              <folding>
-                <element signature="e#66#104#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="check_synset_words_audio.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="check_synset_words_audio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotation/check_synset_words_audio.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1097">
@@ -48,11 +36,55 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="electrode_regression.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/analysis/electrode_regression.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edfreader.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/site-packages/pyedflib/edfreader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="636">
+              <caret line="618" column="25" selection-start-line="618" selection-start-column="25" selection-end-line="618" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ecog_fft_extract.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-623">
+              <caret line="2" column="14" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ecog_fft_extract_windows.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract_windows.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="merge_edf_files.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="25" />
+            <state relative-caret-position="405">
+              <caret line="53" column="61" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -102,40 +134,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transcription_csv_gen.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/audio/transcription_csv_gen.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="14" column="16" selection-start-line="13" selection-start-column="17" selection-end-line="14" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tvm_op.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/OneDrive - UW/Documents/Documents/classes/systems_ml/assignment2.tar/assignment2/assignment2-2018/python/dlsys/tvm_op.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2442">
-              <caret line="78" column="12" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="classify_synsets.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/speech/classify_synsets.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2772">
-              <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -152,7 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/display/show_mvmt_on_video_ecog_2.py" />
         <option value="$PROJECT_DIR$/scripts/spectral_ratio_display.py" />
         <option value="$PROJECT_DIR$/movement/movement_cluster.py" />
         <option value="$PROJECT_DIR$/vid/vid_time.py" />
@@ -203,6 +200,7 @@
         <option value="$USER_HOME$/OneDrive - UW/Documents/Documents/classes/systems_ml/assignment2.tar/assignment2/assignment2-2018/python/dlsys/autodiff.py" />
         <option value="$USER_HOME$/OneDrive - UW/Documents/Documents/classes/systems_ml/assignment2.tar/assignment2/assignment2-2018/tests/mnist_dlsys.py" />
         <option value="$PROJECT_DIR$/annotation/check_synset_words_audio.py" />
+        <option value="$PROJECT_DIR$/analysis/electrode_regression.py" />
       </list>
     </option>
   </component>
@@ -924,13 +922,6 @@
       <option name="presentableId" value="Default" />
       <updated>1452830988908</updated>
     </task>
-    <task id="LOCAL-00227" summary="mirror files update to multiple frame copies">
-      <created>1487095184210</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
-      <option name="project" value="LOCAL" />
-      <updated>1487095184210</updated>
-    </task>
     <task id="LOCAL-00228" summary="mirror files update to multiple frame copies">
       <created>1487901196424</created>
       <option name="number" value="00228" />
@@ -1267,7 +1258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527013806806</updated>
     </task>
-    <option name="localTasksCounter" value="276" />
+    <task id="LOCAL-00276" summary="transcription code">
+      <created>1527193809110</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1527193809110</updated>
+    </task>
+    <option name="localTasksCounter" value="277" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1280,7 +1278,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-16" y="-16" width="3872" height="2092" extended-state="0" />
+    <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19453125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1364,27 +1362,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/display/data_profile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/freq/frequency_transform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vid/pose_detection_preprocessing_pipeline_secure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/util/standardize_dataset_comb.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
@@ -1487,13 +1464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1656,7 +1626,7 @@
         <state relative-caret-position="2442">
           <caret line="78" column="12" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="12" />
           <folding>
-            <element signature="e#0#54#0" expanded="true" />
+            <element signature="e#0#54#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1666,7 +1636,7 @@
         <state relative-caret-position="8118">
           <caret line="252" column="32" selection-start-line="252" selection-start-column="23" selection-end-line="252" selection-end-column="32" />
           <folding>
-            <element signature="e#66#104#0" expanded="true" />
+            <element signature="e#66#104#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1684,7 +1654,7 @@
         <state relative-caret-position="2772">
           <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1725,20 +1695,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/annotation/check_synset_words_audio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1097">
           <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-623">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/ecog_fft_extract_windows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/merge_edf_files.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="53" column="61" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/pyedflib/edfreader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="618" column="25" selection-start-line="618" selection-start-column="25" selection-end-line="618" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/electrode_regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
