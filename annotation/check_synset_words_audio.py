@@ -8,12 +8,14 @@ import os
 def main(sbj_id):
     save_dir = "%s/transcriptions/" % os.getenv("HOME")
     audio_dir = "/data1/voice_activity_orig/"
-    transcript_dir = "/data1/voice_activity_orig/"
-    synset_file = "/data1/voice_activity_orig/word2synset_dict.p"
+    transcript_dir = "/data1/voice_activity_orig_old/"
+    synset_file = "/data1/voice_activity_orig_old/word2synset_dict.p"
 
     word2synset = pickle.load(open(synset_file,"r"))
     for trans_file in glob.glob("%s/%s/*_trans.csv" % (transcript_dir, sbj_id)):
+        
         day = trans_file.split("/")[-1].split("_")[1]
+        print "Starting sbj %s day %s" % (sbj_id, day)
         if not os.path.exists("%s/%s/" % (save_dir, sbj_id)):
             os.makedirs("%s/%s/" % (save_dir, sbj_id))
         save_file = "%s/%s/%s_%s_trans_clean.csv" % (save_dir, sbj_id, sbj_id, day)
@@ -23,6 +25,7 @@ def main(sbj_id):
             for n, line in enumerate(open(trans_file)):
                 if line.split(",")[0] == last_file_done:
                     cur_ind = n
+                    print "On line %i" % n 
                     break
         except (IOError, IndexError) as e:
             pass
@@ -41,11 +44,11 @@ def main(sbj_id):
                     print ", ".join(["%i-%s" %(n, word) for n, word in enumerate(words_to_do)])
                     subset += length
                     audio = "%s/%s" % (audio_dir, "/".join(audio_file.split("/")[-3:]))
-                    subprocess.call("mplayer -really-quiet %s" % audio, shell=True)
-                    corrects = raw_input("corrects (separated by comma), r to replay:").split(",")
+                    subprocess.call("aplay %s" % audio, shell=True)
+                    corrects = raw_input("words (separated by space), r to replay:").split(",")
                     while corrects == ["r"]:
-                        subprocess.call("mplayer -really-quiet %s" % audio, shell=True)
-                        corrects = raw_input("corrects (separated by comma), r to replay:").split(",")
+                        subprocess.call("aplay %s" % audio, shell=True)
+                        corrects = raw_input("words (separated by space), r to replay:").split(",")
                     if not corrects == [""]:
                         result.write(",".join([audio_file, transcript[:-1], " ".join([correct for correct in corrects])]) + "\n")
                         #result.write(",".join([audio_file, transcript[:-1],corrects[0]]) + "\n")
